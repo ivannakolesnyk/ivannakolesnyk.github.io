@@ -28,72 +28,72 @@ Some selected products
 Testimonials  
 Contact information and disclaimers (footer)
 
-**What sections will there be on the page?**
-Front page:
-Hero section (order now)
-Menu/navigation bar, including where to find the shop, and log in (header) - will move when we scroll
-Some selected products
-Short description about the shop
-Testimonials
+**What sections will there be on the page?**  
+Front page:  
+Hero section (order now)  
+Menu/navigation bar, including where to find the shop, and log in (header) - will move when we scroll  
+Some selected products  
+Short description about the shop  
+Testimonials  
 Disclaimer, copyright, contact information (footer)
 
-Menu:
+Menu:  
 The menu for in house purchases, divided by category. If you click “show all”, all the products in that category will show.
 
-Products:
-Navigation bar on the left side
-Products (with picture and price) divided by sections on the front of this page (coffee, tea, accessories..)
+Products:  
+Navigation bar on the left side  
+Products (with picture and price) divided by sections on the front of this page (coffee, tea, accessories..)  
 Possible to add products to the shopping cart
 
-Single product:
-Product description
-Image of product
-Price
+Single product:  
+Product description  
+Image of product  
+Price  
 Add to cart
 
-About us:
-Short description of the shop
+About us:  
+Short description of the shop  
 Images of the shop
 
-Login page:
-Login section
+Login page:  
+Login section  
 Create new user
 
-Help page:
+Help page:  
 Some general explanation
 
-Shopping cart:
-Products in the the cart (with links to the product)
-Delete product button
-Change the number of items button
-Empty cart button
+Shopping cart:  
+Products in the the cart (with links to the product)  
+Delete product button  
+Change the number of items button  
+Empty cart button  
 Go pay button
 
-My page
-Personal information (with ability to change the info and the password)
-Orders (active and completed)
+My page  
+Personal information (with ability to change the info and the password)  
+Orders (active and completed)  
 Log out
 
-**What layout(s) will you use for the sections?**
-We will have a nav bar on top, that stays in place even if you scroll
-Hero section in the top of front page
-No side bars, except for the products page, where we will have a nav bar on the left side
+**What layout(s) will you use for the sections?**  
+We will have a nav bar on top, that stays in place even if you scroll  
+Hero section in the top of front page  
+No side bars, except for the products page, where we will have a nav bar on the left side  
 The same header (with navigation) and footer will be on all the pages.
 
 ### Images
 
-Gather the available images
-**Will there be text on images or aside images?**
+Gather the available images  
+**Will there be text on images or aside images?**  
 Aside images
 
-**Will we use clear images or a color-overlay?**
-**Will there be blur for images?**
+**Will we use clear images or a color-overlay?**  
+**Will there be blur for images?**  
 No
 
 ### Icons
 
-**Will we use icons and for what?**
-**Colored or black-and-white/greyscale icons?**
+**Will we use icons and for what?**  
+**Colored or black-and-white/greyscale icons?**  
 Greyscale
 
 ### Typography
@@ -102,24 +102,24 @@ Font for main text: Neuton
 
 Font for description: Nunito
 
-**Should it by a Serif or Sans-Serif font?**
-Sans-serif to communicate modernity
+**Should it by a Serif or Sans-Serif font?**  
+Sans-serif to communicate modernity  
 We use both for having different amount of attention for the specific text
 
-**Bold or thin font?**
+**Bold or thin font?**  
 Here we also use a mix, for dividing customers' attention properly
 
-**Rounded or sharp edges?**
+**Rounded or sharp edges?**  
 Mostly sharp, but some images
 
 ### Border rounding
 
-**How rounded should be the edges, according to the theme?**
-Not rounded
+**How rounded should be the edges, according to the theme?**  
+Mostly not rounded. Only on some images.
 
 ### Shadows
 
-**How much shadow will we use in general, according to the theme?**
+**How much shadow will we use in general, according to the theme?**  
 No
 
 ## SKETCHING
