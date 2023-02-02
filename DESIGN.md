@@ -20,12 +20,12 @@ And black and white
 **What is the most important message/product on the page?**
 Buy our coffee, in the shop or online.
 
-**What is the order of importance for the different elements? What sections will there be on the page?**
-Listed by importance:
-Hero section (enjoy our coffee at home - order now)
-Menu/navigation bar, including where to find the shop, and log in (header) - will move when we scroll
-Some selected products
-Testimonials
+**What is the order of importance for the different elements? What sections will there be on the page?**  
+Listed by importance:  
+Hero section (enjoy our coffee at home - order now)  
+Menu/navigation bar, including where to find the shop, and log in (header) - will move when we scroll  
+Some selected products  
+Testimonials  
 Contact information and disclaimers (footer)
 
 **What sections will there be on the page?**
