@@ -22,3 +22,7 @@
 .nav-bar li a:hover {
   background-color: #111111;
 }
+
+footer p {
+  font-style: italic;
+}
