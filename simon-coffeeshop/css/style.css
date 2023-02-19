@@ -26,3 +26,47 @@
 footer p {
   font-style: italic;
 }
+
+.products {
+  width: 80%;
+  margin: auto;
+  padding: 50px 0;
+}
+
+.products section {
+  margin-bottom: 80px;
+}
+
+.products section:last-child {
+  margin-bottom: 0;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  font-family: arial;
+}
+
+.quantity {
+  color: grey;
+  font-size: 22px;
+}
+
+.card-header {
+  display: flex;
+  padding: 5px;
+  justify-content: space-between;
+}
+
+.price {
+  padding: 5px;
+}
+
+.form-content {
+  margin-bottom: 22px;
+}
