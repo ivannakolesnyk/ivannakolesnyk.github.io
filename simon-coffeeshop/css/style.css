@@ -1,27 +1,79 @@
+/* Setting some default values to make work the layout easier to manage */
+
+html {
+  font-size: 62.5%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 4.8rem;
+}
+
+h2 {
+  font-size: 3.2rem;
+}
+
+p,
+a {
+  font-size: 2rem;
+}
+
+/* default values end */
+
+/* Nav-bar  */
+
+a:link,
+a:visited {
+  color: black;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.nav-bar img[src="./img/logo.jpg"] {
+  height: 6rem;
+  width: auto;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2rem;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+  padding-bottom: 1rem;
+}
+
 .nav-bar ul {
   text-align: center;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333333;
 }
 
 .nav-bar li {
+  list-style-type: none;
   display: inline-block;
 }
 
 .nav-bar li a {
   display: block;
-  color: white;
   text-align: center;
   padding: 16px;
   text-decoration: none;
 }
 
 .nav-bar li a:hover {
-  background-color: #111111;
+  background-color: rgba(182, 145, 130, 0.3);
 }
+
+/* Nav-bar end */
 
 footer p {
   font-style: italic;
