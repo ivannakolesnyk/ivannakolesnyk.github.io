@@ -7,7 +7,7 @@ const Feed = () => {
 
   return (
     <Box bgcolor="white" flex={1} p={2}>
-      Feed:<br></br>
+      This is the front page (feed.jsx):<br></br>
       <Box sx={{ bgcolor: theme.palette.primary.main, display: "inline" }}>
         Main color - Just to show you
         <br></br>
