@@ -1,12 +1,9 @@
 import React from "react";
 
-import { Box, Container, Stack } from "@mui/system";
-import { useTheme } from "@emotion/react";
+import { Box, Stack } from "@mui/system";
 import Categories from "./Categories";
 
 const Products = () => {
-  const theme = useTheme();
-
   return (
     <Box>
       <Stack direction="row" spacing={1} justifyContent="space-between">

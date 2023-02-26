@@ -5,9 +5,7 @@ import {
   ExpandLess,
   ExpandMore,
   HomeRepairService,
-  Inbox,
   LocalCafe,
-  StarBorder,
   TrendingDown,
 } from "@mui/icons-material";
 import {
@@ -16,7 +14,6 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  ListSubheader,
 } from "@mui/material";
 import { useTheme } from "@emotion/react";
 
@@ -34,7 +31,7 @@ const Categories = () => {
   };
   return (
     <>
-      <Typography color={theme.palette.primary.main} fontSize={30}>
+      <Typography color={theme.palette.primary.main} variant="h4">
         Categories
       </Typography>
 
@@ -72,6 +69,7 @@ const Categories = () => {
             </ListItemButton>
           </List>
         </Collapse>
+
         <ListItemButton onClick={handleClickTea}>
           <ListItemIcon>
             <EmojiFoodBeverage sx={{ color: theme.palette.primary.main }} />
