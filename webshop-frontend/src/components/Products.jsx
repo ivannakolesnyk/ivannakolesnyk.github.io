@@ -1,17 +1,23 @@
 import React from "react";
-import { Typography } from "@mui/material";
+
+import { Box, Container, Stack } from "@mui/system";
+import { useTheme } from "@emotion/react";
+import Categories from "./Categories";
 
 const Products = () => {
+  const theme = useTheme();
+
   return (
-    <>
-      <Typography variant="h3" align="left">
-        Products
-      </Typography>
-      <Typography variant="body1">
-        The products will show here. We just need a connection with our database
-        first.
-      </Typography>
-    </>
+    <Box>
+      <Stack direction="row" spacing={1} justifyContent="space-between">
+        <Box flex={1} p={4}>
+          <Categories />
+        </Box>
+        <Box bgcolor={"blue"} flex={5} p={4}>
+          Products
+        </Box>
+      </Stack>
+    </Box>
   );
 };
 
