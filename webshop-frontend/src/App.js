@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Feed from "./components/Feed";
+import Frontpage from "./components/Frontpage";
 import AboutUs from "./components/AboutUs";
 import Footer from "./components/Footer";
 import Menu from "./components/Menu";
@@ -17,7 +17,7 @@ function App() {
         <Navbar />
         <Box flex="1">
           <Routes>
-            <Route path="/" element={<Feed />} />
+            <Route path="/" element={<Frontpage />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/products" element={<Products />} />

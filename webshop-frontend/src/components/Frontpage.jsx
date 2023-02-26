@@ -2,12 +2,12 @@ import { Box } from "@mui/material";
 import React from "react";
 import { useTheme } from "@mui/material/styles";
 
-const Feed = () => {
+const Frontpage = () => {
   const theme = useTheme();
 
   return (
     <Box bgcolor="white" flex={1} p={2}>
-      This is the front page (feed.jsx):<br></br>
+      This is the front page (Frontpage.jsx):<br></br>
       <Box sx={{ bgcolor: theme.palette.primary.main, display: "inline" }}>
         Main color - Just to show you
         <br></br>
@@ -20,4 +20,4 @@ const Feed = () => {
   );
 };
 
-export default Feed;
+export default Frontpage;
