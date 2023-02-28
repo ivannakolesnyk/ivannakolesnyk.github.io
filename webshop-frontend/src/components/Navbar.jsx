@@ -10,11 +10,13 @@ import {
   AppBar,
   Button,
   IconButton,
+  Menu,
+  MenuItem,
   styled,
   Toolbar,
   useMediaQuery,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -24,6 +26,8 @@ const StyledToolbar = styled(Toolbar)({
 
 const Navbar = () => {
   const smallScreenSize = useMediaQuery("(max-width:800px)");
+
+  const [openHamburgerMenu, setOpenHamburgerMenu] = useState(false);
 
   const SmallScreenNavbar = styled("div")({
     display: "flex",
@@ -53,9 +57,84 @@ const Navbar = () => {
               className={"menu-button"}
               color="inherit"
               aria-label="menu"
+              onClick={(e) => setOpenHamburgerMenu(true)}
             >
               <MenuIcon />
             </MenuButton>
+            <Menu
+              style={{ position: "absolute", top: 30, right: 0 }}
+              id="positioned-hamburger-menu"
+              aria-labelledby="positioned-hamburger-menu"
+              anchorEl={MenuButton}
+              open={openHamburgerMenu}
+              onClose={(e) => setOpenHamburgerMenu(false)}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              getContentAnchorEl={null}
+            >
+              <MenuItem
+                key="home"
+                component={Link}
+                to="/"
+                onClick={(e) => setOpenHamburgerMenu(false)}
+              >
+                Home
+              </MenuItem>
+              <MenuItem
+                key="menu"
+                component={Link}
+                to="/menu"
+                onClick={(e) => setOpenHamburgerMenu(false)}
+              >
+                Menu
+              </MenuItem>
+              <MenuItem
+                key="products"
+                component={Link}
+                to="/products"
+                onClick={(e) => setOpenHamburgerMenu(false)}
+              >
+                Products
+              </MenuItem>
+              <MenuItem
+                key="about"
+                component={Link}
+                to="/about"
+                onClick={(e) => setOpenHamburgerMenu(false)}
+              >
+                About us
+              </MenuItem>
+              <MenuItem
+                key="findus"
+                component={Link}
+                to="/findus"
+                onClick={(e) => setOpenHamburgerMenu(false)}
+              >
+                Find us
+              </MenuItem>
+              <MenuItem
+                key="login"
+                component={Link}
+                to="/login"
+                onClick={(e) => setOpenHamburgerMenu(false)}
+              >
+                Log in
+              </MenuItem>
+              <MenuItem
+                key="shoppingcart"
+                component={Link}
+                to="/shoppingcart"
+                onClick={(e) => setOpenHamburgerMenu(false)}
+              >
+                Shopping cart
+              </MenuItem>
+            </Menu>
           </SmallScreenNavbar>
         ) : (
           <>
