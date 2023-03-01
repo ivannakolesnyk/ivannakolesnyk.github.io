@@ -7,6 +7,8 @@ package no.ntnu.idata2306.group1.webshopbackend;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 /**
  *
@@ -22,6 +24,9 @@ public class Product {
     private String description;
     private String product_image;
     private int qty_in_stock;
+    @ManyToOne
+    @JoinColumn()
+    private Category category;
 
     public Product(String name, double price, String description,
             String product_image, int qty_in_stock) {
