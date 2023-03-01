@@ -2,3 +2,6 @@ spring.datasource.driver-class-name=org.postgresql.Driver
 spring.datasource.username=mocha_nooka
 spring.datasource.password=
 spring.datasource.url=jdbc:postgresql://localhost/mocha_nooka
+
+# update tables on application restart
+spring.jpa.hibernate.ddl-auto=update
