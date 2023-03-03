@@ -1,5 +1,11 @@
 import { createTheme } from "@mui/material";
 
+/**
+This file exports a custom theme using createTheme function from @mui/material.
+The custom theme defines the following:
+Primary and Secondary color palettes.
+Custom typography settings for font family, headings, and body text.
+*/
 export const theme = createTheme({
   palette: {
     primary: {
