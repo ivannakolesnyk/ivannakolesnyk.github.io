@@ -27,8 +27,8 @@ const Footer = () => {
         justifyContent: "center",
       }}
     >
-      <Grid item xs={1.5}></Grid>
-      <Grid item xs={3}>
+      <Grid item xs={2}></Grid>
+      <Grid item xs={8 / 3}>
         <Typography variant="body2" align="center" sx={{ mb: 2 }}>
           <Link component={Link} to="/about" color="inherit">
             About us
@@ -42,7 +42,7 @@ const Footer = () => {
           </Link>
         </Typography>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={8 / 3}>
         <Typography variant="body2" align="center" sx={{ mb: 2 }}>
           Contact information:
         </Typography>
@@ -54,7 +54,7 @@ const Footer = () => {
           +4795746534
         </Typography>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={8 / 3}>
         <Typography variant="body2" align="center" sx={{ mb: 2 }}>
           Follow us:
         </Typography>
@@ -77,8 +77,9 @@ const Footer = () => {
           </IconButton>
         </Typography>
       </Grid>
-      <Grid item xs={1.5}></Grid>
-      <Grid item xs={12}>
+      <Grid item xs={2}></Grid>
+      <Grid item xs={2}></Grid>
+      <Grid item xs={8}>
         <Typography variant="body2" align="center">
           © {new Date().getFullYear()} Mocha Nooka Cafe. All rights reserved.
         </Typography>
@@ -106,6 +107,7 @@ const Footer = () => {
           resemblance with real companies or products is a coincidence
         </Typography>
       </Grid>
+      <Grid item xs={2}></Grid>
     </Grid>
   );
 };
