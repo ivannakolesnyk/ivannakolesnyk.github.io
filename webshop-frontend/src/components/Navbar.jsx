@@ -17,18 +17,53 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import React, { useState } from "react";
+import { useTheme } from "@mui/material/styles";
 
-const StyledToolbar = styled(Toolbar)({
-  display: "flex",
-  justifyContent: "space-between",
-  backgroundColor: "white",
-});
-
+/**
+The Navbar component displays a navigation bar for the website.
+The Navbar consists of a logo, links to different pages on the website,
+and buttons for accessing user-related features like finding the store location,
+logging in, and accessing the shopping cart.
+The Navbar uses the MUI library to style and layout its components.
+@returns {JSX.Element} The JSX code for the Navbar component.
+*/
 const Navbar = () => {
+  // Import the custom theme from theme.js
+  const theme = useTheme();
+
+  /**
+The StyledToolbar component is a styled version of the MUI Toolbar component.
+It is used to display the Navbar's contents in a way that is visually
+appealing and responsive to different screen sizes.
+*/
+  const StyledToolbar = styled(Toolbar)({
+    display: "flex",
+    justifyContent: "space-between",
+    backgroundColor: "white",
+    color: theme.palette.primary.contrastText,
+    "& .MuiSvgIcon-root": {
+      color: theme.palette.primary.contrastText,
+    },
+    "& button": {
+      color: theme.palette.primary.contrastText,
+    },
+  });
+
   const smallScreenSize = useMediaQuery("(max-width:800px)");
 
+  /**
+The openHamburgerMenu variable is a boolean that is true if the hamburger
+menu is currently open on small screens.
+It is used to control the state of the hamburger menu.
+*/
   const [openHamburgerMenu, setOpenHamburgerMenu] = useState(false);
 
+  /**
+The SmallScreenNavbar component is a styled div that contains the
+contents of the Navbar on small screens.
+It is used to display the Navbar's contents in a way that is visually
+appealing and responsive to small screens.
+*/
   const SmallScreenNavbar = styled("div")({
     display: "flex",
     alignItems: "center",
@@ -40,12 +75,23 @@ const Navbar = () => {
     marginRight: "8px",
   });
 
+  const StyledButton = styled(Button)({
+    color: "black",
+  });
+
+  /**
+This AppBar show the Small Screen Appbar if the screen size is below
+800 px, which is the value where there is not enough room for
+all the text on the NavBar. It would generally be used for a
+tablet or a mobile phone. If it's over 800 px it shows the entire
+NavBar, which is meant for computer screens and larger screens.
+*/
   return (
     <AppBar position="sticky">
       <StyledToolbar>
         {smallScreenSize ? (
           <SmallScreenNavbar>
-            <Link to="/">
+            <Link component={Link} to="/">
               <img
                 src={coffeeLogo}
                 alt="Monoca logo"
@@ -55,7 +101,7 @@ const Navbar = () => {
             <MenuButton
               edge="end"
               className={"menu-button"}
-              color="inherit"
+              color="#fff"
               aria-label="menu"
               onClick={(e) => setOpenHamburgerMenu(true)}
             >
@@ -139,9 +185,9 @@ const Navbar = () => {
         ) : (
           <>
             <div className="left-navbar-buttons">
-              <Button color="inherit" component={Link} to="/menu">
+              <StyledButton color="inherit" component={Link} to="/menu">
                 Menu
-              </Button>
+              </StyledButton>
               <Button color="inherit" component={Link} to="/products">
                 Products
               </Button>
@@ -149,7 +195,7 @@ const Navbar = () => {
                 About us
               </Button>
             </div>
-            <div className="coffeeLogo">
+            <div className="coffeeLogo" component={Link}>
               <Link to="/">
                 <img
                   src={coffeeLogo}

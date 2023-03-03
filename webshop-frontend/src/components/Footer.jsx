@@ -1,46 +1,112 @@
 import React from "react";
 import { useTheme } from "@mui/material/styles";
-import { Box, Link, Typography } from "@mui/material";
+import { Grid, IconButton, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
 
+/**
+The Footer component displays the footer section of the web page.
+It includes information such as the address and contact details of the business,
+as well as links to social media pages.
+This component is rendered at the bottom of the page.
+@returns {JSX.Element} Footer component
+*/
 const Footer = () => {
+  // Import the custom theme from theme.js
   const theme = useTheme();
 
   return (
-    <Box
+    <Grid
+      container
+      spacing={2}
       sx={{
         bgcolor: theme.palette.primary.main,
-        color: theme.palette.secondary.contrastText,
         p: 2,
         mt: "auto",
+        justifyContent: "center",
       }}
     >
-      <Typography variant="body2" align="center">
-        © {new Date().getFullYear()} Mocha Nooka Cafe. All rights reserved.
-      </Typography>
-      <Typography variant="body2" align="center" sx={{ mt: 1 }}>
-        This website is a result of a university group project, performed in the
-        course{" "}
-        <Link
-          href="https://www.ntnu.edu/studies/courses/IDATA2301#tab=omEmnet"
-          target="_blank"
-          rel="noopener"
-          sx={{ color: theme.palette.secondary.contrastText }}
-        >
-          IDATA2301 Web technologies
-        </Link>
-        , at{" "}
-        <Link
-          href="https://www.ntnu.edu/"
-          target="_blank"
-          rel="noopener"
-          sx={{ color: theme.palette.secondary.contrastText }}
-        >
-          NTNU
-        </Link>
-        . All the information provided here is a result of imagination. Any
-        resemblance with real companies or products is a coincidence
-      </Typography>
-    </Box>
+      <Grid item xs={1.5}></Grid>
+      <Grid item xs={3}>
+        <Typography variant="body2" align="center" sx={{ mb: 2 }}>
+          <Link component={Link} to="/about" color="inherit">
+            About us
+          </Link>
+        </Typography>
+        <Typography variant="body2" align="center" sx={{ mb: 2 }}>
+          Find us: <br />
+          <Link component={Link} to="/findus" color="inherit">
+            Larsgårdsvegen 2<br />
+            6009 Ålesund
+          </Link>
+        </Typography>
+      </Grid>
+      <Grid item xs={3}>
+        <Typography variant="body2" align="center" sx={{ mb: 2 }}>
+          Contact information:
+        </Typography>
+        <Typography variant="body2" align="center" sx={{ mb: 2 }}>
+          <a href="mailto:monoka@gmail.com" target="_blank" rel="noreferrer">
+            monoka@gmail.com
+          </a>
+          <br></br>
+          +4795746534
+        </Typography>
+      </Grid>
+      <Grid item xs={3}>
+        <Typography variant="body2" align="center" sx={{ mb: 2 }}>
+          Follow us:
+        </Typography>
+        <Typography variant="body2" align="center" sx={{ mb: 2 }}>
+          <IconButton
+            href="https://www.facebook.com/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Facebook"
+          >
+            <FacebookIcon fontSize="large" />
+          </IconButton>
+          <IconButton
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram"
+          >
+            <InstagramIcon fontSize="large" />
+          </IconButton>
+        </Typography>
+      </Grid>
+      <Grid item xs={1.5}></Grid>
+      <Grid item xs={12}>
+        <Typography variant="body2" align="center">
+          © {new Date().getFullYear()} Mocha Nooka Cafe. All rights reserved.
+        </Typography>
+        <Typography variant="body2" align="center" sx={{ mt: 1 }}>
+          This website is a result of a university group project, performed in
+          the course{" "}
+          <a
+            href="https://www.ntnu.edu/studies/courses/IDATA2301#tab=omEmnet"
+            target="_blank"
+            rel="noreferrer"
+            className="footer-link"
+          >
+            IDATA2301 Web technologies
+          </a>
+          , at{" "}
+          <a
+            href="https://www.ntnu.edu/"
+            target="_blank"
+            rel="noreferrer"
+            className="footer-link"
+          >
+            NTNU
+          </a>
+          . All the information provided here is a result of imagination. Any
+          resemblance with real companies or products is a coincidence
+        </Typography>
+      </Grid>
+    </Grid>
   );
 };
 
