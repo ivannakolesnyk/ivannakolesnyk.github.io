@@ -81,7 +81,7 @@ appealing and responsive to small screens.
 
   /**
 This AppBar shows the Small Screen Appbar if the screen size is below
-800 px, which is the value where there is not enough room for
+980 px, which is the value where there is not enough room for
 all the text on the NavBar. It would generally be used for a
 tablet or a mobile phone. If it's over 980 px it shows the entire
 NavBar, which is meant for computer screens and larger screens.
