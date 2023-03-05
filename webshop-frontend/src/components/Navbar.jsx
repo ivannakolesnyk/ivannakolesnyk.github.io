@@ -5,7 +5,7 @@ import {
   PlaceOutlined as PlaceOutlinedIcon,
   Person2Outlined as Person2OutlinedIcon,
 } from "@mui/icons-material";
-import coffeeLogo from "../assets/coffeeLogo.jpg";
+import coffeeLogo from "../assets/coffeeLogo.png";
 import {
   AppBar,
   Button,
@@ -80,7 +80,7 @@ appealing and responsive to small screens.
   });
 
   /**
-This AppBar show the Small Screen Appbar if the screen size is below
+This AppBar shows the Small Screen Appbar if the screen size is below
 800 px, which is the value where there is not enough room for
 all the text on the NavBar. It would generally be used for a
 tablet or a mobile phone. If it's over 800 px it shows the entire
