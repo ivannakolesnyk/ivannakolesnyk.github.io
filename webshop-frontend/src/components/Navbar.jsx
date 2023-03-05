@@ -5,7 +5,7 @@ import {
   PlaceOutlined as PlaceOutlinedIcon,
   Person2Outlined as Person2OutlinedIcon,
 } from "@mui/icons-material";
-import coffeeLogo from "../assets/coffeeLogo.png";
+import coffeeLogo from "../assets/logo.png";
 import {
   AppBar,
   Button,
@@ -95,7 +95,7 @@ NavBar, which is meant for computer screens and larger screens.
               <img
                 src={coffeeLogo}
                 alt="Monoca logo"
-                style={{ width: "auto", height: "40px" }}
+                style={{ width: "auto", height: "70px", paddingTop: "10px" }}
               />
             </Link>
             <MenuButton
@@ -200,7 +200,7 @@ NavBar, which is meant for computer screens and larger screens.
                 <img
                   src={coffeeLogo}
                   alt="Monoca logo"
-                  style={{ width: "auto", height: "80px" }}
+                  style={{ width: "auto", height: "120px" }}
                 />
               </Link>
             </div>
