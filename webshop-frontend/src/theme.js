@@ -78,12 +78,12 @@ export const theme = createTheme({
       },
     },
     button: {
-      fontSize: "1.4rem",
+      fontSize: "1.2rem",
       "& a": {
         color: "#000",
         textDecoration: "underline",
         fontFamily: "Nunito, sans-serif",
-        fontSize: "1.4rem",
+        fontSize: "1.2rem",
       },
       "& a:visited": {
         color: "#000",

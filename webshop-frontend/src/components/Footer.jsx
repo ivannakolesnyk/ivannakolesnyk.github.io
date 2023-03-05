@@ -65,7 +65,7 @@ const Footer = () => {
             rel="noreferrer"
             aria-label="Facebook"
           >
-            <FacebookIcon fontSize="medium" />
+            <FacebookIcon fontSize="small" />
           </IconButton>
           <IconButton
             href="https://www.instagram.com/"
@@ -73,7 +73,7 @@ const Footer = () => {
             rel="noreferrer"
             aria-label="Instagram"
           >
-            <InstagramIcon fontSize="medium" />
+            <InstagramIcon fontSize="small" />
           </IconButton>
         </Typography>
       </Grid>
