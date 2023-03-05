@@ -49,7 +49,7 @@ appealing and responsive to different screen sizes.
     },
   });
 
-  const smallScreenSize = useMediaQuery("(max-width:800px)");
+  const smallScreenSize = useMediaQuery("(max-width:980px)");
 
   /**
 The openHamburgerMenu variable is a boolean that is true if the hamburger
@@ -83,7 +83,7 @@ appealing and responsive to small screens.
 This AppBar shows the Small Screen Appbar if the screen size is below
 800 px, which is the value where there is not enough room for
 all the text on the NavBar. It would generally be used for a
-tablet or a mobile phone. If it's over 800 px it shows the entire
+tablet or a mobile phone. If it's over 980 px it shows the entire
 NavBar, which is meant for computer screens and larger screens.
 */
   return (
@@ -95,7 +95,7 @@ NavBar, which is meant for computer screens and larger screens.
               <img
                 src={coffeeLogo}
                 alt="Monoca logo"
-                style={{ width: "auto", height: "70px", paddingTop: "10px" }}
+                style={{ width: "auto", height: "80px", paddingTop: "10px" }}
               />
             </Link>
             <MenuButton
