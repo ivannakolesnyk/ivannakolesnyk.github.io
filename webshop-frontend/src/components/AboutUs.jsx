@@ -4,10 +4,10 @@ import { Typography } from "@mui/material";
 const AboutUs = () => {
   return (
     <>
-      <Typography variant="h1" align="left">
+      <Typography variant="h1" align="left" padding="1rem">
         About us
       </Typography>
-      <Typography variant="body1">
+      <Typography variant="body1" padding="1rem">
         Mocha Nooka Cafe is the place to be for cool cats and urbanites alike.
         Located in the heart of the city, it's the go-to spot for the perfect
         cup of coffee or a tasty bite of food. Whether you're grabbing a quick
@@ -17,9 +17,8 @@ const AboutUs = () => {
         brews, beans, and blends. Plus, our friendly staff is always on hand to
         offer up recommendations for the perfect pairing. Come check us out for
         an unforgettable experience.
-      </Typography>
-      <br></br>
-      <Typography variant="body1">
+        <br></br>
+        <br></br>
         Our values: At Mocha Nooka Cafe, we strive to create a peaceful, modern
         atmosphere for our guests to enjoy. Our carefully crafted menu of
         delicious treats and beverages is designed to please all palates.

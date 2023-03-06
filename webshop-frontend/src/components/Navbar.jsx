@@ -95,7 +95,12 @@ NavBar, which is meant for computer screens and larger screens.
               <img
                 src={coffeeLogo}
                 alt="Monoca logo"
-                style={{ width: "auto", height: "80px", paddingTop: "10px" }}
+                style={{
+                  width: "auto",
+                  height: "40px",
+                  paddingTop: "10px",
+                  paddingBottom: "10px",
+                }}
               />
             </Link>
             <MenuButton
@@ -200,7 +205,13 @@ NavBar, which is meant for computer screens and larger screens.
                 <img
                   src={coffeeLogo}
                   alt="Monoca logo"
-                  style={{ width: "auto", height: "120px" }}
+                  style={{
+                    width: "auto",
+                    height: "60px",
+                    paddingTop: "10px",
+                    paddingBottom: "10px",
+                    alignContent: "left",
+                  }}
                 />
               </Link>
             </div>
@@ -221,8 +232,13 @@ NavBar, which is meant for computer screens and larger screens.
               >
                 Log in
               </Button>
-              <IconButton color="inherit" component={Link} to="/shoppingcart">
-                <ShoppingCartIcon />
+              <IconButton
+                color="inherit"
+                component={Link}
+                to="/shoppingcart"
+                fontSize="small"
+              >
+                <ShoppingCartIcon sx={{ fontSize: "1.8rem" }} />
               </IconButton>
             </div>
           </>

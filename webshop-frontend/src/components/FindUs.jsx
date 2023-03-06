@@ -44,7 +44,11 @@ const DirectionButton = ({ address, onGetDirections }) => {
           variant="contained"
           endIcon={<DirectionsIcon />}
           onClick={onGetDirections}
-          sx={{ mt: 2 }}
+          sx={{
+            mt: 2,
+            backgroundColor: "secondary.main",
+            color: "secondary.contrastText",
+          }}
         >
           Get direction
         </Button>

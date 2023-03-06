@@ -27,14 +27,14 @@ const Footer = () => {
         justifyContent: "center",
       }}
     >
-      <Grid item xs={2}></Grid>
+      <Grid item xs={3}></Grid>
       <Grid item xs={8 / 3}>
-        <Typography variant="body2" align="center" sx={{ mb: 2 }}>
+        <Typography variant="body2" align="left" sx={{ mb: 2 }}>
           <Link component={Link} to="/about" color="inherit">
             About us
           </Link>
         </Typography>
-        <Typography variant="body2" align="center" sx={{ mb: 2 }}>
+        <Typography variant="body2" align="left" sx={{ mb: 2 }}>
           Find us: <br />
           <Link component={Link} to="/findus" color="inherit">
             Larsgårdsvegen 2<br />
@@ -43,10 +43,10 @@ const Footer = () => {
         </Typography>
       </Grid>
       <Grid item xs={8 / 3}>
-        <Typography variant="body2" align="center" sx={{ mb: 2 }}>
+        <Typography variant="body2" align="left" sx={{ mb: 2 }}>
           Contact information:
         </Typography>
-        <Typography variant="body2" align="center" sx={{ mb: 2 }}>
+        <Typography variant="body2" align="left" sx={{ mb: 2 }}>
           <a href="mailto:monoka@gmail.com" target="_blank" rel="noreferrer">
             monoka@gmail.com
           </a>
@@ -55,10 +55,10 @@ const Footer = () => {
         </Typography>
       </Grid>
       <Grid item xs={8 / 3}>
-        <Typography variant="body2" align="center" sx={{ mb: 2 }}>
+        <Typography variant="body2" align="left" sx={{ mb: 2, pl: 1.2 }}>
           Follow us:
         </Typography>
-        <Typography variant="body2" align="center" sx={{ mb: 2 }}>
+        <Typography variant="body2" align="left" sx={{ mb: 2 }}>
           <IconButton
             href="https://www.facebook.com/"
             target="_blank"
@@ -77,13 +77,10 @@ const Footer = () => {
           </IconButton>
         </Typography>
       </Grid>
-      <Grid item xs={2}></Grid>
-      <Grid item xs={2}></Grid>
+      <Grid item xs={1}></Grid>
+      <Grid item xs={3}></Grid>
       <Grid item xs={8}>
-        <Typography variant="body2" align="center">
-          © {new Date().getFullYear()} Mocha Nooka Cafe. All rights reserved.
-        </Typography>
-        <Typography variant="body2" align="center" sx={{ mt: 1 }}>
+        <Typography variant="body2" align="left" sx={{ mt: 1, pb: 2 }}>
           This website is a result of a university group project, performed in
           the course{" "}
           <a
@@ -103,11 +100,14 @@ const Footer = () => {
           >
             NTNU
           </a>
-          . All the information provided here is a result of imagination. Any
+          .<br></br>
+          All the information provided here is a result of imagination. Any
           resemblance with real companies or products is a coincidence
+          <br></br>© {new Date().getFullYear()} Mocha Nooka Cafe. All rights
+          reserved.
         </Typography>
       </Grid>
-      <Grid item xs={2}></Grid>
+      <Grid item xs={1}></Grid>
     </Grid>
   );
 };

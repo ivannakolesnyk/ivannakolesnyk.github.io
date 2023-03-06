@@ -9,12 +9,13 @@ Custom typography settings for font family, headings, and body text.
 export const theme = createTheme({
   palette: {
     primary: {
-      main: "#C39681",
+      //main: "#C39681" (our old main color),
+      main: "#7A4647",
       contrastText: "#000",
     },
     secondary: {
-      main: "#F3EBE5",
-      contrastText: "#000",
+      main: "#000",
+      contrastText: "#FFF",
     },
   },
   typography: {
@@ -51,18 +52,19 @@ export const theme = createTheme({
     },
     body2: {
       fontSize: "1rem",
+      color: "#FFF",
       "& a": {
-        color: "#000",
+        color: "#FFF",
         textDecoration: "underline",
         fontFamily: "Nunito, sans-serif",
         fontSize: "1rem",
       },
       "& a:visited": {
-        color: "#000",
+        color: "#FFF",
       },
     },
     body1: {
-      fontSize: "1.6rem",
+      fontSize: "1.4rem",
       "& a": {
         color: "#000",
         textDecoration: "underline",
@@ -70,7 +72,7 @@ export const theme = createTheme({
       },
       "& a:visited": {
         color: "#000",
-        fontSize: "1.6rem",
+        fontSize: "1.4rem",
       },
     },
     button: {
