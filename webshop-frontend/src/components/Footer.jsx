@@ -19,7 +19,7 @@ const Footer = () => {
   return (
     <Grid
       container
-      spacing={2}
+      spacing={0}
       sx={{
         bgcolor: theme.palette.primary.main,
         p: 2,
@@ -103,8 +103,6 @@ const Footer = () => {
           .<br></br>
           All the information provided here is a result of imagination. Any
           resemblance with real companies or products is a coincidence
-          <br></br>© {new Date().getFullYear()} Mocha Nooka Cafe. All rights
-          reserved.
         </Typography>
       </Grid>
       <Grid item xs={1}></Grid>
