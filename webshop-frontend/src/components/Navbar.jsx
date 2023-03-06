@@ -189,7 +189,14 @@ NavBar, which is meant for computer screens and larger screens.
           </SmallScreenNavbar>
         ) : (
           <>
-            <div className="left-navbar-buttons">
+            <div
+              id="left-navbar-buttons"
+              style={{
+                display: "flex",
+                justifyContent: "left",
+                width: "33.33%",
+              }}
+            >
               <StyledButton color="inherit" component={Link} to="/menu">
                 Menu
               </StyledButton>
@@ -200,7 +207,15 @@ NavBar, which is meant for computer screens and larger screens.
                 About us
               </Button>
             </div>
-            <div className="coffeeLogo" component={Link}>
+            <div
+              id="coffeeLogo"
+              component={Link}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                width: "33.33%",
+              }}
+            >
               <Link to="/">
                 <img
                   src={coffeeLogo}
@@ -215,7 +230,14 @@ NavBar, which is meant for computer screens and larger screens.
                 />
               </Link>
             </div>
-            <div className={"right-navbar-buttons"}>
+            <div
+              id="right-navbar-buttons"
+              style={{
+                display: "flex",
+                justifyContent: "right",
+                width: "33.33%",
+              }}
+            >
               <Button
                 startIcon={<PlaceOutlinedIcon />}
                 color="inherit"
