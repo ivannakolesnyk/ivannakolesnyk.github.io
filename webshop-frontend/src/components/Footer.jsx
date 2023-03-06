@@ -27,7 +27,7 @@ const Footer = () => {
         justifyContent: "center",
       }}
     >
-      <Grid item xs={3}></Grid>
+      <Grid item xs={2.9}></Grid>
       <Grid item xs={8 / 3}>
         <Typography variant="body2" align="left" sx={{ mb: 2 }}>
           <Link component={Link} to="/about" color="inherit">
@@ -77,8 +77,8 @@ const Footer = () => {
           </IconButton>
         </Typography>
       </Grid>
-      <Grid item xs={1}></Grid>
-      <Grid item xs={3}></Grid>
+      <Grid item xs={1.1}></Grid>
+      <Grid item xs={2.9}></Grid>
       <Grid item xs={8}>
         <Typography variant="body2" align="left" sx={{ mt: 1, pb: 2 }}>
           This website is a result of a university group project, performed in
@@ -105,7 +105,7 @@ const Footer = () => {
           resemblance with real companies or products is a coincidence
         </Typography>
       </Grid>
-      <Grid item xs={1}></Grid>
+      <Grid item xs={1.1}></Grid>
     </Grid>
   );
 };
