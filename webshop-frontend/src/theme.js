@@ -21,10 +21,6 @@ export const theme = createTheme({
     // Set 1 rem to 10 px
     htmlFontSize: 10,
     fontFamily: "Nunito, sans-serif",
-    h0: {
-      fontSize: "4rem",
-      fontFamily: "Neuton, serif",
-    },
     h1: {
       fontSize: "3.2rem",
       fontFamily: "Neuton, serif",
