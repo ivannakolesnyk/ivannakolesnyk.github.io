@@ -15,6 +15,7 @@ import {
   styled,
   Toolbar,
   useMediaQuery,
+  Typography,
 } from "@mui/material";
 import React, { useState } from "react";
 import { useTheme } from "@mui/material/styles";
@@ -135,7 +136,14 @@ NavBar, which is meant for computer screens and larger screens.
                 to="/"
                 onClick={(e) => setOpenHamburgerMenu(false)}
               >
-                Home
+                <Typography
+                  variant="button"
+                  sx={{
+                    color: theme.palette.primary.contrastText,
+                  }}
+                >
+                  Home
+                </Typography>
               </MenuItem>
               <MenuItem
                 key="menu"
@@ -143,7 +151,14 @@ NavBar, which is meant for computer screens and larger screens.
                 to="/menu"
                 onClick={(e) => setOpenHamburgerMenu(false)}
               >
-                Menu
+                <Typography
+                  variant="button"
+                  sx={{
+                    color: theme.palette.primary.contrastText,
+                  }}
+                >
+                  Menu
+                </Typography>
               </MenuItem>
               <MenuItem
                 key="products"
@@ -151,7 +166,14 @@ NavBar, which is meant for computer screens and larger screens.
                 to="/products"
                 onClick={(e) => setOpenHamburgerMenu(false)}
               >
-                Products
+                <Typography
+                  variant="button"
+                  sx={{
+                    color: theme.palette.primary.contrastText,
+                  }}
+                >
+                  Products
+                </Typography>
               </MenuItem>
               <MenuItem
                 key="about"
@@ -159,7 +181,14 @@ NavBar, which is meant for computer screens and larger screens.
                 to="/about"
                 onClick={(e) => setOpenHamburgerMenu(false)}
               >
-                About us
+                <Typography
+                  variant="button"
+                  sx={{
+                    color: theme.palette.primary.contrastText,
+                  }}
+                >
+                  About us
+                </Typography>
               </MenuItem>
               <MenuItem
                 key="findus"
@@ -167,7 +196,14 @@ NavBar, which is meant for computer screens and larger screens.
                 to="/findus"
                 onClick={(e) => setOpenHamburgerMenu(false)}
               >
-                Find us
+                <Typography
+                  variant="button"
+                  sx={{
+                    color: theme.palette.primary.contrastText,
+                  }}
+                >
+                  Find us
+                </Typography>
               </MenuItem>
               <MenuItem
                 key="login"
@@ -175,7 +211,14 @@ NavBar, which is meant for computer screens and larger screens.
                 to="/login"
                 onClick={(e) => setOpenHamburgerMenu(false)}
               >
-                Log in
+                <Typography
+                  variant="button"
+                  sx={{
+                    color: theme.palette.primary.contrastText,
+                  }}
+                >
+                  Log in
+                </Typography>
               </MenuItem>
               <MenuItem
                 key="shoppingcart"
@@ -183,7 +226,14 @@ NavBar, which is meant for computer screens and larger screens.
                 to="/shoppingcart"
                 onClick={(e) => setOpenHamburgerMenu(false)}
               >
-                Shopping cart
+                <Typography
+                  variant="button"
+                  sx={{
+                    color: theme.palette.primary.contrastText,
+                  }}
+                >
+                  Shopping cart
+                </Typography>
               </MenuItem>
             </Menu>
           </SmallScreenNavbar>
@@ -198,13 +248,34 @@ NavBar, which is meant for computer screens and larger screens.
               }}
             >
               <StyledButton color="inherit" component={Link} to="/menu">
-                Menu
+                <Typography
+                  variant="button"
+                  sx={{
+                    color: theme.palette.primary.contrastText,
+                  }}
+                >
+                  Menu
+                </Typography>
               </StyledButton>
-              <Button color="inherit" component={Link} to="/products">
-                Products
+              <Button component={Link} to="/products">
+                <Typography
+                  variant="button"
+                  sx={{
+                    color: theme.palette.primary.contrastText,
+                  }}
+                >
+                  Products
+                </Typography>
               </Button>
               <Button color="inherit" component={Link} to="/about">
-                About us
+                <Typography
+                  variant="button"
+                  sx={{
+                    color: theme.palette.primary.contrastText,
+                  }}
+                >
+                  About us
+                </Typography>
               </Button>
             </div>
             <div
@@ -240,11 +311,20 @@ NavBar, which is meant for computer screens and larger screens.
             >
               <Button
                 startIcon={<PlaceOutlinedIcon />}
-                color="inherit"
                 component={Link}
                 to="/findus"
+                sx={{
+                  color: theme.palette.primary.contrastText,
+                }}
               >
-                Find us
+                <Typography
+                  variant="button"
+                  sx={{
+                    color: theme.palette.primary.contrastText,
+                  }}
+                >
+                  Find us
+                </Typography>
               </Button>
               <Button
                 startIcon={<Person2OutlinedIcon />}
@@ -252,15 +332,17 @@ NavBar, which is meant for computer screens and larger screens.
                 component={Link}
                 to="/login"
               >
-                Log in
+                <Typography
+                  variant="button"
+                  sx={{
+                    color: theme.palette.primary.contrastText,
+                  }}
+                >
+                  Log in
+                </Typography>
               </Button>
-              <IconButton
-                color="inherit"
-                component={Link}
-                to="/shoppingcart"
-                fontSize="small"
-              >
-                <ShoppingCartIcon sx={{ fontSize: "1.8rem" }} />
+              <IconButton component={Link} to="/shoppingcart" fontSize="small">
+                <ShoppingCartIcon sx={{ fontSize: "1.5rem" }} />
               </IconButton>
             </div>
           </>

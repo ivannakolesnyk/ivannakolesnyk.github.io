@@ -1,13 +1,30 @@
 import React from "react";
 import { Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const AboutUs = () => {
+  const theme = useTheme();
+
   return (
     <>
-      <Typography variant="h1" align="left" padding="1rem">
+      <Typography
+        variant="h1"
+        sx={{
+          color: theme.palette.primary.contrastText,
+          p: "2rem",
+        }}
+      >
         About us
       </Typography>
-      <Typography variant="body1" padding="1rem">
+      <Typography
+        variant="body1"
+        sx={{
+          color: theme.palette.primary.contrastText,
+          pl: "2rem",
+          pr: "2rem",
+          pb: "2rem",
+        }}
+      >
         Mocha Nooka Cafe is the place to be for cool cats and urbanites alike.
         Located in the heart of the city, it's the go-to spot for the perfect
         cup of coffee or a tasty bite of food. Whether you're grabbing a quick

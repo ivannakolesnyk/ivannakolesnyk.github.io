@@ -30,12 +30,12 @@ const DirectionButton = ({ address, onGetDirections }) => {
           },
         }}
       >
-        <Typography variant="h3" color="secondary.contrastText">
+        <Typography variant="h3" color="primary.contrastText">
           Find Us
         </Typography>
         <Typography
           variant="body1"
-          color="secondary.contrastText"
+          color="primary.contrastText"
           sx={{ textAlign: "left", width: "100%", mt: 2 }}
         >
           {address}

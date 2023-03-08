@@ -1,0 +1,12 @@
+/* Set global css values here */
+
+a {
+  color: #1f3a33;
+  text-decoration: underline;
+  font-family: Nunito, sans-serif;
+}
+
+a:visited {
+  color: #1f3a33;
+  font-family: Nunito, sans-serif;
+}

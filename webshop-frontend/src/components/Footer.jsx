@@ -22,6 +22,7 @@ const Footer = () => {
       spacing={0}
       sx={{
         bgcolor: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText,
         p: 2,
         mt: "auto",
         justifyContent: "center",
@@ -65,7 +66,9 @@ const Footer = () => {
             rel="noreferrer"
             aria-label="Facebook"
           >
-            <FacebookIcon fontSize="small" />
+            <FacebookIcon
+              sx={{ fontSize: "1.8rem", color: theme.palette.secondary.main }}
+            />
           </IconButton>
           <IconButton
             href="https://www.instagram.com/"
@@ -73,7 +76,9 @@ const Footer = () => {
             rel="noreferrer"
             aria-label="Instagram"
           >
-            <InstagramIcon fontSize="small" />
+            <InstagramIcon
+              sx={{ fontSize: "1.8rem", color: theme.palette.secondary.main }}
+            />
           </IconButton>
         </Typography>
       </Grid>

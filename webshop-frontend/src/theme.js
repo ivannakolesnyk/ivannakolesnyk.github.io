@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material";
+import { yellow } from "@mui/material/colors";
 
 /**
 This file exports a custom theme using createTheme function from @mui/material.
@@ -10,18 +11,18 @@ export const theme = createTheme({
   palette: {
     primary: {
       //main: "#C39681" (our old main color),
-      main: "#7A4647",
-      contrastText: "#000",
+      main: "#D9E7D5",
+      contrastText: "#1F3A33",
     },
     secondary: {
-      main: "#000",
-      contrastText: "#FFF",
+      main: "#1F3A33",
+      contrastText: "#D9E7D5",
     },
   },
   typography: {
-    // Set 1 rem to 10 px
-    htmlFontSize: 10,
+    htmlFontSize: 10, // Set 1 rem to 10 px
     fontFamily: "Nunito, sans-serif",
+    color: yellow,
     h1: {
       fontSize: "3.2rem",
       fontFamily: "Neuton, serif",
@@ -46,46 +47,14 @@ export const theme = createTheme({
       fontSize: "1.6rem",
       fontFamily: "Neuton, serif",
     },
-    primary: {
-      fontFamily: "Nunito, sans-serif",
-      color: "#000",
+    body1: {
+      fontSize: "1.6rem",
     },
     body2: {
       fontSize: "1rem",
-      color: "#FFF",
-      "& a": {
-        color: "#FFF",
-        textDecoration: "underline",
-        fontFamily: "Nunito, sans-serif",
-        fontSize: "1rem",
-      },
-      "& a:visited": {
-        color: "#FFF",
-      },
-    },
-    body1: {
-      fontSize: "1.4rem",
-      "& a": {
-        color: "#000",
-        textDecoration: "underline",
-        fontFamily: "Nunito, sans-serif",
-      },
-      "& a:visited": {
-        color: "#000",
-        fontSize: "1.4rem",
-      },
     },
     button: {
       fontSize: "1.2rem",
-      "& a": {
-        color: "#000",
-        textDecoration: "underline",
-        fontFamily: "Nunito, sans-serif",
-        fontSize: "1.2rem",
-      },
-      "& a:visited": {
-        color: "#000",
-      },
     },
   },
 });

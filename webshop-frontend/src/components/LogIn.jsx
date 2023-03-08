@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const LogIn = () => {
+  const theme = useTheme();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,7 +15,13 @@ const LogIn = () => {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Email:
+        <Typography
+          sx={{
+            color: theme.palette.primary.contrastText,
+          }}
+        >
+          Email:
+        </Typography>
         <input
           type="email"
           value={email}
@@ -22,7 +31,13 @@ const LogIn = () => {
       </label>
       <br />
       <label>
-        Password:
+        <Typography
+          sx={{
+            color: theme.palette.primary.contrastText,
+          }}
+        >
+          Password:
+        </Typography>
         <input
           type="password"
           value={password}

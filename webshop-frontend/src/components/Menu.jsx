@@ -1,9 +1,12 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const Menu = () => {
+  const theme = useTheme();
+
   return (
-    <Box sx={{ p: 2 }}>
+    <Box sx={{ p: 2, color: theme.palette.primary.contrastText }}>
       <Typography variant="h3" sx={{ mb: 2 }}>
         Our Menu
       </Typography>
