@@ -3,6 +3,8 @@ import React from "react";
 import { Box, Stack } from "@mui/system";
 import Categories from "./Categories";
 import ProductCard from "./ProductCard";
+import { Alert, Grid } from "@mui/material";
+import { theme } from "../theme";
 
 const Products = () => {
   // Fetching product data from API
@@ -80,23 +82,25 @@ const Products = () => {
   ];
 
   return (
-    <Box>
-      <Stack direction="row" justifyContent="space-between">
-        <Box flex={1} p={4}>
-          <Categories />
-        </Box>
-        <Stack direction="row" gap={"50px"} flex={5} p={4} flexWrap="wrap">
+    <Grid container spacing={0}>
+      <Grid item md={2} p={4}>
+        <Categories />
+      </Grid>
+      <Grid item md={10} p={4}>
+        <Grid container spacing={5}>
           {products.map(({ id, productName, price, imagePath }) => (
-            <ProductCard
-              key={id}
-              productName={productName}
-              price={price}
-              imagePath={imagePath}
-            />
+            <Grid item md={3}>
+              <ProductCard
+                key={id}
+                productName={productName}
+                price={price}
+                imagePath={imagePath}
+              />
+            </Grid>
           ))}
-        </Stack>
-      </Stack>
-    </Box>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
 
