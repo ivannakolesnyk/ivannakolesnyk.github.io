@@ -87,6 +87,22 @@ const Products = () => {
         <Categories />
       </Grid>
       <Grid item md={10} p={4}>
+        <Box
+          sx={{
+            backgroundColor: "#F1D2C8",
+            color: "#7A4647",
+            padding: "10px",
+            borderRadius: "8px",
+            // width: "90%",
+            textAlign: "center",
+            justifySelf: "center",
+            margin: "0 auto",
+            marginBottom: 4,
+          }}
+        >
+          Awaken your senses with every sip - Experience the perfect cup of
+          coffee with us!
+        </Box>
         <Grid container spacing={5}>
           {products.map(({ id, productName, price, imagePath }) => (
             <Grid item md={3}>
