@@ -31,7 +31,7 @@ const Categories = () => {
   };
   return (
     <>
-      <Typography color={theme.palette.primary.main} variant="h4">
+      <Typography color={theme.palette.primary.contrastText} variant="h4">
         Categories
       </Typography>
 
@@ -39,7 +39,7 @@ const Categories = () => {
         sx={{
           width: "100%",
           maxWidth: 360,
-          color: theme.palette.primary.main,
+          color: theme.palette.primary.contrastText,
         }}
         component="nav"
         aria-labelledby="nested-list-subheader"
@@ -51,7 +51,7 @@ const Categories = () => {
       >
         <ListItemButton onClick={handleClickCoffee}>
           <ListItemIcon>
-            <LocalCafe sx={{ color: theme.palette.primary.main }} />
+            <LocalCafe sx={{ color: theme.palette.primary.contrastText }} />
           </ListItemIcon>
           <ListItemText primary="Coffee" />
           {openCoffee ? <ExpandLess /> : <ExpandMore />}
@@ -72,7 +72,9 @@ const Categories = () => {
 
         <ListItemButton onClick={handleClickTea}>
           <ListItemIcon>
-            <EmojiFoodBeverage sx={{ color: theme.palette.primary.main }} />
+            <EmojiFoodBeverage
+              sx={{ color: theme.palette.primary.contrastText }}
+            />
           </ListItemIcon>
           <ListItemText primary="Tea" />
           {openTea ? <ExpandLess /> : <ExpandMore />}
@@ -93,14 +95,16 @@ const Categories = () => {
 
         <ListItemButton>
           <ListItemIcon>
-            <HomeRepairService sx={{ color: theme.palette.primary.main }} />
+            <HomeRepairService
+              sx={{ color: theme.palette.primary.contrastText }}
+            />
           </ListItemIcon>
           <ListItemText primary="Equipment" />
         </ListItemButton>
 
         <ListItemButton>
           <ListItemIcon>
-            <TrendingDown sx={{ color: theme.palette.primary.main }} />
+            <TrendingDown sx={{ color: theme.palette.primary.contrastText }} />
           </ListItemIcon>
           <ListItemText primary="Sale" />
         </ListItemButton>

@@ -21,14 +21,27 @@ function ProductCard({ imagePath, productName, price }) {
         />
         <CardContent>
           <Stack direction="row" justifyContent="space-between">
-            <Typography gutterBottom variant="h6" component="div">
+            <Typography
+              gutterBottom
+              variant="h6"
+              component="div"
+              color={theme.palette.primary.contrastText}
+            >
               {productName}
             </Typography>
-            <Typography gutterBottom variant="h6" component="div">
+            <Typography
+              gutterBottom
+              variant="h6"
+              component="div"
+              color={theme.palette.primary.contrastText}
+            >
               350ml
             </Typography>
           </Stack>
-          <Typography variant="body2" color={theme.palette.primary.main}>
+          <Typography
+            variant="body2"
+            color={theme.palette.primary.contrastText}
+          >
             {price} NOK
           </Typography>
         </CardContent>
