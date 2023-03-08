@@ -50,6 +50,9 @@ appealing and responsive to different screen sizes.
     },
   });
 
+  /**
+Constant used to decide if the screen is small or nor
+*/
   const smallScreenSize = useMediaQuery("(max-width:980px)");
 
   /**
@@ -65,20 +68,17 @@ contents of the Navbar on small screens.
 It is used to display the Navbar's contents in a way that is visually
 appealing and responsive to small screens.
 */
-  const SmallScreenNavbar = styled("div")({
+  const SmallScreenNavbar = styled(Toolbar)({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
     width: "100%",
   });
 
-  const MenuButton = styled(IconButton)({
-    marginRight: "8px",
-  });
-
-  const StyledButton = styled(Button)({
-    color: "black",
-  });
+  /**
+The menu button used on small screens
+*/
+  const MenuButton = styled(IconButton)({});
 
   /**
 This AppBar shows the Small Screen Appbar if the screen size is below
@@ -111,7 +111,11 @@ NavBar, which is meant for computer screens and larger screens.
               aria-label="menu"
               onClick={(e) => setOpenHamburgerMenu(true)}
             >
-              <MenuIcon />
+              <MenuIcon
+                sx={{
+                  color: theme.palette.secondary.main,
+                }}
+              />
             </MenuButton>
             <Menu
               style={{ position: "absolute", top: 30, right: 0 }}
@@ -247,7 +251,7 @@ NavBar, which is meant for computer screens and larger screens.
                 width: "33.33%",
               }}
             >
-              <StyledButton color="inherit" component={Link} to="/menu">
+              <Button component={Link} to="/menu">
                 <Typography
                   variant="button"
                   sx={{
@@ -256,7 +260,7 @@ NavBar, which is meant for computer screens and larger screens.
                 >
                   Menu
                 </Typography>
-              </StyledButton>
+              </Button>
               <Button component={Link} to="/products">
                 <Typography
                   variant="button"
