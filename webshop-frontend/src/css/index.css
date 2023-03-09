@@ -3,6 +3,7 @@
 /* Make links and visited links the same color and font as the other text, and make links underlined */
 html {
   font-size: 62.5%;
+  overflow-y: scroll;
 }
 
 /* Make links and visited links the same color and font as the other text, and make links underlined */
