@@ -67,7 +67,7 @@ const Footer = () => {
             aria-label="Facebook"
           >
             <FacebookIcon
-              sx={{ fontSize: "1.8rem", color: theme.palette.secondary.main }}
+              sx={{ fontSize: "2.5rem", color: theme.palette.secondary.main }}
             />
           </IconButton>
           <IconButton
@@ -77,7 +77,7 @@ const Footer = () => {
             aria-label="Instagram"
           >
             <InstagramIcon
-              sx={{ fontSize: "1.8rem", color: theme.palette.secondary.main }}
+              sx={{ fontSize: "2.5rem", color: theme.palette.secondary.main }}
             />
           </IconButton>
         </Typography>

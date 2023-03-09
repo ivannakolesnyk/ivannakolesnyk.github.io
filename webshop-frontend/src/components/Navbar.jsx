@@ -99,8 +99,8 @@ NavBar, which is meant for computer screens and larger screens.
                 alt="Monoca logo"
                 style={{
                   width: "auto",
-                  height: "40px",
-                  paddingTop: "10px",
+                  height: "3rem",
+                  paddingTop: "1rem",
                 }}
               />
             </Link>
@@ -298,8 +298,8 @@ NavBar, which is meant for computer screens and larger screens.
                   alt="Monoca logo"
                   style={{
                     width: "auto",
-                    height: "6rem",
-                    paddingTop: "5px",
+                    height: "4.5rem",
+                    paddingTop: "0.5rem",
                     alignContent: "left",
                   }}
                 />
@@ -346,7 +346,7 @@ NavBar, which is meant for computer screens and larger screens.
                 </Typography>
               </Button>
               <IconButton component={Link} to="/shoppingcart" fontSize="small">
-                <ShoppingCartIcon sx={{ fontSize: "1.5rem" }} />
+                <ShoppingCartIcon sx={{ fontSize: "2rem" }} />
               </IconButton>
             </div>
           </>

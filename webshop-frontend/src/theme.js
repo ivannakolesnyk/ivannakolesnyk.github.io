@@ -20,6 +20,7 @@ export const theme = createTheme({
     },
   },
   typography: {
+    htmlFontSize: 10, // Set 1 rem to 10 px - must also be done with css (we set this value in index.css)
     fontFamily: "Nunito, sans-serif",
     color: yellow,
     h1: {
