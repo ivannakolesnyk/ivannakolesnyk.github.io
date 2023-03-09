@@ -1,6 +1,11 @@
 /* Set global css values here */
 
 /* Make links and visited links the same color and font as the other text, and make links underlined */
+html {
+  font-size: 62.5%;
+}
+
+/* Make links and visited links the same color and font as the other text, and make links underlined */
 a {
   color: #1f3a33;
   text-decoration: underline;

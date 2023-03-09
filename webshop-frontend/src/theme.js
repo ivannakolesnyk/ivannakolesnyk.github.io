@@ -20,7 +20,6 @@ export const theme = createTheme({
     },
   },
   typography: {
-    htmlFontSize: 10, // Set 1 rem to 10 px
     fontFamily: "Nunito, sans-serif",
     color: yellow,
     h1: {
@@ -51,10 +50,10 @@ export const theme = createTheme({
       fontSize: "1.6rem",
     },
     body2: {
-      fontSize: "1rem",
+      fontSize: "1.4rem",
     },
     button: {
-      fontSize: "1.2rem",
+      fontSize: "1.6rem",
     },
   },
 });

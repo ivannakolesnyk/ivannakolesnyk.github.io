@@ -6,6 +6,7 @@ import {
   Person2Outlined as Person2OutlinedIcon,
 } from "@mui/icons-material";
 import coffeeLogo from "../assets/logo.png";
+import smallCoffeeLogo from "../assets/logo_smallscreen.png";
 import {
   AppBar,
   Button,
@@ -53,7 +54,7 @@ appealing and responsive to different screen sizes.
   /**
 Constant used to decide if the screen is small or nor
 */
-  const smallScreenSize = useMediaQuery("(max-width:980px)");
+  const smallScreenSize = useMediaQuery("(max-width:900px)");
 
   /**
 The openHamburgerMenu variable is a boolean that is true if the hamburger
@@ -82,9 +83,9 @@ The menu button used on small screens
 
   /**
 This AppBar shows the Small Screen Appbar if the screen size is below
-980 px, which is the value where there is not enough room for
+900 (medium breakpoint for Material UI) px, which is also the value where there is not enough room for
 all the text on the NavBar. It would generally be used for a
-tablet or a mobile phone. If it's over 980 px it shows the entire
+tablet or a mobile phone. If it's over 900 px it shows the entire
 NavBar, which is meant for computer screens and larger screens.
 */
   return (
@@ -94,13 +95,12 @@ NavBar, which is meant for computer screens and larger screens.
           <SmallScreenNavbar>
             <Link component={Link} to="/">
               <img
-                src={coffeeLogo}
+                src={smallCoffeeLogo}
                 alt="Monoca logo"
                 style={{
                   width: "auto",
                   height: "40px",
                   paddingTop: "10px",
-                  paddingBottom: "10px",
                 }}
               />
             </Link>
@@ -114,6 +114,7 @@ NavBar, which is meant for computer screens and larger screens.
               <MenuIcon
                 sx={{
                   color: theme.palette.secondary.main,
+                  fontSize: "3rem",
                 }}
               />
             </MenuButton>
@@ -297,9 +298,8 @@ NavBar, which is meant for computer screens and larger screens.
                   alt="Monoca logo"
                   style={{
                     width: "auto",
-                    height: "60px",
-                    paddingTop: "10px",
-                    paddingBottom: "10px",
+                    height: "6rem",
+                    paddingTop: "5px",
                     alignContent: "left",
                   }}
                 />
