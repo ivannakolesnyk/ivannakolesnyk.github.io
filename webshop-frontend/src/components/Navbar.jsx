@@ -46,7 +46,7 @@ appealing and responsive to different screen sizes.
   });
 
   /**
-Constant used to decide if the screen is small or nor
+Constant used to decide if the screen is small or not
 */
   const smallScreenSize = useMediaQuery("(max-width:900px)");
 
@@ -64,10 +64,10 @@ The menu button used on small screens
 
   /**
 This AppBar shows the Small Screen Appbar if the screen size is below
-900 (medium breakpoint for Material UI) px, which is also the value where there is not enough room for
-all the text on the NavBar. It would generally be used for a
-tablet or a mobile phone. If it's over 900 px it shows the entire
-NavBar, which is meant for computer screens and larger screens.
+900px (medium breakpoint for Material UI), which is also the value where there 
+is not enough room forall the text on the NavBar. It would generally be used 
+for a tablet or a mobile phone. If it's over 900px it shows the entire
+NavBar, which is meant for computer screens/tablets and larger screens.
 */
   return (
     <AppBar position="sticky">
