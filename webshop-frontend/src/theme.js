@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material";
-import { yellow } from "@mui/material/colors";
 
 /**
 This file exports a custom theme using createTheme function from @mui/material.
@@ -10,7 +9,6 @@ Custom typography settings for font family, headings, and body text.
 export const theme = createTheme({
   palette: {
     primary: {
-      //main: "#C39681" (our old main color),
       main: "#D9E7D5",
       contrastText: "#1F3A33",
     },
@@ -22,7 +20,6 @@ export const theme = createTheme({
   typography: {
     htmlFontSize: 10, // Set 1 rem to 10 px - must also be done with css (we set this value in index.css)
     fontFamily: "Nunito, sans-serif",
-    color: yellow,
     h1: {
       fontSize: "3.2rem",
       fontFamily: "Neuton, serif",
