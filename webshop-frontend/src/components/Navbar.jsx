@@ -76,7 +76,8 @@ NavBar, which is meant for computer screens/tablets and larger screens.
           <Link component={Link} to="/">
             <img
               src={smallCoffeeLogo}
-              alt="Monoca logo"
+              alt="monoca logo"
+              aria-label="small monoca logo"
               style={{
                 width: "auto",
                 height: "3rem",
@@ -88,7 +89,7 @@ NavBar, which is meant for computer screens/tablets and larger screens.
             edge="end"
             className={"menu-button"}
             color="#fff"
-            aria-label="menu"
+            aria-label="small screen menu"
             onClick={(e) => setOpenHamburgerMenu(true)}
           >
             <MenuIcon
@@ -101,7 +102,6 @@ NavBar, which is meant for computer screens/tablets and larger screens.
           <Menu
             style={{ position: "absolute", top: 30, right: 0 }}
             id="positioned-hamburger-menu"
-            aria-labelledby="positioned-hamburger-menu"
             anchorEl={MenuButton}
             open={openHamburgerMenu}
             onClose={(e) => setOpenHamburgerMenu(false)}
@@ -207,6 +207,7 @@ NavBar, which is meant for computer screens/tablets and larger screens.
             </MenuItem>
             <MenuItem
               key="shoppingcart"
+              aria-label="shopping cart"
               component={Link}
               to="/shoppingcart"
               onClick={(e) => setOpenHamburgerMenu(false)}
@@ -276,6 +277,7 @@ NavBar, which is meant for computer screens/tablets and larger screens.
               <img
                 src={coffeeLogo}
                 alt="Monoca logo"
+                aria-label="large monoca logo"
                 style={{
                   width: "auto",
                   height: "4.5rem",
