@@ -7,6 +7,7 @@ import { useTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import TuneIcon from "@mui/icons-material/Tune";
+import SearchBar from "./SearchBar";
 
 const Products = () => {
   // Fetching product data from API
@@ -130,6 +131,8 @@ const Products = () => {
             <TuneIcon sx={{ paddingRight: "0.5rem" }} />
             <Typography variant="button">Filter</Typography>
           </StyledButton>
+
+          <SearchBar />
         </Stack>
 
         <Grid container spacing={5}>
