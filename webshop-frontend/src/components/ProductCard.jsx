@@ -7,11 +7,11 @@ import {
   Stack,
 } from "@mui/material";
 import { useTheme } from "@emotion/react";
-
 function ProductCard({ imagePath, productName, price }) {
   const theme = useTheme();
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card>
       <CardActionArea href="/">
         <CardMedia
           component="img"
@@ -19,29 +19,24 @@ function ProductCard({ imagePath, productName, price }) {
           height="250"
           image={imagePath}
         />
-        <CardContent>
-          <Stack direction="row" justifyContent="space-between">
-            <Typography
-              gutterBottom
-              variant="h6"
-              component="div"
-              color={theme.palette.primary.contrastText}
-            >
+        <CardContent
+          sx={{
+            backgroundColor: theme.palette.primary.main,
+            color: "primary.contrastText",
+          }}
+        >
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems={"center"}
+            marginBottom={"1rem"}
+          >
+            <Typography fontSize={"2.5rem"} fontWeight={"500"}>
               {productName}
             </Typography>
-            <Typography
-              gutterBottom
-              variant="h6"
-              component="div"
-              color={theme.palette.primary.contrastText}
-            >
-              350ml
-            </Typography>
+            <Typography fontSize={"1.8rem"}>350ml</Typography>
           </Stack>
-          <Typography
-            variant="body2"
-            color={theme.palette.primary.contrastText}
-          >
+          <Typography fontWeight={"600"} fontSize={"1.8rem"}>
             {price} NOK
           </Typography>
         </CardContent>
