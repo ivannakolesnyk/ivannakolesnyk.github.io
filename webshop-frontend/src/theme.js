@@ -19,39 +19,42 @@ export const theme = createTheme({
   },
   typography: {
     htmlFontSize: 10, // Set 1 rem to 10 px - must also be done with css (we set this value in index.css)
-    fontFamily: "Nunito, sans-serif",
+    fontFamily: "Inter, sans-serif",
     h1: {
-      fontSize: "3.2rem",
-      fontFamily: "Neuton, serif",
+      fontSize: "5rem",
+      fontFamily: "Inter, sans-serif",
     },
     h2: {
-      fontSize: "2.6rem",
-      fontFamily: "Neuton, serif",
+      fontSize: "4.5rem",
+      fontFamily: "Inter, sans-serif",
     },
     h3: {
-      fontSize: "2.2rem",
-      fontFamily: "Neuton, serif",
+      fontSize: "4rem",
+      fontFamily: "Inter, sans-serif",
     },
     h4: {
-      fontSize: "2rem",
-      fontFamily: "Neuton, serif",
+      fontSize: "3.5rem",
+      fontFamily: "Inter, sans-serif",
     },
     h5: {
-      fontSize: "1.8rem",
-      fontFamily: "Neuton, serif",
+      fontSize: "3rem",
+      fontFamily: "Inter, sans-serif",
     },
     h6: {
-      fontSize: "1.6rem",
-      fontFamily: "Neuton, serif",
+      fontSize: "2.5rem",
+      fontFamily: "Inter, sans-serif",
     },
     body1: {
-      fontSize: "1.6rem",
+      fontSize: "2rem",
+      fontFamily: "Inter, sans-serif",
     },
     body2: {
-      fontSize: "1.4rem",
+      fontSize: "1.5rem",
+      fontFamily: "Inter, sans-serif",
     },
     button: {
-      fontSize: "1.6rem",
+      fontSize: "2rem",
+      fontFamily: "Inter, sans-serif",
     },
   },
 });

@@ -4,6 +4,7 @@
 html {
   font-size: 62.5%;
   overflow-y: scroll;
+  font-family: "Inter", sans-serif;
 }
 
 /* Make links and visited links the same color and font as the other text, and make links underlined */
@@ -15,5 +16,5 @@ a {
 
 a:visited {
   color: #1f3a33;
-  font-family: Nunito, sans-serif;
+  font-family: "Inter", sans-serif;
 }
