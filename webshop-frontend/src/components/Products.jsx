@@ -1,9 +1,12 @@
 import React from "react";
-import { Box } from "@mui/system";
+import { Box, Stack } from "@mui/system";
 import Categories from "./Categories";
 import ProductCard from "./ProductCard";
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { useTheme } from "@emotion/react";
+import styled from "@emotion/styled";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import TuneIcon from "@mui/icons-material/Tune";
 
 const Products = () => {
   // Fetching product data from API
@@ -81,6 +84,12 @@ const Products = () => {
     },
   ];
 
+  const StyledButton = styled(Button)({
+    borderRadius: "1.2rem",
+    padding: "0.8rem 1.2rem",
+    color: theme.palette.secondary.main,
+  });
+
   return (
     <Grid container spacing={0}>
       <Grid item md={2} p={4}>
@@ -104,6 +113,25 @@ const Products = () => {
             coffee with us!
           </Typography>
         </Box>
+
+        <Stack
+          direction={"row"}
+          columnGap={"1rem"}
+          sx={{
+            marginBottom: 4,
+          }}
+        >
+          <StyledButton variant="outlined" color="secondary">
+            <FilterListIcon sx={{ paddingRight: "0.5rem" }} />
+            <Typography variant="button">Sort</Typography>
+          </StyledButton>
+
+          <StyledButton variant="outlined" color="secondary">
+            <TuneIcon sx={{ paddingRight: "0.5rem" }} />
+            <Typography variant="button">Filter</Typography>
+          </StyledButton>
+        </Stack>
+
         <Grid container spacing={5}>
           {products.map(({ id, productName, price, imagePath }) => (
             <Grid item md={3}>
