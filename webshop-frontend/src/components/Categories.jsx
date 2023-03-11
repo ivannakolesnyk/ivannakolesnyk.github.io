@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@emotion/react";
 
-const Categories = () => {
+const Categories = ({ onCategoryChange }) => {
   const theme = useTheme();
 
   const iconStyle = {
@@ -25,7 +25,7 @@ const Categories = () => {
 
   const categories = [
     {
-      name: "Coffe",
+      name: "Coffee",
       icon: () => <LocalCafe sx={iconStyle} />,
     },
     {
@@ -46,6 +46,10 @@ const Categories = () => {
     },
   ];
 
+  const handleClick = (category) => {
+    onCategoryChange(category);
+  };
+
   return (
     <>
       <Typography color={theme.palette.primary.contrastText} variant="h5">
@@ -61,7 +65,7 @@ const Categories = () => {
         aria-labelledby="nested-list-subheader"
       >
         {categories.map(({ name, icon: Icon }) => (
-          <ListItemButton>
+          <ListItemButton onClick={() => handleClick(name)}>
             <ListItemIcon>
               <Icon
                 sx={{
