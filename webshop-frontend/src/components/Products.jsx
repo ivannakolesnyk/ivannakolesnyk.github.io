@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Stack } from "@mui/system";
 import Categories from "./Categories";
 import ProductCard from "./ProductCard";
@@ -9,7 +9,7 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import TuneIcon from "@mui/icons-material/Tune";
 import SearchBar from "./SearchBar";
 
-const Products = () => {
+const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
   // Fetching product data from API
   const theme = useTheme();
   const products = [
@@ -111,27 +111,16 @@ const Products = () => {
     color: theme.palette.secondary.main,
   });
 
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const handleCategoryChange = (category) => {
-    setSelectedCategory((prevState) => {
-      if (prevState === category) {
-        // If the user clicks on the same category again, show all products
-        return "";
-      } else {
-        // Otherwise, show only products in the selected category
-        return category;
-      }
-    });
-  };
-
   const filteredProducts = selectedCategory
     ? products.filter((product) => product.type === selectedCategory)
     : products;
 
+  const displayedProducts = showAllProducts ? products : filteredProducts;
+
   return (
     <Grid container spacing={0}>
       <Grid item md={2} p={4}>
-        <Categories onCategoryChange={handleCategoryChange} />
+        <Categories onCategoryChange={onCategoryClick} />
       </Grid>
       <Grid item md={10} p={4}>
         <Box
@@ -173,7 +162,7 @@ const Products = () => {
         </Stack>
 
         <Grid container spacing={5}>
-          {filteredProducts.map(({ id, productName, price, imagePath }) => (
+          {displayedProducts.map(({ id, productName, price, imagePath }) => (
             <Grid item md={3}>
               <ProductCard
                 key={id}

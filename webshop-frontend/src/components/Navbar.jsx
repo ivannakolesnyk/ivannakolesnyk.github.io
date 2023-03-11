@@ -29,7 +29,7 @@ logging in, and accessing the shopping cart.
 The Navbar uses the MUI library to style and layout its components.
 @returns {JSX.Element} The JSX code for the Navbar component.
 */
-const Navbar = () => {
+const Navbar = ({ onProductsClick }) => {
   // Import the custom theme from theme.js
   const theme = useTheme();
 
@@ -243,7 +243,7 @@ NavBar, which is meant for computer screens/tablets and larger screens.
                 Menu
               </Typography>
             </Button>
-            <Button component={Link} to="/products">
+            <Button component={Link} to="/products" onClick={onProductsClick}>
               <Typography
                 variant="button"
                 sx={{
