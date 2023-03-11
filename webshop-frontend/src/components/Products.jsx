@@ -16,6 +16,8 @@ const Products = () => {
     {
       id: 1,
       productName: "Coffee",
+      sale: false,
+      type: "coffe",
       price: 67,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
@@ -23,6 +25,8 @@ const Products = () => {
     {
       id: 2,
       productName: "Coffee",
+      sale: true,
+      type: "coffe",
       price: 67,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
@@ -30,55 +34,71 @@ const Products = () => {
     {
       id: 3,
       productName: "Coffee",
+      sale: false,
+      type: "coffe",
       price: 67,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
     },
     {
       id: 4,
-      productName: "Coffee",
+      productName: "Tea",
+      sale: false,
+      type: "tea",
       price: 67,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
     },
     {
       id: 5,
-      productName: "Coffee",
+      productName: "Tea",
+      sale: true,
+      type: "tea",
       price: 67,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
     },
     {
       id: 6,
-      productName: "Coffee",
+      productName: "Tea",
+      sale: true,
+      type: "tea",
       price: 67,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
     },
     {
       id: 7,
-      productName: "Coffee",
+      productName: "Tea",
+      sale: false,
+      type: "tea",
       price: 67,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
     },
     {
       id: 8,
-      productName: "Coffee",
+      productName: "Food",
+      type: "food",
+      sale: true,
       price: 67,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
     },
     {
       id: 9,
-      productName: "Coffee",
+      productName: "Food",
+      type: "food",
+      sale: false,
       price: 67,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
     },
     {
       id: 10,
-      productName: "Coffee",
+      productName: "Pastries",
+      type: "pastry",
+      sale: false,
       price: 67,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
