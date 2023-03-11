@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Stack } from "@mui/system";
 import Categories from "./Categories";
 import ProductCard from "./ProductCard";
@@ -17,7 +17,7 @@ const Products = () => {
       id: 1,
       productName: "Coffee",
       sale: false,
-      type: "coffe",
+      type: "Coffee",
       price: 67,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
@@ -26,7 +26,7 @@ const Products = () => {
       id: 2,
       productName: "Coffee",
       sale: true,
-      type: "coffe",
+      type: "Coffee",
       price: 67,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
@@ -35,7 +35,7 @@ const Products = () => {
       id: 3,
       productName: "Coffee",
       sale: false,
-      type: "coffe",
+      type: "Coffee",
       price: 67,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
@@ -44,7 +44,7 @@ const Products = () => {
       id: 4,
       productName: "Tea",
       sale: false,
-      type: "tea",
+      type: "Tea",
       price: 67,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
@@ -53,7 +53,7 @@ const Products = () => {
       id: 5,
       productName: "Tea",
       sale: true,
-      type: "tea",
+      type: "Tea",
       price: 67,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
@@ -62,7 +62,7 @@ const Products = () => {
       id: 6,
       productName: "Tea",
       sale: true,
-      type: "tea",
+      type: "Tea",
       price: 67,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
@@ -71,7 +71,7 @@ const Products = () => {
       id: 7,
       productName: "Tea",
       sale: false,
-      type: "tea",
+      type: "Tea",
       price: 67,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
@@ -79,7 +79,7 @@ const Products = () => {
     {
       id: 8,
       productName: "Food",
-      type: "food",
+      type: "Food",
       sale: true,
       price: 67,
       imagePath:
@@ -88,7 +88,7 @@ const Products = () => {
     {
       id: 9,
       productName: "Food",
-      type: "food",
+      type: "Food",
       sale: false,
       price: 67,
       imagePath:
@@ -97,7 +97,7 @@ const Products = () => {
     {
       id: 10,
       productName: "Pastries",
-      type: "pastry",
+      type: "Pastries",
       sale: false,
       price: 67,
       imagePath:
@@ -111,10 +111,27 @@ const Products = () => {
     color: theme.palette.secondary.main,
   });
 
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const handleCategoryChange = (category) => {
+    setSelectedCategory((prevState) => {
+      if (prevState === category) {
+        // If the user clicks on the same category again, show all products
+        return "";
+      } else {
+        // Otherwise, show only products in the selected category
+        return category;
+      }
+    });
+  };
+
+  const filteredProducts = selectedCategory
+    ? products.filter((product) => product.type === selectedCategory)
+    : products;
+
   return (
     <Grid container spacing={0}>
       <Grid item md={2} p={4}>
-        <Categories />
+        <Categories onCategoryChange={handleCategoryChange} />
       </Grid>
       <Grid item md={10} p={4}>
         <Box
@@ -156,7 +173,7 @@ const Products = () => {
         </Stack>
 
         <Grid container spacing={5}>
-          {products.map(({ id, productName, price, imagePath }) => (
+          {filteredProducts.map(({ id, productName, price, imagePath }) => (
             <Grid item md={3}>
               <ProductCard
                 key={id}
