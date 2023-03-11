@@ -2,14 +2,12 @@ import React from "react";
 import { Typography } from "@mui/material";
 import {
   EmojiFoodBeverage,
-  ExpandLess,
-  ExpandMore,
-  HomeRepairService,
   LocalCafe,
   TrendingDown,
 } from "@mui/icons-material";
+import LocalDiningIcon from "@mui/icons-material/LocalDining";
+import CakeIcon from "@mui/icons-material/Cake";
 import {
-  Collapse,
   List,
   ListItemButton,
   ListItemIcon,
@@ -20,94 +18,63 @@ import { useTheme } from "@emotion/react";
 const Categories = () => {
   const theme = useTheme();
 
-  const [openCoffee, setOpenCoffe] = React.useState(false);
-  const handleClickCoffee = () => {
-    setOpenCoffe(!openCoffee);
+  const iconStyle = {
+    color: theme.palette.primary.contrastText,
+    fontSize: "3rem",
   };
 
-  const [openTea, setOpenTea] = React.useState(false);
-  const handleClickTea = () => {
-    setOpenTea(!openTea);
-  };
+  const categories = [
+    {
+      name: "Coffe",
+      icon: () => <LocalCafe sx={iconStyle} />,
+    },
+    {
+      name: "Tea",
+      icon: () => <EmojiFoodBeverage sx={iconStyle} />,
+    },
+    {
+      name: "Food",
+      icon: () => <LocalDiningIcon sx={iconStyle} />,
+    },
+    {
+      name: "Pastries",
+      icon: () => <CakeIcon sx={iconStyle} />,
+    },
+    {
+      name: "Sale",
+      icon: () => <TrendingDown sx={iconStyle} />,
+    },
+  ];
+
   return (
     <>
-      <Typography color={theme.palette.primary.contrastText} variant="h4">
+      <Typography color={theme.palette.primary.contrastText} variant="h5">
         Categories
       </Typography>
 
       <List
         sx={{
           width: "100%",
-          maxWidth: 360,
           color: theme.palette.primary.contrastText,
         }}
         component="nav"
         aria-labelledby="nested-list-subheader"
-        // subheader={
-        //   <ListSubheader component="div" id="nested-list-subheader">
-        //     Nested List Items
-        //   </ListSubheader>
-        // }
       >
-        <ListItemButton onClick={handleClickCoffee}>
-          <ListItemIcon>
-            <LocalCafe sx={{ color: theme.palette.primary.contrastText }} />
-          </ListItemIcon>
-          <ListItemText primary="Coffee" />
-          {openCoffee ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
-        <Collapse in={openCoffee} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemText primary="Ice-Coffee" />
-            </ListItemButton>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemText primary="Warm-Coffee" />
-            </ListItemButton>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemText primary="Whatever-Coffee" />
-            </ListItemButton>
-          </List>
-        </Collapse>
-
-        <ListItemButton onClick={handleClickTea}>
-          <ListItemIcon>
-            <EmojiFoodBeverage
-              sx={{ color: theme.palette.primary.contrastText }}
-            />
-          </ListItemIcon>
-          <ListItemText primary="Tea" />
-          {openTea ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
-        <Collapse in={openTea} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemText primary="Ice-Tea" />
-            </ListItemButton>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemText primary="Warm-Tea" />
-            </ListItemButton>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemText primary="Whatever-Tea" />
-            </ListItemButton>
-          </List>
-        </Collapse>
-
-        <ListItemButton>
-          <ListItemIcon>
-            <HomeRepairService
-              sx={{ color: theme.palette.primary.contrastText }}
-            />
-          </ListItemIcon>
-          <ListItemText primary="Equipment" />
-        </ListItemButton>
-
-        <ListItemButton>
-          <ListItemIcon>
-            <TrendingDown sx={{ color: theme.palette.primary.contrastText }} />
-          </ListItemIcon>
-          <ListItemText primary="Sale" />
-        </ListItemButton>
+        {categories.map(({ name, icon: Icon }) => (
+          <ListItemButton>
+            <ListItemIcon>
+              <Icon
+                sx={{
+                  color: theme.palette.primary.contrastText,
+                  fontSize: "3rem",
+                }}
+              ></Icon>
+            </ListItemIcon>
+            <ListItemText>
+              <Typography fontSize={"2.5rem"}>{name}</Typography>
+            </ListItemText>
+          </ListItemButton>
+        ))}
       </List>
     </>
   );
