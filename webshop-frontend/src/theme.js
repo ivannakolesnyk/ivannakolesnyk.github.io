@@ -23,26 +23,32 @@ export const theme = createTheme({
     h1: {
       fontSize: "5rem",
       fontFamily: "Inter, sans-serif",
+      fontWeight: "700",
     },
     h2: {
       fontSize: "4.5rem",
       fontFamily: "Inter, sans-serif",
+      fontWeight: "700",
     },
     h3: {
       fontSize: "4rem",
       fontFamily: "Inter, sans-serif",
+      fontWeight: "700",
     },
     h4: {
       fontSize: "3.5rem",
       fontFamily: "Inter, sans-serif",
+      fontWeight: "700",
     },
     h5: {
       fontSize: "3rem",
       fontFamily: "Inter, sans-serif",
+      fontWeight: "700",
     },
     h6: {
       fontSize: "2.5rem",
       fontFamily: "Inter, sans-serif",
+      fontWeight: "700",
     },
     body1: {
       fontSize: "2rem",
