@@ -111,9 +111,13 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
     color: theme.palette.secondary.main,
   });
 
-  const filteredProducts = selectedCategory
+  let filteredProducts = selectedCategory
     ? products.filter((product) => product.type === selectedCategory)
     : products;
+
+  if (selectedCategory === "Sale") {
+    filteredProducts = products.filter((product) => product.sale === true);
+  }
 
   const displayedProducts = showAllProducts ? products : filteredProducts;
 
