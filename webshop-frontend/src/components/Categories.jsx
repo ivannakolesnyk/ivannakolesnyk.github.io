@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import {
   EmojiFoodBeverage,
   LocalCafe,
@@ -51,7 +51,7 @@ const Categories = ({ onCategoryChange }) => {
   };
 
   return (
-    <>
+    <Box position={"fixed"}>
       <Typography color={theme.palette.primary.contrastText} variant="h5">
         Categories
       </Typography>
@@ -80,7 +80,7 @@ const Categories = ({ onCategoryChange }) => {
           </ListItemButton>
         ))}
       </List>
-    </>
+    </Box>
   );
 };
 
