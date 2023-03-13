@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Stack } from "@mui/system";
 import Categories from "./Categories";
 import ProductCard from "./ProductCard";
@@ -12,7 +12,7 @@ import SearchBar from "./SearchBar";
 const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
   // Fetching product data from API
   const theme = useTheme();
-  const products = [
+  const productsOriginal = [
     {
       id: 1,
       productName: "Coffee",
@@ -112,14 +112,18 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
   });
 
   let filteredProducts = selectedCategory
-    ? products.filter((product) => product.type === selectedCategory)
-    : products;
+    ? productsOriginal.filter((product) => product.type === selectedCategory)
+    : productsOriginal;
 
   if (selectedCategory === "Sale") {
-    filteredProducts = products.filter((product) => product.sale === true);
+    filteredProducts = productsOriginal.filter(
+      (product) => product.sale === true
+    );
   }
 
-  const displayedProducts = showAllProducts ? products : filteredProducts;
+  const displayedProducts = showAllProducts
+    ? productsOriginal
+    : filteredProducts;
 
   return (
     <Grid container spacing={0}>
