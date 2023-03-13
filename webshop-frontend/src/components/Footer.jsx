@@ -29,98 +29,110 @@ const Footer = () => {
         justifyContent: "center",
       }}
     >
-      <Grid item xs={4.5}></Grid>
-      <Grid container xs={4}>
-        <Grid item xs={12} md={6} lg={4}>
-          <Typography variant="body2" align="left" sx={{ mb: 2 }}>
-            <Link component={Link} to="/about" color="inherit">
-              About us
-            </Link>
-          </Typography>
-          <Typography variant="body2" align="left" sx={{ mb: 2 }}>
+      <Grid item xs={3}></Grid>
+      <Grid container xs={6} sx={{ pt: 2 }}>
+        <Grid item xs={12} md={6} lg={4} sx={{ textAlign: "center" }}>
+          <Typography
+            variant="body2"
+            sx={{ mb: 2, display: "inline-block", textAlign: "left" }}
+          >
             Find us: <br />
             <Link component={Link} to="/findus" color="inherit">
               Larsgårdsvegen 2<br />
               6009 Ålesund
+              <br />
+              <br />
             </Link>
           </Typography>
         </Grid>
-        <Grid item xs={12} md={6} lg={4}>
-          <Typography variant="body2" align="left" sx={{ mb: 2 }}>
+        <Grid item xs={12} md={6} lg={4} sx={{ textAlign: "center" }}>
+          <Typography
+            variant="body2"
+            sx={{ mb: 2, display: "inline-block", textAlign: "left" }}
+          >
             Contact information:
-          </Typography>
-          <Typography variant="body2" align="left" sx={{ mb: 2 }}>
+            <br />
             <a href="mailto:monoka@gmail.com" target="_blank" rel="noreferrer">
               monoka@gmail.com
             </a>
-            <br></br>
+            <br />
             +4795746534
+            <br />
+            <br />
           </Typography>
         </Grid>
-        <Grid item xs={12} md={6} lg={4} sx={{ pb: 0 }}>
-          <Typography variant="body2" align="left" sx={{ mb: 2 }}>
+        <Grid item xs={12} md={6} lg={4} sx={{ textAlign: "center" }}>
+          <Typography
+            variant="body2"
+            sx={{ mb: 2, display: "inline-block", textAlign: "left" }}
+          >
             Follow us:
+            <br />
+            <IconButton
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Facebook"
+              align="center"
+              sx={{ pl: 0, pt: 1 }}
+            >
+              <FacebookIcon
+                sx={{
+                  fontSize: "2.5rem",
+                  color: theme.palette.secondary.main,
+                }}
+              />
+            </IconButton>
+            <IconButton
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+              align="center"
+              sx={{ pl: 0, pt: 1 }}
+            >
+              <InstagramIcon
+                sx={{ fontSize: "2.5rem", color: theme.palette.secondary.main }}
+              />
+            </IconButton>
           </Typography>
-          <IconButton
-            href="https://www.facebook.com/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Facebook"
-            align="left"
-            sx={{ pl: 0, pt: 0 }}
-          >
-            <FacebookIcon
-              sx={{
-                fontSize: "2.5rem",
-                color: theme.palette.secondary.main,
-              }}
-            />
-          </IconButton>
-          <IconButton
-            href="https://www.instagram.com/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Instagram"
-            align="left"
-            sx={{ pl: 0, pt: 0 }}
-          >
-            <InstagramIcon
-              sx={{ fontSize: "2.5rem", color: theme.palette.secondary.main }}
-            />
-          </IconButton>
         </Grid>
       </Grid>
-      <Grid item xs={3.5}></Grid>
+      <Grid item xs={3}></Grid>
 
-      <Grid item xs={4.5} sx={{ pt: "2rem" }}></Grid>
-      <Grid container xs={4} sx={{ pt: "2rem" }}>
-        <Grid item xs={12}>
-          <Typography variant="body2" align="left" sx={{ mt: 1, pb: 2 }}>
-            This website is a result of a university group project, performed in
-            the course{" "}
-            <a
-              href="https://www.ntnu.edu/studies/courses/IDATA2301#tab=omEmnet"
-              target="_blank"
-              rel="noreferrer"
-              className="footer-link"
-            >
-              IDATA2301 Web technologies
-            </a>
-            , at{" "}
-            <a
-              href="https://www.ntnu.edu/"
-              target="_blank"
-              rel="noreferrer"
-              className="footer-link"
-            >
-              NTNU
-            </a>
-            . All the information provided here is a result of imagination. Any
-            resemblance with real companies or products is a coincidence
-          </Typography>
-        </Grid>
+      <Grid item xs={3} sx={{ pt: "2rem" }}></Grid>
+
+      <Grid item xs={6} sx={{ textAlign: "center" }}>
+        <Typography
+          variant="body2"
+          align="center"
+          sx={{ mt: 1, pb: 2, display: "inline-block", textAlign: "left" }}
+        >
+          This website is a result of a university group project, performed in
+          the course{" "}
+          <a
+            href="https://www.ntnu.edu/studies/courses/IDATA2301#tab=omEmnet"
+            target="_blank"
+            rel="noreferrer"
+            className="footer-link"
+          >
+            IDATA2301 Web technologies
+          </a>
+          , at{" "}
+          <a
+            href="https://www.ntnu.edu/"
+            target="_blank"
+            rel="noreferrer"
+            className="footer-link"
+          >
+            NTNU
+          </a>
+          . All the information provided here is a result of imagination. Any
+          resemblance with real companies or products is a coincidence
+        </Typography>
       </Grid>
-      <Grid item xs={3.5} sx={{ pt: "2rem" }}></Grid>
+
+      <Grid item xs={3} sx={{ pt: "2rem" }}></Grid>
     </Grid>
   );
 };
