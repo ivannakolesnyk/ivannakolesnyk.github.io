@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Menu from "./components/Menu";
 import Products from "./components/Products";
 import FindUs from "./components/FindUs";
+import Profile from "./components/Profile";
 import LogIn from "./components/LogIn";
 import ShoppingCart from "./components/ShoppingCart";
 import { useState } from "react";
@@ -46,6 +47,7 @@ function App() {
             <Route path="/findus" element={<FindUs />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/shoppingcart" element={<ShoppingCart />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </Box>
         <Footer marginTop="auto" />
