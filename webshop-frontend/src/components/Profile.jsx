@@ -14,15 +14,27 @@ import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { useTheme } from "@mui/material/styles";
 
 const ProfilePage = () => {
+  // Import the custom theme from theme.js
+  const theme = useTheme();
   return (
     <Box sx={{ display: "flex", justifyContent: "center", paddingTop: "2rem" }}>
       <Card sx={{ width: "50%", maxWidth: "700px" }}>
-        <CardHeader title="My Monoca" subheader="User id: 123" />
+        <CardHeader
+          sx={{ color: theme.palette.primary.contrastText }}
+          title="My Monoca"
+          subheader="User id: 123"
+        />
         <Divider />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="div"
+            sx={{ color: theme.palette.primary.contrastText }}
+          >
             Profile Information
           </Typography>
           <List>
@@ -65,10 +77,15 @@ const ProfilePage = () => {
         </CardActions>
         <Divider />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="div"
+            sx={{ color: theme.palette.primary.contrastText }}
+          >
             Orders
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2">
             Here you can view your orders.
           </Typography>
         </CardContent>
