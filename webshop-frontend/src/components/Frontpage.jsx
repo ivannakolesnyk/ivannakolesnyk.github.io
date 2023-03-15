@@ -4,8 +4,10 @@ import backgroundImage from "../assets/img/home.png";
 
 const Frontpage = () => {
   const theme = useTheme();
+  // use Theme hook is used to get the theme object, which is then used to set the textColor variable to the primary color defined in the theme. The textColor variable is then used to set the color of the Typography component using the sx prop.
 
   return (
+    //This returns a Box component from Material-UI which is a container for other components. The sx prop is used to define CSS styling for the Box component, including a background image, a minimum height, and centering of its child components.
     <Box
       sx={{
         backgroundImage: `url(${backgroundImage})`,
@@ -26,9 +28,10 @@ const Frontpage = () => {
           alignItems: "center",
           justifyContent: "center",
           maxWidth: "1200px",
-          margin: "0 auto",
+          margin: "2 auto",
           padding: "0 1rem",
         }}
+        //This returns a Grid component from Material-UI which is used to create a responsive grid layout. The container prop is used to define it as a container for other components, and the sx prop is used to define CSS styling for the Grid component, including a maximum width and margin.
       >
         <Grid
           item
@@ -37,13 +40,14 @@ const Frontpage = () => {
           sx={{
             backgroundColor: "primary.main",
             borderRadius: 5,
-            padding: "3rem",
+            padding: "8rem",
             textAlign: "left",
             zIndex: 1,
             "& > *": {
               mb: 4,
             },
           }}
+          //This returns a Grid item component from Material-UI which is a child of the previous Grid component. The xs and md props define how many columns the item should span on different screen sizes. The sx prop is used to define CSS styling for the Grid item component, including a background color, padding, and text alignment.
         >
           <Typography
             variant="h1"
@@ -57,6 +61,7 @@ const Frontpage = () => {
               },
               lineHeight: "1.2",
             }}
+            //This returns a Typography component from Material-UI which is used to display text. The variant prop is used to define it as an h1 element, and the sx prop is used to define CSS styling for the Typography component, including font size and line height.
           >
             ENJOY YOUR OWN COFFEE AT HOME
           </Typography>
@@ -88,9 +93,10 @@ const Frontpage = () => {
               },
               [theme.breakpoints.only("md")]: {
                 fontSize: "3rem",
-                textAlign: "left",
+                textAlign: "center",
               },
             }}
+            //This returns a Button component from Material-UI which is used to create a button element. The variant prop is used to define it as a contained button. The onClick prop defines a function that is called when the button is clicked, which redirects the user to the "/products" page. The sx prop is used to define CSS styling for the Button component, including background color, text color, and font size.
           >
             Order now
           </Button>
@@ -100,6 +106,7 @@ const Frontpage = () => {
           xs={12}
           md={6}
           sx={{ display: "flex", alignItems: "center" }}
+          //This returns another Grid item component from Material-UI which is a child of the previous Grid component. The xs and md props define how many columns the item should span on different screen sizes. The sx prop is used to define CSS styling for the Grid item component, including text alignment.
         >
           <Box
             sx={{
