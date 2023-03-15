@@ -5,8 +5,6 @@ import {
   LocalCafe,
   TrendingDown,
 } from "@mui/icons-material";
-import LocalDiningIcon from "@mui/icons-material/LocalDining";
-import CakeIcon from "@mui/icons-material/Cake";
 import {
   List,
   ListItemButton,
@@ -31,14 +29,6 @@ const Category = ({ onCategoryChange }) => {
     {
       name: "Tea",
       icon: () => <EmojiFoodBeverage sx={iconStyle} />,
-    },
-    {
-      name: "Food",
-      icon: () => <LocalDiningIcon sx={iconStyle} />,
-    },
-    {
-      name: "Pastries",
-      icon: () => <CakeIcon sx={iconStyle} />,
     },
     {
       name: "Sale",
