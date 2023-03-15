@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import {
   Box,
@@ -25,7 +26,7 @@ const ProfilePage = () => {
         <CardHeader
           sx={{ color: theme.palette.primary.contrastText }}
           title="My Monoca"
-          subheader="User id: 123"
+          subheader="User id: 123, customer" //customer can be changed to admin if it's an admin
         />
         <Divider />
         <CardContent>
@@ -90,7 +91,7 @@ const ProfilePage = () => {
           </Typography>
         </CardContent>
         <CardActions sx={{ justifyContent: "flex-end" }}>
-          <Button component={Link} to="/orders" variant="contained">
+          <Button component={Link} to="/profile/vieworders" variant="contained">
             View Orders
           </Button>
         </CardActions>
