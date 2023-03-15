@@ -29,11 +29,12 @@ public class Product {
     private Category category;
 
     public Product(String name, double price, String description,
-            String product_image, int qty_in_stock) {
+            String product_image, int qty_in_stock, Category category) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.product_image = product_image;
         this.qty_in_stock = qty_in_stock;
+        this.category = category;
     }
 }
