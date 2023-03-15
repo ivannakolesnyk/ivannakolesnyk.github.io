@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 /**
+ * A category, for products in our webshop.
  *
  * @author julian
  */
