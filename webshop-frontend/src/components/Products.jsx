@@ -4,10 +4,12 @@ import Categories from "./Categories";
 import ProductCard from "./ProductCard";
 import { Button, Grid, Typography } from "@mui/material";
 import { useTheme } from "@emotion/react";
-import styled from "@emotion/styled";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import TuneIcon from "@mui/icons-material/Tune";
 import SearchBar from "./SearchBar";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import TrendingDownIcon from "@mui/icons-material/TrendingDown";
+import IconMenu from "./IconMenu";
 
 const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
   // Fetching product data from API
@@ -105,11 +107,22 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
     },
   ];
 
-  const StyledButton = styled(Button)({
+  const buttonStyles = {
     borderRadius: "1.2rem",
     padding: "0.8rem 1.2rem",
     color: theme.palette.secondary.main,
-  });
+  };
+
+  const sortButtonMenu = [
+    {
+      name: "Ascending",
+      icon: () => <TrendingUpIcon />,
+    },
+    {
+      name: "Descending",
+      icon: () => <TrendingDownIcon />,
+    },
+  ];
 
   let filteredProducts = selectedCategory
     ? productsOriginal.filter((product) => product.type === selectedCategory)
@@ -124,6 +137,8 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
   const displayedProducts = showAllProducts
     ? productsOriginal
     : filteredProducts;
+
+  const [sortAnchorEl, sortSetAnchorEl] = useState(null);
 
   return (
     <Grid container spacing={0}>
@@ -156,15 +171,29 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
             marginBottom: 4,
           }}
         >
-          <StyledButton variant="outlined" color="secondary">
+          <Button
+            variant="outlined"
+            color="secondary"
+            aria-haspopup="true"
+            aria-controls="menu"
+            sx={buttonStyles}
+            onClick={(event) => {
+              sortSetAnchorEl(event.currentTarget);
+            }}
+          >
             <FilterListIcon sx={{ paddingRight: "0.5rem" }} />
             <Typography variant="button">Sort</Typography>
-          </StyledButton>
+          </Button>
+          <IconMenu
+            menuItems={sortButtonMenu}
+            anchorEl={sortAnchorEl}
+            setAnchorEl={sortSetAnchorEl}
+          />
 
-          <StyledButton variant="outlined" color="secondary">
+          <Button sx={buttonStyles} variant="outlined" color="secondary">
             <TuneIcon sx={{ paddingRight: "0.5rem" }} />
             <Typography variant="button">Filter</Typography>
-          </StyledButton>
+          </Button>
 
           <SearchBar />
         </Stack>
