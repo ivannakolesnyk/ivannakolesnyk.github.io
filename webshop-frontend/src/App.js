@@ -9,6 +9,8 @@ import Products from "./components/Products";
 import FindUs from "./components/FindUs";
 import Profile from "./components/Profile";
 import EditProfilePage from "./components/EditProfilePage";
+import ChangePassword from "./components/ChangePassword";
+import ViewOrders from "./components/ViewOrders";
 import LogIn from "./components/LogIn";
 import ShoppingCart from "./components/ShoppingCart";
 import { useState } from "react";
@@ -50,6 +52,8 @@ function App() {
             <Route path="/shoppingcart" element={<ShoppingCart />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/edit" element={<EditProfilePage />} />
+            <Route path="/profile/changepw" element={<ChangePassword />} />
+            <Route path="/profile/vieworders" element={<ViewOrders />} />
           </Routes>
         </Box>
         <Footer marginTop="auto" />
