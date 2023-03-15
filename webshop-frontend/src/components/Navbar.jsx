@@ -149,7 +149,10 @@ NavBar, which is meant for computer screens/tablets and larger screens.
               key="products"
               component={Link}
               to="/products"
-              onClick={(e) => setOpenHamburgerMenu(false)}
+              onClick={(e) => {
+                setOpenHamburgerMenu(false);
+                onProductsClick();
+              }}
             >
               <Typography
                 variant="button"
