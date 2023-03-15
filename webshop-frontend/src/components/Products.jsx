@@ -190,11 +190,6 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
             setAnchorEl={sortSetAnchorEl}
           />
 
-          <Button sx={buttonStyles} variant="outlined" color="secondary">
-            <TuneIcon sx={{ paddingRight: "0.5rem" }} />
-            <Typography variant="button">Filter</Typography>
-          </Button>
-
           <SearchBar />
         </Stack>
 
