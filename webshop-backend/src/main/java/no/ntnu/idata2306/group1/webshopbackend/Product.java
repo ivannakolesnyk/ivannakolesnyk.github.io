@@ -21,6 +21,7 @@ public class Product {
     private int id;
     private String name;
     private double price;
+    private boolean sale;
     private String description;
     private String product_image;
     private int qty_in_stock;
@@ -28,10 +29,11 @@ public class Product {
     @JoinColumn()
     private Category category;
 
-    public Product(String name, double price, String description,
+    public Product(String name, double price, boolean sale, String description,
             String product_image, int qty_in_stock, Category category) {
         this.name = name;
         this.price = price;
+        this.sale = sale;
         this.description = description;
         this.product_image = product_image;
         this.qty_in_stock = qty_in_stock;
