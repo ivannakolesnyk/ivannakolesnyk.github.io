@@ -195,9 +195,8 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
 
         <Grid container spacing={5}>
           {displayedProducts.map(({ id, productName, price, imagePath }) => (
-            <Grid item md={3}>
+            <Grid item key={id} md={3}>
               <ProductCard
-                key={id}
                 productName={productName}
                 price={price}
                 imagePath={imagePath}
