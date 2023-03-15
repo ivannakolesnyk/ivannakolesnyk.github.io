@@ -64,8 +64,8 @@ const Categories = ({ onCategoryChange }) => {
         component="nav"
         aria-labelledby="nested-list-subheader"
       >
-        {categories.map(({ name, icon: Icon }) => (
-          <ListItemButton onClick={() => handleClick(name)}>
+        {categories.map(({ name, icon: Icon }, index) => (
+          <ListItemButton key={index} onClick={() => handleClick(name)}>
             <ListItemIcon>
               <Icon
                 sx={{
