@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Box, Stack } from "@mui/system";
-import Categories from "./Categories";
+import Category from "./Category";
 import ProductCard from "./ProductCard";
 import { Button, Grid, Typography } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import FilterListIcon from "@mui/icons-material/FilterList";
-import TuneIcon from "@mui/icons-material/Tune";
 import SearchBar from "./SearchBar";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
@@ -143,7 +142,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
   return (
     <Grid container spacing={0}>
       <Grid item md={2} p={4}>
-        <Categories onCategoryChange={onCategoryClick} />
+        <Category onCategoryChange={onCategoryClick} />
       </Grid>
       <Grid item md={10} p={4}>
         <Box

@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@emotion/react";
 
-const Categories = ({ onCategoryChange }) => {
+const Category = ({ onCategoryChange }) => {
   const theme = useTheme();
 
   const iconStyle = {
@@ -84,4 +84,4 @@ const Categories = ({ onCategoryChange }) => {
   );
 };
 
-export default Categories;
+export default Category;
