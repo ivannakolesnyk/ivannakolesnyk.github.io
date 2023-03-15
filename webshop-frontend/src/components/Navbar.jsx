@@ -341,7 +341,7 @@ NavBar, which is meant for computer screens/tablets and larger screens.
                 Log in
               </Typography>
             </Button>
-            <IconButton component={Link} to="/shoppingcart" fontSize="small">
+            <IconButton component={Link} to="/profile" fontSize="small">
               <ShoppingCartIcon
                 sx={{
                   fontSize: "2rem",

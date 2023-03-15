@@ -1,54 +1,66 @@
-import React, { useState } from "react";
-import { Typography } from "@mui/material";
+import React from "react";
+import {
+  TextField,
+  Button,
+  Link,
+  Typography,
+  Box,
+  Container,
+  Paper,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { useTheme } from "@mui/material/styles";
 
-const LogIn = () => {
-  const theme = useTheme();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const LoginBox = styled(Paper)({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  padding: "2rem",
+  maxWidth: "30rem",
+  margin: "auto",
+});
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle login logic here
-  };
+const StyledTextField = styled(TextField)({
+  marginBottom: "1rem",
+  width: "100%",
+});
+
+const StyledButton = styled(Button)({
+  marginTop: "1rem",
+  width: "100%",
+});
+
+const Login = () => {
+  // Import the custom theme from theme.js
+  const theme = useTheme();
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        <Typography
-          sx={{
-            color: theme.palette.primary.contrastText,
-          }}
-        >
-          Email:
-        </Typography>
-        <input
-          type="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          required
-        />
-      </label>
-      <br />
-      <label>
-        <Typography
-          sx={{
-            color: theme.palette.primary.contrastText,
-          }}
-        >
-          Password:
-        </Typography>
-        <input
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          required
-        />
-      </label>
-      <br />
-      <button type="submit">Log In</button>
-    </form>
+    <Container maxWidth="lg" sx={{ display: "flex", justifyContent: "center" }}>
+      <Box sx={{ mt: "4rem" }}>
+        <LoginBox elevation={3}>
+          <Typography variant="h4" sx={{ marginBottom: "2rem" }}>
+            Login
+          </Typography>
+          <StyledTextField label="Email" type="email" />
+          <StyledTextField label="Password" type="password" />
+          <StyledButton variant="contained" color="primary">
+            Login
+          </StyledButton>
+          <Typography
+            sx={{
+              marginTop: "1rem",
+              color: theme.palette.primary.contrastText,
+            }}
+          >
+            Don't have an account?{" "}
+            <Link href="#" sx={{ color: theme.palette.primary.contrastText }}>
+              Sign up here.
+            </Link>
+          </Typography>
+        </LoginBox>
+      </Box>
+    </Container>
   );
 };
 
-export default LogIn;
+export default Login;
