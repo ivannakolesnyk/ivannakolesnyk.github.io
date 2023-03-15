@@ -51,7 +51,7 @@ const Categories = ({ onCategoryChange }) => {
   };
 
   return (
-    <Box position={"fixed"}>
+    <Box>
       <Typography color={theme.palette.primary.contrastText} variant="h5">
         Categories
       </Typography>
