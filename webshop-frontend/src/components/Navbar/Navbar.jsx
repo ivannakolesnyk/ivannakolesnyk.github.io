@@ -1,7 +1,7 @@
 import React from "react";
 import { AppBar, useMediaQuery } from "@mui/material";
-import SmallScreenToolbar from "./SmallScreenToolbar";
-import BigScreenToolbar from "./BigScreenToolbar";
+import SmallScreenToolbar from "./Navbar_components/SmallScreenToolbar";
+import BigScreenToolbar from "./Navbar_components/BigScreenToolbar";
 
 /**
 The Navbar component displays a navigation bar for the website.
