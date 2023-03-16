@@ -59,7 +59,7 @@ export const theme = createTheme({
       fontFamily: "Inter, sans-serif",
     },
     button: {
-      fontSize: "2rem",
+      fontSize: "1.7rem",
       fontFamily: "Inter, sans-serif",
     },
   },
