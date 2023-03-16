@@ -7,13 +7,45 @@ import { useTheme } from "@mui/material/styles";
 import StyledToolbar from "./StyledToolbar";
 
 /**
-The SmallScreenToolbar component displays a navigation bar for the website.
-It consists of a logo, and a menu with links to different pages 
-on the website.
+The SmallScreenToolbar component consists of a logo, and a menu with links 
+to different pages on the website.
 @returns {JSX.Element} The JSX code for the SmallScreenToolbar component.
 */
 const SmallScreenToolbar = ({ onProductsClick }) => {
   const theme = useTheme();
+
+  /**
+This CustomMenuItem will be used often, and the use of props will make it
+more efficient to use. Default value for "setOpenHamburgerMenu" is set to
+"false".
+*/
+  const CustomMenuItem = ({
+    to,
+    onClick,
+    text,
+    theme,
+    setOpenHamburgerMenu,
+  }) => {
+    const handleClick = (e) => {
+      if (onClick) {
+        onClick(e);
+      }
+      setOpenHamburgerMenu(false);
+    };
+
+    return (
+      <MenuItem component={Link} to={to} onClick={handleClick}>
+        <Typography
+          variant="button"
+          sx={{
+            color: theme.palette.primary.contrastText,
+          }}
+        >
+          {text}
+        </Typography>
+      </MenuItem>
+    );
+  };
 
   /**
 The openHamburgerMenu variable is a boolean that is true if the hamburger
@@ -23,9 +55,15 @@ It is used to control the state of the hamburger menu.
   const [openHamburgerMenu, setOpenHamburgerMenu] = useState(false);
 
   /**
-The menu button used for this toolbar.
+The menu button used for this toolbar. It uses the themes primary 
+contras text as it's colors.
 */
-  const MenuButton = styled(IconButton)({});
+  const MenuButton = styled(IconButton)(({ theme }) => ({
+    color: theme.palette.secondary.main,
+    edge: "end",
+    className: "menu-button",
+    "aria-label": "small screen menu",
+  }));
 
   return (
     <StyledToolbar>
@@ -41,20 +79,15 @@ The menu button used for this toolbar.
           }}
         />
       </Link>
-      <MenuButton
-        edge="end"
-        className={"menu-button"}
-        color="#fff"
-        aria-label="small screen menu"
-        onClick={(e) => setOpenHamburgerMenu(true)}
-      >
+      <MenuButton onClick={(e) => setOpenHamburgerMenu(true)}>
         <MenuIcon
           sx={{
-            color: theme.palette.secondary.main,
             fontSize: "3rem",
           }}
         />
       </MenuButton>
+
+      {/* Hamburger style Menu from MUI */}
       <Menu
         style={{ position: "absolute", top: 30, right: 0 }}
         id="positioned-hamburger-menu"
@@ -71,115 +104,25 @@ The menu button used for this toolbar.
         }}
         getContentAnchorEl={null}
       >
-        <MenuItem
-          key="home"
-          component={Link}
-          to="/"
-          onClick={(e) => setOpenHamburgerMenu(false)}
-        >
-          <Typography
-            variant="button"
-            sx={{
-              color: theme.palette.primary.contrastText,
-            }}
-          >
-            Home
-          </Typography>
-        </MenuItem>
-        <MenuItem
-          key="menu"
-          component={Link}
-          to="/menu"
-          onClick={(e) => setOpenHamburgerMenu(false)}
-        >
-          <Typography
-            variant="button"
-            sx={{
-              color: theme.palette.primary.contrastText,
-            }}
-          >
-            Menu
-          </Typography>
-        </MenuItem>
-        <MenuItem
-          key="products"
-          component={Link}
+        <CustomMenuItem to="/" text="Home" theme={theme} />
+        <CustomMenuItem to="/menu" text="Menu" theme={theme} />
+        <CustomMenuItem
           to="/products"
           onClick={(e) => {
-            setOpenHamburgerMenu(false);
             onProductsClick();
           }}
-        >
-          <Typography
-            variant="button"
-            sx={{
-              color: theme.palette.primary.contrastText,
-            }}
-          >
-            Products
-          </Typography>
-        </MenuItem>
-        <MenuItem
-          key="about"
-          component={Link}
-          to="/about"
-          onClick={(e) => setOpenHamburgerMenu(false)}
-        >
-          <Typography
-            variant="button"
-            sx={{
-              color: theme.palette.primary.contrastText,
-            }}
-          >
-            About us
-          </Typography>
-        </MenuItem>
-        <MenuItem
-          key="findus"
-          component={Link}
-          to="/findus"
-          onClick={(e) => setOpenHamburgerMenu(false)}
-        >
-          <Typography
-            variant="button"
-            sx={{
-              color: theme.palette.primary.contrastText,
-            }}
-          >
-            Find us
-          </Typography>
-        </MenuItem>
-        <MenuItem
-          key="login"
-          component={Link}
-          to="/login"
-          onClick={(e) => setOpenHamburgerMenu(false)}
-        >
-          <Typography
-            variant="button"
-            sx={{
-              color: theme.palette.primary.contrastText,
-            }}
-          >
-            Log in
-          </Typography>
-        </MenuItem>
-        <MenuItem
-          key="shoppingcart"
+          text="Products"
+          theme={theme}
+        />
+        <CustomMenuItem to="/about" text="About us" theme={theme} />
+        <CustomMenuItem to="/findus" text="Find us" theme={theme} />
+        <CustomMenuItem to="/login" text="Log in" theme={theme} />
+        <CustomMenuItem
           aria-label="shopping cart"
-          component={Link}
           to="/shoppingcart"
-          onClick={(e) => setOpenHamburgerMenu(false)}
-        >
-          <Typography
-            variant="button"
-            sx={{
-              color: theme.palette.primary.contrastText,
-            }}
-          >
-            Shopping cart
-          </Typography>
-        </MenuItem>
+          text="Shopping cart"
+          theme={theme}
+        />
       </Menu>
     </StyledToolbar>
   );

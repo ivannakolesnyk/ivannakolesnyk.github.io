@@ -11,33 +11,6 @@ import { useTheme } from "@mui/material/styles";
 import StyledToolbar from "./StyledToolbar";
 
 /**
- * A custom button component that takes in `text`, `icon`, and `to` props.
- * Used to avoid repeating the same code over and over again.
- */
-const NavbarButton = ({ text, icon, to, onClick }) => {
-  const theme = useTheme();
-
-  return (
-    <Button
-      color="inherit"
-      component={Link}
-      to={to}
-      onClick={onClick}
-      startIcon={icon}
-    >
-      <Typography
-        variant="button"
-        sx={{
-          color: theme.palette.primary.contrastText,
-        }}
-      >
-        {text}
-      </Typography>
-    </Button>
-  );
-};
-
-/**
  * The BigScreenToolbar component displays a navigation bar for the website
  * when the screen is large. It consists of a logo, and a menu with links to different pages
  * on the website. Some with just text. Others with appropriate icons.
@@ -45,6 +18,33 @@ const NavbarButton = ({ text, icon, to, onClick }) => {
  */
 const BigScreenToolbar = ({ onProductsClick }) => {
   const theme = useTheme();
+
+  /**
+   * A custom button component that takes in `text`, `icon`, and `to` props.
+   * Used to avoid repeating the same code over and over again.
+   */
+  const NavbarButton = ({ text, icon, to, onClick }) => {
+    const theme = useTheme();
+
+    return (
+      <Button
+        color="inherit"
+        component={Link}
+        to={to}
+        onClick={onClick}
+        startIcon={icon}
+      >
+        <Typography
+          variant="button"
+          sx={{
+            color: theme.palette.primary.contrastText,
+          }}
+        >
+          {text}
+        </Typography>
+      </Button>
+    );
+  };
 
   // SX prop values used for all the buttons with icons
   const COMMON_ICON_SX = {
