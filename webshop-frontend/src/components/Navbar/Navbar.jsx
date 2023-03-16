@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Menu as MenuIcon,
@@ -5,8 +6,8 @@ import {
   PlaceOutlined as PlaceOutlinedIcon,
   Person2Outlined as Person2OutlinedIcon,
 } from "@mui/icons-material";
-import coffeeLogo from "../assets/logo.png";
-import smallCoffeeLogo from "../assets/logo_smallscreen.png";
+import coffeeLogo from "./logos/logo.png";
+import smallCoffeeLogo from "./logos/logo_smallscreen.png";
 import {
   AppBar,
   Button,
@@ -18,8 +19,9 @@ import {
   useMediaQuery,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
 import { useTheme } from "@mui/material/styles";
+import SmallScreenToolbar from "./SmallScreenToolbar";
+import StyledToolbar from "./StyledToolbar";
 
 /**
 The Navbar component displays a navigation bar for the website.
@@ -38,12 +40,12 @@ The StyledToolbar component is a styled version of the MUI Toolbar component.
 It is used to display the Navbar's contents in a way that is visually
 appealing and responsive to different screen sizes.
 */
-  const StyledToolbar = styled(Toolbar)({
-    display: "flex",
-    justifyContent: "space-between",
-    backgroundColor: "white",
-    color: theme.palette.primary.contrastText,
-  });
+  // const StyledToolbar = styled(Toolbar)({
+  //   display: "flex",
+  //   justifyContent: "space-between",
+  //   backgroundColor: "white",
+  //   color: theme.palette.primary.contrastText,
+  // });
 
   /**
 Constant used to decide if the screen is small or not
@@ -55,12 +57,12 @@ The openHamburgerMenu variable is a boolean that is true if the hamburger
 menu is currently open on small screens.
 It is used to control the state of the hamburger menu.
 */
-  const [openHamburgerMenu, setOpenHamburgerMenu] = useState(false);
+  // const [openHamburgerMenu, setOpenHamburgerMenu] = useState(false);
 
   /**
 The menu button used on small screens
 */
-  const MenuButton = styled(IconButton)({});
+  // const MenuButton = styled(IconButton)({});
 
   /**
 This AppBar shows the Small Screen Appbar if the screen size is below
@@ -72,161 +74,162 @@ NavBar, which is meant for computer screens/tablets and larger screens.
   return (
     <AppBar position="sticky">
       {smallScreenSize ? (
-        <StyledToolbar>
-          <Link component={Link} to="/">
-            <img
-              src={smallCoffeeLogo}
-              alt="monoca logo"
-              aria-label="small monoca logo"
-              style={{
-                width: "auto",
-                height: "3rem",
-                paddingTop: "1rem",
-              }}
-            />
-          </Link>
-          <MenuButton
-            edge="end"
-            className={"menu-button"}
-            color="#fff"
-            aria-label="small screen menu"
-            onClick={(e) => setOpenHamburgerMenu(true)}
-          >
-            <MenuIcon
-              sx={{
-                color: theme.palette.secondary.main,
-                fontSize: "3rem",
-              }}
-            />
-          </MenuButton>
-          <Menu
-            style={{ position: "absolute", top: 30, right: 0 }}
-            id="positioned-hamburger-menu"
-            anchorEl={MenuButton}
-            open={openHamburgerMenu}
-            onClose={(e) => setOpenHamburgerMenu(false)}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            getContentAnchorEl={null}
-          >
-            <MenuItem
-              key="home"
-              component={Link}
-              to="/"
-              onClick={(e) => setOpenHamburgerMenu(false)}
-            >
-              <Typography
-                variant="button"
-                sx={{
-                  color: theme.palette.primary.contrastText,
-                }}
-              >
-                Home
-              </Typography>
-            </MenuItem>
-            <MenuItem
-              key="menu"
-              component={Link}
-              to="/menu"
-              onClick={(e) => setOpenHamburgerMenu(false)}
-            >
-              <Typography
-                variant="button"
-                sx={{
-                  color: theme.palette.primary.contrastText,
-                }}
-              >
-                Menu
-              </Typography>
-            </MenuItem>
-            <MenuItem
-              key="products"
-              component={Link}
-              to="/products"
-              onClick={(e) => {
-                setOpenHamburgerMenu(false);
-                onProductsClick();
-              }}
-            >
-              <Typography
-                variant="button"
-                sx={{
-                  color: theme.palette.primary.contrastText,
-                }}
-              >
-                Products
-              </Typography>
-            </MenuItem>
-            <MenuItem
-              key="about"
-              component={Link}
-              to="/about"
-              onClick={(e) => setOpenHamburgerMenu(false)}
-            >
-              <Typography
-                variant="button"
-                sx={{
-                  color: theme.palette.primary.contrastText,
-                }}
-              >
-                About us
-              </Typography>
-            </MenuItem>
-            <MenuItem
-              key="findus"
-              component={Link}
-              to="/findus"
-              onClick={(e) => setOpenHamburgerMenu(false)}
-            >
-              <Typography
-                variant="button"
-                sx={{
-                  color: theme.palette.primary.contrastText,
-                }}
-              >
-                Find us
-              </Typography>
-            </MenuItem>
-            <MenuItem
-              key="login"
-              component={Link}
-              to="/login"
-              onClick={(e) => setOpenHamburgerMenu(false)}
-            >
-              <Typography
-                variant="button"
-                sx={{
-                  color: theme.palette.primary.contrastText,
-                }}
-              >
-                Log in
-              </Typography>
-            </MenuItem>
-            <MenuItem
-              key="shoppingcart"
-              aria-label="shopping cart"
-              component={Link}
-              to="/shoppingcart"
-              onClick={(e) => setOpenHamburgerMenu(false)}
-            >
-              <Typography
-                variant="button"
-                sx={{
-                  color: theme.palette.primary.contrastText,
-                }}
-              >
-                Shopping cart
-              </Typography>
-            </MenuItem>
-          </Menu>
-        </StyledToolbar>
+        <SmallScreenToolbar></SmallScreenToolbar>
       ) : (
+        // <StyledToolbar>
+        //   <Link component={Link} to="/">
+        //     <img
+        //       src={smallCoffeeLogo}
+        //       alt="monoca logo"
+        //       aria-label="small monoca logo"
+        //       style={{
+        //         width: "auto",
+        //         height: "3rem",
+        //         paddingTop: "1rem",
+        //       }}
+        //     />
+        //   </Link>
+        //   <MenuButton
+        //     edge="end"
+        //     className={"menu-button"}
+        //     color="#fff"
+        //     aria-label="small screen menu"
+        //     onClick={(e) => setOpenHamburgerMenu(true)}
+        //   >
+        //     <MenuIcon
+        //       sx={{
+        //         color: theme.palette.secondary.main,
+        //         fontSize: "3rem",
+        //       }}
+        //     />
+        //   </MenuButton>
+        //   <Menu
+        //     style={{ position: "absolute", top: 30, right: 0 }}
+        //     id="positioned-hamburger-menu"
+        //     anchorEl={MenuButton}
+        //     open={openHamburgerMenu}
+        //     onClose={(e) => setOpenHamburgerMenu(false)}
+        //     anchorOrigin={{
+        //       vertical: "top",
+        //       horizontal: "right",
+        //     }}
+        //     transformOrigin={{
+        //       vertical: "top",
+        //       horizontal: "right",
+        //     }}
+        //     getContentAnchorEl={null}
+        //   >
+        //     <MenuItem
+        //       key="home"
+        //       component={Link}
+        //       to="/"
+        //       onClick={(e) => setOpenHamburgerMenu(false)}
+        //     >
+        //       <Typography
+        //         variant="button"
+        //         sx={{
+        //           color: theme.palette.primary.contrastText,
+        //         }}
+        //       >
+        //         Home
+        //       </Typography>
+        //     </MenuItem>
+        //     <MenuItem
+        //       key="menu"
+        //       component={Link}
+        //       to="/menu"
+        //       onClick={(e) => setOpenHamburgerMenu(false)}
+        //     >
+        //       <Typography
+        //         variant="button"
+        //         sx={{
+        //           color: theme.palette.primary.contrastText,
+        //         }}
+        //       >
+        //         Menu
+        //       </Typography>
+        //     </MenuItem>
+        //     <MenuItem
+        //       key="products"
+        //       component={Link}
+        //       to="/products"
+        //       onClick={(e) => {
+        //         setOpenHamburgerMenu(false);
+        //         onProductsClick();
+        //       }}
+        //     >
+        //       <Typography
+        //         variant="button"
+        //         sx={{
+        //           color: theme.palette.primary.contrastText,
+        //         }}
+        //       >
+        //         Products
+        //       </Typography>
+        //     </MenuItem>
+        //     <MenuItem
+        //       key="about"
+        //       component={Link}
+        //       to="/about"
+        //       onClick={(e) => setOpenHamburgerMenu(false)}
+        //     >
+        //       <Typography
+        //         variant="button"
+        //         sx={{
+        //           color: theme.palette.primary.contrastText,
+        //         }}
+        //       >
+        //         About us
+        //       </Typography>
+        //     </MenuItem>
+        //     <MenuItem
+        //       key="findus"
+        //       component={Link}
+        //       to="/findus"
+        //       onClick={(e) => setOpenHamburgerMenu(false)}
+        //     >
+        //       <Typography
+        //         variant="button"
+        //         sx={{
+        //           color: theme.palette.primary.contrastText,
+        //         }}
+        //       >
+        //         Find us
+        //       </Typography>
+        //     </MenuItem>
+        //     <MenuItem
+        //       key="login"
+        //       component={Link}
+        //       to="/login"
+        //       onClick={(e) => setOpenHamburgerMenu(false)}
+        //     >
+        //       <Typography
+        //         variant="button"
+        //         sx={{
+        //           color: theme.palette.primary.contrastText,
+        //         }}
+        //       >
+        //         Log in
+        //       </Typography>
+        //     </MenuItem>
+        //     <MenuItem
+        //       key="shoppingcart"
+        //       aria-label="shopping cart"
+        //       component={Link}
+        //       to="/shoppingcart"
+        //       onClick={(e) => setOpenHamburgerMenu(false)}
+        //     >
+        //       <Typography
+        //         variant="button"
+        //         sx={{
+        //           color: theme.palette.primary.contrastText,
+        //         }}
+        //       >
+        //         Shopping cart
+        //       </Typography>
+        //     </MenuItem>
+        //   </Menu>
+        // </StyledToolbar>
         <StyledToolbar>
           <div
             id="left-navbar-buttons"
