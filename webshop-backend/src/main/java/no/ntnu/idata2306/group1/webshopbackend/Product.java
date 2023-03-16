@@ -30,6 +30,9 @@ public class Product {
     @JoinColumn()
     private Category category;
 
+    public Product() {
+    }
+
     public Product(String name, double price, boolean sale, String description,
             String product_image, int qty_in_stock, Category category) {
         this.name = name;
@@ -39,5 +42,37 @@ public class Product {
         this.product_image = product_image;
         this.qty_in_stock = qty_in_stock;
         this.category = category;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public double getPrice() {
+        return this.price;
+    }
+
+    public boolean getSale() {
+        return this.sale;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public String getProductImage() {
+        return this.product_image;
+    }
+
+    public int getQtyInStock() {
+        return this.qty_in_stock;
+    }
+
+    public Category getCategory() {
+        return this.category;
     }
 }
