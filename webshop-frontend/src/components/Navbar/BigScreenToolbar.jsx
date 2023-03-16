@@ -11,13 +11,46 @@ import { useTheme } from "@mui/material/styles";
 import StyledToolbar from "./StyledToolbar";
 
 /**
-The BigScreenToolbar component displays a navigation bar for the website
-when the screen is large. It consists of a logo, and a menu with links to different pages 
-on the website. Some with just text. Others with appropriate icons.
-@returns {JSX.Element} The JSX code for the BigScreenToolbar component.
-*/
+ * A custom button component that takes in `text`, `icon`, and `to` props.
+ * Used to avoid repeating the same code over and over again.
+ */
+const NavbarButton = ({ text, icon, to, onClick }) => {
+  const theme = useTheme();
+
+  return (
+    <Button
+      color="inherit"
+      component={Link}
+      to={to}
+      onClick={onClick}
+      startIcon={icon}
+    >
+      <Typography
+        variant="button"
+        sx={{
+          color: theme.palette.primary.contrastText,
+        }}
+      >
+        {text}
+      </Typography>
+    </Button>
+  );
+};
+
+/**
+ * The BigScreenToolbar component displays a navigation bar for the website
+ * when the screen is large. It consists of a logo, and a menu with links to different pages
+ * on the website. Some with just text. Others with appropriate icons.
+ * @returns {JSX.Element} The JSX code for the BigScreenToolbar component.
+ */
 const BigScreenToolbar = ({ onProductsClick }) => {
   const theme = useTheme();
+
+  // SX prop values used for all the buttons with icons
+  const COMMON_ICON_SX = {
+    fontSize: "2rem",
+    color: theme.palette.primary.contrastText,
+  };
 
   return (
     <StyledToolbar>
@@ -29,36 +62,13 @@ const BigScreenToolbar = ({ onProductsClick }) => {
           width: "33.33%",
         }}
       >
-        <Button component={Link} to="/menu">
-          <Typography
-            variant="button"
-            sx={{
-              color: theme.palette.primary.contrastText,
-            }}
-          >
-            Menu
-          </Typography>
-        </Button>
-        <Button component={Link} to="/products" onClick={onProductsClick}>
-          <Typography
-            variant="button"
-            sx={{
-              color: theme.palette.primary.contrastText,
-            }}
-          >
-            Products
-          </Typography>
-        </Button>
-        <Button color="inherit" component={Link} to="/about">
-          <Typography
-            variant="button"
-            sx={{
-              color: theme.palette.primary.contrastText,
-            }}
-          >
-            About us
-          </Typography>
-        </Button>
+        <NavbarButton text="Menu" to="/menu" />
+        <NavbarButton
+          text="Products"
+          to="/products"
+          onClick={onProductsClick}
+        />
+        <NavbarButton text="About us" to="/about" />
       </div>
       <div
         id="coffeeLogo"
@@ -91,59 +101,18 @@ const BigScreenToolbar = ({ onProductsClick }) => {
           width: "33.33%",
         }}
       >
-        <Button
-          startIcon={
-            <PlaceOutlinedIcon
-              sx={{
-                fontSize: "2rem",
-                color: theme.palette.primary.contrastText,
-              }}
-            />
-          }
-          component={Link}
+        <NavbarButton
+          text="Find us"
           to="/findus"
-          sx={{
-            color: theme.palette.primary.contrastText,
-          }}
-        >
-          <Typography
-            variant="button"
-            sx={{
-              color: theme.palette.primary.contrastText,
-            }}
-          >
-            Find us
-          </Typography>
-        </Button>
-        <Button
-          startIcon={
-            <Person2OutlinedIcon
-              sx={{
-                fontSize: "2rem",
-                color: theme.palette.primary.contrastText,
-              }}
-            />
-          }
-          color="inherit"
-          component={Link}
+          icon={<PlaceOutlinedIcon sx={COMMON_ICON_SX} />}
+        />
+        <NavbarButton
+          text="Log in"
           to="/login"
-        >
-          <Typography
-            variant="button"
-            sx={{
-              color: theme.palette.primary.contrastText,
-            }}
-          >
-            Log in
-          </Typography>
-        </Button>
-        <IconButton component={Link} to="/profile" fontSize="small">
-          <ShoppingCartIcon
-            sx={{
-              fontSize: "2rem",
-              color: theme.palette.primary.contrastText,
-            }}
-          />
+          icon={<Person2OutlinedIcon sx={COMMON_ICON_SX} />}
+        />
+        <IconButton component={Link} to="/profile">
+          <ShoppingCartIcon sx={COMMON_ICON_SX} />
         </IconButton>
       </div>
     </StyledToolbar>
