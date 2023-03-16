@@ -23,7 +23,7 @@ It is used to control the state of the hamburger menu.
   const [openHamburgerMenu, setOpenHamburgerMenu] = useState(false);
 
   /**
-The menu button used on in this
+The menu button used for this toolbar.
 */
   const MenuButton = styled(IconButton)({});
 
