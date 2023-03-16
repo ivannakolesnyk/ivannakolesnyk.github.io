@@ -20,17 +20,13 @@ Constant used to decide if the screen is small or not
   /**
 This AppBar shows the Small Screen Appbar if the screen size is below
 900px (medium breakpoint for Material UI), which is also the value where there 
-is not enough room forall the text on the NavBar. It would generally be used 
+is not enough room for all the items on the NavBar. It would generally be used 
 for a tablet or a mobile phone. If it's over 900px it shows the entire
-NavBar, which is meant for computer screens/tablets and larger screens.
+NavBar, which is meant for computer screens, tablets or larger screens.
 */
   return (
     <AppBar position="sticky">
-      {smallScreenSize ? (
-        <SmallScreenToolbar></SmallScreenToolbar>
-      ) : (
-        <BigScreenToolbar></BigScreenToolbar>
-      )}
+      {smallScreenSize ? <SmallScreenToolbar /> : <BigScreenToolbar />}
     </AppBar>
   );
 };
