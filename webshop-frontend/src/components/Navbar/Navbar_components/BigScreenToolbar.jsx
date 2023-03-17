@@ -6,7 +6,7 @@ import {
   Person2Outlined as Person2OutlinedIcon,
 } from "@mui/icons-material";
 import coffeeLogo from "./logos/logo.png";
-import { Button, IconButton, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import StyledToolbar from "./StyledToolbar";
 
@@ -20,11 +20,19 @@ const BigScreenToolbar = ({ onProductsClick }) => {
   const theme = useTheme();
 
   /**
-   * A custom button component that takes in `text`, `icon`, and `to` props.
-   * Used to avoid repeating the same code over and over again.
+   * A custom button component that takes in `text`, `icon`, `to` and 'onClick' as props.
+   * If no text or icon is provided, then icon will be set to null, and the Typography
+   * constant will not be created.
    */
   const NavbarButton = ({ text, icon, to, onClick }) => {
-    const theme = useTheme();
+    const styledIcon = icon
+      ? React.cloneElement(icon, {
+          sx: {
+            fontSize: "2rem",
+            color: theme.palette.primary.contrastText,
+          },
+        })
+      : null;
 
     return (
       <Button
@@ -32,26 +40,27 @@ const BigScreenToolbar = ({ onProductsClick }) => {
         component={Link}
         to={to}
         onClick={onClick}
-        startIcon={icon}
+        startIcon={styledIcon}
       >
-        <Typography
-          variant="button"
-          sx={{
-            color: theme.palette.primary.contrastText,
-          }}
-        >
-          {text}
-        </Typography>
+        {text && (
+          <Typography
+            variant="button"
+            sx={{
+              color: theme.palette.primary.contrastText,
+            }}
+          >
+            {text}
+          </Typography>
+        )}
       </Button>
     );
   };
 
-  // SX prop values used for all the buttons with icons
-  const COMMON_ICON_SX = {
-    fontSize: "2rem",
-    color: theme.palette.primary.contrastText,
-  };
-
+  /**
+   * This is the where the BigScreenToolbar starts. It uses the StyledToolbar.jsx component, which
+   * is also being used in the SmallScreenToolbar. Any change in the StyledToolbar will result in
+   * a change for both the Big- and SmallScreenToolbar.
+   */
   return (
     <StyledToolbar>
       <div
@@ -72,7 +81,6 @@ const BigScreenToolbar = ({ onProductsClick }) => {
       </div>
       <div
         id="coffeeLogo"
-        component={Link}
         style={{
           display: "flex",
           justifyContent: "center",
@@ -104,16 +112,14 @@ const BigScreenToolbar = ({ onProductsClick }) => {
         <NavbarButton
           text="Find us"
           to="/findus"
-          icon={<PlaceOutlinedIcon sx={COMMON_ICON_SX} />}
+          icon={<PlaceOutlinedIcon />}
         />
         <NavbarButton
           text="Log in"
           to="/login"
-          icon={<Person2OutlinedIcon sx={COMMON_ICON_SX} />}
+          icon={<Person2OutlinedIcon />}
         />
-        <IconButton component={Link} to="/profile">
-          <ShoppingCartIcon sx={COMMON_ICON_SX} />
-        </IconButton>
+        <NavbarButton to="/profile" icon={<ShoppingCartIcon />} />
       </div>
     </StyledToolbar>
   );

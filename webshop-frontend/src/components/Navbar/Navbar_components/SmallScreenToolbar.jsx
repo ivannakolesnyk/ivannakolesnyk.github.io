@@ -65,6 +65,11 @@ contras text as it's colors.
     "aria-label": "small screen menu",
   }));
 
+  /**
+   * This is the where the SmallScreenToolbar starts. It uses the StyledToolbar.jsx component, which
+   * is also being used in the BigScreenToolbar. Any change in the StyledToolbar will result in
+   * a change for both the Small- and BigScreenToolbar.
+   */
   return (
     <StyledToolbar>
       <Link component={Link} to="/">
