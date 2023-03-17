@@ -12,25 +12,18 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-function ChangePassword() {
-  // Import the custom theme from theme.js
+/**
+This React component allows users to change their password by providing input fields 
+for their current password, new password, and confirmation of the new password. 
+The component uses Material-UI components for styling and layout.
+@returns {JSX.Element} The JSX code for the ChangePassword component.
+*/
+const ChangePassword = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
-
-  const handleCurrentPasswordChange = (event) => {
-    setCurrentPassword(event.target.value);
-  };
-
-  const handleNewPasswordChange = (event) => {
-    setNewPassword(event.target.value);
-  };
-
-  const handleConfirmNewPasswordChange = (event) => {
-    setConfirmNewPassword(event.target.value);
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -47,35 +40,26 @@ function ChangePassword() {
         <Divider />
         <CardContent>
           <form onSubmit={handleSubmit}>
-            <TextField
+            <PasswordTextField
               required
-              fullWidth
-              margin="normal"
               id="current-password"
               label="Current Password"
-              type="password"
               value={currentPassword}
-              onChange={handleCurrentPasswordChange}
+              setValue={setCurrentPassword}
             />
-            <TextField
+            <PasswordTextField
               required
-              fullWidth
-              margin="normal"
               id="new-password"
               label="New Password"
-              type="password"
               value={newPassword}
-              onChange={handleNewPasswordChange}
+              setValue={setNewPassword}
             />
-            <TextField
+            <PasswordTextField
               required
-              fullWidth
-              margin="normal"
               id="confirm-new-password"
               label="Confirm New Password"
-              type="password"
               value={confirmNewPassword}
-              onChange={handleConfirmNewPasswordChange}
+              setValue={setConfirmNewPassword}
             />
             <Box display="flex" justifyContent="flex-end" marginTop={2}>
               <Button variant="contained" onClick={() => navigate("/profile")}>
@@ -92,6 +76,23 @@ function ChangePassword() {
       </Card>
     </Box>
   );
-}
+};
+
+/**
+PasswordTextField is a custom React functional component that wraps the TextField 
+component from the Material-UI library. The purpose of this component is to simplify 
+and reuse code for password input fields in forms, with a consistent look and feel.
+*/
+const PasswordTextField = ({ label, value, setValue, ...props }) => (
+  <TextField
+    fullWidth
+    label={label}
+    margin="normal"
+    type="password"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+    {...props}
+  />
+);
 
 export default ChangePassword;

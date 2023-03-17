@@ -11,6 +11,11 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
+/**
+The ViewOrders component is a React functional component used for displaying
+the orders a user has made.
+@returns {JSX.Element} The JSX code for the ViewOrders component.
+*/
 const ViewOrders = () => {
   // Import the custom theme from theme.js
   const theme = useTheme();
