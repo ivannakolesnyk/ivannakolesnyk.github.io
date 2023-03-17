@@ -27,17 +27,6 @@ information shown as a ListItem.
 const ProfilePage = () => {
   const theme = useTheme();
 
-  /**
-   * A custom ListItem component that takes in `icon`, `primary` and 'secondary' as props.
-   * It's use is in the the Card which shows the personal informartion of a user.
-   */
-  const ProfileListItem = ({ icon, primary, secondary }) => (
-    <ListItem>
-      <ListItemIcon>{icon}</ListItemIcon>
-      <ListItemText primary={primary} secondary={secondary} />
-    </ListItem>
-  );
-
   return (
     <Box sx={{ display: "flex", justifyContent: "center", paddingTop: "2rem" }}>
       <Card sx={{ width: "50%", maxWidth: "700px" }}>
@@ -110,5 +99,16 @@ const ProfilePage = () => {
     </Box>
   );
 };
+
+/**
+ * A custom ListItem component that takes in `icon`, `primary` and 'secondary' as props.
+ * It's use is in the the Card which shows the personal informartion of a user.
+ */
+const ProfileListItem = ({ icon, primary, secondary }) => (
+  <ListItem>
+    <ListItemIcon>{icon}</ListItemIcon>
+    <ListItemText primary={primary} secondary={secondary} />
+  </ListItem>
+);
 
 export default ProfilePage;
