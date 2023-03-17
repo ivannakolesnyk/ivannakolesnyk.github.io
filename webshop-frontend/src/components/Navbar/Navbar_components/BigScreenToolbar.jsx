@@ -5,7 +5,7 @@ import {
   PlaceOutlined as PlaceOutlinedIcon,
   Person2Outlined as Person2OutlinedIcon,
 } from "@mui/icons-material";
-import coffeeLogo from "./logos/logo.png";
+import coffeeLogo from "../../../assets/img/logos/logo_bigscreen.png";
 import { Button, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import StyledToolbar from "./StyledToolbar";
