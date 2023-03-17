@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu as MenuIcon } from "@mui/icons-material";
-import smallCoffeeLogo from "./logos/logo_smallscreen.png";
+import smallCoffeeLogo from "../../../assets/img/logos/logo_smallscreen.png";
 import { IconButton, Menu, MenuItem, styled, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import StyledToolbar from "./StyledToolbar";

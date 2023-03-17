@@ -17,9 +17,27 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useTheme } from "@mui/material/styles";
 
+/**
+ * The ProfilePage component displays a user's profile information and provides
+ * links to edit the profile, change the password, and view orders. The user's
+ * profile information is displayed in a Card component, with each piece of
+ * information shown as a ListItem.
+@returns {JSX.Element} The JSX code for the ProfilePage component.
+*/
 const ProfilePage = () => {
-  // Import the custom theme from theme.js
   const theme = useTheme();
+
+  /**
+   * A custom ListItem component that takes in `icon`, `primary` and 'secondary' as props.
+   * It's use is in the the Card which shows the personal informartion of a user.
+   */
+  const ProfileListItem = ({ icon, primary, secondary }) => (
+    <ListItem>
+      <ListItemIcon>{icon}</ListItemIcon>
+      <ListItemText primary={primary} secondary={secondary} />
+    </ListItem>
+  );
+
   return (
     <Box sx={{ display: "flex", justifyContent: "center", paddingTop: "2rem" }}>
       <Card sx={{ width: "50%", maxWidth: "700px" }}>
@@ -39,33 +57,26 @@ const ProfilePage = () => {
             Profile Information
           </Typography>
           <List>
-            <ListItem>
-              <ListItemIcon>
-                <PersonIcon />
-              </ListItemIcon>
-              <ListItemText primary="Name" secondary="Simon Doe" />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <EmailIcon />
-              </ListItemIcon>
-              <ListItemText primary="Email" secondary="simondoe@example.com" />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <PhoneIcon />
-              </ListItemIcon>
-              <ListItemText primary="Phone" secondary="+47 90090900" />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <LocationOnIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="Address"
-                secondary="Chicken Road 13, 7080 Farm County"
-              />
-            </ListItem>
+            <ProfileListItem
+              icon={<PersonIcon />}
+              primary="Name"
+              secondary="Simon Doe"
+            />
+            <ProfileListItem
+              icon={<EmailIcon />}
+              primary="Email"
+              secondary="simondoe@example.com"
+            />
+            <ProfileListItem
+              icon={<PhoneIcon />}
+              primary="Phone"
+              secondary="+47 90090900"
+            />
+            <ProfileListItem
+              icon={<LocationOnIcon />}
+              primary="Address"
+              secondary="Chicken Road 13, 7080 Farm County"
+            />
           </List>
         </CardContent>
         <CardActions sx={{ justifyContent: "flex-end" }}>
