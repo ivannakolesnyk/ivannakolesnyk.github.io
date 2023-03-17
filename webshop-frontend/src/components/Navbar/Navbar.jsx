@@ -27,7 +27,7 @@ NavBar, which is meant for computer screens, tablets or larger screens.
   return (
     <AppBar position="sticky">
       {smallScreenSize ? (
-        <SmallScreenToolbar />
+        <SmallScreenToolbar onProductsClick={onProductsClick} />
       ) : (
         <BigScreenToolbar onProductsClick={onProductsClick} />
       )}
