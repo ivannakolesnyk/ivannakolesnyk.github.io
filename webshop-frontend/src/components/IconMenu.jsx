@@ -13,7 +13,7 @@ import { Menu } from "@mui/material";
  *
  * @returns IconMenu menu with the given menu items.
  */
-const IconMenu = ({ menuItems, anchorEl, setAnchorEl }) => {
+const IconMenu = ({ menuItems, anchorEl, setAnchorEl, handleSort }) => {
   return (
     <Menu
       id="menu"
@@ -22,7 +22,13 @@ const IconMenu = ({ menuItems, anchorEl, setAnchorEl }) => {
       onClose={() => setAnchorEl(null)}
     >
       {menuItems.map(({ name, icon: Icon }, index) => (
-        <MenuItem key={index}>
+        <MenuItem
+          key={index}
+          onClick={() => {
+            name === "Descending" ? handleSort("desc") : handleSort("asc");
+            setAnchorEl(null);
+          }}
+        >
           <ListItemIcon>
             <Icon />
           </ListItemIcon>

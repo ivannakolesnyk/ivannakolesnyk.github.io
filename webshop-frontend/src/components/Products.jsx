@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Stack } from "@mui/system";
 import Category from "./Category";
 import ProductCard from "./ProductCard";
@@ -137,6 +137,23 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
     ? productsOriginal
     : filteredProducts;
 
+  const [sortDirection, setSortDirection] = useState(null);
+  const [sortedProducts, setSortedProducts] = useState(displayedProducts);
+
+  useEffect(() => {
+    const sorted = [...displayedProducts];
+    if (sortDirection === "asc") {
+      sorted.sort((a, b) => a.price - b.price);
+    } else if (sortDirection === "desc") {
+      sorted.sort((a, b) => b.price - a.price);
+    }
+    setSortedProducts(sorted);
+  }, [displayedProducts, sortDirection]);
+
+  const handleSort = (direction) => {
+    setSortDirection(direction);
+  };
+
   const [sortAnchorEl, sortSetAnchorEl] = useState(null);
 
   return (
@@ -187,13 +204,14 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
             menuItems={sortButtonMenu}
             anchorEl={sortAnchorEl}
             setAnchorEl={sortSetAnchorEl}
+            handleSort={handleSort}
           />
 
           <SearchBar />
         </Stack>
 
         <Grid container spacing={5}>
-          {displayedProducts.map(({ id, productName, price, imagePath }) => (
+          {sortedProducts.map(({ id, productName, price, imagePath }) => (
             <Grid item key={id} md={3}>
               <ProductCard
                 productName={productName}
