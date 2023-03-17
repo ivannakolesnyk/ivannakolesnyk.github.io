@@ -18,10 +18,10 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useTheme } from "@mui/material/styles";
 
 /**
- * The ProfilePage component displays a user's profile information and provides
- * links to edit the profile, change the password, and view orders. The user's
- * profile information is displayed in a Card component, with each piece of
- * information shown as a ListItem.
+The ProfilePage component displays a user's profile information and provides
+links to edit the profile, change the password, and view orders. The user's
+profile information is displayed in a Card component, with each piece of
+information shown as a ListItem.
 @returns {JSX.Element} The JSX code for the ProfilePage component.
 */
 const ProfilePage = () => {
