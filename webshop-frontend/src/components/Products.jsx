@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Box, Stack } from "@mui/system";
 import Category from "./Category";
 import ProductCard from "./ProductCard";
@@ -10,101 +10,102 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import IconMenu from "./IconMenu";
 
+let productsOriginal = [
+  {
+    id: 1,
+    productName: "Coffee",
+    sale: false,
+    type: "Coffee",
+    price: 67,
+    imagePath:
+      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+  },
+  {
+    id: 2,
+    productName: "Coffee",
+    sale: true,
+    type: "Coffee",
+    price: 100,
+    imagePath:
+      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+  },
+  {
+    id: 3,
+    productName: "Coffee",
+    sale: false,
+    type: "Coffee",
+    price: 40,
+    imagePath:
+      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+  },
+  {
+    id: 4,
+    productName: "Tea",
+    sale: false,
+    type: "Tea",
+    price: 70,
+    imagePath:
+      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+  },
+  {
+    id: 5,
+    productName: "Tea",
+    sale: true,
+    type: "Tea",
+    price: 90,
+    imagePath:
+      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+  },
+  {
+    id: 6,
+    productName: "Tea",
+    sale: true,
+    type: "Tea",
+    price: 110,
+    imagePath:
+      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+  },
+  {
+    id: 7,
+    productName: "Tea",
+    sale: false,
+    type: "Tea",
+    price: 140,
+    imagePath:
+      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+  },
+  {
+    id: 8,
+    productName: "Food",
+    type: "Food",
+    sale: true,
+    price: 99,
+    imagePath:
+      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+  },
+  {
+    id: 9,
+    productName: "Food",
+    type: "Food",
+    sale: false,
+    price: 30,
+    imagePath:
+      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+  },
+  {
+    id: 10,
+    productName: "Pastries",
+    type: "Pastries",
+    sale: false,
+    price: 50,
+    imagePath:
+      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+  },
+];
+
 const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
   // Fetching product data from API
   const theme = useTheme();
-  let productsOriginal = [
-    {
-      id: 1,
-      productName: "Coffee",
-      sale: false,
-      type: "Coffee",
-      price: 67,
-      imagePath:
-        "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
-    },
-    {
-      id: 2,
-      productName: "Coffee",
-      sale: true,
-      type: "Coffee",
-      price: 100,
-      imagePath:
-        "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
-    },
-    {
-      id: 3,
-      productName: "Coffee",
-      sale: false,
-      type: "Coffee",
-      price: 40,
-      imagePath:
-        "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
-    },
-    {
-      id: 4,
-      productName: "Tea",
-      sale: false,
-      type: "Tea",
-      price: 70,
-      imagePath:
-        "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
-    },
-    {
-      id: 5,
-      productName: "Tea",
-      sale: true,
-      type: "Tea",
-      price: 90,
-      imagePath:
-        "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
-    },
-    {
-      id: 6,
-      productName: "Tea",
-      sale: true,
-      type: "Tea",
-      price: 110,
-      imagePath:
-        "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
-    },
-    {
-      id: 7,
-      productName: "Tea",
-      sale: false,
-      type: "Tea",
-      price: 140,
-      imagePath:
-        "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
-    },
-    {
-      id: 8,
-      productName: "Food",
-      type: "Food",
-      sale: true,
-      price: 99,
-      imagePath:
-        "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
-    },
-    {
-      id: 9,
-      productName: "Food",
-      type: "Food",
-      sale: false,
-      price: 30,
-      imagePath:
-        "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
-    },
-    {
-      id: 10,
-      productName: "Pastries",
-      type: "Pastries",
-      sale: false,
-      price: 50,
-      imagePath:
-        "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
-    },
-  ];
 
   const buttonStyles = {
     borderRadius: "1.2rem",
@@ -138,16 +139,15 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
     : filteredProducts;
 
   const [sortDirection, setSortDirection] = useState(null);
-  const [sortedProducts, setSortedProducts] = useState(displayedProducts);
 
-  useEffect(() => {
+  const sortedProducts = useMemo(() => {
     const sorted = [...displayedProducts];
     if (sortDirection === "asc") {
       sorted.sort((a, b) => a.price - b.price);
     } else if (sortDirection === "desc") {
       sorted.sort((a, b) => b.price - a.price);
     }
-    setSortedProducts(sorted);
+    return sorted;
   }, [displayedProducts, sortDirection]);
 
   const handleSort = (direction) => {
@@ -158,6 +158,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
 
   return (
     <Grid container spacing={0}>
+      {/* //TODO make a button or horizontal component on smaller screens} */}
       <Grid item md={2} p={4}>
         <Category onCategoryChange={onCategoryClick} />
       </Grid>
