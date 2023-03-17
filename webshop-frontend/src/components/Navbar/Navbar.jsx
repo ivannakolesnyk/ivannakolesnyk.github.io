@@ -11,7 +11,7 @@ logging in, and accessing the shopping cart.
 The Navbar uses the MUI library to style and layout its components.
 @returns {JSX.Element} The JSX code for the Navbar component.
 */
-const Navbar = () => {
+const Navbar = ({ onProductsClick }) => {
   /**
 Constant used to decide if the screen is small or not
 */
@@ -26,7 +26,11 @@ NavBar, which is meant for computer screens, tablets or larger screens.
 */
   return (
     <AppBar position="sticky">
-      {smallScreenSize ? <SmallScreenToolbar /> : <BigScreenToolbar />}
+      {smallScreenSize ? (
+        <SmallScreenToolbar />
+      ) : (
+        <BigScreenToolbar onProductsClick={onProductsClick} />
+      )}
     </AppBar>
   );
 };
