@@ -13,7 +13,7 @@ import IconMenu from "./IconMenu";
 const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
   // Fetching product data from API
   const theme = useTheme();
-  const productsOriginal = [
+  let productsOriginal = [
     {
       id: 1,
       productName: "Coffee",
@@ -28,7 +28,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
       productName: "Coffee",
       sale: true,
       type: "Coffee",
-      price: 67,
+      price: 100,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
     },
@@ -37,7 +37,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
       productName: "Coffee",
       sale: false,
       type: "Coffee",
-      price: 67,
+      price: 40,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
     },
@@ -46,7 +46,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
       productName: "Tea",
       sale: false,
       type: "Tea",
-      price: 67,
+      price: 70,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
     },
@@ -55,7 +55,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
       productName: "Tea",
       sale: true,
       type: "Tea",
-      price: 67,
+      price: 90,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
     },
@@ -64,7 +64,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
       productName: "Tea",
       sale: true,
       type: "Tea",
-      price: 67,
+      price: 110,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
     },
@@ -73,7 +73,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
       productName: "Tea",
       sale: false,
       type: "Tea",
-      price: 67,
+      price: 140,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
     },
@@ -82,7 +82,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
       productName: "Food",
       type: "Food",
       sale: true,
-      price: 67,
+      price: 99,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
     },
@@ -91,7 +91,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
       productName: "Food",
       type: "Food",
       sale: false,
-      price: 67,
+      price: 30,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
     },
@@ -100,7 +100,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
       productName: "Pastries",
       type: "Pastries",
       sale: false,
-      price: 67,
+      price: 50,
       imagePath:
         "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
     },
