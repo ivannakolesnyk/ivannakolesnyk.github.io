@@ -12,8 +12,13 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
+/**
+The EditProfile component is a React functional component used for displaying
+a form allowing users to edit their profile information. This component is
+part of a user profile management system.
+@returns {JSX.Element} The JSX code for the EditProfilePage component.
+*/
 const EditProfile = () => {
-  // Import the custom theme from theme.js
   const theme = useTheme();
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -37,47 +42,37 @@ const EditProfile = () => {
         <Divider />
         <CardContent>
           <form onSubmit={handleSubmit}>
-            <TextField
-              fullWidth
+            <ProfileTextField
               label="Name"
-              margin="normal"
               name="name"
-              onChange={(e) => setName(e.target.value)}
               value={name}
+              setValue={setName}
               required
             />
-            <TextField
-              fullWidth
+            <ProfileTextField
               label="Email"
-              margin="normal"
               name="email"
-              onChange={(e) => setEmail(e.target.value)}
-              type="email"
               value={email}
+              setValue={setEmail}
+              type="email"
               required
             />
-            <TextField
-              fullWidth
+            <ProfileTextField
               label="Phone"
-              margin="normal"
               name="phone"
-              onChange={(e) => setPhone(e.target.value)}
               value={phone}
+              setValue={setPhone}
               required
             />
-            <TextField
-              fullWidth
+            <ProfileTextField
               label="Address"
-              margin="normal"
               name="address"
-              onChange={(e) => setAddress(e.target.value)}
               value={address}
+              setValue={setAddress}
               required
             />
-
             <Box display="flex" justifyContent="flex-end" marginTop={2}>
               <Button
-                type="submit"
                 variant="contained"
                 color="primary"
                 onClick={() => navigate("/profile")}
@@ -96,5 +91,21 @@ const EditProfile = () => {
     </Box>
   );
 };
+
+/**
+The ProfileTextField is a custom constant that wraps the TextField component from 
+the Material-UI library. It is designed to streamline the rendering of text fields 
+with common configurations and to reduce repetition
+*/
+const ProfileTextField = ({ label, value, setValue, ...props }) => (
+  <TextField
+    fullWidth
+    label={label}
+    margin="normal"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+    {...props}
+  />
+);
 
 export default EditProfile;

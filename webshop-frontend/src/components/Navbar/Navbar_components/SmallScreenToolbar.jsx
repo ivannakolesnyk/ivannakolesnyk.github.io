@@ -15,55 +15,11 @@ const SmallScreenToolbar = ({ onProductsClick }) => {
   const theme = useTheme();
 
   /**
-This CustomMenuItem will be used often, and the use of props will make it
-more efficient to use. Default value for "setOpenHamburgerMenu" is set to
-"false".
-*/
-  const CustomMenuItem = ({
-    to,
-    onClick,
-    text,
-    theme,
-    setOpenHamburgerMenu,
-  }) => {
-    const handleClick = (e) => {
-      if (onClick) {
-        onClick(e);
-      }
-      setOpenHamburgerMenu(false);
-    };
-
-    return (
-      <MenuItem component={Link} to={to} onClick={handleClick}>
-        <Typography
-          variant="button"
-          sx={{
-            color: theme.palette.primary.contrastText,
-          }}
-        >
-          {text}
-        </Typography>
-      </MenuItem>
-    );
-  };
-
-  /**
 The openHamburgerMenu variable is a boolean that is true if the hamburger
 menu is currently open on small screens.
 It is used to control the state of the hamburger menu.
 */
   const [openHamburgerMenu, setOpenHamburgerMenu] = useState(false);
-
-  /**
-The menu button used for this toolbar. It uses the themes primary 
-contras text as it's colors.
-*/
-  const MenuButton = styled(IconButton)(({ theme }) => ({
-    color: theme.palette.secondary.main,
-    edge: "end",
-    className: "menu-button",
-    "aria-label": "small screen menu",
-  }));
 
   /**
    * This is the where the SmallScreenToolbar starts. It uses the StyledToolbar.jsx component, which
@@ -132,5 +88,43 @@ contras text as it's colors.
     </StyledToolbar>
   );
 };
+
+/**
+This CustomMenuItem will be used often, and the use of props will make it
+more efficient to use. Default value for "setOpenHamburgerMenu" is set to
+"false".
+*/
+const CustomMenuItem = ({ to, onClick, text, theme, setOpenHamburgerMenu }) => {
+  const handleClick = (e) => {
+    if (onClick) {
+      onClick(e);
+    }
+    setOpenHamburgerMenu(false);
+  };
+
+  return (
+    <MenuItem component={Link} to={to} onClick={handleClick}>
+      <Typography
+        variant="button"
+        sx={{
+          color: theme.palette.primary.contrastText,
+        }}
+      >
+        {text}
+      </Typography>
+    </MenuItem>
+  );
+};
+
+/**
+The menu button used for this toolbar. It uses the themes primary 
+contras text as it's colors.
+*/
+const MenuButton = styled(IconButton)(({ theme }) => ({
+  color: theme.palette.secondary.main,
+  edge: "end",
+  className: "menu-button",
+  "aria-label": "small screen menu",
+}));
 
 export default SmallScreenToolbar;

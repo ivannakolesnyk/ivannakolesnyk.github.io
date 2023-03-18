@@ -17,45 +17,6 @@ import StyledToolbar from "./StyledToolbar";
  * @returns {JSX.Element} The JSX code for the BigScreenToolbar component.
  */
 const BigScreenToolbar = ({ onProductsClick }) => {
-  const theme = useTheme();
-
-  /**
-   * A custom button component that takes in `text`, `icon`, `to` and 'onClick' as props.
-   * If no text or icon is provided, then icon will be set to null, and the Typography
-   * constant will not be created.
-   */
-  const NavbarButton = ({ text, icon, to, onClick }) => {
-    const styledIcon = icon
-      ? React.cloneElement(icon, {
-          sx: {
-            fontSize: "2rem",
-            color: theme.palette.primary.contrastText,
-          },
-        })
-      : null;
-
-    return (
-      <Button
-        color="inherit"
-        component={Link}
-        to={to}
-        onClick={onClick}
-        startIcon={styledIcon}
-      >
-        {text && (
-          <Typography
-            variant="button"
-            sx={{
-              color: theme.palette.primary.contrastText,
-            }}
-          >
-            {text}
-          </Typography>
-        )}
-      </Button>
-    );
-  };
-
   /**
    * This is the where the BigScreenToolbar starts. It uses the StyledToolbar.jsx component, which
    * is also being used in the SmallScreenToolbar. Any change in the StyledToolbar will result in
@@ -122,6 +83,44 @@ const BigScreenToolbar = ({ onProductsClick }) => {
         <NavbarButton to="/profile" icon={<ShoppingCartIcon />} />
       </div>
     </StyledToolbar>
+  );
+};
+
+/**
+ * A custom button component that takes in `text`, `icon`, `to` and 'onClick' as props.
+ * If no text or icon is provided, then icon will be set to null, and the Typography
+ * constant will not be created.
+ */
+const NavbarButton = ({ text, icon, to, onClick }) => {
+  const theme = useTheme();
+  const styledIcon = icon
+    ? React.cloneElement(icon, {
+        sx: {
+          fontSize: "2rem",
+          color: theme.palette.primary.contrastText,
+        },
+      })
+    : null;
+
+  return (
+    <Button
+      color="inherit"
+      component={Link}
+      to={to}
+      onClick={onClick}
+      startIcon={styledIcon}
+    >
+      {text && (
+        <Typography
+          variant="button"
+          sx={{
+            color: theme.palette.primary.contrastText,
+          }}
+        >
+          {text}
+        </Typography>
+      )}
+    </Button>
   );
 };
 
