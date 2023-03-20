@@ -30,7 +30,7 @@ const Footer = () => {
       }}
     >
       <Grid item xs={3}></Grid>
-      <Grid container xs={6} sx={{ pt: 2 }}>
+      <Grid container sx={{ pt: 2, width: "50%" }}>
         <Grid item xs={12} md={6} lg={4} sx={{ textAlign: "center" }}>
           <Typography
             variant="body2"
