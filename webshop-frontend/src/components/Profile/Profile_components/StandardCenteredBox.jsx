@@ -17,7 +17,7 @@ const StandardCenteredBox = ({ children }) => (
       display: "flex",
       justifyContent: "center",
       paddingTop: "2rem",
-      paddingBottom: "2rem",
+      marginBottom: "2rem",
     }}
   >
     {children}
