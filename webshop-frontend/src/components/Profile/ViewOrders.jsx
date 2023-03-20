@@ -21,7 +21,14 @@ const ViewOrders = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   return (
-    <Box sx={{ display: "flex", justifyContent: "center", paddingTop: "2rem" }}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        paddingTop: "2rem",
+        paddingBottom: "2rem",
+      }}
+    >
       <Card sx={{ width: "50%", maxWidth: "700px" }}>
         <CardHeader
           title="Orders"

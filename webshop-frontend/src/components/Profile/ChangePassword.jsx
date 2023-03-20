@@ -4,13 +4,14 @@ import { useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
-  Card,
   CardContent,
   CardHeader,
   Divider,
   TextField,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import StandardCenteredBox from "./Profile_components/StandardCenteredBox";
+import StandardCenteredCard from "./Profile_components/StandardCenteredCard";
 
 /**
 This React component allows users to change their password by providing input fields 
@@ -31,8 +32,8 @@ const ChangePassword = () => {
   };
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center", paddingTop: "2rem" }}>
-      <Card sx={{ width: "50%", maxWidth: "700px" }}>
+    <StandardCenteredBox>
+      <StandardCenteredCard>
         <CardHeader
           title="Change Password"
           sx={{ color: theme.palette.primary.contrastText }}
@@ -73,8 +74,8 @@ const ChangePassword = () => {
             </Box>
           </form>
         </CardContent>
-      </Card>
-    </Box>
+      </StandardCenteredCard>
+    </StandardCenteredBox>
   );
 };
 
