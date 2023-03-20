@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
-  Card,
   CardContent,
   CardHeader,
   Divider,
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import StandardCenteredBox from "./Profile_components/StandardCenteredBox";
+import StandardCenteredCard from "./Profile_components/StandardCenteredCard";
 
 /**
 The ViewOrders component is a React functional component used for displaying
@@ -21,15 +22,8 @@ const ViewOrders = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        paddingTop: "2rem",
-        paddingBottom: "2rem",
-      }}
-    >
-      <Card sx={{ width: "50%", maxWidth: "700px" }}>
+    <StandardCenteredBox>
+      <StandardCenteredCard>
         <CardHeader
           title="Orders"
           sx={{ color: theme.palette.primary.contrastText }}
@@ -44,8 +38,8 @@ const ViewOrders = () => {
             </Button>
           </Box>
         </CardContent>
-      </Card>
-    </Box>
+      </StandardCenteredCard>
+    </StandardCenteredBox>
   );
 };
 
