@@ -4,13 +4,14 @@ import { useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
-  Card,
   CardContent,
   CardHeader,
   Divider,
   TextField,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import StandardCenteredBox from "./Profile_components/StandardCenteredBox";
+import StandardCenteredCard from "./Profile_components/StandardCenteredCard";
 
 /**
 The EditProfile component is a React functional component used for displaying
@@ -33,15 +34,8 @@ const EditProfile = () => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        paddingTop: "2rem",
-        paddingBottom: "2rem",
-      }}
-    >
-      <Card sx={{ width: "50%", maxWidth: "700px" }}>
+    <StandardCenteredBox>
+      <StandardCenteredCard>
         <CardHeader
           title="Edit Profile Information"
           sx={{ color: theme.palette.primary.contrastText }}
@@ -94,8 +88,8 @@ const EditProfile = () => {
             </Box>
           </form>
         </CardContent>
-      </Card>
-    </Box>
+      </StandardCenteredCard>
+    </StandardCenteredBox>
   );
 };
 
