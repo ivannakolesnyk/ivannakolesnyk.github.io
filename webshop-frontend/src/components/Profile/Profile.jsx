@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-  Box,
   Button,
-  Card,
   CardActions,
   CardContent,
   CardHeader,
@@ -16,6 +14,8 @@ import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useTheme } from "@mui/material/styles";
+import StandardCenteredBox from "./Profile_components/StandardCenteredBox";
+import StandardCenteredCard from "./Profile_components/StandardCenteredCard";
 
 /**
 The ProfilePage component displays a user's profile information and provides
@@ -28,15 +28,8 @@ const ProfilePage = () => {
   const theme = useTheme();
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        paddingTop: "2rem",
-        paddingBottom: "2rem",
-      }}
-    >
-      <Card sx={{ width: "50%", maxWidth: "700px" }}>
+    <StandardCenteredBox>
+      <StandardCenteredCard>
         <CardHeader
           sx={{ color: theme.palette.primary.contrastText }}
           title="My Monoca"
@@ -102,8 +95,8 @@ const ProfilePage = () => {
             View Orders
           </Button>
         </CardActions>
-      </Card>
-    </Box>
+      </StandardCenteredCard>
+    </StandardCenteredBox>
   );
 };
 
