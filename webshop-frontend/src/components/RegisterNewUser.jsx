@@ -10,23 +10,27 @@ import {
   TextField,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import StandardCenteredBox from "./Profile_components/StandardCenteredBox";
-import StandardCenteredCard from "./Profile_components/StandardCenteredCard";
+import StandardCenteredBox from "./Profile/Profile_components/StandardCenteredBox";
+import StandardCenteredCard from "./Profile/Profile_components/StandardCenteredCard";
 
 /**
-The EditProfile component is a React functional component used for displaying
+The RegisterNewUser component is a React functional component used for displaying
 a form allowing users to edit their profile information. This component is
 part of a user profile management system.
-@returns {JSX.Element} The JSX code for the EditProfilePage component.
+@returns {JSX.Element} The JSX code for the RegisterNewUser component.
 */
-const EditProfile = () => {
+const RegisterNewUser = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [address, setAddress] = useState("");
+
+  const passwordsMatch = () => password === confirmPassword;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +42,7 @@ const EditProfile = () => {
     <StandardCenteredBox>
       <StandardCenteredCard>
         <CardHeader
-          title="Edit Profile Information"
+          title="Register New User"
           sx={{ color: theme.palette.primary.contrastText }}
         />
         <Divider />
@@ -58,6 +62,24 @@ const EditProfile = () => {
               setValue={setEmail}
               type="email"
               required
+            />
+            <ProfileTextField
+              label="Password"
+              name="password"
+              value={password}
+              setValue={setPassword}
+              type="password"
+              required
+            />
+            <ProfileTextField
+              label="Confirm Password"
+              name="confirmPassword"
+              value={confirmPassword}
+              setValue={setConfirmPassword}
+              type="password"
+              required
+              error={!passwordsMatch()}
+              helperText={!passwordsMatch() && "Passwords do not match"}
             />
             <ProfileTextField
               label="Phone"
@@ -84,13 +106,13 @@ const EditProfile = () => {
               <Button
                 variant="contained"
                 color="primary"
-                onClick={() => navigate("/profile")}
+                onClick={() => navigate("/login")}
               >
                 Cancel
               </Button>
               <Box marginLeft={1}>
                 <Button type="submit" variant="contained" color="primary">
-                  Save Changes
+                  Register
                 </Button>
               </Box>
             </Box>
@@ -117,4 +139,4 @@ const ProfileTextField = ({ label, value, setValue, ...props }) => (
   />
 );
 
-export default EditProfile;
+export default RegisterNewUser;

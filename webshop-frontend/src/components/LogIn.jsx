@@ -91,7 +91,10 @@ const Login = () => {
             }}
           >
             Don't have an account?{" "}
-            <Link href="#" sx={{ color: theme.palette.primary.contrastText }}>
+            <Link
+              href="/register"
+              sx={{ color: theme.palette.primary.contrastText }}
+            >
               Sign up here.
             </Link>
           </Typography>
