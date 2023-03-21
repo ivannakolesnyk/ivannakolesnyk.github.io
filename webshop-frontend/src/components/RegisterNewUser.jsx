@@ -30,10 +30,17 @@ const RegisterNewUser = () => {
   const [postalCode, setPostalCode] = useState("");
   const [address, setAddress] = useState("");
 
+  // Used to check if the passwords are similiar
   const passwordsMatch = () => password === confirmPassword;
+  // Used to make sure message for disimilar passwords on show after confirm new PW field is touched
+  const [confirmPasswordTouched, setConfirmPasswordTouched] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!passwordsMatch()) {
+      // Show an error message or handle the case when passwords don't match
+      return;
+    }
     // Save updated profile information to database or backend service
     navigate("/profile");
   };
@@ -78,9 +85,15 @@ const RegisterNewUser = () => {
               setValue={setConfirmPassword}
               type="password"
               required
-              error={!passwordsMatch()}
-              helperText={!passwordsMatch() && "Passwords do not match"}
+              error={!passwordsMatch() && confirmPasswordTouched}
+              helperText={
+                !passwordsMatch() &&
+                confirmPasswordTouched &&
+                "Passwords do not match"
+              }
+              onFocus={() => setConfirmPasswordTouched(true)}
             />
+
             <ProfileTextField
               label="Phone"
               name="phone"
