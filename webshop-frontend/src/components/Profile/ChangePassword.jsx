@@ -26,8 +26,16 @@ const ChangePassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
 
+  const newPasswordsMatch = () => newPassword === confirmNewPassword;
+  const [confirmNewPasswordTouched, setConfirmNewPasswordTouched] =
+    useState(false);
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!newPasswordsMatch()) {
+      // Handle the case when the new password and confirm new password don't match
+      return;
+    }
     // Handle form submission logic here
   };
 
@@ -61,7 +69,15 @@ const ChangePassword = () => {
               label="Confirm New Password"
               value={confirmNewPassword}
               setValue={setConfirmNewPassword}
+              error={!newPasswordsMatch() && confirmNewPasswordTouched}
+              helperText={
+                !newPasswordsMatch() &&
+                confirmNewPasswordTouched &&
+                "Passwords do not match"
+              }
+              onFocus={() => setConfirmNewPasswordTouched(true)}
             />
+
             <Box display="flex" justifyContent="flex-end" marginTop={2}>
               <Button variant="contained" onClick={() => navigate("/profile")}>
                 Cancel
