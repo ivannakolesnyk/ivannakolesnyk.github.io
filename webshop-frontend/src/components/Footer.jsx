@@ -74,7 +74,7 @@ const Footer = () => {
               rel="noreferrer"
               aria-label="Facebook"
               align="center"
-              sx={{ pl: 0, pt: 1 }}
+              sx={{ pt: 1 }}
             >
               <FacebookIcon
                 sx={{
@@ -89,7 +89,7 @@ const Footer = () => {
               rel="noreferrer"
               aria-label="Instagram"
               align="center"
-              sx={{ pl: 0, pt: 1 }}
+              sx={{ pt: 1 }}
             >
               <InstagramIcon
                 sx={{ fontSize: "2.5rem", color: theme.palette.secondary.main }}
