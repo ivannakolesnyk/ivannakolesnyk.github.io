@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,5 +36,12 @@ public class ProductController {
                     HttpStatus.OK);
         }
         return response;
+    }
+
+    @PostMapping("/products")
+    public ResponseEntity createProduct(@RequestBody Product product) {
+        // for some reason the product_image qty_in_stock are always null and 0
+        this.productRepository.save(product);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 }
