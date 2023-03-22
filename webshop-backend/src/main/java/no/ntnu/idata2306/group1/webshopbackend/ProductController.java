@@ -40,7 +40,6 @@ public class ProductController {
 
     @PostMapping("/products")
     public ResponseEntity createProduct(@RequestBody Product product) {
-        // for some reason the product_image qty_in_stock are always null and 0
         this.productRepository.save(product);
         return new ResponseEntity(HttpStatus.CREATED);
     }
