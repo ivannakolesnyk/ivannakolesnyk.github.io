@@ -26,7 +26,9 @@ const ChangePassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
 
+  // Used to check if the passwords are similiar
   const newPasswordsMatch = () => newPassword === confirmNewPassword;
+  // Used to make sure message for disimilar passwords on show after confirm new PW field is touched
   const [confirmNewPasswordTouched, setConfirmNewPasswordTouched] =
     useState(false);
 
