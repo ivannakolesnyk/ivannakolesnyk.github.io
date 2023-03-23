@@ -27,7 +27,7 @@ function ProductCard({ imagePath, productName, price, capacity }) {
         >
           <Stack
             direction="row"
-            justifyContent="space-between"
+            justifyContent={price ? "space-between" : "center"}
             alignItems={"center"}
             marginBottom={"1rem"}
           >
