@@ -34,11 +34,15 @@ function ProductCard({ imagePath, productName, price, capacity }) {
             <Typography fontSize={"2.5rem"} fontWeight={"500"}>
               {productName}
             </Typography>
-            <Typography fontSize={"1.8rem"}>{capacity}ml</Typography>
+            {price && capacity && (
+              <Typography fontSize={"1.8rem"}>{capacity}ml</Typography>
+            )}
           </Stack>
-          <Typography fontWeight={"600"} fontSize={"1.8rem"}>
-            {price} NOK
-          </Typography>
+          {price && capacity && (
+            <Typography fontWeight={"600"} fontSize={"1.8rem"}>
+              {price} NOK
+            </Typography>
+          )}
         </CardContent>
       </CardActionArea>
     </Card>
