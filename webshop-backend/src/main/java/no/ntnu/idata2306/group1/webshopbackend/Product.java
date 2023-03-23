@@ -75,4 +75,12 @@ public class Product {
     public Category getCategory() {
         return this.category;
     }
+
+    public void setProductImage(String product_image) {
+        this.product_image = product_image;
+    }
+
+    public void setQtyInStock(int qty_in_stock) {
+        this.qty_in_stock = qty_in_stock;
+    }
 }

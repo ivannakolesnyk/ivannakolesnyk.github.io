@@ -16,7 +16,7 @@ function ProductCard({ imagePath, productName, price }) {
         <CardMedia
           component="img"
           alt="green iguana"
-          height="300"
+          height="250"
           image={imagePath}
         />
         <CardContent
