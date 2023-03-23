@@ -4,16 +4,15 @@ import {
   Button,
   List,
   ListItem,
-  ListItemButton,
   ListItemText,
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import SearchBar from "./SearchBar";
-import { Stack } from "@mui/system";
 
 const Menu = () => {
   const theme = useTheme();
+  const menuBar = ["special offers", "hot drinks", "cold drinks", "food"];
 
   return (
     <>
@@ -38,6 +37,39 @@ const Menu = () => {
           </Typography>
           <SearchBar />
         </Box>
+      </Box>
+
+      <Box
+        sx={{
+          padding: "2.4rem 13.2rem",
+          borderTop: ".3rem solid #1F3A33",
+          borderBottom: ".3rem solid #1F3A33",
+        }}
+      >
+        <List
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            padding: 0,
+          }}
+        >
+          {menuBar.map((item) => (
+            <ListItem
+              sx={{
+                padding: 0,
+                width: "auto",
+              }}
+            >
+              <Button sx={{ padding: 0 }}>
+                <ListItemText
+                  primary={item.toUpperCase()}
+                  sx={{ padding: 0, color: "primary.contrastText" }}
+                />
+              </Button>
+            </ListItem>
+          ))}
+        </List>
       </Box>
     </>
   );
