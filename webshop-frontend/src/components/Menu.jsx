@@ -193,7 +193,11 @@ const Menu = () => {
             padding: "6.4rem 13.2rem",
           }}
         >
-          <Typography variant="h2" mb={"2rem"}>
+          <Typography
+            variant="h2"
+            mb={"2rem"}
+            color={theme.palette.primary.contrastText}
+          >
             {name}
           </Typography>
           <Grid container spacing={2.5}>
