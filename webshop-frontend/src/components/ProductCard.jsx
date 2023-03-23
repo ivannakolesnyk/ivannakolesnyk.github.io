@@ -7,7 +7,7 @@ import {
   Stack,
 } from "@mui/material";
 import { useTheme } from "@emotion/react";
-function ProductCard({ imagePath, productName, price }) {
+function ProductCard({ imagePath, productName, price, capacity }) {
   const theme = useTheme();
 
   return (
@@ -34,7 +34,7 @@ function ProductCard({ imagePath, productName, price }) {
             <Typography fontSize={"2.5rem"} fontWeight={"500"}>
               {productName}
             </Typography>
-            <Typography fontSize={"1.8rem"}>350ml</Typography>
+            <Typography fontSize={"1.8rem"}>{capacity}ml</Typography>
           </Stack>
           <Typography fontWeight={"600"} fontSize={"1.8rem"}>
             {price} NOK
