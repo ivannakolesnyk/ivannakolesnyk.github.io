@@ -20,6 +20,7 @@ let productsOriginal = [
     price: 67,
     imagePath:
       "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    capacity: 350,
   },
   {
     id: 2,
@@ -29,6 +30,7 @@ let productsOriginal = [
     price: 100,
     imagePath:
       "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    capacity: 350,
   },
   {
     id: 3,
@@ -38,6 +40,7 @@ let productsOriginal = [
     price: 40,
     imagePath:
       "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    capacity: 350,
   },
   {
     id: 4,
@@ -47,6 +50,7 @@ let productsOriginal = [
     price: 70,
     imagePath:
       "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    capacity: 350,
   },
   {
     id: 5,
@@ -56,6 +60,7 @@ let productsOriginal = [
     price: 90,
     imagePath:
       "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    capacity: 350,
   },
   {
     id: 6,
@@ -65,6 +70,7 @@ let productsOriginal = [
     price: 110,
     imagePath:
       "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    capacity: 350,
   },
   {
     id: 7,
@@ -74,6 +80,7 @@ let productsOriginal = [
     price: 140,
     imagePath:
       "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    capacity: 350,
   },
   {
     id: 8,
@@ -83,6 +90,7 @@ let productsOriginal = [
     price: 99,
     imagePath:
       "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    capacity: 350,
   },
   {
     id: 9,
@@ -92,6 +100,7 @@ let productsOriginal = [
     price: 30,
     imagePath:
       "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    capacity: 350,
   },
   {
     id: 10,
@@ -101,6 +110,7 @@ let productsOriginal = [
     price: 50,
     imagePath:
       "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    capacity: 350,
   },
 ];
 
@@ -243,15 +253,18 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
         )}
 
         <Grid container spacing={2.5}>
-          {sortedProducts.map(({ id, productName, price, imagePath }) => (
-            <Grid item key={id} xs={12} sm={6} md={4} lg={3}>
-              <ProductCard
-                productName={productName}
-                price={price}
-                imagePath={imagePath}
-              />
-            </Grid>
-          ))}
+          {sortedProducts.map(
+            ({ id, productName, price, imagePath, capacity }) => (
+              <Grid item key={id} xs={12} sm={6} md={4} lg={3}>
+                <ProductCard
+                  productName={productName}
+                  price={price}
+                  capacity={capacity}
+                  imagePath={imagePath}
+                />
+              </Grid>
+            )
+          )}
         </Grid>
       </Grid>
     </Grid>
