@@ -21,7 +21,6 @@ function ProductCard({ imagePath, productName, price, capacity }) {
         />
         <CardContent
           sx={{
-            backgroundColor: theme.palette.primary.main,
             color: "primary.contrastText",
           }}
         >
