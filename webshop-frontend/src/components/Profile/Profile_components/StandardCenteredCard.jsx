@@ -15,7 +15,7 @@ const StandardCenteredCard = ({ children }) => (
   <Card
     sx={{
       width: {
-        xs: "100%",
+        xs: "96%",
         md: "75%",
         lg: "50%",
       },
