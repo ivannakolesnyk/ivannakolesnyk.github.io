@@ -12,7 +12,18 @@ import { Card } from "@mui/material";
  * @returns {JSX.Element} The JSX code for the StandardCenteredCard component.
  */
 const StandardCenteredCard = ({ children }) => (
-  <Card sx={{ width: "50%", maxWidth: "700px" }}>{children}</Card>
+  <Card
+    sx={{
+      width: {
+        xs: "100%",
+        md: "75%",
+        lg: "50%",
+      },
+      maxWidth: "700px",
+    }}
+  >
+    {children}
+  </Card>
 );
 
 export default StandardCenteredCard;
