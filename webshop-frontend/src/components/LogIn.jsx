@@ -64,7 +64,7 @@ const Login = () => {
 
   return (
     <Container maxWidth="lg" sx={{ display: "flex", justifyContent: "center" }}>
-      <Box sx={{ mt: "4rem" }}>
+      <Box sx={{ mt: "4rem", mb: "2rem" }}>
         <LoginBox elevation={3} component="form" onSubmit={handleSubmit}>
           <Typography variant="h4" sx={{ marginBottom: "2rem" }}>
             Login
