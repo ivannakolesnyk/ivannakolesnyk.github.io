@@ -4,6 +4,13 @@ import { useTheme } from "@mui/material/styles";
 import aboutUs1 from "../assets/img/aboutus/aboutUS1.jpg";
 import aboutUs2 from "../assets/img/aboutus/aboutUS2.jpg";
 
+/**
+The AboutUs component is a responsive React component designed to display 
+information about Mocha Nooka Cafe. The component contains headings, body 
+text, and images arranged in a grid layout. It is styled using Material-UI 
+components and the custom theme provided by the application.
+@returns {JSX.Element} The JSX code for the AboutUs component.
+*/
 const AboutUs = () => {
   const theme = useTheme();
 
