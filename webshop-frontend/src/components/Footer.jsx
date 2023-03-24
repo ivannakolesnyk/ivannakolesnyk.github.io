@@ -24,32 +24,51 @@ const Footer = () => {
       sx={{
         bgcolor: theme.palette.primary.main,
         color: theme.palette.primary.contrastText,
-        p: 2,
         mt: "auto",
-        justifyContent: "center",
+        pt: 4,
+        pb: 4,
       }}
     >
       <Grid item xs={3}></Grid>
-      <Grid container sx={{ pt: 2, width: "50%" }}>
-        <Grid item xs={12} md={6} lg={4} sx={{ textAlign: "center" }}>
-          <Typography
-            variant="body2"
-            sx={{ mb: 2, display: "inline-block", textAlign: "left" }}
-          >
+      <Grid container xs={6} sx={{ pb: 2 }}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          lg={4}
+          sx={{
+            textAlign: {
+              xs: "center",
+              md: "left",
+              lg: "left",
+            },
+            pb: 1,
+          }}
+        >
+          <Typography variant="body2" sx={{ p: 1 }}>
             Find us: <br />
-            <Link component={Link} to="/findus" color="inherit">
+            <Link component={Link} to="/findus">
               Larsgårdsvegen 2<br />
               6009 Ålesund
-              <br />
               <br />
             </Link>
           </Typography>
         </Grid>
-        <Grid item xs={12} md={6} lg={4} sx={{ textAlign: "center" }}>
-          <Typography
-            variant="body2"
-            sx={{ mb: 2, display: "inline-block", textAlign: "left" }}
-          >
+        <Grid
+          item
+          xs={12}
+          md={6}
+          lg={4}
+          sx={{
+            textAlign: {
+              xs: "center",
+              md: "right",
+              lg: "center",
+            },
+            pb: 1,
+          }}
+        >
+          <Typography variant="body2" sx={{ p: 1 }}>
             Contact information:
             <br />
             <a href="mailto:monoka@gmail.com" target="_blank" rel="noreferrer">
@@ -57,82 +76,96 @@ const Footer = () => {
             </a>
             <br />
             +4795746534
-            <br />
-            <br />
           </Typography>
         </Grid>
-        <Grid item xs={12} md={6} lg={4} sx={{ textAlign: "center" }}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          lg={4}
+          sx={{
+            textAlign: {
+              xs: "center",
+              md: "left",
+              lg: "right",
+            },
+          }}
+        >
           <Typography
             variant="body2"
-            sx={{ mb: 2, display: "inline-block", textAlign: "left" }}
+            sx={{ pl: 1, pt: 1, pr: 1, pb: 0, mb: 0 }}
           >
             Follow us:
-            <br />
-            <IconButton
-              href="https://www.facebook.com/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Facebook"
-              align="center"
-              sx={{ pt: 1 }}
-            >
-              <FacebookIcon
-                sx={{
-                  fontSize: "2.5rem",
-                  color: theme.palette.secondary.main,
-                }}
-              />
-            </IconButton>
-            <IconButton
-              href="https://www.instagram.com/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Instagram"
-              align="center"
-              sx={{ pt: 1 }}
-            >
-              <InstagramIcon
-                sx={{ fontSize: "2.5rem", color: theme.palette.secondary.main }}
-              />
-            </IconButton>
           </Typography>
+          <IconButton
+            href="https://www.facebook.com/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Facebook"
+          >
+            <FacebookIcon
+              sx={{
+                fontSize: "2.5rem",
+                color: theme.palette.secondary.main,
+              }}
+            />
+          </IconButton>
+          <IconButton
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram"
+          >
+            <InstagramIcon
+              sx={{ fontSize: "2.5rem", color: theme.palette.secondary.main }}
+            />
+          </IconButton>
         </Grid>
       </Grid>
       <Grid item xs={3}></Grid>
 
-      <Grid item xs={3} sx={{ pt: "2rem" }}></Grid>
+      <Grid item xs={3}></Grid>
 
-      <Grid item xs={6} sx={{ textAlign: "center" }}>
-        <Typography
-          variant="body2"
-          align="center"
-          sx={{ mt: 1, pb: 2, display: "inline-block", textAlign: "left" }}
+      <Grid container xs={6}>
+        <Grid
+          item
+          xs={12}
+          sx={{
+            textAlign: {
+              xs: "center",
+              md: "left",
+              lg: "left",
+            },
+            p: 1,
+          }}
         >
-          This website is a result of a university group project, performed in
-          the course{" "}
-          <a
-            href="https://www.ntnu.edu/studies/courses/IDATA2301#tab=omEmnet"
-            target="_blank"
-            rel="noreferrer"
-            className="footer-link"
-          >
-            IDATA2301 Web technologies
-          </a>
-          , at{" "}
-          <a
-            href="https://www.ntnu.edu/"
-            target="_blank"
-            rel="noreferrer"
-            className="footer-link"
-          >
-            NTNU
-          </a>
-          . All the information provided here is a result of imagination. Any
-          resemblance with real companies or products is a coincidence
-        </Typography>
+          <Typography variant="body2">
+            This website is a result of a university group project, performed in
+            the course{" "}
+            <a
+              href="https://www.ntnu.edu/studies/courses/IDATA2301#tab=omEmnet"
+              target="_blank"
+              rel="noreferrer"
+              className="footer-link"
+            >
+              IDATA2301 Web technologies
+            </a>
+            , at{" "}
+            <a
+              href="https://www.ntnu.edu/"
+              target="_blank"
+              rel="noreferrer"
+              className="footer-link"
+            >
+              NTNU
+            </a>
+            . All the information provided here is a result of imagination. Any
+            resemblance with real companies or products is a coincidence
+          </Typography>
+        </Grid>
       </Grid>
 
-      <Grid item xs={3} sx={{ pt: "2rem" }}></Grid>
+      <Grid item xs={3}></Grid>
     </Grid>
   );
 };
