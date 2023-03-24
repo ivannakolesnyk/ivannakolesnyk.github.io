@@ -19,7 +19,19 @@ const AboutUs = () => {
         justifyContent="center"
         alignItems="flex-start"
       >
-        <Grid item xs={12} md={6} order={{ xs: 2, md: 1 }}>
+        <Grid item xs={12} order={{ xs: 1, md: 1 }}>
+          <Typography
+            variant="h1"
+            sx={{
+              color: theme.palette.primary.contrastText,
+              pb: "0.5rem",
+              textAlign: "center",
+            }}
+          >
+            About us
+          </Typography>
+        </Grid>
+        <Grid item xs={12} md={6} order={{ xs: 2, md: 2 }}>
           <CardMedia
             component="img"
             image={aboutUs1}
@@ -27,17 +39,7 @@ const AboutUs = () => {
             sx={{ borderRadius: "1rem", width: "100%", height: "auto" }}
           />
         </Grid>
-        <Grid item xs={12} md={6} order={{ xs: 1, md: 2 }}>
-          <Typography
-            variant="h1"
-            sx={{
-              color: theme.palette.primary.contrastText,
-              pb: "2rem",
-              textAlign: "left",
-            }}
-          >
-            About us
-          </Typography>
+        <Grid item xs={12} md={6} order={{ xs: 1, md: 3 }}>
           <Typography
             variant="body1"
             sx={{
@@ -55,7 +57,18 @@ const AboutUs = () => {
             perfect pairing. Come check us out for an unforgettable experience.
           </Typography>
         </Grid>
-        <Grid item xs={12} md={6} order={{ xs: 4, md: 4 }}>
+        <Grid item xs={12} order={{ xs: 3, md: 4 }}>
+          <Typography
+            variant="h4"
+            sx={{
+              color: theme.palette.primary.contrastText,
+              textAlign: "left",
+            }}
+          >
+            Our values
+          </Typography>
+        </Grid>
+        <Grid item xs={12} md={6} order={{ xs: 4, md: 6 }}>
           <CardMedia
             component="img"
             image={aboutUs2}
@@ -63,17 +76,7 @@ const AboutUs = () => {
             sx={{ borderRadius: "1rem", width: "100%", height: "auto" }}
           />
         </Grid>
-        <Grid item xs={12} md={6} order={{ xs: 3, md: 3 }}>
-          <Typography
-            variant="h4"
-            sx={{
-              color: theme.palette.primary.contrastText,
-              pb: "2rem",
-              textAlign: "left",
-            }}
-          >
-            Our values
-          </Typography>
+        <Grid item xs={12} md={6} order={{ xs: 3, md: 5 }}>
           <Typography
             variant="body1"
             sx={{
