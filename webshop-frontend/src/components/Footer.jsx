@@ -1,6 +1,6 @@
 import React from "react";
 import { useTheme } from "@mui/material/styles";
-import { Grid, IconButton, Typography } from "@mui/material";
+import { Box, Grid, IconButton, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -37,22 +37,50 @@ const Footer = () => {
           md={6}
           lg={4}
           sx={{
-            textAlign: {
-              xs: "center",
-              md: "left",
-              lg: "left",
-            },
+            display: "flex",
+            justifyContent: { xs: "center", md: "left", lg: "left" },
+
             pb: 1,
           }}
         >
-          <Typography variant="body2" sx={{ p: 1 }}>
-            Find us: <br />
-            <Link component={Link} to="/findus">
-              Larsgårdsvegen 2<br />
-              6009 Ålesund
+          <Box sx={{ textAlign: "left", width: "fit-content" }}>
+            <Typography variant="body2" sx={{ p: 1 }}>
+              Find us: <br />
+              <Link component={Link} to="/findus">
+                Larsgårdsvegen 2<br />
+                6009 Ålesund
+                <br />
+              </Link>
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          lg={4}
+          sx={{
+            display: "flex",
+            justifyContent: { xs: "center", md: "right", lg: "center" },
+
+            pb: 1,
+          }}
+        >
+          <Box sx={{ textAlign: "left", width: "fit-content" }}>
+            <Typography variant="body2" sx={{ p: 1 }}>
+              Contact information:
               <br />
-            </Link>
-          </Typography>
+              <a
+                href="mailto:monoka@gmail.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                monoka@gmail.com
+              </a>
+              <br />
+              +4795746534
+            </Typography>
+          </Box>
         </Grid>
         <Grid
           item
@@ -60,66 +88,41 @@ const Footer = () => {
           md={6}
           lg={4}
           sx={{
-            textAlign: {
-              xs: "center",
-              md: "right",
-              lg: "center",
-            },
-            pb: 1,
+            display: "flex",
+            justifyContent: { xs: "center", md: "left", lg: "right" },
           }}
         >
-          <Typography variant="body2" sx={{ p: 1 }}>
-            Contact information:
-            <br />
-            <a href="mailto:monoka@gmail.com" target="_blank" rel="noreferrer">
-              monoka@gmail.com
-            </a>
-            <br />
-            +4795746534
-          </Typography>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          lg={4}
-          sx={{
-            textAlign: {
-              xs: "center",
-              md: "left",
-              lg: "right",
-            },
-          }}
-        >
-          <Typography
-            variant="body2"
-            sx={{ pl: 1, pt: 1, pr: 1, pb: 0, mb: 0 }}
-          >
-            Follow us:
-          </Typography>
-          <IconButton
-            href="https://www.facebook.com/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Facebook"
-          >
-            <FacebookIcon
-              sx={{
-                fontSize: "2.5rem",
-                color: theme.palette.secondary.main,
-              }}
-            />
-          </IconButton>
-          <IconButton
-            href="https://www.instagram.com/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Instagram"
-          >
-            <InstagramIcon
-              sx={{ fontSize: "2.5rem", color: theme.palette.secondary.main }}
-            />
-          </IconButton>
+          <Box sx={{ textAlign: "left", width: "fit-content" }}>
+            <Typography
+              variant="body2"
+              sx={{ pl: 1, pt: 1, pr: 1, pb: 0, mb: 0 }}
+            >
+              Follow us:
+            </Typography>
+            <IconButton
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Facebook"
+            >
+              <FacebookIcon
+                sx={{
+                  fontSize: "2.5rem",
+                  color: theme.palette.secondary.main,
+                }}
+              />
+            </IconButton>
+            <IconButton
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+            >
+              <InstagramIcon
+                sx={{ fontSize: "2.5rem", color: theme.palette.secondary.main }}
+              />
+            </IconButton>
+          </Box>
         </Grid>
       </Grid>
       <Grid item xs={3}></Grid>
@@ -131,11 +134,7 @@ const Footer = () => {
           item
           xs={12}
           sx={{
-            textAlign: {
-              xs: "center",
-              md: "left",
-              lg: "left",
-            },
+            textAlign: "left",
             p: 1,
           }}
         >
