@@ -14,8 +14,8 @@ import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useTheme } from "@mui/material/styles";
-import StandardCenteredBox from "./Profile_components/StandardCenteredBox";
-import StandardCenteredCard from "./Profile_components/StandardCenteredCard";
+import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
+import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 
 /**
 The ProfilePage component displays a user's profile information and provides

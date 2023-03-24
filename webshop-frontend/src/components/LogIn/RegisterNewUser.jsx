@@ -10,8 +10,8 @@ import {
   TextField,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import StandardCenteredBox from "./Profile/Profile_components/StandardCenteredBox";
-import StandardCenteredCard from "./Profile/Profile_components/StandardCenteredCard";
+import StandardCenteredBox from "../Standard_components//StandardCenteredBox";
+import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 
 /**
 The RegisterNewUser component is a React functional component used for displaying
