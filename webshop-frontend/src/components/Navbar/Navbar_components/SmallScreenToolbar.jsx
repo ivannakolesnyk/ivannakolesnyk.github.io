@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Menu as MenuIcon } from "@mui/icons-material";
 import smallCoffeeLogo from "../../../assets/img/logos/logo_smallscreen.png";
@@ -13,6 +13,7 @@ to different pages on the website.
 */
 const SmallScreenToolbar = ({ onProductsClick }) => {
   const theme = useTheme();
+  const menuButtonRef = useRef(null);
 
   /**
 The openHamburgerMenu variable is a boolean that is true if the hamburger
@@ -40,7 +41,10 @@ It is used to control the state of the hamburger menu.
           }}
         />
       </Link>
-      <MenuButton onClick={(e) => setOpenHamburgerMenu(true)}>
+      <MenuButton
+        onClick={(e) => setOpenHamburgerMenu(true)}
+        ref={menuButtonRef}
+      >
         <MenuIcon
           sx={{
             fontSize: "3rem",
@@ -52,7 +56,7 @@ It is used to control the state of the hamburger menu.
       <Menu
         style={{ position: "absolute", top: 30, right: 0 }}
         id="positioned-hamburger-menu"
-        anchorEl={MenuButton}
+        anchorEl={menuButtonRef.current}
         open={openHamburgerMenu}
         onClose={(e) => setOpenHamburgerMenu(false)}
         anchorOrigin={{
