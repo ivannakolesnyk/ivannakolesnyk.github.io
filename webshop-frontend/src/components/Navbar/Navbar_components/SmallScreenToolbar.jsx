@@ -124,7 +124,7 @@ const MenuButton = styled(IconButton)(({ theme }) => ({
   color: theme.palette.secondary.main,
   edge: "end",
   className: "menu-button",
-  "aria-label": "small screen menu",
+  ariaLabel: "small screen menu",
 }));
 
 export default SmallScreenToolbar;
