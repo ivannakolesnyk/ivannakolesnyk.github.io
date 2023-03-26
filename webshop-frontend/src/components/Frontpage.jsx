@@ -9,7 +9,7 @@ const Frontpage = () => {
   return (
     <div>
       <Stack
-        height={"90vh"}
+        height={"70vh"}
         py={12}
         px={8}
         sx={{
@@ -18,7 +18,12 @@ const Frontpage = () => {
           backgroundPosition: "center",
         }}
       >
-        <Grid container justifyContent="left">
+        <Grid
+          container
+          justifyContent="left"
+          alignItems="center"
+          sx={{ height: "100%" }}
+        >
           <Grid item xs={12} md={8} lg={6}>
             <Paper
               sx={{ p: 7, maxWidth: 500, backgroundColor: "primary.main" }}
@@ -54,19 +59,23 @@ const Frontpage = () => {
         </Grid>
       </Stack>
       <Stack
-        height={"90vh"}
+        height={"80vh"}
         py={12}
         px={8}
         sx={{
           backgroundImage: `url(${banner})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          marginTop: "10vh",
         }}
       >
-        <Grid container justifyContent="left">
+        <Grid
+          container
+          justifyContent="left"
+          alignItems="center"
+          sx={{ height: "100%" }}
+        >
           <Grid item xs={12} md={8} lg={6}>
-            <Paper sx={{ p: 7, maxWidth: 300, backgroundColor: "extra" }}>
+            <Paper sx={{ p: 7, maxWidth: 400, backgroundColor: "extra" }}>
               <Stack spacing={4} alignItems="left">
                 <Typography fontWeight={600} variant={"h1"} color={"secondary"}>
                   3 for 2
