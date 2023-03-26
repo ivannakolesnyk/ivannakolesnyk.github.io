@@ -9,7 +9,7 @@ const Frontpage = () => {
 
   return (
     <Stack
-      width={"100vw"}
+      //width={"100vw"}
       py={12}
       px={8}
       border={1}
@@ -19,7 +19,14 @@ const Frontpage = () => {
         backgroundPosition: "center",
       }}
     >
-      <Paper sx={{ p: 8, width: 500, backgroundColor: "primary.main" }}>
+      <Paper
+        sx={{
+          p: 8,
+          width: 500,
+          backgroundColor: "primary.main",
+          //borderRadius: 5,
+        }}
+      >
         <Stack spacing={8} alignItems={"flex-start"}>
           <Typography
             fontWeight={600}
@@ -34,7 +41,17 @@ const Frontpage = () => {
             of coffee-making products lets you unleash your inner barista and
             enjoy coffee just the way you like it.
           </Typography>
-          <Button variant={"contained"}>order now</Button>
+          <Button
+            variant={"contained"}
+            color={"secondary"}
+            sx={{
+              width: "200px",
+              height: "60px",
+              fontSize: "2.2rem",
+            }}
+          >
+            order now
+          </Button>
         </Stack>
       </Paper>
     </Stack>
