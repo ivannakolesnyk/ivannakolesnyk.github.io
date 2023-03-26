@@ -16,6 +16,10 @@ export const theme = createTheme({
       main: "#1F3A33",
       contrastText: "#D9E7D5",
     },
+
+    extra: {
+      main: "#FFFFFF",
+    },
   },
   typography: {
     htmlFontSize: 10, // Set 1 rem to 10 px - must also be done with css (we set this value in index.css)
