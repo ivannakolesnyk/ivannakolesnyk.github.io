@@ -1,7 +1,7 @@
 import { MainSection } from "../components/MainSection.jsx";
 import { BannerSection } from "../components/BannerSection.jsx";
 
-const HomePage = () => {
+const Frontpage = () => {
   return (
     <div>
       <MainSection />
@@ -10,4 +10,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Frontpage;
