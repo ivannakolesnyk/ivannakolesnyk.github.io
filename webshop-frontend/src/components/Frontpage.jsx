@@ -9,7 +9,7 @@ const Frontpage = () => {
   return (
     <div>
       <Stack
-        maxHeight={"300vh"}
+        height={"90vh"}
         py={12}
         px={8}
         sx={{
@@ -31,7 +31,7 @@ const Frontpage = () => {
                 >
                   ENJOY YOUR OWN COFFEE AT HOME
                 </Typography>
-                <Typography color={"primary.contrastText"}>
+                <Typography fontWeight={300} variant={"body2"}>
                   A variety of products to make your unique drink yourself. From
                   grinders to filters, milk frothers to pour-over kettles, our
                   range of coffee-making products lets you unleash your inner
@@ -43,6 +43,7 @@ const Frontpage = () => {
                   sx={{
                     maxWidth: "200px",
                     fontSize: "2.2rem",
+                    color: "white",
                   }}
                 >
                   ORDER NOW
@@ -65,26 +66,21 @@ const Frontpage = () => {
       >
         <Grid container justifyContent="left">
           <Grid item xs={12} md={8} lg={6}>
-            <Paper
-              sx={{ p: 7, maxWidth: 300, backgroundColor: "secondary.main" }}
-            >
+            <Paper sx={{ p: 7, maxWidth: 300, backgroundColor: "extra" }}>
               <Stack spacing={4} alignItems="left">
-                <Typography
-                  fontWeight={600}
-                  variant={"h1"}
-                  color={"secondary.contrastText"}
-                >
+                <Typography fontWeight={600} variant={"h1"} color={"secondary"}>
                   3 for 2
                 </Typography>
-                <Typography color={"secondary.contrastText"}>
+                <Typography color={"secondary"}>
                   Mix and match or find exactly what you want
                 </Typography>
                 <Button
                   variant={"contained"}
-                  color={"primary"}
+                  color={"secondary"}
                   sx={{
                     maxWidth: "160px",
                     fontSize: "2rem",
+                    color: "white",
                   }}
                 >
                   ORDER NOW
