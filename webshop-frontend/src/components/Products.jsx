@@ -117,7 +117,7 @@ let productsOriginal = [
 const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
   // Fetching product data from API
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery("(min-width: 900px)");
+  const isBigScreen = useMediaQuery("(min-width: 900px)");
   const buttonStyles = {
     borderRadius: "1.2rem",
     padding: "0.8rem 1.2rem",
@@ -169,7 +169,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
 
   return (
     <Grid container spacing={0}>
-      {isSmallScreen && (
+      {isBigScreen && (
         <Grid item sm={12} md={2.5} lg={2} xl={1.7} p={4}>
           <Category onCategoryChange={onCategoryClick} />
         </Grid>
@@ -246,7 +246,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
           <SearchBar />
         </Stack>
 
-        {isSmallScreen || (
+        {isBigScreen || (
           <Box mb={1}>
             <MobileCategory onCategoryChange={onCategoryClick} />
           </Box>
