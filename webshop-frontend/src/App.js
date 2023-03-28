@@ -16,6 +16,11 @@ import LogIn from "./components/LogIn";
 import ShoppingCart from "./components/ShoppingCart";
 import RegisterNewUser from "./components/RegisterNewUser";
 import Admin from "./components/Admin/Admin";
+import AdminChangePassword from "./components/Admin/AdminChangePassword";
+import AdminEditProfilePage from "./components/Admin/AdminEditProfilePage";
+import AdminTestimonials from "./components/Admin/AdminTestimonials";
+import AdminViewOrders from "./components/Admin/AdminViewOrders";
+import AdminProducts from "./components/Admin/AdminProducts";
 
 import { useState } from "react";
 
@@ -60,6 +65,11 @@ function App() {
             <Route path="/profile/changepw" element={<ChangePassword />} />
             <Route path="/profile/vieworders" element={<ViewOrders />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/edit" element={<AdminEditProfilePage />} />
+            <Route path="/admin/changepw" element={<AdminChangePassword />} />
+            <Route path="/admin/vieworders" element={<AdminViewOrders />} />
+            <Route path="/admin/testimonials" element={<AdminTestimonials />} />
+            <Route path="/admin/products" element={<AdminProducts />} />
           </Routes>
         </Box>
         <Footer marginTop="auto" />

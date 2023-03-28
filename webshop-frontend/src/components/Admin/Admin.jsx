@@ -69,10 +69,10 @@ const Admin = () => {
           </List>
         </CardContent>
         <CardActions sx={{ justifyContent: "flex-end" }}>
-          <Button component={Link} to="/profile/edit" variant="contained">
+          <Button component={Link} to="/admin/edit" variant="contained">
             Edit Profile
           </Button>
-          <Button component={Link} to="/profile/changepw" variant="contained">
+          <Button component={Link} to="/admin/changepw" variant="contained">
             Change password
           </Button>
         </CardActions>
@@ -103,7 +103,9 @@ const Admin = () => {
           >
             Testimonials
           </Typography>
-          <Typography variant="body2">Here you edit testimonials.</Typography>
+          <Typography variant="body2">
+            Here you can edit testimonials.
+          </Typography>
         </CardContent>
         <CardActions sx={{ justifyContent: "flex-end" }}>
           <Button component={Link} to="/admin/testimonials" variant="contained">
@@ -120,7 +122,7 @@ const Admin = () => {
           >
             Products
           </Typography>
-          <Typography variant="body2">Here you edit products.</Typography>
+          <Typography variant="body2">Here you can edit products.</Typography>
         </CardContent>
         <CardActions sx={{ justifyContent: "flex-end" }}>
           <Button component={Link} to="/admin/products" variant="contained">
