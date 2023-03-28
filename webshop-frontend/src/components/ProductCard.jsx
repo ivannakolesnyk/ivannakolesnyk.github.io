@@ -6,10 +6,17 @@ import {
   Typography,
   Stack,
 } from "@mui/material";
-import { useTheme } from "@emotion/react";
-function ProductCard({ imagePath, productName, price, capacity }) {
-  const theme = useTheme();
 
+import { useEffect, useState } from "react";
+
+function ProductCard({ imagePath, productName, price, capacity }) {
+  const [imageSrc, setImageSrc] = useState("");
+
+  useEffect(() => {
+    import(`../assets/img/products/${imagePath}`).then((module) => {
+      setImageSrc(module.default);
+    });
+  }, [imagePath]);
   return (
     <Card>
       <CardActionArea href="/">
@@ -17,7 +24,7 @@ function ProductCard({ imagePath, productName, price, capacity }) {
           component="img"
           alt="green iguana"
           height="300"
-          image={imagePath}
+          src={imageSrc}
         />
         <CardContent
           sx={{
