@@ -169,11 +169,11 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
 
   return (
     <Grid container spacing={0}>
-      {isBigScreen && (
+      {isBigScreen ? (
         <Grid item sm={12} md={2.5} lg={2} xl={1.7} p={4}>
           <Category onCategoryChange={onCategoryClick} />
         </Grid>
-      )}
+      ) : null}
 
       <Grid
         item
@@ -246,11 +246,11 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
           <SearchBar />
         </Stack>
 
-        {isBigScreen || (
+        {!isBigScreen ? (
           <Box mb={1}>
             <MobileCategory onCategoryChange={onCategoryClick} />
           </Box>
-        )}
+        ) : null}
 
         <Grid container spacing={2.5}>
           {sortedProducts.map(
