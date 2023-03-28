@@ -6,6 +6,7 @@ import {
   Typography,
   Stack,
 } from "@mui/material";
+import LazyLoad from "react-lazy-load";
 
 import { useEffect, useState } from "react";
 
@@ -20,12 +21,19 @@ function ProductCard({ imagePath, productName, price, capacity }) {
   return (
     <Card>
       <CardActionArea href="/">
-        <CardMedia
-          component="img"
-          alt="green iguana"
-          height="300"
-          src={imageSrc}
-        />
+        <LazyLoad offset={300}>
+          <CardMedia
+            component="img"
+            alt="green iguana"
+            src={imageSrc}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: 300,
+            }}
+          />
+        </LazyLoad>
         <CardContent
           sx={{
             color: "primary.contrastText",
