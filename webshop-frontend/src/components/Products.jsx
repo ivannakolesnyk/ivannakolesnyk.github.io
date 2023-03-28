@@ -18,8 +18,7 @@ let productsOriginal = [
     sale: false,
     type: "Coffee",
     price: 67,
-    imagePath:
-      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    imagePath: "coffee/coffee1-min.png",
     capacity: 350,
   },
   {
@@ -28,8 +27,7 @@ let productsOriginal = [
     sale: true,
     type: "Coffee",
     price: 100,
-    imagePath:
-      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    imagePath: "coffee/coffee2-min.png",
     capacity: 350,
   },
   {
@@ -38,8 +36,7 @@ let productsOriginal = [
     sale: false,
     type: "Coffee",
     price: 40,
-    imagePath:
-      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    imagePath: "coffee/coffee3-min.png",
     capacity: 350,
   },
   {
@@ -48,8 +45,7 @@ let productsOriginal = [
     sale: false,
     type: "Tea",
     price: 70,
-    imagePath:
-      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    imagePath: "tea/tea1-min.png",
     capacity: 350,
   },
   {
@@ -58,8 +54,7 @@ let productsOriginal = [
     sale: true,
     type: "Tea",
     price: 90,
-    imagePath:
-      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    imagePath: "tea/tea2-min.png",
     capacity: 350,
   },
   {
@@ -68,8 +63,7 @@ let productsOriginal = [
     sale: true,
     type: "Tea",
     price: 110,
-    imagePath:
-      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    imagePath: "tea/tea3-min.png",
     capacity: 350,
   },
   {
@@ -78,38 +72,25 @@ let productsOriginal = [
     sale: false,
     type: "Tea",
     price: 140,
-    imagePath:
-      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    imagePath: "tea/tea4-min.png",
     capacity: 350,
   },
   {
     id: 8,
-    productName: "Food",
-    type: "Food",
+    productName: "Coffee",
+    type: "Coffee",
     sale: true,
     price: 99,
-    imagePath:
-      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    imagePath: "coffee/coffee4-min.png",
     capacity: 350,
   },
   {
     id: 9,
-    productName: "Food",
-    type: "Food",
-    sale: false,
-    price: 30,
-    imagePath:
-      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
-    capacity: 350,
-  },
-  {
-    id: 10,
-    productName: "Pastries",
-    type: "Pastries",
-    sale: false,
-    price: 50,
-    imagePath:
-      "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+    productName: "Coffee",
+    type: "Coffee",
+    sale: true,
+    price: 99,
+    imagePath: "coffee/coffee5-min.png",
     capacity: 350,
   },
 ];
