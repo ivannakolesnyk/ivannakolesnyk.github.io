@@ -15,6 +15,7 @@ import ViewOrders from "./components/Profile/ViewOrders";
 import LogIn from "./components/LogIn";
 import ShoppingCart from "./components/ShoppingCart";
 import RegisterNewUser from "./components/RegisterNewUser";
+import Admin from "./components/Admin/Admin";
 
 import { useState } from "react";
 
@@ -58,6 +59,7 @@ function App() {
             <Route path="/profile/edit" element={<EditProfilePage />} />
             <Route path="/profile/changepw" element={<ChangePassword />} />
             <Route path="/profile/vieworders" element={<ViewOrders />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </Box>
         <Footer marginTop="auto" />
