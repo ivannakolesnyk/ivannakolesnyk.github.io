@@ -170,7 +170,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
   return (
     <Grid container spacing={0}>
       {isSmallScreen && (
-        <Grid item sm={12} md={2.5} lg={2} xl={1.5} p={4}>
+        <Grid item sm={12} md={2.5} lg={2} xl={1.7} p={4}>
           <Category onCategoryChange={onCategoryClick} />
         </Grid>
       )}
@@ -181,7 +181,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
         sm={12}
         md={9.5}
         lg={10}
-        xl={10.5}
+        xl={10.3}
         sx={{
           padding: {
             xs: "3.2rem 1.6rem 3.2rem 1.5rem",
