@@ -169,8 +169,9 @@ const Menu = () => {
             padding: 0,
           }}
         >
-          {menuBar.map((item) => (
+          {menuBar.map((item, index) => (
             <ListItem
+              key={index}
               sx={{
                 padding: 0,
                 width: "auto",
@@ -187,11 +188,12 @@ const Menu = () => {
         </List>
       </Box>
 
-      {menu.map(({ name, products }) => (
+      {menu.map(({ name, products }, index) => (
         <Box
           sx={{
             padding: "6.4rem 13.2rem",
           }}
+          key={index}
         >
           <Typography
             variant="h2"
