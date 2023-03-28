@@ -14,7 +14,7 @@ function ProductCard({ imagePath, productName, price, capacity }) {
   const [imageSrc, setImageSrc] = useState("");
 
   useEffect(() => {
-    import(`../assets/img/products/${imagePath}`).then((module) => {
+    import(`../assets/img/${imagePath}`).then((module) => {
       setImageSrc(module.default);
     });
   }, [imagePath]);

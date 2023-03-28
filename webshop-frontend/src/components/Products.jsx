@@ -18,7 +18,7 @@ let productsOriginal = [
     sale: false,
     type: "Coffee",
     price: 67,
-    imagePath: "coffee/coffee1-min.png",
+    imagePath: "products/coffee/coffee1-min.png",
     capacity: 350,
   },
   {
@@ -27,7 +27,7 @@ let productsOriginal = [
     sale: true,
     type: "Coffee",
     price: 100,
-    imagePath: "coffee/coffee2-min.png",
+    imagePath: "products/coffee/coffee2-min.png",
     capacity: 350,
   },
   {
@@ -36,7 +36,7 @@ let productsOriginal = [
     sale: false,
     type: "Coffee",
     price: 40,
-    imagePath: "coffee/coffee3-min.png",
+    imagePath: "products/coffee/coffee3-min.png",
     capacity: 350,
   },
   {
@@ -45,7 +45,7 @@ let productsOriginal = [
     sale: false,
     type: "Tea",
     price: 70,
-    imagePath: "tea/tea1-min.png",
+    imagePath: "products/tea/tea1-min.png",
     capacity: 350,
   },
   {
@@ -54,7 +54,7 @@ let productsOriginal = [
     sale: true,
     type: "Tea",
     price: 90,
-    imagePath: "tea/tea2-min.png",
+    imagePath: "products/tea/tea2-min.png",
     capacity: 350,
   },
   {
@@ -63,7 +63,7 @@ let productsOriginal = [
     sale: true,
     type: "Tea",
     price: 110,
-    imagePath: "tea/tea3-min.png",
+    imagePath: "products/tea/tea3-min.png",
     capacity: 350,
   },
   {
@@ -72,7 +72,7 @@ let productsOriginal = [
     sale: false,
     type: "Tea",
     price: 140,
-    imagePath: "tea/tea4-min.png",
+    imagePath: "products/tea/tea4-min.png",
     capacity: 350,
   },
   {
@@ -81,7 +81,7 @@ let productsOriginal = [
     type: "Coffee",
     sale: true,
     price: 99,
-    imagePath: "coffee/coffee4-min.png",
+    imagePath: "products/coffee/coffee4-min.png",
     capacity: 350,
   },
   {
@@ -90,7 +90,7 @@ let productsOriginal = [
     type: "Coffee",
     sale: true,
     price: 99,
-    imagePath: "coffee/coffee5-min.png",
+    imagePath: "products/coffee/coffee5-min.png",
     capacity: 350,
   },
 ];

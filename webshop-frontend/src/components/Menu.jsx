@@ -22,48 +22,42 @@ let menu = [
         productName: "Coffee",
         sale: false,
         type: "Coffee",
-        imagePath:
-          "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+        imagePath: "menu/cold_drink.png",
       },
       {
         id: 2,
         productName: "Coffee",
         sale: true,
         type: "Coffee",
-        imagePath:
-          "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+        imagePath: "menu/cold_drink.png",
       },
       {
         id: 3,
         productName: "Coffee",
         sale: false,
         type: "Coffee",
-        imagePath:
-          "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+        imagePath: "menu/cold_drink.png",
       },
       {
         id: 4,
         productName: "Tea",
         sale: false,
         type: "Tea",
-        imagePath:
-          "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+        imagePath: "menu/cold_drink.png",
       },
       {
         id: 5,
         productName: "Tea",
         sale: true,
         type: "Tea",
-        imagePath:
-          "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+        imagePath: "menu/cold_drink.png",
       },
       {
         id: 6,
         productName: "Tea",
         sale: true,
         type: "Tea",
-        imagePath:
-          "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+        imagePath: "menu/cold_drink.png",
       },
     ],
   },
@@ -75,48 +69,42 @@ let menu = [
         productName: "Coffee",
         sale: false,
         type: "Coffee",
-        imagePath:
-          "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+        imagePath: "menu/cold_drink.png",
       },
       {
         id: 2,
         productName: "Coffee",
         sale: true,
         type: "Coffee",
-        imagePath:
-          "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+        imagePath: "menu/cold_drink.png",
       },
       {
         id: 3,
         productName: "Coffee",
         sale: false,
         type: "Coffee",
-        imagePath:
-          "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+        imagePath: "menu/cold_drink.png",
       },
       {
         id: 4,
         productName: "Tea",
         sale: false,
         type: "Tea",
-        imagePath:
-          "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+        imagePath: "menu/cold_drink.png",
       },
       {
         id: 5,
         productName: "Tea",
         sale: true,
         type: "Tea",
-        imagePath:
-          "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+        imagePath: "menu/cold_drink.png",
       },
       {
         id: 6,
         productName: "Tea",
         sale: true,
         type: "Tea",
-        imagePath:
-          "http://cdn.shopify.com/s/files/1/0548/9469/0401/products/WHOLE_2.png?v=1668467257",
+        imagePath: "menu/cold_drink.png",
       },
     ],
   },
