@@ -47,7 +47,7 @@ function App() {
             <Route path="/about" element={<AboutUs />} />
             <Route path="/menu" element={<Menu />} />
             <Route
-              path="/products"
+              path="/product"
               element={
                 <Products
                   selectedCategory={selectedCategory}

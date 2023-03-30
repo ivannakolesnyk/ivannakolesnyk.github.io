@@ -72,7 +72,7 @@ It is used to control the state of the hamburger menu.
         <CustomMenuItem to="/" text="Home" theme={theme} />
         <CustomMenuItem to="/menu" text="Menu" theme={theme} />
         <CustomMenuItem
-          to="/products"
+          to="/product"
           onClick={(e) => {
             onProductsClick();
           }}

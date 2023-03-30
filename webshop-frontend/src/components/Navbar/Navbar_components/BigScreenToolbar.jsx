@@ -33,11 +33,7 @@ const BigScreenToolbar = ({ onProductsClick }) => {
         }}
       >
         <NavbarButton text="Menu" to="/menu" />
-        <NavbarButton
-          text="Products"
-          to="/products"
-          onClick={onProductsClick}
-        />
+        <NavbarButton text="Products" to="/product" onClick={onProductsClick} />
         <NavbarButton text="About us" to="/about" />
       </div>
       <div
