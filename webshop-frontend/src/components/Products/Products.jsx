@@ -243,6 +243,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
                   price={price}
                   capacity={capacity}
                   imagePath={imagePath}
+                  isClickable={true}
                 />
               </Grid>
             )
