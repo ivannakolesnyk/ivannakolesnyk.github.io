@@ -6,9 +6,8 @@ import {
   Person2Outlined as Person2OutlinedIcon,
 } from "@mui/icons-material";
 import coffeeLogo from "../../../assets/img/logos/logo_bigscreen.png";
-import { Button, Typography } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 import StyledToolbar from "./StyledToolbar";
+import NavbarButton from "./NavbarButton";
 
 /**
  * The BigScreenToolbar component displays a navigation bar for the website
@@ -17,11 +16,6 @@ import StyledToolbar from "./StyledToolbar";
  * @returns {JSX.Element} The JSX code for the BigScreenToolbar component.
  */
 const BigScreenToolbar = ({ onProductsClick }) => {
-  /**
-   * This is the where the BigScreenToolbar starts. It uses the StyledToolbar.jsx component, which
-   * is also being used in the SmallScreenToolbar. Any change in the StyledToolbar will result in
-   * a change for both the Big- and SmallScreenToolbar.
-   */
   return (
     <StyledToolbar>
       <div
@@ -76,47 +70,9 @@ const BigScreenToolbar = ({ onProductsClick }) => {
           to="/login"
           icon={<Person2OutlinedIcon />}
         />
-        <NavbarButton to="/profile" icon={<ShoppingCartIcon />} />
+        <NavbarButton to="/shoppingcart" icon={<ShoppingCartIcon />} />
       </div>
     </StyledToolbar>
-  );
-};
-
-/**
- * A custom button component that takes in `text`, `icon`, `to` and 'onClick' as props.
- * If no text or icon is provided, then icon will be set to null, and the Typography
- * constant will not be created.
- */
-const NavbarButton = ({ text, icon, to, onClick }) => {
-  const theme = useTheme();
-  const styledIcon = icon
-    ? React.cloneElement(icon, {
-        sx: {
-          fontSize: "2rem",
-          color: theme.palette.primary.contrastText,
-        },
-      })
-    : null;
-
-  return (
-    <Button
-      color="inherit"
-      component={Link}
-      to={to}
-      onClick={onClick}
-      startIcon={styledIcon}
-    >
-      {text && (
-        <Typography
-          variant="button"
-          sx={{
-            color: theme.palette.primary.contrastText,
-          }}
-        >
-          {text}
-        </Typography>
-      )}
-    </Button>
   );
 };
 
