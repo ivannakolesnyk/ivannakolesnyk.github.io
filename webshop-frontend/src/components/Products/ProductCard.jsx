@@ -17,8 +17,9 @@ function ProductCard({
   productName,
   price,
   capacity,
-  isClickable = true,
-  specialOffer = false,
+  isClickable,
+  specialOffer,
+  salePercentage,
   oldPrice,
   currentPrice,
 }) {
@@ -44,7 +45,7 @@ function ProductCard({
             zIndex: 1,
           }}
         >
-          15 %
+          {salePercentage} %
         </Box>
       )}
       <LazyLoad offset={300}>
@@ -75,10 +76,10 @@ function ProductCard({
               fontWeight={"600"}
               sx={{ textDecoration: "line-through", marginRight: "1.6rem" }}
             >
-              {300} NOK
+              {oldPrice} NOK
             </Typography>
             <Typography fontSize={"1.8rem"} fontWeight={"600"}>
-              {price} NOK
+              {currentPrice} NOK
             </Typography>
           </Stack>
         ) : (
