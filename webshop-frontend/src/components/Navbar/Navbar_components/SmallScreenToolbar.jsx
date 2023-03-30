@@ -1,35 +1,34 @@
-import React, { useState, useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu as MenuIcon } from "@mui/icons-material";
 import smallCoffeeLogo from "../../../assets/img/logos/logo_smallscreen.png";
-import { IconButton, Menu, MenuItem, styled, Typography } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { IconButton, Menu, styled } from "@mui/material";
 import StyledToolbar from "./StyledToolbar";
+import CustomMenuItem from "./CustomMenuItem";
 
 /**
-The SmallScreenToolbar component consists of a logo, and a menu with links 
-to different pages on the website.
-@returns {JSX.Element} The JSX code for the SmallScreenToolbar component.
-*/
+ * The SmallScreenToolbar component is used to display a navigation bar for small screen devices.
+ * It consists of a logo and a hamburger menu icon that opens a dropdown menu with links to
+ * different pages on the website.
+ *
+ * @returns {JSX.Element} The JSX code for the SmallScreenToolbar component.
+ */
 const SmallScreenToolbar = ({ onProductsClick }) => {
-  const theme = useTheme();
   const menuButtonRef = useRef(null);
 
-  /**
-The openHamburgerMenu variable is a boolean that is true if the hamburger
-menu is currently open on small screens.
-It is used to control the state of the hamburger menu.
-*/
-  const [openHamburgerMenu, setOpenHamburgerMenu] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  /**
-   * This is the where the SmallScreenToolbar starts. It uses the StyledToolbar.jsx component, which
-   * is also being used in the BigScreenToolbar. Any change in the StyledToolbar will result in
-   * a change for both the Small- and BigScreenToolbar.
-   */
+  const handleMenuOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <StyledToolbar>
-      <Link component={Link} to="/">
+      <Link to="/">
         <img
           src={smallCoffeeLogo}
           alt="monoca logo"
@@ -41,10 +40,7 @@ It is used to control the state of the hamburger menu.
           }}
         />
       </Link>
-      <MenuButton
-        onClick={(e) => setOpenHamburgerMenu(true)}
-        ref={menuButtonRef}
-      >
+      <MenuButton ref={menuButtonRef} onClick={handleMenuOpen}>
         <MenuIcon
           sx={{
             fontSize: "3rem",
@@ -52,78 +48,39 @@ It is used to control the state of the hamburger menu.
         />
       </MenuButton>
 
-      {/* Hamburger style Menu from MUI */}
       <Menu
-        style={{ position: "absolute", top: 30, right: 0 }}
-        id="positioned-hamburger-menu"
+        id="basic-menu"
         anchorEl={menuButtonRef.current}
-        open={openHamburgerMenu}
-        onClose={(e) => setOpenHamburgerMenu(false)}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "basic-button",
         }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        getContentAnchorEl={null}
       >
-        <CustomMenuItem to="/" text="Home" theme={theme} />
-        <CustomMenuItem to="/menu" text="Menu" theme={theme} />
+        <CustomMenuItem to="/" text="Home" onClose={handleClose} />
+        <CustomMenuItem to="/menu" text="Menu" onClose={handleClose} />
         <CustomMenuItem
           to="/products"
           onClick={(e) => {
             onProductsClick();
           }}
           text="Products"
-          theme={theme}
+          onClose={handleClose}
         />
-        <CustomMenuItem to="/about" text="About us" theme={theme} />
-        <CustomMenuItem to="/findus" text="Find us" theme={theme} />
-        <CustomMenuItem to="/login" text="Log in" theme={theme} />
+        <CustomMenuItem to="/about" text="About us" onClose={handleClose} />
+        <CustomMenuItem to="/findus" text="Find us" onClose={handleClose} />
+        <CustomMenuItem to="/login" text="Log in" onClose={handleClose} />
         <CustomMenuItem
           aria-label="shopping cart"
           to="/shoppingcart"
           text="Shopping cart"
-          theme={theme}
+          onClose={handleClose}
         />
       </Menu>
     </StyledToolbar>
   );
 };
 
-/**
-This CustomMenuItem will be used often, and the use of props will make it
-more efficient to use. Default value for "setOpenHamburgerMenu" is set to
-"false".
-*/
-const CustomMenuItem = ({ to, onClick, text, theme, setOpenHamburgerMenu }) => {
-  const handleClick = (e) => {
-    if (onClick) {
-      onClick(e);
-    }
-    setOpenHamburgerMenu(false);
-  };
-
-  return (
-    <MenuItem component={Link} to={to} onClick={handleClick}>
-      <Typography
-        variant="button"
-        sx={{
-          color: theme.palette.primary.contrastText,
-        }}
-      >
-        {text}
-      </Typography>
-    </MenuItem>
-  );
-};
-
-/**
-The menu button used for this toolbar. It uses the themes primary 
-contras text as it's colors.
-*/
 const MenuButton = styled(IconButton)(({ theme }) => ({
   color: theme.palette.secondary.main,
   edge: "end",
