@@ -1,15 +1,15 @@
+import LazyLoad from "react-lazy-load";
+import React, { useState, useEffect } from "react";
 import {
   Card,
-  CardActionArea,
   CardContent,
   CardMedia,
   Typography,
   Stack,
+  Box,
 } from "@mui/material";
-import LazyLoad from "react-lazy-load";
-
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import CardActionArea from "@mui/material/CardActionArea";
 
 function ProductCard({
   id,
@@ -17,7 +17,10 @@ function ProductCard({
   productName,
   price,
   capacity,
-  isClickable,
+  isClickable = true,
+  specialOffer = false,
+  oldPrice,
+  currentPrice,
 }) {
   const [imageSrc, setImageSrc] = useState("");
 
@@ -29,6 +32,21 @@ function ProductCard({
 
   const content = (
     <Card>
+      {specialOffer && (
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            backgroundColor: "error.main",
+            color: "white",
+            padding: "0.5rem",
+            zIndex: 1,
+          }}
+        >
+          15 %
+        </Box>
+      )}
       <LazyLoad offset={300}>
         <CardMedia
           component="img"
@@ -47,23 +65,29 @@ function ProductCard({
           color: "primary.contrastText",
         }}
       >
-        <Stack
-          direction="row"
-          justifyContent={price ? "space-between" : "center"}
-          alignItems={"center"}
-          marginBottom={"1rem"}
-        >
-          <Typography fontSize={"2.5rem"} fontWeight={"500"}>
-            {productName}
-          </Typography>
-          {price && capacity && (
-            <Typography fontSize={"1.8rem"}>{capacity}ml</Typography>
-          )}
-        </Stack>
-        {price && capacity && (
-          <Typography fontWeight={"600"} fontSize={"1.8rem"}>
-            {price} NOK
-          </Typography>
+        <Typography fontSize={"2.5rem"} fontWeight={"500"}>
+          {productName}
+        </Typography>
+        {specialOffer ? (
+          <Stack direction="row" alignItems={"center"} marginBottom={"1rem"}>
+            <Typography
+              fontSize={"1.8rem"}
+              fontWeight={"600"}
+              sx={{ textDecoration: "line-through", marginRight: "1.6rem" }}
+            >
+              {300} NOK
+            </Typography>
+            <Typography fontSize={"1.8rem"} fontWeight={"600"}>
+              {price} NOK
+            </Typography>
+          </Stack>
+        ) : (
+          price &&
+          capacity && (
+            <Typography fontWeight={"600"} fontSize={"1.8rem"}>
+              {price} NOK
+            </Typography>
+          )
         )}
       </CardContent>
     </Card>
