@@ -238,6 +238,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
             ({ id, productName, price, imagePath, capacity }) => (
               <Grid item key={id} xs={12} sm={6} md={4} lg={3}>
                 <ProductCard
+                  id={id}
                   productName={productName}
                   price={price}
                   capacity={capacity}

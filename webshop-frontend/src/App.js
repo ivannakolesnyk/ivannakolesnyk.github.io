@@ -23,6 +23,7 @@ import AdminViewOrders from "./components/Admin/AdminViewOrders";
 import AdminProducts from "./components/Admin/AdminProducts";
 
 import { useState } from "react";
+import ProductDetails from "./components/Products/ProductDetails";
 
 function App() {
   const [showAllProducts, setShowAllProducts] = useState(false);
@@ -56,6 +57,7 @@ function App() {
                 />
               }
             />
+            <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/findus" element={<FindUs />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/register" element={<RegisterNewUser />} />
