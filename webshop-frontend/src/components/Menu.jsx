@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import SearchBar from "./SearchBar";
-import ProductCard from "./ProductCard";
+import ProductCard from "./Products/ProductCard";
 
 const menuBar = ["special offers", "hot drinks", "cold drinks", "food"];
 let menu = [

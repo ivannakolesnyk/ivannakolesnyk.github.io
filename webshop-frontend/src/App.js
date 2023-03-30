@@ -6,7 +6,7 @@ import Frontpage from "./components/Frontpage";
 import AboutUs from "./components/AboutUs";
 import Footer from "./components/Footer";
 import Menu from "./components/Menu";
-import Products from "./components/Products";
+import Products from "./components/Products/Products";
 import FindUs from "./components/FindUs";
 import Profile from "./components/Profile/Profile";
 import EditProfilePage from "./components/Profile/EditProfilePage";

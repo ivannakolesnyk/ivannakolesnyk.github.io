@@ -5,7 +5,7 @@ import ProductCard from "./ProductCard";
 import { Button, Grid, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import FilterListIcon from "@mui/icons-material/FilterList";
-import SearchBar from "./SearchBar";
+import SearchBar from "../SearchBar";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import IconMenu from "./IconMenu";
