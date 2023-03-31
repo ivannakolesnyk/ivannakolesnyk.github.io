@@ -10,9 +10,9 @@ import {
   TextField,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
-import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
-import {ProfileTextField} from "../Standard_components/Profile_and_Admin/ProfileTextField";
+import StandardCenteredBox from "../StandardCenteredBox";
+import StandardCenteredCard from "../StandardCenteredCard";
+import {ProfileTextField} from "./ProfileTextField";
 
 /**
 The EditProfile component is a React functional component used for displaying
@@ -20,7 +20,7 @@ a form allowing users to edit their profile information. This component is
 part of a user profile management system.
 @returns {JSX.Element} The JSX code for the EditProfilePage component.
 */
-const EditProfile = () => {
+const EditProfilePage = ({ navigateTo }) => {
   const theme = useTheme();
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -32,7 +32,7 @@ const EditProfile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Save updated profile information to database or backend service
-    navigate("/profile");
+    navigate(navigateTo);
   };
 
   return (
@@ -85,7 +85,7 @@ const EditProfile = () => {
               <Button
                 variant="contained"
                 color="primary"
-                onClick={() => navigate("/profile")}
+                onClick={() => navigate(navigateTo)}
               >
                 Cancel
               </Button>
@@ -102,4 +102,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default EditProfilePage;

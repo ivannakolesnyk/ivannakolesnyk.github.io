@@ -10,9 +10,9 @@ import {PasswordTextField} from "../Standard_components/Profile_and_Admin/Passwo
 This React component allows users to change their password by providing input fields 
 for their current password, new password, and confirmation of the new password. 
 The component uses Material-UI components for styling and layout.
-@returns {JSX.Element} The JSX code for the ChangePassword component.
+@returns {JSX.Element} The JSX code for the ProfileChangePassword component.
 */
-const ChangePassword = () => {
+const ProfileChangePassword = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const [currentPassword, setCurrentPassword] = useState("");
@@ -90,4 +90,4 @@ const ChangePassword = () => {
   );
 };
 
-export default ChangePassword;
+export default ProfileChangePassword;
