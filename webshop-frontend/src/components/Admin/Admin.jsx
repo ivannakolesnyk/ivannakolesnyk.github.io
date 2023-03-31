@@ -4,29 +4,50 @@ import {
   Button,
   CardActions,
   CardContent,
-  CardHeader,
   Divider,
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
 import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
-import {ProfileInformation} from "../Standard_components/Profile_and_Admin/ProfileInformation";
+import { ProfileInformation } from "../Standard_components/Profile_and_Admin/ProfileInformation";
 
 /**
 The Admin component displays an admin's profile information and provides
 links to edit the profile, change the password, and view orders. The user's
 profile information is displayed in a Card component, with each piece of
 information shown as a ListItem.
+
 @returns {JSX.Element} The JSX code for the Admin component.
 */
+
+const sections = [
+  {
+    title: "Orders",
+    description: "Enter the orders page to see all the orders",
+    buttonText: "View Orders",
+    link: "/admin/vieworders",
+  },
+  {
+    title: "Testimonials",
+    description: "Enter the testimonials page to add or remove testimonials",
+    buttonText: "Testimonials",
+    link: "/admin/testimonials",
+  },
+  {
+    title: "Products",
+    description: "Enter the products page to edit products.",
+    buttonText: "Products",
+    link: "/admin/products",
+  },
+];
 const Admin = () => {
   const theme = useTheme();
 
   return (
     <StandardCenteredBox>
       <StandardCenteredCard>
-        <ProfileInformation theme={theme}/>
+        <ProfileInformation theme={theme} />
         <CardActions sx={{ justifyContent: "flex-end" }}>
           <Button component={Link} to="/admin/edit" variant="contained">
             Edit Profile
@@ -35,59 +56,27 @@ const Admin = () => {
             Change password
           </Button>
         </CardActions>
-        <Divider />
-        <CardContent>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="div"
-            sx={{ color: theme.palette.primary.contrastText }}
-          >
-            Orders
-          </Typography>
-          <Typography variant="body2">Here you can view all orders.</Typography>
-        </CardContent>
-        <CardActions sx={{ justifyContent: "flex-end" }}>
-          <Button component={Link} to="/admin/vieworders" variant="contained">
-            View Orders
-          </Button>
-        </CardActions>
-        <Divider />
-        <CardContent>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="div"
-            sx={{ color: theme.palette.primary.contrastText }}
-          >
-            Testimonials
-          </Typography>
-          <Typography variant="body2">
-            Here you can edit testimonials.
-          </Typography>
-        </CardContent>
-        <CardActions sx={{ justifyContent: "flex-end" }}>
-          <Button component={Link} to="/admin/testimonials" variant="contained">
-            Testimonials
-          </Button>
-        </CardActions>
-        <Divider />
-        <CardContent>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="div"
-            sx={{ color: theme.palette.primary.contrastText }}
-          >
-            Products
-          </Typography>
-          <Typography variant="body2">Here you can edit products.</Typography>
-        </CardContent>
-        <CardActions sx={{ justifyContent: "flex-end" }}>
-          <Button component={Link} to="/admin/products" variant="contained">
-            Products
-          </Button>
-        </CardActions>
+        {sections.map((section) => (
+          <React.Fragment key={section.title}>
+            <Divider />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                sx={{ color: theme.palette.primary.contrastText }}
+              >
+                {section.title}
+              </Typography>
+              <Typography variant="body2">{section.description}</Typography>
+            </CardContent>
+            <CardActions sx={{ justifyContent: "flex-end" }}>
+              <Button component={Link} to={section.link} variant="contained">
+                {section.buttonText}
+              </Button>
+            </CardActions>
+          </React.Fragment>
+        ))}
       </StandardCenteredCard>
     </StandardCenteredBox>
   );
