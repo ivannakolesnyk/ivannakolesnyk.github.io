@@ -10,18 +10,17 @@ import Products from "./components/Products/Products";
 import FindUs from "./components/FindUs";
 import Profile from "./components/Profile/Profile";
 import ProfileEdit from "./components/Profile/ProfileEdit";
-import ProfileChangePassword from "./components/Profile/ProfileChangePassword";
+import ProfileChangePW from "./components/Profile/ProfileChangePW";
 import ProfileViewOrders from "./components/Profile/ProfileViewOrders";
 import LogIn from "./components/LogIn";
 import ShoppingCart from "./components/ShoppingCart";
 import RegisterNewUser from "./components/RegisterNewUser";
 import Admin from "./components/Admin/Admin";
-import AdminChangePassword from "./components/Admin/AdminChangePassword";
+import AdminChangePassword from "./components/Admin/AdminChangePW";
 import AdminEditProfilePage from "./components/Admin/AdminEdit";
 import AdminTestimonials from "./components/Admin/AdminTestimonials";
 import AdminViewOrders from "./components/Admin/AdminViewOrders";
 import AdminProducts from "./components/Admin/AdminProducts";
-
 import { useState } from "react";
 import ProductDetails from "./components/Products/ProductDetails";
 
@@ -64,10 +63,7 @@ function App() {
             <Route path="/shoppingcart" element={<ShoppingCart />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/edit" element={<ProfileEdit />} />
-            <Route
-              path="/profile/changepw"
-              element={<ProfileChangePassword />}
-            />
+            <Route path="/profile/changepw" element={<ProfileChangePW />} />
             <Route path="/profile/vieworders" element={<ProfileViewOrders />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/edit" element={<AdminEditProfilePage />} />
