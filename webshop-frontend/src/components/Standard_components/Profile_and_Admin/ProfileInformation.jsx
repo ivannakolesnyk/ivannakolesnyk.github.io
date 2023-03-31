@@ -21,6 +21,29 @@ import React from "react";
  * @returns {JSX.Element} The JSX code for the ProfileInformation component.
  */
 export function ProfileInformation(props) {
+  const profileItems = [
+    {
+      icon: <PersonIcon />,
+      primary: "Name",
+      secondary: "Simon Doe",
+    },
+    {
+      icon: <EmailIcon />,
+      primary: "Email",
+      secondary: "simondoe@example.com",
+    },
+    {
+      icon: <PhoneIcon />,
+      primary: "Phone",
+      secondary: "+47 90090900",
+    },
+    {
+      icon: <LocationOnIcon />,
+      primary: "Address",
+      secondary: "Chicken Road 13, 7080 Farm County",
+    },
+  ];
+
   return (
     <>
       <CardHeader
@@ -39,26 +62,14 @@ export function ProfileInformation(props) {
           Profile Information
         </Typography>
         <List>
-          <ProfileListItem
-            icon={<PersonIcon />}
-            primary="Name"
-            secondary="Simon Doe"
-          />
-          <ProfileListItem
-            icon={<EmailIcon />}
-            primary="Email"
-            secondary="simondoe@example.com"
-          />
-          <ProfileListItem
-            icon={<PhoneIcon />}
-            primary="Phone"
-            secondary="+47 90090900"
-          />
-          <ProfileListItem
-            icon={<LocationOnIcon />}
-            primary="Address"
-            secondary="Chicken Road 13, 7080 Farm County"
-          />
+          {profileItems.map((item) => (
+            <ProfileListItem
+              key={item.primary}
+              icon={item.icon}
+              primary={item.primary}
+              secondary={item.secondary}
+            />
+          ))}
         </List>
       </CardContent>
     </>

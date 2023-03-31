@@ -15,7 +15,7 @@ import StandardCenteredCard from "../StandardCenteredCard";
 import { ProfileTextField } from "./ProfileTextField";
 
 /**
-The EditProfile component is a React functional component used for displaying
+The EditProfilePage component is a React functional component used for displaying
 a form allowing users to edit their profile information. This component is
 part of a user profile management system.
 @returns {JSX.Element} The JSX code for the EditProfilePage component.
