@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useTheme } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
 const LoginBox = styled(Paper)({
   display: "flex",
@@ -33,11 +34,18 @@ const StyledButton = styled(Button)({
 const Login = () => {
   // Import the custom theme from theme.js
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e) => {
+  const tempHandleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/profile");
+  };
+
+  /*  Use this code when login API is ready:
+    const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -60,12 +68,12 @@ const Login = () => {
     } catch (err) {
       console.error("Error during login:", err);
     }
-  };
+  }; */
 
   return (
     <Container maxWidth="lg" sx={{ display: "flex", justifyContent: "center" }}>
-      <Box sx={{ mt: "4rem" }}>
-        <LoginBox elevation={3} component="form" onSubmit={handleSubmit}>
+      <Box sx={{ mt: "4rem", mb: "2rem" }}>
+        <LoginBox elevation={3} component="form" onSubmit={tempHandleSubmit}>
           <Typography variant="h4" sx={{ marginBottom: "2rem" }}>
             Login
           </Typography>
