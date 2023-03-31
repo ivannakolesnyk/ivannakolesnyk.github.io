@@ -8,7 +8,7 @@ import EditProfilePage from "../Standard_components/Profile_and_Admin/EditProfil
  * @returns {JSX.Element} The JSX code for the EditProfilePage component.
  */
 const ProfileEdit = () => {
-    return <EditProfilePage navigateTo="/profile" />;
+  return <EditProfilePage navigateTo="/profile" />;
 };
 
 export default ProfileEdit;

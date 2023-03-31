@@ -64,7 +64,10 @@ function App() {
             <Route path="/shoppingcart" element={<ShoppingCart />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/edit" element={<ProfileEdit />} />
-            <Route path="/profile/changepw" element={<ProfileChangePassword />} />
+            <Route
+              path="/profile/changepw"
+              element={<ProfileChangePassword />}
+            />
             <Route path="/profile/vieworders" element={<ProfileViewOrders />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/edit" element={<AdminEditProfilePage />} />

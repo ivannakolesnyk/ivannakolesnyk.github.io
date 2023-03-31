@@ -12,7 +12,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import StandardCenteredBox from "../StandardCenteredBox";
 import StandardCenteredCard from "../StandardCenteredCard";
-import {ProfileTextField} from "./ProfileTextField";
+import { ProfileTextField } from "./ProfileTextField";
 
 /**
 The EditProfile component is a React functional component used for displaying

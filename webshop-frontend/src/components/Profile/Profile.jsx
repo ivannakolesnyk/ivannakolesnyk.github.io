@@ -1,11 +1,16 @@
 import React from "react";
-import {Link} from "react-router-dom";
-import {Button, CardActions, CardContent, Divider, Typography,} from "@mui/material";
-import {useTheme} from "@mui/material/styles";
+import { Link } from "react-router-dom";
+import {
+  Button,
+  CardActions,
+  CardContent,
+  Divider,
+  Typography,
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
 import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
-import {ProfileInformation} from "../Standard_components/Profile_and_Admin/ProfileInformation";
-
+import { ProfileInformation } from "../Standard_components/Profile_and_Admin/ProfileInformation";
 
 /**
 The ProfilePage component displays a user's profile information and provides
@@ -20,8 +25,8 @@ const ProfilePage = () => {
   return (
     <StandardCenteredBox>
       <StandardCenteredCard>
-        <ProfileInformation theme={theme}/>
-        <CardActions sx={{justifyContent: "flex-end"}}>
+        <ProfileInformation theme={theme} />
+        <CardActions sx={{ justifyContent: "flex-end" }}>
           <Button component={Link} to="/profile/edit" variant="contained">
             Edit Profile
           </Button>
@@ -29,13 +34,13 @@ const ProfilePage = () => {
             Change password
           </Button>
         </CardActions>
-        <Divider/>
+        <Divider />
         <CardContent>
           <Typography
-              gutterBottom
-              variant="h5"
-              component="div"
-              sx={{color: theme.palette.primary.contrastText}}
+            gutterBottom
+            variant="h5"
+            component="div"
+            sx={{ color: theme.palette.primary.contrastText }}
           >
             Orders
           </Typography>
@@ -43,7 +48,7 @@ const ProfilePage = () => {
             Here you can view your orders.
           </Typography>
         </CardContent>
-        <CardActions sx={{justifyContent: "flex-end"}}>
+        <CardActions sx={{ justifyContent: "flex-end" }}>
           <Button component={Link} to="/profile/vieworders" variant="contained">
             View Orders
           </Button>

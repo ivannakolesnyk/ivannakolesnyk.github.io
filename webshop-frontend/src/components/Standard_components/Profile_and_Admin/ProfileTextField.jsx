@@ -1,4 +1,4 @@
-import {TextField} from "@mui/material";
+import { TextField } from "@mui/material";
 import React from "react";
 
 /**
@@ -6,13 +6,13 @@ import React from "react";
  the Material-UI library. It is designed to streamline the rendering of text fields
  with common configurations and to reduce repetition
  */
-export const ProfileTextField = ({label, value, setValue, ...props}) => (
-    <TextField
-        fullWidth
-        label={label}
-        margin="normal"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        {...props}
-    />
+export const ProfileTextField = ({ label, value, setValue, ...props }) => (
+  <TextField
+    fullWidth
+    label={label}
+    margin="normal"
+    value={value}
+    onChange={(e) => setValue(e.target.value)}
+    {...props}
+  />
 );

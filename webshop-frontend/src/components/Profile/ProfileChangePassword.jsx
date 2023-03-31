@@ -1,10 +1,10 @@
-import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {Box, Button, CardContent, CardHeader, Divider,} from "@mui/material";
-import {useTheme} from "@mui/material/styles";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Box, Button, CardContent, CardHeader, Divider } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
 import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
-import {PasswordTextField} from "../Standard_components/Profile_and_Admin/PasswordTextField";
+import { PasswordTextField } from "../Standard_components/Profile_and_Admin/PasswordTextField";
 
 /**
 This React component allows users to change their password by providing input fields 
