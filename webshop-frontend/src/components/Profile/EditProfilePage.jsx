@@ -12,6 +12,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
 import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
+import {ProfileTextField} from "../Standard_components/Profile_and_Admin/ProfileTextField";
 
 /**
 The EditProfile component is a React functional component used for displaying
@@ -100,21 +101,5 @@ const EditProfile = () => {
     </StandardCenteredBox>
   );
 };
-
-/**
-The ProfileTextField is a custom constant that wraps the TextField component from 
-the Material-UI library. It is designed to streamline the rendering of text fields 
-with common configurations and to reduce repetition
-*/
-const ProfileTextField = ({ label, value, setValue, ...props }) => (
-  <TextField
-    fullWidth
-    label={label}
-    margin="normal"
-    value={value}
-    onChange={(e) => setValue(e.target.value)}
-    {...props}
-  />
-);
 
 export default EditProfile;
