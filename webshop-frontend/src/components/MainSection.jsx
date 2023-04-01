@@ -1,6 +1,7 @@
 import { Typography, Button, Stack, Paper, Grid } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import backgroundImage from "../assets/img/home.png";
+import { Link } from "react-router-dom";
 
 const MainSection = () => {
   const theme = useTheme();
@@ -38,17 +39,19 @@ const MainSection = () => {
                 range of coffee-making products lets you unleash your inner
                 barista and enjoy coffee just the way you like it.
               </Typography>
-              <Button
-                variant={"contained"}
-                color={"secondary"}
-                sx={{
-                  maxWidth: "200px",
-                  fontSize: "2.2rem",
-                  color: "white",
-                }}
-              >
-                ORDER NOW
-              </Button>
+              <Link to="/product">
+                <Button
+                  variant={"contained"}
+                  color={"secondary"}
+                  sx={{
+                    maxWidth: "200px",
+                    fontSize: "2.2rem",
+                    color: "white",
+                  }}
+                >
+                  ORDER NOW
+                </Button>
+              </Link>
             </Stack>
           </Paper>
         </Grid>
