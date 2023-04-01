@@ -4,6 +4,7 @@ import { Typography, Button, Grid } from "@mui/material";
 import boxImage from "../assets/img/aboutus/box.png";
 import productsBoxImage from "../assets/img/aboutus/products_box.png";
 import productsImage from "../assets/img/aboutus/products.png";
+import { Link } from "react-router-dom";
 
 const AboutUsSection = () => {
   const theme = useTheme();
@@ -24,9 +25,11 @@ const AboutUsSection = () => {
           highest quality, and we are constantly updating our selection to offer
           you the best possible experience.
         </Typography>
-        <Button variant="contained" color="primary" size="large">
-          Read More
-        </Button>
+        <Link to="/about">
+          <Button variant="contained" color="primary" size="large">
+            Read More
+          </Button>
+        </Link>
       </Grid>
       <Grid item xs={12} sm={6}>
         <Grid container spacing={2}>
