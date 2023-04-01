@@ -1,6 +1,7 @@
 import { Typography, Button, Stack, Paper, Grid } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import banner from "../assets/img/banner.png";
+import { Link } from "react-router-dom";
 
 const BannerSection = () => {
   const theme = useTheme();
@@ -31,17 +32,19 @@ const BannerSection = () => {
               <Typography color={"secondary"}>
                 Mix and match or find exactly what you want
               </Typography>
-              <Button
-                variant={"contained"}
-                color={"secondary"}
-                sx={{
-                  maxWidth: "160px",
-                  fontSize: "2rem",
-                  color: "white",
-                }}
-              >
-                ORDER NOW
-              </Button>
+              <Link to="/product">
+                <Button
+                  variant={"contained"}
+                  color={"secondary"}
+                  sx={{
+                    maxWidth: "160px",
+                    fontSize: "2rem",
+                    color: "white",
+                  }}
+                >
+                  ORDER NOW
+                </Button>
+              </Link>
             </Stack>
           </Paper>
         </Grid>
