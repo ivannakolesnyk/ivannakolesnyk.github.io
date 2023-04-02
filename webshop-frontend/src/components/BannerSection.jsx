@@ -26,7 +26,7 @@ const BannerSection = () => {
         <Grid item xs={12} md={8} lg={6}>
           <Paper sx={{ p: 7, maxWidth: 400, backgroundColor: "extra" }}>
             <Stack spacing={4} alignItems="left">
-              <Typography fontWeight={600} variant={"h1"} color={"secondary"}>
+              <Typography fontWeight={600} variant={"h0"} color={"secondary"}>
                 3 for 2
               </Typography>
               <Typography color={"secondary"}>
