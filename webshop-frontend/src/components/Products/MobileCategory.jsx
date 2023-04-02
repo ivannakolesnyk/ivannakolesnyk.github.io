@@ -1,5 +1,4 @@
-import React from "react";
-import { Stack, Typography } from "@mui/material";
+import { useTheme } from "@emotion/react";
 import {
   EmojiFoodBeverage,
   LocalCafe,
@@ -10,8 +9,10 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Stack,
+  Typography,
 } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import React from "react";
 
 const MobileCategory = ({ onCategoryChange }) => {
   const theme = useTheme();

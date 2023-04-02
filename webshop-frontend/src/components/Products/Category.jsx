@@ -1,17 +1,18 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
+import { useTheme } from "@emotion/react";
 import {
   EmojiFoodBeverage,
   LocalCafe,
   TrendingDown,
 } from "@mui/icons-material";
 import {
+  Box,
   List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Typography,
 } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import React from "react";
 
 const Category = ({ onCategoryChange }) => {
   const theme = useTheme();

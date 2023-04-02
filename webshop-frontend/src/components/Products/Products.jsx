@@ -1,15 +1,15 @@
-import React, { useMemo, useState } from "react";
-import { Box, Stack } from "@mui/system";
-import Category from "./Category";
-import ProductCard from "./ProductCard";
-import { Button, Grid, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import FilterListIcon from "@mui/icons-material/FilterList";
-import SearchBar from "../SearchBar";
-import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import { Button, Grid, Typography, useMediaQuery } from "@mui/material";
+import { Box, Stack } from "@mui/system";
+import React, { useMemo, useState } from "react";
+import SearchBar from "../SearchBar";
+import Category from "./Category";
 import IconMenu from "./IconMenu";
 import MobileCategory from "./MobileCategory";
+import ProductCard from "./ProductCard";
 
 let productsOriginal = [
   {

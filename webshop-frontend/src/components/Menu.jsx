@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   Button,
@@ -9,8 +8,9 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import SearchBar from "./SearchBar";
+import React from "react";
 import ProductCard from "./Products/ProductCard";
+import SearchBar from "./SearchBar";
 
 const menuBar = ["special offers", "hot drinks", "cold drinks", "food"];
 let menu = [

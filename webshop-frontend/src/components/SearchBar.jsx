@@ -1,7 +1,7 @@
-import { Box } from "@mui/system";
-import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { Icon, InputBase } from "@mui/material";
+import { Box } from "@mui/system";
+import React from "react";
 
 const SearchBar = () => {
   return (

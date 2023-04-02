@@ -1,15 +1,15 @@
-import LazyLoad from "react-lazy-load";
-import React, { useState, useEffect } from "react";
 import {
+  Box,
   Card,
   CardContent,
   CardMedia,
-  Typography,
   Stack,
-  Box,
+  Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
 import CardActionArea from "@mui/material/CardActionArea";
+import React, { useEffect, useState } from "react";
+import LazyLoad from "react-lazy-load";
+import { Link } from "react-router-dom";
 
 function ProductCard({
   id,
