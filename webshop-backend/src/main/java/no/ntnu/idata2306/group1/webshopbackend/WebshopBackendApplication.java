@@ -1,5 +1,6 @@
 package no.ntnu.idata2306.group1.webshopbackend;
 
+import no.ntnu.idata2306.group1.webshopbackend.utils.SshTunnel;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -41,9 +42,9 @@ public class WebshopBackendApplication {
      */
     @Bean(destroyMethod = "close")
     public SshTunnel sshTunnel(@Value("${ssh.host}") String sshHost,
-            @Value("${ssh.port}") int sshPort, @Value("${ssh.user}") String sshUser,
-            @Value("${ssh.password}") String sshPassword, @Value("${db.host}") String dbHost,
-            @Value("${db.port}") int dbPort) throws JSchException {
+                               @Value("${ssh.port}") int sshPort, @Value("${ssh.user}") String sshUser,
+                               @Value("${ssh.password}") String sshPassword, @Value("${db.host}") String dbHost,
+                               @Value("${db.port}") int dbPort) throws JSchException {
         SshTunnel sshTunnel = new SshTunnel(sshHost, sshPort, sshUser, sshPassword);
         int localPort = sshTunnel.createLocalForwarding(dbPort, dbHost, 0);
         System.setProperty("db.port", String.valueOf(localPort));

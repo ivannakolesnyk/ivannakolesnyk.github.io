@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package no.ntnu.idata2306.group1.webshopbackend;
+package no.ntnu.idata2306.group1.webshopbackend.controller;
 
+import no.ntnu.idata2306.group1.webshopbackend.model.logic.ProductRepository;
+import no.ntnu.idata2306.group1.webshopbackend.model.data.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
