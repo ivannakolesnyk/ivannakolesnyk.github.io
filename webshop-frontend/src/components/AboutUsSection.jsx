@@ -11,10 +11,15 @@ const AboutUsSection = () => {
 
   return (
     <Box sx={{ py: 8 }}>
-      <Typography variant="h2" component="h2" align="left" gutterBottom>
+      <Typography
+        variant="h1"
+        color={"primary.contrastText"}
+        align="left"
+        gutterBottom
+      >
         About Us
       </Typography>
-      <Typography variant="body1" component="p" gutterBottom>
+      <Typography>
         Welcome to MONOCA where we offer a wide range of high-quality products
         for coffee and tea lovers alike. At our online coffee shop, we believe
         that a great cup of coffee or tea is not just a beverage, it's an
@@ -25,9 +30,17 @@ const AboutUsSection = () => {
         best possible experience.
       </Typography>
       <Box sx={{ display: "flex", pt: 4 }}>
-        <Link to="/about">
-          <Button variant="contained" color="primary" size="large">
-            Read More
+        <Link to="/about" style={{ textDecoration: "none" }}>
+          <Button
+            variant={"contained"}
+            color={"primary"}
+            sx={{
+              maxWidth: "200px",
+              fontSize: "2.2rem",
+              color: "secondary",
+            }}
+          >
+            Read more
           </Button>
         </Link>
       </Box>
