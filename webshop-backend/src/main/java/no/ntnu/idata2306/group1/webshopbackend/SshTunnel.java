@@ -55,4 +55,14 @@ public class SshTunnel {
       throws JSchException {
     return sshSession.setPortForwardingL(localPort, remoteHost, remotePort);
   }
+
+  /**
+   * Closes the SSH tunnel by disconnecting the SSH session. This method should be called when the
+   * tunnel is no longer needed.
+   */
+  public void close() {
+    if (sshSession != null) {
+      sshSession.disconnect();
+    }
+  }
 }
