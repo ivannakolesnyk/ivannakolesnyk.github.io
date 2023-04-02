@@ -24,11 +24,18 @@ export const theme = createTheme({
   typography: {
     htmlFontSize: 10, // Set 1 rem to 10 px - must also be done with css (we set this value in index.css)
     fontFamily: "Inter, sans-serif",
-    h1: {
-      fontSize: "5rem",
+
+    h0: {
+      fontSize: "8rem",
       fontFamily: "Inter, sans-serif",
       fontWeight: "700",
     },
+    h1: {
+      fontSize: "7rem",
+      fontFamily: "Inter, sans-serif",
+      fontWeight: "700",
+    },
+
     h2: {
       fontSize: "4.5rem",
       fontFamily: "Inter, sans-serif",
