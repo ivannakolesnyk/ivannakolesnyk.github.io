@@ -4,99 +4,30 @@ import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { Button, Grid, Typography, useMediaQuery } from "@mui/material";
 import { Box, Stack } from "@mui/system";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import SearchBar from "../SearchBar";
 import Category from "./Category";
 import IconMenu from "./IconMenu";
 import MobileCategory from "./MobileCategory";
 import ProductCard from "./ProductCard";
 
-let productsOriginal = [
-  {
-    id: 1,
-    productName: "Coffee",
-    sale: false,
-    type: "Coffee",
-    price: 67,
-    imagePath: "products/coffee/coffee1-min.png",
-    capacity: 350,
-  },
-  {
-    id: 2,
-    productName: "Coffee",
-    sale: true,
-    type: "Coffee",
-    price: 100,
-    imagePath: "products/coffee/coffee2-min.png",
-    capacity: 350,
-  },
-  {
-    id: 3,
-    productName: "Coffee",
-    sale: false,
-    type: "Coffee",
-    price: 40,
-    imagePath: "products/coffee/coffee3-min.png",
-    capacity: 350,
-  },
-  {
-    id: 4,
-    productName: "Tea",
-    sale: false,
-    type: "Tea",
-    price: 70,
-    imagePath: "products/tea/tea1-min.png",
-    capacity: 350,
-  },
-  {
-    id: 5,
-    productName: "Tea",
-    sale: true,
-    type: "Tea",
-    price: 90,
-    imagePath: "products/tea/tea2-min.png",
-    capacity: 350,
-  },
-  {
-    id: 6,
-    productName: "Tea",
-    sale: true,
-    type: "Tea",
-    price: 110,
-    imagePath: "products/tea/tea3-min.png",
-    capacity: 350,
-  },
-  {
-    id: 7,
-    productName: "Tea",
-    sale: false,
-    type: "Tea",
-    price: 140,
-    imagePath: "products/tea/tea4-min.png",
-    capacity: 350,
-  },
-  {
-    id: 8,
-    productName: "Coffee",
-    type: "Coffee",
-    sale: true,
-    price: 99,
-    imagePath: "products/coffee/coffee4-min.png",
-    capacity: 350,
-  },
-  {
-    id: 9,
-    productName: "Coffee",
-    type: "Coffee",
-    sale: true,
-    price: 99,
-    imagePath: "products/coffee/coffee5-min.png",
-    capacity: 350,
-  },
-];
-
 const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
   // Fetching product data from API
+  const [productsOriginal, setProductsOriginal] = useState([]);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/products");
+        const data = await response.json();
+        setProductsOriginal(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   const theme = useTheme();
   const isBigScreen = useMediaQuery("(min-width: 900px)");
   const buttonStyles = {
@@ -117,7 +48,9 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
   ];
 
   let filteredProducts = selectedCategory
-    ? productsOriginal.filter((product) => product.type === selectedCategory)
+    ? productsOriginal.filter(
+        (product) => product.category.name === selectedCategory
+      )
     : productsOriginal;
 
   if (selectedCategory === "Sale") {
@@ -234,20 +167,17 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
         ) : null}
 
         <Grid container spacing={2.5}>
-          {sortedProducts.map(
-            ({ id, productName, price, imagePath, capacity }) => (
-              <Grid item key={id} xs={12} sm={6} md={4} lg={3}>
-                <ProductCard
-                  id={id}
-                  productName={productName}
-                  price={price}
-                  capacity={capacity}
-                  imagePath={imagePath}
-                  isClickable={true}
-                />
-              </Grid>
-            )
-          )}
+          {sortedProducts.map(({ id, name, price, productImage }) => (
+            <Grid item key={id} xs={12} sm={6} md={4} lg={3}>
+              <ProductCard
+                id={id}
+                productName={name}
+                price={price}
+                imagePath={productImage}
+                isClickable={true}
+              />
+            </Grid>
+          ))}
         </Grid>
       </Grid>
     </Grid>
