@@ -1,25 +1,19 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Box,
-  Button,
-  CardContent,
-  CardHeader,
-  Divider,
-  TextField,
-} from "@mui/material";
+import { Box, Button, CardContent, CardHeader, Divider } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
-import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
+import StandardCenteredBox from "../StandardCenteredBox";
+import StandardCenteredCard from "../StandardCenteredCard";
+import { PasswordTextField } from "./PasswordTextField";
 
 /**
 This React component allows users to change their password by providing input fields 
 for their current password, new password, and confirmation of the new password. 
 The component uses Material-UI components for styling and layout.
-@returns {JSX.Element} The JSX code for the AdminChangePassword component.
+
+@returns {JSX.Element} The JSX code for the ChangePassword component.
 */
-const AdminChangePassword = () => {
+const ChangePassword = ({ navigateTo }) => {
   const theme = useTheme();
   const navigate = useNavigate();
   const [currentPassword, setCurrentPassword] = useState("");
@@ -81,7 +75,7 @@ const AdminChangePassword = () => {
             />
 
             <Box display="flex" justifyContent="flex-end" marginTop={2}>
-              <Button variant="contained" onClick={() => navigate("/admin")}>
+              <Button variant="contained" onClick={() => navigate(navigateTo)}>
                 Cancel
               </Button>
               <Box marginLeft={1}>
@@ -97,21 +91,4 @@ const AdminChangePassword = () => {
   );
 };
 
-/**
-PasswordTextField is a custom React functional component that wraps the TextField 
-component from the Material-UI library. The purpose of this component is to simplify 
-and reuse code for password input fields in forms, with a consistent look and feel.
-*/
-const PasswordTextField = ({ label, value, setValue, ...props }) => (
-  <TextField
-    fullWidth
-    label={label}
-    margin="normal"
-    type="password"
-    value={value}
-    onChange={(e) => setValue(e.target.value)}
-    {...props}
-  />
-);
-
-export default AdminChangePassword;
+export default ChangePassword;

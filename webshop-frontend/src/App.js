@@ -9,19 +9,18 @@ import Menu from "./components/Menu";
 import Products from "./components/Products/Products";
 import FindUs from "./components/FindUs";
 import Profile from "./components/Profile/Profile";
-import EditProfilePage from "./components/Profile/EditProfilePage";
-import ChangePassword from "./components/Profile/ChangePassword";
-import ViewOrders from "./components/Profile/ViewOrders";
-import LogIn from "./components/LogIn";
+import ProfileEdit from "./components/Profile/ProfileEdit";
+import ProfileChangePW from "./components/Profile/ProfileChangePW";
+import ProfileViewOrders from "./components/Profile/ProfileViewOrders";
+import LogIn from "./components/LogIn/LogIn";
 import ShoppingCart from "./components/ShoppingCart";
-import RegisterNewUser from "./components/RegisterNewUser";
+import RegisterNewUser from "./components/LogIn/RegisterNewUser";
 import Admin from "./components/Admin/Admin";
-import AdminChangePassword from "./components/Admin/AdminChangePassword";
-import AdminEditProfilePage from "./components/Admin/AdminEditProfilePage";
+import AdminChangePassword from "./components/Admin/AdminChangePW";
+import AdminEditProfilePage from "./components/Admin/AdminEdit";
 import AdminTestimonials from "./components/Admin/AdminTestimonials";
 import AdminViewOrders from "./components/Admin/AdminViewOrders";
 import AdminProducts from "./components/Admin/AdminProducts";
-
 import { useState } from "react";
 import ProductDetails from "./components/Products/ProductDetails";
 
@@ -63,9 +62,9 @@ function App() {
             <Route path="/register" element={<RegisterNewUser />} />
             <Route path="/shoppingcart" element={<ShoppingCart />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/profile/edit" element={<EditProfilePage />} />
-            <Route path="/profile/changepw" element={<ChangePassword />} />
-            <Route path="/profile/vieworders" element={<ViewOrders />} />
+            <Route path="/profile/edit" element={<ProfileEdit />} />
+            <Route path="/profile/changepw" element={<ProfileChangePW />} />
+            <Route path="/profile/vieworders" element={<ProfileViewOrders />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/edit" element={<AdminEditProfilePage />} />
             <Route path="/admin/changepw" element={<AdminChangePassword />} />

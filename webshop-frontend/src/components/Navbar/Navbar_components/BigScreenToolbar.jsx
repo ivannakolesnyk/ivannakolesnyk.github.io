@@ -15,6 +15,18 @@ import NavbarButton from "./NavbarButton";
  * on the website. Some with just text. Others with appropriate icons.
  * @returns {JSX.Element} The JSX code for the BigScreenToolbar component.
  */
+const leftNavItems = [
+  { text: "Menu", to: "/menu" },
+  { text: "Products", to: "/product" },
+  { text: "About us", to: "/about" },
+];
+
+const rightNavItems = [
+  { text: "Find us", to: "/findus", icon: <PlaceOutlinedIcon /> },
+  { text: "Log in", to: "/login", icon: <Person2OutlinedIcon /> },
+  { to: "/shoppingcart", icon: <ShoppingCartIcon /> },
+];
+
 const BigScreenToolbar = ({ onProductsClick }) => {
   return (
     <StyledToolbar>
@@ -26,9 +38,14 @@ const BigScreenToolbar = ({ onProductsClick }) => {
           width: "33.33%",
         }}
       >
-        <NavbarButton text="Menu" to="/menu" />
-        <NavbarButton text="Products" to="/product" onClick={onProductsClick} />
-        <NavbarButton text="About us" to="/about" />
+        {leftNavItems.map((item) => (
+          <NavbarButton
+            key={item.to}
+            text={item.text}
+            to={item.to}
+            onClick={item.text === "Products" ? onProductsClick : undefined}
+          />
+        ))}
       </div>
       <div
         id="coffeeLogo"
@@ -60,17 +77,14 @@ const BigScreenToolbar = ({ onProductsClick }) => {
           width: "33.33%",
         }}
       >
-        <NavbarButton
-          text="Find us"
-          to="/findus"
-          icon={<PlaceOutlinedIcon />}
-        />
-        <NavbarButton
-          text="Log in"
-          to="/login"
-          icon={<Person2OutlinedIcon />}
-        />
-        <NavbarButton to="/shoppingcart" icon={<ShoppingCartIcon />} />
+        {rightNavItems.map((item) => (
+          <NavbarButton
+            key={item.to}
+            text={item.text}
+            to={item.to}
+            icon={item.icon}
+          />
+        ))}
       </div>
     </StyledToolbar>
   );

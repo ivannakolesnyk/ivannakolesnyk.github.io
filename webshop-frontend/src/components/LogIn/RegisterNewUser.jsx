@@ -1,24 +1,18 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Box,
-  Button,
-  CardContent,
-  CardHeader,
-  Divider,
-  TextField,
-} from "@mui/material";
+import { Box, Button, CardContent, CardHeader, Divider } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import StandardCenteredBox from "../Standard_components//StandardCenteredBox";
 import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
+import { ProfileTextField } from "../Standard_components/Profile_and_Admin/ProfileTextField";
 
 /**
-The RegisterNewUser component is a React functional component used for displaying
-a form allowing users to edit their profile information. This component is
-part of a user profile management system.
-@returns {JSX.Element} The JSX code for the RegisterNewUser component.
-*/
+ The RegisterNewUser component is a React functional component used for displaying
+ a form allowing users to edit their profile information. This component is
+ part of a user profile management system.
+
+ @returns {JSX.Element} The JSX code for the RegisterNewUser component.
+ */
 const RegisterNewUser = () => {
   const theme = useTheme();
   const navigate = useNavigate();
@@ -45,6 +39,62 @@ const RegisterNewUser = () => {
     navigate("/profile");
   };
 
+  const profileFields = [
+    {
+      label: "Name",
+      name: "name",
+      value: name,
+      setValue: setName,
+      type: "text",
+    },
+    {
+      label: "Email",
+      name: "email",
+      value: email,
+      setValue: setEmail,
+      type: "email",
+    },
+    {
+      label: "Password",
+      name: "password",
+      value: password,
+      setValue: setPassword,
+      type: "password",
+    },
+    {
+      label: "Confirm Password",
+      name: "confirmPassword",
+      value: confirmPassword,
+      setValue: setConfirmPassword,
+      type: "password",
+      error: !passwordsMatch() && confirmPasswordTouched,
+      helperText:
+        !passwordsMatch() && confirmPasswordTouched && "Passwords do not match",
+      onFocus: () => setConfirmPasswordTouched(true),
+    },
+    {
+      label: "Phone",
+      name: "phone",
+      value: phone,
+      setValue: setPhone,
+      type: "text",
+    },
+    {
+      label: "Postal Code",
+      name: "postalCode",
+      value: postalCode,
+      setValue: setPostalCode,
+      type: "text",
+    },
+    {
+      label: "Address",
+      name: "address",
+      value: address,
+      setValue: setAddress,
+      type: "text",
+    },
+  ];
+
   return (
     <StandardCenteredBox>
       <StandardCenteredCard>
@@ -55,66 +105,20 @@ const RegisterNewUser = () => {
         <Divider />
         <CardContent>
           <form onSubmit={handleSubmit}>
-            <ProfileTextField
-              label="Name"
-              name="name"
-              value={name}
-              setValue={setName}
-              required
-            />
-            <ProfileTextField
-              label="Email"
-              name="email"
-              value={email}
-              setValue={setEmail}
-              type="email"
-              required
-            />
-            <ProfileTextField
-              label="Password"
-              name="password"
-              value={password}
-              setValue={setPassword}
-              type="password"
-              required
-            />
-            <ProfileTextField
-              label="Confirm Password"
-              name="confirmPassword"
-              value={confirmPassword}
-              setValue={setConfirmPassword}
-              type="password"
-              required
-              error={!passwordsMatch() && confirmPasswordTouched}
-              helperText={
-                !passwordsMatch() &&
-                confirmPasswordTouched &&
-                "Passwords do not match"
-              }
-              onFocus={() => setConfirmPasswordTouched(true)}
-            />
-
-            <ProfileTextField
-              label="Phone"
-              name="phone"
-              value={phone}
-              setValue={setPhone}
-              required
-            />
-            <ProfileTextField
-              label="Postal Code"
-              name="postalCode"
-              value={postalCode}
-              setValue={setPostalCode}
-              required
-            />
-            <ProfileTextField
-              label="Address"
-              name="address"
-              value={address}
-              setValue={setAddress}
-              required
-            />
+            {profileFields.map((field) => (
+              <ProfileTextField
+                key={field.name}
+                label={field.label}
+                name={field.name}
+                value={field.value}
+                setValue={field.setValue}
+                type={field.type}
+                required
+                error={field.error}
+                helperText={field.helperText}
+                onFocus={field.onFocus}
+              />
+            ))}
             <Box display="flex" justifyContent="flex-end" marginTop={2}>
               <Button
                 variant="contained"
@@ -135,21 +139,5 @@ const RegisterNewUser = () => {
     </StandardCenteredBox>
   );
 };
-
-/**
-The ProfileTextField is a custom constant that wraps the TextField component from 
-the Material-UI library. It is designed to streamline the rendering of text fields 
-with common configurations and to reduce repetition
-*/
-const ProfileTextField = ({ label, value, setValue, ...props }) => (
-  <TextField
-    fullWidth
-    label={label}
-    margin="normal"
-    value={value}
-    onChange={(e) => setValue(e.target.value)}
-    {...props}
-  />
-);
 
 export default RegisterNewUser;

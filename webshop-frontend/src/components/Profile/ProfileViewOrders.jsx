@@ -13,11 +13,11 @@ import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
 import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 
 /**
-The ViewOrders component is a React functional component used for displaying
+The ProfileViewOrders component is a React functional component used for displaying
 the orders a user has made.
-@returns {JSX.Element} The JSX code for the ViewOrders component.
+@returns {JSX.Element} The JSX code for the ProfileViewOrders component.
 */
-const ViewOrders = () => {
+const ProfileViewOrders = () => {
   // Import the custom theme from theme.js
   const theme = useTheme();
   const navigate = useNavigate();
@@ -43,4 +43,4 @@ const ViewOrders = () => {
   );
 };
 
-export default ViewOrders;
+export default ProfileViewOrders;
