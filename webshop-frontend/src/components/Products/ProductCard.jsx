@@ -16,7 +16,6 @@ function ProductCard({
   imagePath,
   productName,
   price,
-  capacity,
   isClickable,
   specialOffer,
   salePercentage,
@@ -83,8 +82,7 @@ function ProductCard({
             </Typography>
           </Stack>
         ) : (
-          price &&
-          capacity && (
+          price && (
             <Typography fontWeight={"600"} fontSize={"1.8rem"}>
               {price} NOK
             </Typography>
