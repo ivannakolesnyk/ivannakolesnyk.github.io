@@ -39,4 +39,20 @@ public class SshTunnel {
     sshSession.setConfig("StrictHostKeyChecking", "no");
     sshSession.connect();
   }
+
+  /**
+   * Creates a local port forwarding from the specified local port to the specified remote host and
+   * port.
+   *
+   * @param remotePort the remote service port
+   * @param remoteHost the remote service host, must be the public IPv6 address
+   * @param localPort the local port to forward
+   * @return The actual local port that was used for forwarding
+   * 
+   * @throws JSchException if an error occurs while setting up the local port forwarding
+   */
+  public int createLocalForwarding(int remotePort, String remoteHost, int localPort)
+      throws JSchException {
+    return sshSession.setPortForwardingL(localPort, remoteHost, remotePort);
+  }
 }
