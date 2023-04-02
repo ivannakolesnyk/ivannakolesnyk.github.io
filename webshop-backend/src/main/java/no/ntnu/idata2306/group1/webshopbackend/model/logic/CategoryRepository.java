@@ -6,5 +6,6 @@ import no.ntnu.idata2306.group1.webshopbackend.model.data.Category;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
+  Category findByName(String name);
 }
 
