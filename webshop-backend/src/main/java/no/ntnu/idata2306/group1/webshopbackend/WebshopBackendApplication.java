@@ -49,4 +49,27 @@ public class WebshopBackendApplication {
         System.setProperty("db.port", String.valueOf(localPort));
         return sshTunnel;
     }
+
+    /**
+     * Creates the DataSource bean to connect to the local forwarded port of the SSH Tunnel. Will
+     * only run after a secure SSH connection have been established.
+     * 
+     * @param dbName The name of the DB to connect to
+     * @param dbUser A valid username on the DB
+     * @param dbPassword The password of the user
+     * 
+     * @return The DataSource instance
+     */
+    @Bean
+    @DependsOn("sshTunnel")
+    public DataSource dataSource(@Value("${db.name}") String dbName,
+            @Value("${db.user}") String dbUser, @Value("${db.password}") String dbPassword) {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl(
+                "jdbc:postgresql://localhost:" + System.getProperty("db.port") + "/" + dbName);
+        dataSource.setUsername(dbUser);
+        dataSource.setPassword(dbPassword);
+        return dataSource;
+    }
 }
