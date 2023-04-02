@@ -17,7 +17,7 @@ import NavbarButton from "./NavbarButton";
  */
 const leftNavItems = [
   { text: "Menu", to: "/menu" },
-  { text: "Products", to: "/product" },
+  { text: "Products", to: "/products" },
   { text: "About us", to: "/about" },
 ];
 

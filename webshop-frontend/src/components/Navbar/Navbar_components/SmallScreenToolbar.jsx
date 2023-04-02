@@ -60,7 +60,7 @@ const SmallScreenToolbar = ({ onProductsClick }) => {
         <CustomMenuItem to="/" text="Home" onClose={handleClose} />
         <CustomMenuItem to="/menu" text="Menu" onClose={handleClose} />
         <CustomMenuItem
-          to="/product"
+          to="/products"
           onClick={(e) => {
             onProductsClick();
           }}
