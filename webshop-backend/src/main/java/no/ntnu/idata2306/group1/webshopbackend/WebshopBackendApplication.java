@@ -2,15 +2,12 @@ package no.ntnu.idata2306.group1.webshopbackend;
 
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import com.jcraft.jsch.JSchException;
-import no.ntnu.idata2306.group1.webshopbackend.model.data.Category;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.CategoryRepository;
 import no.ntnu.idata2306.group1.webshopbackend.utils.SshTunnel;
 
 /**
@@ -75,30 +72,5 @@ public class WebshopBackendApplication {
         dataSource.setUsername(dbUser);
         dataSource.setPassword(dbPassword);
         return dataSource;
-    }
-
-    /**
-     * A bean that initializes some sample data in the CategoryRepository. Eecuted on application
-     * start up.
-     * 
-     * @param categoryRepository the CategoryRepository instance to use for saving the categories
-     * @return A CommandLineRunner lambda that creates and saves Category instances to the
-     *         repository
-     */
-    @Bean
-    @DependsOn("dataSource")
-    public CommandLineRunner initData(CategoryRepository categoryRepository) {
-        return (args) -> {
-            // Check if there are any categories in the Category table
-            if (categoryRepository.count() == 0) {
-                // Create and save a few categories to the database
-                categoryRepository.save(new Category("Coffee"));
-                categoryRepository.save(new Category("Tea"));
-                categoryRepository.save(new Category("Pastry"));
-                categoryRepository.save(new Category("Food"));
-                categoryRepository.save(new Category("Snack"));
-                categoryRepository.save(new Category("Equipment"));
-            }
-        };
     }
 }
