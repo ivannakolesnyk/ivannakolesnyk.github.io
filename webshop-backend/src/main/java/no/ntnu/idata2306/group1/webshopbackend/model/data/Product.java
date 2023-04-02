@@ -1,10 +1,12 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this
+ * license Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package no.ntnu.idata2306.group1.webshopbackend.model.data;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -24,14 +26,15 @@ public class Product {
     private double price;
     private boolean sale;
     private String description;
+    @JsonProperty("product_image")
     private String product_image;
+    @JsonProperty("qty_in_stock")
     private int qty_in_stock;
-    @ManyToOne
-    @JoinColumn()
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
     private Category category;
 
-    public Product() {
-    }
+    public Product() {}
 
     public Product(String name, double price, boolean sale, String description,
             String product_image, int qty_in_stock, Category category) {
@@ -82,5 +85,9 @@ public class Product {
 
     public void setQtyInStock(int qty_in_stock) {
         this.qty_in_stock = qty_in_stock;
+    }
+
+    public Category setCategory(Category category) {
+        return this.category = category;
     }
 }
