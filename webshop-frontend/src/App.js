@@ -36,10 +36,25 @@ function App() {
     setShowAllProducts(true);
   };
 
+  // handle logging in and out, keeping track of the state
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setLoggedIn(false);
+  };
+
   return (
     <BrowserRouter>
       <Box display="flex" flexDirection="column" minHeight="100vh">
-        <Navbar onProductsClick={handleProductsClick} />
+        <Navbar
+          onProductsClick={handleProductsClick}
+          loggedIn={loggedIn}
+          handleLogout={handleLogout}
+        />
         <Box flex="1">
           <Routes>
             <Route path="/" element={<Frontpage />} />
@@ -57,7 +72,10 @@ function App() {
             />
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/findus" element={<FindUs />} />
-            <Route path="/login" element={<LogIn />} />
+            <Route
+              path="/login"
+              element={<LogIn handleLogin={handleLogin} />}
+            />
             <Route path="/register" element={<RegisterNewUser />} />
             <Route path="/shoppingcart" element={<ShoppingCart />} />
             <Route path="/profile" element={<Profile />} />

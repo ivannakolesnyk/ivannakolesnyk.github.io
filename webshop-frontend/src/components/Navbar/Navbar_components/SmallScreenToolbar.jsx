@@ -1,29 +1,42 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { Menu as MenuIcon } from "@mui/icons-material";
+import MenuIcon from "@mui/icons-material/Menu";
 import smallCoffeeLogo from "../../../assets/img/logos/logo_smallscreen.png";
-import { IconButton, Menu, styled } from "@mui/material";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
 import StyledToolbar from "./StyledToolbar";
-import CustomMenuItem from "./CustomMenuItem";
+import { MenuItem, Typography } from "@mui/material";
 
 /**
  * The SmallScreenToolbar component is used to display a navigation bar for small screen devices.
  * It consists of a logo and a hamburger menu icon that opens a dropdown menu with links to
  * different pages on the website.
  *
+ * @param {function} onProductsClick - Function to call when Products menu item is clicked.
+ * @param {boolean} loggedIn - Indicates whether the user is logged in or not.
+ * @param {function} handleLogout - Function to call when user logs out.
  * @returns {JSX.Element} The JSX code for the SmallScreenToolbar component.
  */
-const SmallScreenToolbar = ({ onProductsClick }) => {
-  const menuButtonRef = useRef(null);
-
-  const [open, setOpen] = useState(false);
-
-  const handleMenuOpen = () => {
-    setOpen(true);
+const SmallScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const CustomMenuItem = ({ to, text }) => {
+    return (
+      <MenuItem onClick={handleClose}>
+        <Typography variant="button" color="secondary">
+          <Link to={to} style={{ textDecoration: "none" }}>
+            {text}
+          </Link>
+        </Typography>
+      </MenuItem>
+    );
   };
 
   return (
@@ -40,52 +53,66 @@ const SmallScreenToolbar = ({ onProductsClick }) => {
           }}
         />
       </Link>
-      <MenuButton ref={menuButtonRef} onClick={handleMenuOpen}>
+      <Button
+        color="secondary"
+        id="menu-button"
+        aria-controls={open ? "basic-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        onClick={handleClick}
+      >
         <MenuIcon
           sx={{
             fontSize: "3rem",
           }}
         />
-      </MenuButton>
+      </Button>
 
       <Menu
-        id="basic-menu"
-        anchorEl={menuButtonRef.current}
+        id="menu-button"
+        anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          "aria-labelledby": "basic-button",
+          "aria-labelledby": "menu-button",
         }}
       >
-        <CustomMenuItem to="/" text="Home" onClose={handleClose} />
-        <CustomMenuItem to="/menu" text="Menu" onClose={handleClose} />
-        <CustomMenuItem
-          to="/products"
-          onClick={(e) => {
+        <CustomMenuItem to="/" text="Home" />
+        <CustomMenuItem to="/menu" text="Menu" />
+        <MenuItem
+          onClick={() => {
             onProductsClick();
+            handleClose();
           }}
-          text="Products"
-          onClose={handleClose}
-        />
-        <CustomMenuItem to="/about" text="About us" onClose={handleClose} />
-        <CustomMenuItem to="/findus" text="Find us" onClose={handleClose} />
-        <CustomMenuItem to="/login" text="Log in" onClose={handleClose} />
-        <CustomMenuItem
-          aria-label="shopping cart"
-          to="/shoppingcart"
-          text="Shopping cart"
-          onClose={handleClose}
-        />
+        >
+          <Typography variant="button" color="secondary">
+            <Link to={"/products"} style={{ textDecoration: "none" }}>
+              Products
+            </Link>
+          </Typography>
+        </MenuItem>
+        <CustomMenuItem to="/about" text="About us" />
+        <CustomMenuItem to="/findus" text="Find us" />
+        {loggedIn ? (
+          <MenuItem
+            onClick={() => {
+              handleLogout();
+              handleClose();
+            }}
+          >
+            <Typography variant="button" color="secondary">
+              <Link to={"/"} style={{ textDecoration: "none" }}>
+                Log Out
+              </Link>
+            </Typography>
+          </MenuItem>
+        ) : (
+          <CustomMenuItem to="/login" text="Log in" />
+        )}
+        <CustomMenuItem to="/shoppingcart" text="Shopping cart" />
       </Menu>
     </StyledToolbar>
   );
 };
-
-const MenuButton = styled(IconButton)(({ theme }) => ({
-  color: theme.palette.secondary.main,
-  edge: "end",
-  className: "menu-button",
-  ariaLabel: "small screen menu",
-}));
 
 export default SmallScreenToolbar;
