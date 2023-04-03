@@ -27,6 +27,11 @@ const SmallScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
     setAnchorEl(null);
   };
 
+  /**
+   * The CustomMenuItem component is a reusable menu item that uses the MenuItem component from MUI.
+   * It is designed for use within a Material-UI Menu component and automatically applies the secondary
+   * color from the theme.
+   */
   const CustomMenuItem = ({ to, text }) => {
     return (
       <MenuItem onClick={handleClose}>
