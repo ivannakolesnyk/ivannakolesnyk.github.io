@@ -10,23 +10,12 @@ import Category from "./Category";
 import IconMenu from "./IconMenu";
 import MobileCategory from "./MobileCategory";
 import ProductCard from "./ProductCard";
+import useFetch from "../../hooks/useFetch";
 
 const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
   // Fetching product data from API
-  const [productsOriginal, setProductsOriginal] = useState([]);
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/products");
-        const data = await response.json();
-        setProductsOriginal(data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
+  // TODO: Loading and error components?
+  const { data: productsOriginal } = useFetch("products");
 
   const theme = useTheme();
   const isBigScreen = useMediaQuery("(min-width: 900px)");
