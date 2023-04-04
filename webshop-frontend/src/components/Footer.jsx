@@ -1,5 +1,4 @@
 import React from "react";
-import { useTheme } from "@mui/material/styles";
 import { Box, Grid, IconButton, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -14,16 +13,13 @@ show three, two or one columns with content based on screen width.
 @returns {JSX.Element} Footer component
 */
 const Footer = () => {
-  // Import the custom theme from theme.js
-  const theme = useTheme();
-
   return (
     <Grid
       container
       spacing={3}
       sx={{
-        bgcolor: theme.palette.primary.main,
-        color: theme.palette.primary.contrastText,
+        bgcolor: "primary.main",
+        color: "secondary.main",
         mt: "auto",
         pt: 4,
         pb: 4,
@@ -109,7 +105,7 @@ const Footer = () => {
                 <FacebookIcon
                   sx={{
                     fontSize: "2.5rem",
-                    color: theme.palette.secondary.main,
+                    color: "secondary.main",
                   }}
                 />
               </IconButton>
@@ -122,7 +118,7 @@ const Footer = () => {
                 <InstagramIcon
                   sx={{
                     fontSize: "2.5rem",
-                    color: theme.palette.secondary.main,
+                    color: "secondary.main",
                   }}
                 />
               </IconButton>
