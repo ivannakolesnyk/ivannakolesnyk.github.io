@@ -1,6 +1,5 @@
 import React from "react";
 import { Typography, Container, Grid, CardMedia } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 import aboutUs1 from "../assets/img/aboutus/aboutUS1.jpg";
 import aboutUs2 from "../assets/img/aboutus/aboutUS2.jpg";
 
@@ -12,8 +11,6 @@ components and the custom theme provided by the application.
 @returns {JSX.Element} The JSX code for the AboutUs component.
 */
 const AboutUs = () => {
-  const theme = useTheme();
-
   return (
     <Container maxWidth="xl" sx={{ py: "2rem" }}>
       <Grid
@@ -30,7 +27,7 @@ const AboutUs = () => {
           <Typography
             variant="h1"
             sx={{
-              color: theme.palette.primary.contrastText,
+              color: "secondary.main",
               pb: "0.5rem",
               textAlign: "center",
             }}
@@ -50,7 +47,7 @@ const AboutUs = () => {
           <Typography
             variant="body1"
             sx={{
-              color: theme.palette.primary.contrastText,
+              color: "secondary.main",
             }}
           >
             Mocha Nooka Cafe is the place to be for cool cats and urbanites
@@ -68,7 +65,7 @@ const AboutUs = () => {
           <Typography
             variant="h4"
             sx={{
-              color: theme.palette.primary.contrastText,
+              color: "secondary.main",
               textAlign: "left",
             }}
           >
@@ -87,7 +84,7 @@ const AboutUs = () => {
           <Typography
             variant="body1"
             sx={{
-              color: theme.palette.primary.contrastText,
+              color: "secondary.main",
             }}
           >
             At Mocha Nooka Cafe, we strive to create a peaceful, modern
