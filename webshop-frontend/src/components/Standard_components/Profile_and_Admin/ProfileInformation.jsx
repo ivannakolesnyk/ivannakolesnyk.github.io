@@ -47,7 +47,7 @@ export function ProfileInformation(props) {
   return (
     <>
       <CardHeader
-        sx={{ color: props.theme.palette.primary.contrastText }}
+        sx={{ color: "secondary.main" }}
         title="My Monoca"
         subheader="User id: 123, usertype" //customer can be changed to admin if it's an admin
       />
@@ -57,7 +57,7 @@ export function ProfileInformation(props) {
           gutterBottom
           variant="h5"
           component="div"
-          sx={{ color: props.theme.palette.primary.contrastText }}
+          sx={{ color: "secondary.main" }}
         >
           Profile Information
         </Typography>

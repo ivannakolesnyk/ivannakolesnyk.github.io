@@ -9,7 +9,6 @@ import {
   Divider,
   TextField,
 } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 import StandardCenteredBox from "../StandardCenteredBox";
 import StandardCenteredCard from "../StandardCenteredCard";
 import { ProfileTextField } from "./ProfileTextField";
@@ -21,7 +20,6 @@ part of a user profile management system.
 @returns {JSX.Element} The JSX code for the EditProfilePage component.
 */
 const EditProfilePage = ({ navigateTo }) => {
-  const theme = useTheme();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -40,7 +38,7 @@ const EditProfilePage = ({ navigateTo }) => {
       <StandardCenteredCard>
         <CardHeader
           title="Edit Profile Information"
-          sx={{ color: theme.palette.primary.contrastText }}
+          sx={{ color: "secondary.main" }}
         />
         <Divider />
         <CardContent>

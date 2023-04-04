@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, CardContent, CardHeader, Divider } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 import StandardCenteredBox from "../StandardCenteredBox";
 import StandardCenteredCard from "../StandardCenteredCard";
 import { PasswordTextField } from "./PasswordTextField";
@@ -14,15 +13,14 @@ The component uses Material-UI components for styling and layout.
 @returns {JSX.Element} The JSX code for the ChangePassword component.
 */
 const ChangePassword = ({ navigateTo }) => {
-  const theme = useTheme();
   const navigate = useNavigate();
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
 
-  // Used to check if the passwords are similiar
+  // Used to check if the passwords are similar
   const newPasswordsMatch = () => newPassword === confirmNewPassword;
-  // Used to make sure message for disimilar passwords on show after confirm new PW field is touched
+  // Used to make sure message for dissimilar passwords on show after confirm new PW field is touched
   const [confirmNewPasswordTouched, setConfirmNewPasswordTouched] =
     useState(false);
 
@@ -38,10 +36,7 @@ const ChangePassword = ({ navigateTo }) => {
   return (
     <StandardCenteredBox>
       <StandardCenteredCard>
-        <CardHeader
-          title="Change Password"
-          sx={{ color: theme.palette.primary.contrastText }}
-        />
+        <CardHeader title="Change Password" sx={{ color: "secondary.main" }} />
         <Divider />
         <CardContent>
           <form onSubmit={handleSubmit}>
