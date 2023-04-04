@@ -83,6 +83,7 @@ const SmallScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
         }}
       >
         <CustomMenuItem to="/" text="Home" />
+        {loggedIn && <CustomMenuItem to="/profile" text="My Profile" />}
         <CustomMenuItem to="/menu" text="Menu" />
         <MenuItem
           onClick={() => {
@@ -98,6 +99,7 @@ const SmallScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
         </MenuItem>
         <CustomMenuItem to="/about" text="About us" />
         <CustomMenuItem to="/findus" text="Find us" />
+        <CustomMenuItem to="/shoppingcart" text="Shopping cart" />
         {loggedIn ? (
           <MenuItem
             onClick={() => {
@@ -114,7 +116,6 @@ const SmallScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
         ) : (
           <CustomMenuItem to="/login" text="Log in" />
         )}
-        <CustomMenuItem to="/shoppingcart" text="Shopping cart" />
       </Menu>
     </StyledToolbar>
   );
