@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, CardContent, CardHeader, Divider } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 import StandardCenteredBox from "../Standard_components//StandardCenteredBox";
 import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 import { ProfileTextField } from "../Standard_components/Profile_and_Admin/ProfileTextField";
@@ -14,7 +13,6 @@ import { ProfileTextField } from "../Standard_components/Profile_and_Admin/Profi
  @returns {JSX.Element} The JSX code for the RegisterNewUser component.
  */
 const RegisterNewUser = () => {
-  const theme = useTheme();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,9 +22,9 @@ const RegisterNewUser = () => {
   const [postalCode, setPostalCode] = useState("");
   const [address, setAddress] = useState("");
 
-  // Used to check if the passwords are similiar
+  // Used to check if the passwords are similar
   const passwordsMatch = () => password === confirmPassword;
-  // Used to make sure message for disimilar passwords on show after confirm new PW field is touched
+  // Used to make sure message for dissimilar passwords on show after confirm new PW field is touched
   const [confirmPasswordTouched, setConfirmPasswordTouched] = useState(false);
 
   const handleSubmit = (e) => {
@@ -100,7 +98,7 @@ const RegisterNewUser = () => {
       <StandardCenteredCard>
         <CardHeader
           title="Register New User"
-          sx={{ color: theme.palette.primary.contrastText }}
+          sx={{ color: "secondary.main" }}
         />
         <Divider />
         <CardContent>

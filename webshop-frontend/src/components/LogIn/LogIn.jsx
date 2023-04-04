@@ -1,15 +1,14 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   TextField,
   Button,
-  Link,
   Typography,
   Box,
   Container,
   Paper,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 
 const LoginBox = styled(Paper)({
@@ -32,8 +31,6 @@ const StyledButton = styled(Button)({
 });
 
 const Login = () => {
-  // Import the custom theme from theme.js
-  const theme = useTheme();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -74,7 +71,10 @@ const Login = () => {
     <Container maxWidth="lg" sx={{ display: "flex", justifyContent: "center" }}>
       <Box sx={{ mt: "4rem", mb: "2rem" }}>
         <LoginBox elevation={3} component="form" onSubmit={tempHandleSubmit}>
-          <Typography variant="h4" sx={{ marginBottom: "2rem" }}>
+          <Typography
+            variant="h4"
+            sx={{ color: "secondary.main", marginBottom: "2rem" }}
+          >
             Login
           </Typography>
           <StyledTextField
@@ -95,13 +95,14 @@ const Login = () => {
           <Typography
             sx={{
               marginTop: "1rem",
-              color: theme.palette.primary.contrastText,
+              color: "secondary.main",
             }}
           >
             Don't have an account?{" "}
             <Link
-              href="/register"
-              sx={{ color: theme.palette.primary.contrastText }}
+              to={"/register"}
+              style={{ textDecoration: "underline" }}
+              sx={{ color: "secondary.main" }}
             >
               Sign up here.
             </Link>
