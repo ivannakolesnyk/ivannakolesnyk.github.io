@@ -40,7 +40,7 @@ const ProfilePage = () => {
             gutterBottom
             variant="h5"
             component="div"
-            sx={{ color: theme.palette.primary.contrastText }}
+            sx={{ color: "secondary.main" }}
           >
             Orders
           </Typography>
