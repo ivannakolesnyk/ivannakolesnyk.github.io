@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Typography } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 
 /**
  * A custom button component that takes in `text`, `icon`, `to` and 'onClick' as props.
@@ -11,12 +10,11 @@ import { useTheme } from "@mui/material/styles";
  * @returns {JSX.Element} The JSX code for the CustomMenuItem component.
  */
 const NavbarButton = ({ text, icon, to, onClick }) => {
-  const theme = useTheme();
   const styledIcon = icon
     ? React.cloneElement(icon, {
         sx: {
           fontSize: "2rem",
-          color: theme.palette.primary.contrastText,
+          color: "secondary.main",
         },
       })
     : null;
@@ -33,7 +31,7 @@ const NavbarButton = ({ text, icon, to, onClick }) => {
         <Typography
           variant="button"
           sx={{
-            color: theme.palette.primary.contrastText,
+            color: "secondary.main",
           }}
         >
           {text}
