@@ -8,7 +8,6 @@ import {
   Divider,
   Typography,
 } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
 import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 
@@ -18,16 +17,11 @@ the orders a user has made.
 @returns {JSX.Element} The JSX code for the AdminProducts component.
 */
 const AdminProducts = () => {
-  // Import the custom theme from theme.js
-  const theme = useTheme();
   const navigate = useNavigate();
   return (
     <StandardCenteredBox>
       <StandardCenteredCard>
-        <CardHeader
-          title="Products"
-          sx={{ color: theme.palette.primary.contrastText }}
-        />
+        <CardHeader title="Products" sx={{ color: "secondary.main" }} />
         <Divider />
         <CardContent>
           <Typography variant="body1">
