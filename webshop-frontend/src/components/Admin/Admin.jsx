@@ -64,7 +64,7 @@ const Admin = () => {
                 gutterBottom
                 variant="h5"
                 component="div"
-                sx={{ color: theme.palette.primary.contrastText }}
+                sx={{ color: "secondary.main" }}
               >
                 {section.title}
               </Typography>

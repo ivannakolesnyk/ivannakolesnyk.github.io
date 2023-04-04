@@ -9,7 +9,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   backgroundColor: "white",
-  color: "secondary",
+  color: "secondary.main",
 }));
 
 export default StyledToolbar;

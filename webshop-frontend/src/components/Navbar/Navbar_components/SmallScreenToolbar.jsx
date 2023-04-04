@@ -35,7 +35,7 @@ const SmallScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
   const CustomMenuItem = ({ to, text }) => {
     return (
       <MenuItem onClick={handleClose}>
-        <Typography variant="button" color="secondary">
+        <Typography variant="button">
           <Link to={to} style={{ textDecoration: "none" }}>
             {text}
           </Link>
@@ -90,7 +90,7 @@ const SmallScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
             handleClose();
           }}
         >
-          <Typography variant="button" color="secondary">
+          <Typography variant="button">
             <Link to={"/products"} style={{ textDecoration: "none" }}>
               Products
             </Link>
@@ -105,7 +105,7 @@ const SmallScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
               handleClose();
             }}
           >
-            <Typography variant="button" color="secondary">
+            <Typography variant="button">
               <Link to={"/"} style={{ textDecoration: "none" }}>
                 Log Out
               </Link>
