@@ -33,7 +33,11 @@ NavBar, which is meant for computer screens, tablets or larger screens.
           handleLogout={handleLogout}
         />
       ) : (
-        <BigScreenToolbar onProductsClick={onProductsClick} />
+        <BigScreenToolbar
+          onProductsClick={onProductsClick}
+          loggedIn={loggedIn}
+          handleLogout={handleLogout}
+        />
       )}
     </AppBar>
   );
