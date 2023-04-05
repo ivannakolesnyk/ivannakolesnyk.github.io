@@ -30,7 +30,7 @@ const StyledButton = styled(Button)({
   width: "100%",
 });
 
-const Login = () => {
+const Login = ({ handleLogin }) => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -39,6 +39,7 @@ const Login = () => {
   const tempHandleSubmit = (e) => {
     e.preventDefault();
     navigate("/profile");
+    handleLogin();
   };
 
   /*  Use this code when login API is ready:
