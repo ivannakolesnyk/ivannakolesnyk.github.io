@@ -3,7 +3,11 @@ import { Icon, InputBase } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 
-const SearchBar = () => {
+const SearchBar = ({ onSearchChange }) => {
+  const handleSearchChange = (event) => {
+    onSearchChange(event.target.value);
+  };
+
   return (
     <Box
       component="form"
@@ -22,7 +26,8 @@ const SearchBar = () => {
       <InputBase
         sx={{ ml: 1, flex: 1 }}
         placeholder="Search a product"
-        inputProps={{ "aria-label": "search google maps" }}
+        inputProps={{ "aria-label": "search a product" }}
+        onChange={handleSearchChange}
       />
     </Box>
   );

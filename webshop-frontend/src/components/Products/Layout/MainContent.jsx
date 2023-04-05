@@ -36,6 +36,7 @@ export const MainContent = ({
   isBigScreen,
   onCategoryClick,
   sortedProducts,
+  onSearchChange,
 }) => {
   return (
     <Grid
@@ -61,6 +62,7 @@ export const MainContent = ({
         handleSort={handleSort}
         isBigScreen={isBigScreen}
         onCategoryClick={onCategoryClick}
+        onSearchChange={onSearchChange}
       />
 
       <ProductGrid sortedProducts={sortedProducts} />

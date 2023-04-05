@@ -52,9 +52,16 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
       : productsOriginal;
   }, [selectedCategory, productsOriginal]);
 
-  const displayedProducts = showAllProducts
-    ? productsOriginal
-    : filteredProducts;
+  const [searchTerm, setSearchTerm] = useState("");
+  const displayedProducts = useMemo(() => {
+    const searchFilteredProducts = searchTerm
+      ? filteredProducts.filter((product) =>
+          product.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      : filteredProducts;
+
+    return showAllProducts ? productsOriginal : searchFilteredProducts;
+  }, [searchTerm, showAllProducts, filteredProducts, productsOriginal]);
 
   const [sortDirection, setSortDirection] = useState(null);
 
@@ -84,6 +91,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
     <Grid container spacing={0}>
       <Sidebar isBigScreen={isBigScreen} onCategoryClick={onCategoryClick} />
       <MainContent
+        onSearchChange={setSearchTerm}
         theme={theme}
         buttonStyles={buttonStyles}
         sortButtonMenu={sortButtonMenu}

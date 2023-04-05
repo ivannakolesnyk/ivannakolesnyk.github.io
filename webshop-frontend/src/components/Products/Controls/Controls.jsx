@@ -33,6 +33,7 @@ export const Controls = ({
   handleSort,
   isBigScreen,
   onCategoryClick,
+  onSearchChange,
 }) => {
   return (
     <>
@@ -63,7 +64,7 @@ export const Controls = ({
           handleSort={handleSort}
         />
 
-        <SearchBar />
+        <SearchBar onSearchChange={onSearchChange} />
       </Stack>
 
       {!isBigScreen ? (
