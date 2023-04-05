@@ -15,7 +15,7 @@ import LogIn from "./components/LogIn/LogIn";
 import RegisterNewUser from "./components/LogIn/RegisterNewUser";
 import Menu from "./components/Menu";
 import Navbar from "./components/Navbar/Navbar";
-import ProductDetails from "./components/Products/ProductDetails";
+import ProductDetails from "./components/Products/Product/ProductDetails";
 import Products from "./components/Products/Products";
 import Profile from "./components/Profile/Profile";
 import ProfileChangePW from "./components/Profile/ProfileChangePW";

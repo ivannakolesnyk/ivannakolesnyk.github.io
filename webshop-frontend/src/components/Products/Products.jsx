@@ -10,8 +10,8 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { Grid, useMediaQuery } from "@mui/material";
 import { useMemo, useState } from "react";
 import useFetch from "../../hooks/useFetch";
-import { MainContent } from "./MainContent";
-import { Sidebar } from "./Sidebar";
+import { MainContent } from "./Layout/MainContent";
+import { Sidebar } from "./Layout/Sidebar";
 
 /**
  * Products component that displays the list of products with filtering and sorting options.

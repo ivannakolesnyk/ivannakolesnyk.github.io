@@ -8,8 +8,8 @@ import { Box, Stack } from "@mui/system";
 import { Button, Typography } from "@mui/material";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import IconMenu from "./IconMenu";
-import SearchBar from "../SearchBar";
-import MobileCategory from "./MobileCategory";
+import SearchBar from "./SearchBar";
+import MobileCategory from "../Category/MobileCategory";
 import React from "react";
 
 /**

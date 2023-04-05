@@ -45,7 +45,7 @@ function ProductDetails() {
   };
 
   useEffect(() => {
-    import(`../../assets/img/${imagePath}`).then((module) => {
+    import(`../../../assets/img/${imagePath}`).then((module) => {
       setImageSrc(module.default);
     });
   }, [imagePath]);

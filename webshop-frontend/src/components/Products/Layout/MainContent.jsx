@@ -6,8 +6,8 @@
 
 import { Grid } from "@mui/material";
 import { PromoMessage } from "./PromoMessage";
-import { Controls } from "./Controls";
-import { ProductGrid } from "./ProductGrid";
+import { Controls } from "../Controls/Controls";
+import { ProductGrid } from "../Product/ProductGrid";
 import React from "react";
 
 /**

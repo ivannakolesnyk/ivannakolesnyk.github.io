@@ -5,7 +5,7 @@
  */
 
 import { Grid } from "@mui/material";
-import Category from "./Category";
+import Category from "../Category/Category";
 import React from "react";
 
 /**

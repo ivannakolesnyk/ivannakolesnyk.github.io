@@ -9,8 +9,8 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import React from "react";
-import ProductCard from "./Products/ProductCard";
-import SearchBar from "./SearchBar";
+import ProductCard from "./Products/Product/ProductCard";
+import SearchBar from "./Products/Controls/SearchBar";
 
 const menuBar = ["special offers", "hot drinks", "cold drinks", "food"];
 let menu = [
