@@ -193,11 +193,13 @@ const Menu = () => {
           <Grid container spacing={2.5}>
             {products.map(({ id, productName, imagePath }) => (
               <Grid item key={id} xs={12} sm={6} md={4} lg={4}>
-                <ProductCard
-                  productName={productName}
-                  imagePath={imagePath}
-                  isClickable={false}
-                />
+                <Box textAlign={"center"}>
+                  <ProductCard
+                    productName={productName}
+                    imagePath={imagePath}
+                    isClickable={false}
+                  />
+                </Box>
               </Grid>
             ))}
           </Grid>
