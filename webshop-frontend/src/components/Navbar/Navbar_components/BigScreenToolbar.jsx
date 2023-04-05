@@ -23,11 +23,11 @@ const leftNavItems = [
 
 const rightNavItems = [
   { text: "Find us", to: "/findus", icon: <PlaceOutlinedIcon /> },
-  { text: "Log in", to: "/login", icon: <Person2OutlinedIcon /> },
+  //{ text: "Log in", to: "/login", icon: <Person2OutlinedIcon /> },
   { to: "/shoppingcart", icon: <ShoppingCartIcon /> },
 ];
 
-const BigScreenToolbar = ({ onProductsClick }) => {
+const BigScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
   return (
     <StyledToolbar>
       <div
@@ -85,6 +85,22 @@ const BigScreenToolbar = ({ onProductsClick }) => {
             icon={item.icon}
           />
         ))}
+        {loggedIn ? (
+          <NavbarButton
+            text="Log out"
+            to="/"
+            icon={<Person2OutlinedIcon />}
+            onClick={() => {
+              handleLogout();
+            }}
+          />
+        ) : (
+          <NavbarButton
+            text="Log in"
+            to="/login"
+            icon={<Person2OutlinedIcon />}
+          />
+        )}
       </div>
     </StyledToolbar>
   );
