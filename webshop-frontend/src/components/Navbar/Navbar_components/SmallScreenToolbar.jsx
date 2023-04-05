@@ -79,7 +79,7 @@ const SmallScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
         }}
       >
         <CustomMenuItem to="/" text="Home" />
-        {loggedIn && <CustomMenuItem to="/profile" text="My Profile" />}
+        {loggedIn && <CustomMenuItem to="/profile" text="My account" />}
         <CustomMenuItem to="/menu" text="Menu" />
         <MenuItem
           component={Link}

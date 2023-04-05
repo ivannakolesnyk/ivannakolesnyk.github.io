@@ -1,20 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-  ShoppingCart as ShoppingCartIcon,
-  PlaceOutlined as PlaceOutlinedIcon,
   Person2Outlined as Person2OutlinedIcon,
+  PlaceOutlined as PlaceOutlinedIcon,
+  ShoppingCart as ShoppingCartIcon,
 } from "@mui/icons-material";
 import coffeeLogo from "../../../assets/img/logos/logo_bigscreen.png";
 import StyledToolbar from "./StyledToolbar";
 import NavbarButton from "./NavbarButton";
+import * as PropTypes from "prop-types";
+import { AccountMenu } from "./AccountMenu";
+import { AccountTooltip } from "./AccountTooltip";
 
-/**
- * The BigScreenToolbar component displays a navigation bar for the website
- * when the screen is large. It consists of a logo, and a menu with links to different pages
- * on the website. Some with just text. Others with appropriate icons.
- * @returns {JSX.Element} The JSX code for the BigScreenToolbar component.
- */
 const leftNavItems = [
   { text: "Menu", to: "/menu" },
   { text: "Products", to: "/products" },
@@ -27,7 +24,39 @@ const rightNavItems = [
   { to: "/shoppingcart", icon: <ShoppingCartIcon /> },
 ];
 
+AccountMenu.propTypes = {
+  anchorEl: PropTypes.any,
+  open: PropTypes.bool,
+  onClose: PropTypes.func,
+  onClick: PropTypes.func,
+};
+
+AccountTooltip.propTypes = {
+  onClick: PropTypes.func,
+  open: PropTypes.bool,
+};
+
+/**
+
+ The BigScreenToolbar component displays a navigation bar for the website
+ when the screen is large. It consists of a logo, and a menu with links to different pages
+ on the website. Some with just text, others with appropriate icons. If the user is logged in,
+ an account menu is shown when clicking on an avatar icon, otherwise, a "Log in" button is displayed.
+ @param {Object} props - The component props.
+ @param {Function} props.onProductsClick - The function to call when the "Products" button is clicked.
+ @param {boolean} props.loggedIn - Indicates whether the user is logged in or not.
+ @param {Function} props.handleLogout - The function to call when the user logs out.
+ @returns {JSX.Element} The JSX code for the BigScreenToolbar component.
+ */
 const BigScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <StyledToolbar>
       <div
@@ -86,14 +115,7 @@ const BigScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
           />
         ))}
         {loggedIn ? (
-          <NavbarButton
-            text="Log out"
-            to="/"
-            icon={<Person2OutlinedIcon />}
-            onClick={() => {
-              handleLogout();
-            }}
-          />
+          <AccountTooltip onClick={handleClick} open={open} />
         ) : (
           <NavbarButton
             text="Log in"
@@ -101,6 +123,15 @@ const BigScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
             icon={<Person2OutlinedIcon />}
           />
         )}
+        <AccountMenu
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          onClick={() => {
+            handleLogout();
+            handleClose();
+          }}
+        />
       </div>
     </StyledToolbar>
   );
