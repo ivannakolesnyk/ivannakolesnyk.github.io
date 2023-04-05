@@ -4,6 +4,7 @@
  */
 package no.ntnu.idata2306.group1.webshopbackend.model.data;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -18,6 +19,7 @@ import java.util.Set;
  *
  * @author julian
  */
+@Entity(name = "users")
 public class User {
     @Id
     @GeneratedValue
