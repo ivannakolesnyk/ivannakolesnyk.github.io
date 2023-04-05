@@ -49,19 +49,19 @@ public class DataLoader implements CommandLineRunner {
 
       // Create and save products
       productRepository.save(new Product("Espresso", 2.50, false, "A strong and bold coffee.",
-          "products/coffee/coffee1-min.png", 100, coffee));
+          "Coffee image", "products/coffee/coffee1-min.png", 100, coffee));
       productRepository.save(new Product("Green Tea", 1.75, true, "A refreshing and healthy drink.",
-          "products/tea/tea1-min.png", 50, tea));
+          "Tea image", "products/tea/tea1-min.png", 50, tea));
       productRepository.save(new Product("Croissant", 2.00, false, "A flaky and buttery pastry.",
-          "products/snacks/brown_macarons.png", 20, pastry));
+          "Pastry image", "products/snacks/brown_macarons.png", 20, pastry));
       productRepository
           .save(new Product("Sandwich", 4.00, false, "A delicious sandwich with various fillings.",
-              "products/snacks/cho_cookie.png", 30, food));
+              "Sandwich image", "products/snacks/cho_cookie.png", 30, food));
       productRepository.save(new Product("Cookie", 1.00, true, "A sweet and crunchy snack.",
-          "products/snacks/chocolate_bar.png", 100, snack));
+          "Cookie image", "products/snacks/chocolate_bar.png", 100, snack));
       productRepository.save(
           new Product("Coffee Maker", 49.99, false, "A high-quality coffee maker for home use.",
-              "products/equipment/coffee_machin.png", 10, equipment));
+              "Coffee maker image", "products/equipment/coffee_machin.png", 10, equipment));
     }
   }
 

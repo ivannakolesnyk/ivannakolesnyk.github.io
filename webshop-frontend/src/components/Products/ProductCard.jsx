@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 function ProductCard({
   id,
   imagePath,
+  imageAlt,
   productName,
   price,
   isClickable,
@@ -50,7 +51,7 @@ function ProductCard({
       <LazyLoad offset={300}>
         <CardMedia
           component="img"
-          alt="green iguana"
+          alt={imageAlt}
           src={imageSrc}
           sx={{
             display: "flex",
