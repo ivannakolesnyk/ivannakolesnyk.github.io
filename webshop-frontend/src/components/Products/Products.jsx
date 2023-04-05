@@ -4,13 +4,13 @@ import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { Button, Grid, Typography, useMediaQuery } from "@mui/material";
 import { Box, Stack } from "@mui/system";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
+import useFetch from "../../hooks/useFetch";
 import SearchBar from "../SearchBar";
 import Category from "./Category";
 import IconMenu from "./IconMenu";
 import MobileCategory from "./MobileCategory";
 import ProductCard from "./ProductCard";
-import useFetch from "../../hooks/useFetch";
 
 const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
   // Fetching product data from API
