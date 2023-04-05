@@ -1,16 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import {
   Person2Outlined as Person2OutlinedIcon,
   PlaceOutlined as PlaceOutlinedIcon,
   ShoppingCart as ShoppingCartIcon,
 } from "@mui/icons-material";
-import coffeeLogo from "../../../assets/img/logos/logo_bigscreen.png";
-import StyledToolbar from "./StyledToolbar";
-import NavbarButton from "./NavbarButton";
 import * as PropTypes from "prop-types";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import coffeeLogo from "../../../assets/img/logos/logo_bigscreen.png";
 import { AccountMenu } from "./AccountMenu";
 import { AccountTooltip } from "./AccountTooltip";
+import NavbarButton from "./NavbarButton";
+import StyledToolbar from "./StyledToolbar";
+import { ProductsContext } from "../../../context/ProductsContext";
 
 const leftNavItems = [
   { text: "Menu", to: "/menu" },
@@ -43,12 +44,12 @@ AccountTooltip.propTypes = {
  on the website. Some with just text, others with appropriate icons. If the user is logged in,
  an account menu is shown when clicking on an avatar icon, otherwise, a "Log in" button is displayed.
  @param {Object} props - The component props.
- @param {Function} props.onProductsClick - The function to call when the "Products" button is clicked.
  @param {boolean} props.loggedIn - Indicates whether the user is logged in or not.
  @param {Function} props.handleLogout - The function to call when the user logs out.
  @returns {JSX.Element} The JSX code for the BigScreenToolbar component.
  */
-const BigScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
+const BigScreenToolbar = ({ loggedIn, handleLogout }) => {
+  const { handleProductsClick } = useContext(ProductsContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -72,7 +73,7 @@ const BigScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
             key={item.to}
             text={item.text}
             to={item.to}
-            onClick={item.text === "Products" ? onProductsClick : undefined}
+            onClick={item.text === "Products" ? handleProductsClick : undefined}
           />
         ))}
       </div>

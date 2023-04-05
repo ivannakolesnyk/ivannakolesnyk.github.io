@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import smallCoffeeLogo from "../../../assets/img/logos/logo_smallscreen.png";
@@ -6,18 +6,19 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import StyledToolbar from "./StyledToolbar";
 import { MenuItem } from "@mui/material";
+import { ProductsContext } from "../../../context/ProductsContext";
 
 /**
  * The SmallScreenToolbar component is used to display a navigation bar for small screen devices.
  * It consists of a logo and a hamburger menu icon that opens a dropdown menu with links to
  * different pages on the website.
  *
- * @param {function} onProductsClick - Function to call when Products menu item is clicked.
  * @param {boolean} loggedIn - Indicates whether the user is logged in or not.
  * @param {function} handleLogout - Function to call when user logs out.
  * @returns {JSX.Element} The JSX code for the SmallScreenToolbar component.
  */
-const SmallScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
+const SmallScreenToolbar = ({ loggedIn, handleLogout }) => {
+  const { handleProductsClick } = useContext(ProductsContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -85,7 +86,7 @@ const SmallScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
           component={Link}
           to="/products"
           onClick={() => {
-            onProductsClick();
+            handleProductsClick();
             handleClose();
           }}
         >

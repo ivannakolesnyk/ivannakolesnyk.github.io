@@ -15,11 +15,11 @@ import React from "react";
  * @param {function} props.onCategoryChange - Callback function for when a category is selected.
  * @returns {React.Element} The Sidebar component.
  */
-export const Sidebar = ({ isBigScreen, onCategoryClick }) => {
+export const Sidebar = ({ isBigScreen }) => {
   if (!isBigScreen) return null;
   return (
     <Grid item sm={12} md={2.5} lg={2} xl={1.7} p={4}>
-      <Category onCategoryChange={onCategoryClick} />
+      <Category />
     </Grid>
   );
 };

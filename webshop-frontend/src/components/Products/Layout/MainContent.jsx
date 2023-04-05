@@ -34,7 +34,6 @@ export const MainContent = ({
   sortSetAnchorEl,
   handleSort,
   isBigScreen,
-  onCategoryClick,
   sortedProducts,
   onSearchChange,
 }) => {
@@ -61,7 +60,6 @@ export const MainContent = ({
         sortSetAnchorEl={sortSetAnchorEl}
         handleSort={handleSort}
         isBigScreen={isBigScreen}
-        onCategoryClick={onCategoryClick}
         onSearchChange={onSearchChange}
       />
 

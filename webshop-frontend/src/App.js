@@ -24,18 +24,6 @@ import ProfileViewOrders from "./components/Profile/ProfileViewOrders";
 import ShoppingCart from "./components/ShoppingCart";
 
 function App() {
-  const [showAllProducts, setShowAllProducts] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("");
-
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-    setShowAllProducts(false);
-  };
-
-  const handleProductsClick = () => {
-    setShowAllProducts(true);
-  };
-
   // handle logging in and out, keeping track of the state
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -50,26 +38,13 @@ function App() {
   return (
     <BrowserRouter>
       <Box display="flex" flexDirection="column" minHeight="100vh">
-        <Navbar
-          onProductsClick={handleProductsClick}
-          loggedIn={loggedIn}
-          handleLogout={handleLogout}
-        />
+        <Navbar loggedIn={loggedIn} handleLogout={handleLogout} />
         <Box flex="1">
           <Routes>
             <Route path="/" element={<Frontpage />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/menu" element={<Menu />} />
-            <Route
-              path="/products"
-              element={
-                <Products
-                  selectedCategory={selectedCategory}
-                  showAllProducts={showAllProducts}
-                  onCategoryClick={handleCategoryClick}
-                />
-              }
-            />
+            <Route path="/products" element={<Products />} />
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/findus" element={<FindUs />} />
             <Route

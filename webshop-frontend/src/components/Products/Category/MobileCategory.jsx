@@ -12,10 +12,12 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
+import { ProductsContext } from "../../../context/ProductsContext";
 
-const MobileCategory = ({ onCategoryChange }) => {
+const MobileCategory = () => {
   const theme = useTheme();
+  const { handleCategoryClick } = useContext(ProductsContext);
 
   const iconStyle = {
     color: theme.palette.primary.contrastText,
@@ -37,10 +39,6 @@ const MobileCategory = ({ onCategoryChange }) => {
     },
   ];
 
-  const handleClick = (category) => {
-    onCategoryChange(category);
-  };
-
   return (
     <List
       sx={{
@@ -54,7 +52,7 @@ const MobileCategory = ({ onCategoryChange }) => {
         {categories.map(({ name, icon: Icon }, index) => (
           <ListItemButton
             key={index}
-            onClick={() => handleClick(name)}
+            onClick={() => handleCategoryClick(name)}
             sx={{
               flexGrow: 0,
               "& .MuiListItemIcon-root, & .MuiListItemText-root": {

@@ -8,10 +8,11 @@ import { useTheme } from "@emotion/react";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { Grid, useMediaQuery } from "@mui/material";
-import { useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import { MainContent } from "./Layout/MainContent";
 import { Sidebar } from "./Layout/Sidebar";
+import { ProductsContext } from "../../context/ProductsContext";
 
 /**
  * Products component that displays the list of products with filtering and sorting options.
@@ -22,7 +23,9 @@ import { Sidebar } from "./Layout/Sidebar";
  * @param {function} props.onCategoryClick - Callback function for when a category is clicked.
  * @returns {React.Element} The Products component.
  */
-const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
+const Products = () => {
+  const { selectedCategory, showAllProducts } = useContext(ProductsContext);
+
   // Fetching product data from API
   const { data: productsOriginal } = useFetch("products");
 
@@ -41,39 +44,40 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
   ];
 
   // optimize the performance by memoizing the output of the filtering function
-  const filteredProducts = useMemo(() => {
-    if (selectedCategory === "Sale") {
-      return productsOriginal.filter((product) => product.sale === true);
-    }
-    return selectedCategory
-      ? productsOriginal.filter(
-          (product) => product.category.name === selectedCategory
-        )
-      : productsOriginal;
-  }, [selectedCategory, productsOriginal]);
-
   const [searchTerm, setSearchTerm] = useState("");
-  const displayedProducts = useMemo(() => {
-    const searchFilteredProducts = searchTerm
-      ? filteredProducts.filter((product) =>
-          product.name.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-      : filteredProducts;
+  const filteredProducts = useMemo(() => {
+    let productsToFilter = productsOriginal;
 
-    return showAllProducts ? productsOriginal : searchFilteredProducts;
-  }, [searchTerm, showAllProducts, filteredProducts, productsOriginal]);
+    if (selectedCategory === "Sale") {
+      productsToFilter = productsToFilter.filter(
+        (product) => product.sale === true
+      );
+    } else if (selectedCategory) {
+      productsToFilter = productsToFilter.filter(
+        (product) => product.category.name === selectedCategory
+      );
+    }
+
+    if (searchTerm) {
+      productsToFilter = productsToFilter.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    return showAllProducts ? productsOriginal : productsToFilter;
+  }, [selectedCategory, productsOriginal, searchTerm, showAllProducts]);
 
   const [sortDirection, setSortDirection] = useState(null);
 
   const sortedProducts = useMemo(() => {
-    const sorted = [...displayedProducts];
+    const sorted = [...filteredProducts];
     if (sortDirection === "asc") {
       sorted.sort((a, b) => a.price - b.price);
     } else if (sortDirection === "desc") {
       sorted.sort((a, b) => b.price - a.price);
     }
     return sorted;
-  }, [displayedProducts, sortDirection]);
+  }, [filteredProducts, sortDirection]);
 
   const handleSort = (direction) => {
     setSortDirection(direction);
@@ -89,7 +93,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
 
   return (
     <Grid container spacing={0}>
-      <Sidebar isBigScreen={isBigScreen} onCategoryClick={onCategoryClick} />
+      <Sidebar isBigScreen={isBigScreen} />
       <MainContent
         onSearchChange={setSearchTerm}
         theme={theme}
@@ -99,7 +103,6 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
         sortSetAnchorEl={sortSetAnchorEl}
         handleSort={handleSort}
         isBigScreen={isBigScreen}
-        onCategoryClick={onCategoryClick}
         sortedProducts={sortedProducts}
       />
     </Grid>

@@ -12,9 +12,11 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
+import { ProductsContext } from "../../../context/ProductsContext";
 
-const Category = ({ onCategoryChange }) => {
+const Category = () => {
+  const { handleCategoryClick } = useContext(ProductsContext);
   const theme = useTheme();
 
   const iconStyle = {
@@ -37,10 +39,6 @@ const Category = ({ onCategoryChange }) => {
     },
   ];
 
-  const handleClick = (category) => {
-    onCategoryChange(category);
-  };
-
   return (
     <Box>
       <Typography color={theme.palette.primary.contrastText} variant="h5">
@@ -56,7 +54,7 @@ const Category = ({ onCategoryChange }) => {
         aria-labelledby="nested-list-subheader"
       >
         {categories.map(({ name, icon: Icon }, index) => (
-          <ListItemButton key={index} onClick={() => handleClick(name)}>
+          <ListItemButton key={index} onClick={() => handleCategoryClick(name)}>
             <ListItemIcon>
               <Icon
                 sx={{

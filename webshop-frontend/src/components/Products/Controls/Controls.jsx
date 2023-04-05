@@ -32,7 +32,6 @@ export const Controls = ({
   sortSetAnchorEl,
   handleSort,
   isBigScreen,
-  onCategoryClick,
   onSearchChange,
 }) => {
   return (
@@ -69,7 +68,7 @@ export const Controls = ({
 
       {!isBigScreen ? (
         <Box mb={1}>
-          <MobileCategory onCategoryChange={onCategoryClick} />
+          <MobileCategory />
         </Box>
       ) : null}
     </>
