@@ -5,7 +5,7 @@ import smallCoffeeLogo from "../../../assets/img/logos/logo_smallscreen.png";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import StyledToolbar from "./StyledToolbar";
-import { MenuItem, Typography } from "@mui/material";
+import { MenuItem } from "@mui/material";
 
 /**
  * The SmallScreenToolbar component is used to display a navigation bar for small screen devices.
@@ -34,12 +34,8 @@ const SmallScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
    */
   const CustomMenuItem = ({ to, text }) => {
     return (
-      <MenuItem onClick={handleClose}>
-        <Typography variant="button">
-          <Link to={to} style={{ textDecoration: "none" }}>
-            {text}
-          </Link>
-        </Typography>
+      <MenuItem component={Link} to={to} onClick={handleClose}>
+        {text}
       </MenuItem>
     );
   };
@@ -59,8 +55,8 @@ const SmallScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
         />
       </Link>
       <Button
-        color="secondary"
         id="menu-button"
+        color="secondary"
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
@@ -74,7 +70,7 @@ const SmallScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
       </Button>
 
       <Menu
-        id="menu-button"
+        id="basic-menu"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -86,32 +82,28 @@ const SmallScreenToolbar = ({ onProductsClick, loggedIn, handleLogout }) => {
         {loggedIn && <CustomMenuItem to="/profile" text="My Profile" />}
         <CustomMenuItem to="/menu" text="Menu" />
         <MenuItem
+          component={Link}
+          to="/products"
           onClick={() => {
             onProductsClick();
             handleClose();
           }}
         >
-          <Typography variant="button">
-            <Link to={"/products"} style={{ textDecoration: "none" }}>
-              Products
-            </Link>
-          </Typography>
+          Products
         </MenuItem>
         <CustomMenuItem to="/about" text="About us" />
         <CustomMenuItem to="/findus" text="Find us" />
         <CustomMenuItem to="/shoppingcart" text="Shopping cart" />
         {loggedIn ? (
           <MenuItem
+            component={Link}
+            to="/"
             onClick={() => {
               handleLogout();
               handleClose();
             }}
           >
-            <Typography variant="button">
-              <Link to={"/"} style={{ textDecoration: "none" }}>
-                Log Out
-              </Link>
-            </Typography>
+            Log out
           </MenuItem>
         ) : (
           <CustomMenuItem to="/login" text="Log in" />
