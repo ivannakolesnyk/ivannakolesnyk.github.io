@@ -1,3 +1,9 @@
+/**
+ * @file Represents the Controls component, which is responsible for displaying the sort and search
+ * controls to the user.
+ * @module Controls
+ */
+
 import { Box, Stack } from "@mui/system";
 import { Button, Typography } from "@mui/material";
 import FilterListIcon from "@mui/icons-material/FilterList";
@@ -6,6 +12,19 @@ import SearchBar from "../SearchBar";
 import MobileCategory from "./MobileCategory";
 import React from "react";
 
+/**
+ * Controls component that displays the sort and search controls.
+ *
+ * @param {Object} props - The properties passed to the component.
+ * @param {Object} props.buttonStyles - The styles for the sort button.
+ * @param {Array} props.sortButtonMenu - The sort button menu items.
+ * @param {React.Element} props.sortAnchorEl - The anchor element for the sort menu.
+ * @param {function} props.sortSetAnchorEl - Callback function for setting the sort menu anchor element.
+ * @param {function} props.handleSort - Callback function for handling the sort action.
+ * @param {boolean} props.isBigScreen - Whether the current screen size is considered big.
+ * @param {function} props.onCategoryClick - Callback function for when a category is clicked.
+ * @returns {React.Element} The Controls component.
+ */
 export const Controls = ({
   buttonStyles,
   sortButtonMenu,

@@ -1,12 +1,27 @@
+/**
+ * @file Represents the Products component, which is responsible for displaying the products and
+ * their respective controls, such as category selection, search, and sorting.
+ * @module Products
+ */
+
 import { useTheme } from "@emotion/react";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { Grid, useMediaQuery } from "@mui/material";
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import useFetch from "../../hooks/useFetch";
-import { Sidebar } from "./Sidebar";
 import { MainContent } from "./MainContent";
+import { Sidebar } from "./Sidebar";
 
+/**
+ * Products component that displays the list of products with filtering and sorting options.
+ *
+ * @param {Object} props - The properties passed to the component.
+ * @param {string} props.selectedCategory - The currently selected product category.
+ * @param {boolean} props.showAllProducts - Whether to show all products or only the filtered ones.
+ * @param {function} props.onCategoryClick - Callback function for when a category is clicked.
+ * @returns {React.Element} The Products component.
+ */
 const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
   // Fetching product data from API
   const { data: productsOriginal } = useFetch("products");
@@ -25,6 +40,7 @@ const Products = ({ selectedCategory, showAllProducts, onCategoryClick }) => {
     },
   ];
 
+  // optimize the performance by memoizing the output of the filtering function
   const filteredProducts = useMemo(() => {
     if (selectedCategory === "Sale") {
       return productsOriginal.filter((product) => product.sale === true);

@@ -1,7 +1,19 @@
-import { Box } from "@mui/system";
-import { Typography } from "@mui/material";
-import React from "react";
+/**
+ * @file Represents the PromoMessage component, which is responsible for displaying a promotional
+ * message to the user.
+ * @module PromoMessage
+ */
 
+import { Typography } from "@mui/material";
+import { Box } from "@mui/system";
+
+/**
+ * PromoMessage component that displays a promotional message to the user.
+ *
+ * @param {Object} props - The properties passed to the component.
+ * @param {Object} props.theme - The theme object from Material-UI.
+ * @returns {React.Element} The PromoMessage component.
+ */
 export const PromoMessage = ({ theme }) => {
   return (
     <Box
