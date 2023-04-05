@@ -1,11 +1,8 @@
-import { Typography, Button, Stack, Paper, Grid } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import banner from "../assets/img/banner.png";
+import { Button, Grid, Paper, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import banner from "../assets/img/banner.png";
 
 const BannerSection = () => {
-  const theme = useTheme();
-
   return (
     <Stack
       height={"80vh"}

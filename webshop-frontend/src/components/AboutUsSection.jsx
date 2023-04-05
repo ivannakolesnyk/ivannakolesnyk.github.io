@@ -1,14 +1,11 @@
+import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Typography, Button, Grid, Box } from "@mui/material";
-import boxImage from "../assets/img/aboutus/box.png";
-import productsBoxImage from "../assets/img/aboutus/productsbox.png";
-import productsImage from "../assets/img/aboutus/products.png";
 import { Link } from "react-router-dom";
+import boxImage from "../assets/img/aboutus/box.png";
+import productsImage from "../assets/img/aboutus/products.png";
+import productsBoxImage from "../assets/img/aboutus/productsbox.png";
 
 const AboutUsSection = () => {
-  const theme = useTheme();
-
   return (
     <Box sx={{ py: 8 }}>
       <Typography

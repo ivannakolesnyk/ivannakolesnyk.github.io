@@ -1,11 +1,8 @@
-import { Typography, Button, Stack, Paper, Grid } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import backgroundImage from "../assets/img/home.png";
+import { Button, Grid, Paper, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import backgroundImage from "../assets/img/home.png";
 
 const MainSection = () => {
-  const theme = useTheme();
-
   return (
     <Stack
       height={"70vh"}
