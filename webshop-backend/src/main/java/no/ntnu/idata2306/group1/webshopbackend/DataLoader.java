@@ -1,5 +1,6 @@
 package no.ntnu.idata2306.group1.webshopbackend;
 
+import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
@@ -49,19 +50,23 @@ public class DataLoader implements CommandLineRunner {
 
       // Create and save products
       productRepository.save(new Product("Espresso", 2.50, false, "A strong and bold coffee.",
-          "Coffee image", "products/coffee/coffee1-min.png", 100, coffee));
+          List.of("coffe", "sugar", "something"), "Coffee image", "products/coffee/coffee1-min.png",
+          100, coffee));
       productRepository.save(new Product("Green Tea", 1.75, true, "A refreshing and healthy drink.",
-          "Tea image", "products/tea/tea1-min.png", 50, tea));
+          List.of("tea", "sugar", "something"), "Tea image", "products/tea/tea1-min.png", 50, tea));
       productRepository.save(new Product("Croissant", 2.00, false, "A flaky and buttery pastry.",
-          "Pastry image", "products/snacks/brown_macarons.png", 20, pastry));
+          List.of("something", "something", "something"), "Pastry image",
+          "products/snacks/brown_macarons.png", 20, pastry));
       productRepository
           .save(new Product("Sandwich", 4.00, false, "A delicious sandwich with various fillings.",
-              "Sandwich image", "products/snacks/cho_cookie.png", 30, food));
+              List.of("something", "something", "something"), "Sandwich image",
+              "products/snacks/cho_cookie.png", 30, food));
       productRepository.save(new Product("Cookie", 1.00, true, "A sweet and crunchy snack.",
-          "Cookie image", "products/snacks/chocolate_bar.png", 100, snack));
-      productRepository.save(
-          new Product("Coffee Maker", 49.99, false, "A high-quality coffee maker for home use.",
-              "Coffee maker image", "products/equipment/coffee_machin.png", 10, equipment));
+          List.of("something", "something", "something"), "Cookie image",
+          "products/snacks/chocolate_bar.png", 100, snack));
+      productRepository.save(new Product("Coffee Maker", 49.99, false,
+          "A high-quality coffee maker for home use.", List.of(), "Coffee maker image",
+          "products/equipment/coffee_machin.png", 10, equipment));
     }
   }
 

@@ -4,6 +4,8 @@
  */
 package no.ntnu.idata2306.group1.webshopbackend.model.data;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
@@ -27,6 +29,7 @@ public class Product {
     private double price;
     private boolean sale;
     private String description;
+    private List<String> ingredients;
     private String imageAlt;
     @JsonProperty("product_image")
     private String product_image;
@@ -39,12 +42,14 @@ public class Product {
 
     public Product() {}
 
-    public Product(String name, double price, boolean sale, String description, String imageAlt,
-            String product_image, int qty_in_stock, Category category) {
+    public Product(String name, double price, boolean sale, String description,
+            List<String> ingredients, String imageAlt, String product_image, int qty_in_stock,
+            Category category) {
         this.name = name;
         this.price = price;
         this.sale = sale;
         this.description = description;
+        this.ingredients = ingredients;
         this.imageAlt = imageAlt;
         this.product_image = product_image;
         this.qty_in_stock = qty_in_stock;
@@ -71,6 +76,10 @@ public class Product {
         return this.description;
     }
 
+    public List<String> getIngredients() {
+        return this.ingredients;
+    }
+
     public String getImageAlt() {
         return this.imageAlt;
     }
@@ -93,6 +102,10 @@ public class Product {
 
     public void setImageAlt(String imageAlt) {
         this.imageAlt = imageAlt;
+    }
+
+    public void setIngredients(List<String> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public void setQtyInStock(int qty_in_stock) {
