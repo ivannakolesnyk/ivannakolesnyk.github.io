@@ -94,7 +94,7 @@ function ProductCard({
   );
 
   return isClickable ? (
-    <Link to={`/product/${id}`} style={{ textDecoration: "none" }}>
+    <Link to={`/products/${id}`} style={{ textDecoration: "none" }}>
       <CardActionArea>{content}</CardActionArea>
     </Link>
   ) : (
