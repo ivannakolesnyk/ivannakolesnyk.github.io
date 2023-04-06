@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,6 +40,18 @@ public class ProductController {
                     this.productRepository.findByNameContainingIgnoreCase(name), HttpStatus.OK);
         } else {
             response = new ResponseEntity(this.productRepository.findAll(), HttpStatus.OK);
+        }
+        return response;
+    }
+
+    @GetMapping("/products/{id}")
+    public ResponseEntity getProductById(@PathVariable Integer id) {
+        ResponseEntity response;
+        Optional<Product> productOptional = this.productRepository.findById(id);
+        if (productOptional.isPresent()) {
+            response = new ResponseEntity(productOptional.get(), HttpStatus.OK);
+        } else {
+            response = new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         return response;
     }
