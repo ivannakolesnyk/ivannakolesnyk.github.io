@@ -10,7 +10,7 @@ import AdminTestimonials from "./components/Admin/AdminTestimonials";
 import AdminViewOrders from "./components/Admin/AdminViewOrders";
 import FindUs from "./components/FindUs";
 import Footer from "./components/Footer";
-import Frontpage from "./components/Frontpage";
+import Frontpage from "./components/Home/Frontpage";
 import LogIn from "./components/LogIn/LogIn";
 import RegisterNewUser from "./components/LogIn/RegisterNewUser";
 import Menu from "./components/Menu";
