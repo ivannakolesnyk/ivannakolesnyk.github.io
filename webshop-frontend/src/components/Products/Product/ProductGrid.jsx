@@ -27,6 +27,7 @@ export const ProductGrid = ({ sortedProducts }) => {
             imagePath={productImage}
             imageAlt={imageAlt}
             isClickable={true}
+            productData={sortedProducts}
           />
         </Grid>
       ))}

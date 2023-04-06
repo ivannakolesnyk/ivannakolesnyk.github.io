@@ -7,11 +7,14 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 
 function ProductDetails() {
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
+  const location = useLocation();
+  const productData = location.state?.product;
+
+  const [product, setProduct] = useState(productData);
 
   const fetchProductDetails = async (id) => {
     // Replace this URL with your actual API endpoint
@@ -22,8 +25,10 @@ function ProductDetails() {
   };
 
   useEffect(() => {
-    fetchProductDetails(id);
-  }, [id]);
+    if (!productData) {
+      fetchProductDetails(id);
+    }
+  }, [id, productData]);
 
   const [imageSrc, setImageSrc] = useState("");
   const [quantity, setQuantity] = useState(1);

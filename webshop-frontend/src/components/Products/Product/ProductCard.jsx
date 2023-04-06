@@ -12,6 +12,7 @@ import LazyLoad from "react-lazy-load";
 import { Link } from "react-router-dom";
 
 function ProductCard({
+  productData,
   id,
   imagePath,
   imageAlt,
@@ -94,7 +95,13 @@ function ProductCard({
   );
 
   return isClickable ? (
-    <Link to={`/products/${id}`} style={{ textDecoration: "none" }}>
+    <Link
+      to={{
+        pathname: `/products/${id}`,
+        state: { product: productData },
+      }}
+      style={{ textDecoration: "none" }}
+    >
       <CardActionArea>{content}</CardActionArea>
     </Link>
   ) : (
