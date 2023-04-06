@@ -7,32 +7,24 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import React, { useEffect, useState } from "react";
-
-const product = {
-  imagePath: "products/coffee/coffee1-min.png",
-  name: "Coffee",
-  price: 67,
-  description:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  ingredients: ["milk", "beans", "sugar"],
-};
+import { useParams } from "react-router";
 
 function ProductDetails() {
-  //   const { id } = useParams();
-  //   const [product, setProduct] = useState(null);
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
 
-  //   const fetchProductDetails = async (id) => {
-  //     // Replace this URL with your actual API endpoint
-  //     const response = await fetch(`https://your-api/products/${id}`);
-  //     const data = await response.json();
+  const fetchProductDetails = async (id) => {
+    // Replace this URL with your actual API endpoint
+    const response = await fetch(`http://localhost:8080/products/${id}`);
+    const data = await response.json();
 
-  //     setProduct(data);
-  //   };
+    setProduct(data);
+  };
 
-  //   useEffect(() => {
-  //     fetchProductDetails(id);
-  //   }, [id]);
-  const { imagePath, name, price, description, ingredients } = product;
+  useEffect(() => {
+    fetchProductDetails(id);
+  }, [id]);
+
   const [imageSrc, setImageSrc] = useState("");
   const [quantity, setQuantity] = useState(1);
 
@@ -45,10 +37,13 @@ function ProductDetails() {
   };
 
   useEffect(() => {
-    import(`../../../assets/img/${imagePath}`).then((module) => {
-      setImageSrc(module.default);
-    });
-  }, [imagePath]);
+    if (product) {
+      import(`../../../assets/img/${product.product_image}`).then((module) => {
+        setImageSrc(module.default);
+      });
+    }
+  }, [product]);
+
   return (
     <div>
       {product ? (
@@ -64,31 +59,33 @@ function ProductDetails() {
                 <Box
                   component="img"
                   src={imageSrc}
-                  alt={name}
+                  alt={product.name}
                   sx={{ width: "70%", height: "auto" }}
                 />
               </Box>
             </Grid>
             <Grid item xs={6} sx={{ color: "secondary.main" }}>
               <Typography variant="h4" gutterBottom>
-                {name}
+                {product.name}
               </Typography>
               <Typography variant="h6" gutterBottom>
-                {`${price} NOK`}
+                {`${product.price} NOK`}
               </Typography>
               <Typography variant="body1" paragraph>
-                {description}
+                {product.description}
               </Typography>
-              <Grid container alignItems="center" mb={"3.2rem"}>
-                <Grid item>
-                  <Typography variant="body1">Ingredients:</Typography>
+              {product.ingredients.length !== 0 && (
+                <Grid container alignItems="center" mb={"3.2rem"}>
+                  <Grid item>
+                    <Typography variant="body1">Ingredients:</Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="body2" sx={{ marginLeft: 1 }}>
+                      {product.ingredients.join(", ")}
+                    </Typography>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Typography variant="body2" sx={{ marginLeft: 1 }}>
-                    {ingredients.join(", ")}
-                  </Typography>
-                </Grid>
-              </Grid>
+              )}
               <Grid container spacing={2} alignItems="center">
                 <Grid item>
                   <Box
