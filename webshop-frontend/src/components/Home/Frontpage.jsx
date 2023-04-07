@@ -1,7 +1,7 @@
 import { MainSection } from "../Home/MainSection";
 import { BannerSection } from "../Home/BannerSection";
 import { AboutUsSection } from "../Home/AboutUsSection";
-import Testimonials from "./TestimonialSection";
+import Testimonials from "./TestimonialSection.tsx";
 
 const Frontpage = () => {
   return (
