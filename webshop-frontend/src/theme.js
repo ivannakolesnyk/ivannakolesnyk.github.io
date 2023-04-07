@@ -37,7 +37,7 @@ export const theme = createTheme({
     },
 
     h2: {
-      fontSize: "4.5rem",
+      fontSize: "6rem",
       fontFamily: "Inter, sans-serif",
       fontWeight: "700",
     },
