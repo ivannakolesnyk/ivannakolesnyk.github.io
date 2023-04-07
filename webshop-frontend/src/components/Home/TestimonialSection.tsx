@@ -46,6 +46,13 @@ export default function TestimonialSection() {
       <Stack bgcolor={theme.palette.primary.light}>
         <img src={Divider} alt={""} style={{ transform: "scaleX(-1)" }} />
         <Section sx={{ my: -1 }}>
+          <Typography
+            variant="h2"
+            color={"primary.contrastText"}
+            sx={{ margin: "0 auto", p: 6 }}
+          >
+            What People Are Saying About Us
+          </Typography>
           <Carousel items={items} infinite />
         </Section>
         <img
@@ -61,14 +68,14 @@ export default function TestimonialSection() {
 function Testimonial(props: TestimonialProps) {
   const stars = [];
   for (let i = 0; i < props.rating; i++) {
-    stars.push(<StarIcon sx={{ color: "primary", fontSize: "4" }} key={i} />);
+    stars.push(<StarIcon color="secondary" sx={{ fontSize: "20" }} key={i} />);
   }
 
   return (
     <>
       <Paper
         elevation={3}
-        sx={{ py: 8, pl: 6, pr: 6, maxWidth: 500, margin: "0 auto" }}
+        sx={{ py: 6, pl: 6, pr: 6, maxWidth: 500, margin: "0 auto" }}
       >
         <Stack alignItems={"left"} spacing={2}>
           <Stack direction="row" sx={{ mb: 1 }}>
@@ -84,7 +91,9 @@ function Testimonial(props: TestimonialProps) {
               <Typography variant="h6">{props.name}</Typography>
               <Stack direction="row">
                 {stars}
-                <Typography variant="subtitle1">({props.rating}/5)</Typography>
+                <Typography variant="subtitle1" color="secondary">
+                  ({props.rating}/5)
+                </Typography>
               </Stack>
             </Stack>
           </Stack>
