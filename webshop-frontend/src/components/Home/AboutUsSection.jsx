@@ -6,7 +6,7 @@ import productsImage from "../../assets/img/aboutus/products.png";
 import productsBoxImage from "../../assets/img/aboutus/productsbox.png";
 
 const AboutUsSection = () => (
-  <Box sx={{ py: 8 }}>
+  <Box sx={{ py: 8, pl: 8, pr: 8 }}>
     <Typography
       variant="h1"
       color="primary.contrastText"
