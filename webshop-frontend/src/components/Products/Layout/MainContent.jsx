@@ -42,12 +42,12 @@ export const MainContent = ({
       item
       xs={12}
       sm={12}
-      md={9.5}
-      lg={10}
+      md={9.2}
+      lg={9.8}
       xl={10.3}
       sx={{
         padding: {
-          xs: "3.2rem 1.6rem 3.2rem 1.5rem",
+          xs: "3.2rem 1.6rem 3.2rem 1.6rem",
         },
       }}
     >

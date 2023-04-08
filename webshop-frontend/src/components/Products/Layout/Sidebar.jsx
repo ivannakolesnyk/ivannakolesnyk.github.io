@@ -5,8 +5,8 @@
  */
 
 import { Grid } from "@mui/material";
-import Category from "../Category/Category";
 import React from "react";
+import Category from "../Category/Category";
 
 /**
  * Sidebar component that displays the category sidebar.
@@ -18,7 +18,18 @@ import React from "react";
 export const Sidebar = ({ isBigScreen }) => {
   if (!isBigScreen) return null;
   return (
-    <Grid item sm={12} md={2.5} lg={2} xl={1.7} p={4}>
+    <Grid
+      item
+      sm={12}
+      md={2.8}
+      lg={2.2}
+      xl={1.7}
+      sx={{
+        padding: {
+          xs: "3.2rem 1.6rem 3.2rem 1.6rem",
+        },
+      }}
+    >
       <Category />
     </Grid>
   );

@@ -1,5 +1,6 @@
 import {
   EmojiFoodBeverage,
+  HomeRepairService,
   LocalCafe,
   TrendingDown,
 } from "@mui/icons-material";
@@ -17,6 +18,10 @@ export const categories = [
   {
     name: "Tea",
     icon: () => <EmojiFoodBeverage sx={iconStyle} />,
+  },
+  {
+    name: "Equipment",
+    icon: () => <HomeRepairService sx={iconStyle} />,
   },
   {
     name: "Sale",
