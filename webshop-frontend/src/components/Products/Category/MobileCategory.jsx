@@ -27,7 +27,7 @@ const MobileCategory = () => {
       component="nav"
       aria-labelledby="nested-list-subheader"
     >
-      <Grid container>
+      <Grid container justifyContent={"space-around"}>
         {categories.map(({ name, icon: Icon }, index) => (
           <Grid
             item

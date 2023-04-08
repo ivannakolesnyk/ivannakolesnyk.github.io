@@ -26,7 +26,7 @@ export const Sidebar = ({ isBigScreen }) => {
       xl={1.7}
       sx={{
         padding: {
-          xs: "3.2rem 1.6rem 3.2rem 1.6rem",
+          xs: "3.2rem 0rem 3.2rem 1.6rem",
         },
       }}
     >
