@@ -1,10 +1,5 @@
 import { useTheme } from "@emotion/react";
 import {
-  EmojiFoodBeverage,
-  LocalCafe,
-  TrendingDown,
-} from "@mui/icons-material";
-import {
   List,
   ListItemButton,
   ListItemIcon,
@@ -14,30 +9,11 @@ import {
 } from "@mui/material";
 import React, { useContext } from "react";
 import { ProductsContext } from "../../../context/ProductsContext";
+import { categories } from "./categoryData";
 
 const MobileCategory = () => {
   const theme = useTheme();
   const { handleCategoryClick } = useContext(ProductsContext);
-
-  const iconStyle = {
-    color: theme.palette.primary.contrastText,
-    fontSize: "3rem",
-  };
-
-  const categories = [
-    {
-      name: "Coffee",
-      icon: () => <LocalCafe sx={iconStyle} />,
-    },
-    {
-      name: "Tea",
-      icon: () => <EmojiFoodBeverage sx={iconStyle} />,
-    },
-    {
-      name: "Sale",
-      icon: () => <TrendingDown sx={iconStyle} />,
-    },
-  ];
 
   return (
     <List

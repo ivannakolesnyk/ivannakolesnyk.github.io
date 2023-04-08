@@ -1,9 +1,3 @@
-import { useTheme } from "@emotion/react";
-import {
-  EmojiFoodBeverage,
-  LocalCafe,
-  TrendingDown,
-} from "@mui/icons-material";
 import {
   Box,
   List,
@@ -14,30 +8,12 @@ import {
 } from "@mui/material";
 import React, { useContext } from "react";
 import { ProductsContext } from "../../../context/ProductsContext";
+import { categories } from "./categoryData";
+import { useTheme } from "@emotion/react";
 
 const Category = () => {
   const { handleCategoryClick } = useContext(ProductsContext);
   const theme = useTheme();
-
-  const iconStyle = {
-    color: theme.palette.primary.contrastText,
-    fontSize: "3rem",
-  };
-
-  const categories = [
-    {
-      name: "Coffee",
-      icon: () => <LocalCafe sx={iconStyle} />,
-    },
-    {
-      name: "Tea",
-      icon: () => <EmojiFoodBeverage sx={iconStyle} />,
-    },
-    {
-      name: "Sale",
-      icon: () => <TrendingDown sx={iconStyle} />,
-    },
-  ];
 
   return (
     <Box>
