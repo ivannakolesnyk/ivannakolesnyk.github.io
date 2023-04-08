@@ -13,6 +13,7 @@ export const ProductsProvider = ({ children }) => {
 
   const handleProductsClick = () => {
     setShowAllProducts(true);
+    setSelectedCategory("");
   };
 
   return (
