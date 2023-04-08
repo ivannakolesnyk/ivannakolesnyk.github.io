@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useCallback, useEffect, useState } from "react";
 
 /**
  * A custom React hook to fetch data from a specified API endpoint.
@@ -17,14 +17,14 @@ const useFetch = (endpoint, query) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const options = {
-    method: "GET",
-    url: `http://localhost:8080/${endpoint}`,
-    params: { ...query },
-  };
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setIsLoading(true);
+    const options = {
+      method: "GET",
+      url: `http://localhost:8080/${endpoint}`,
+      params: { ...query },
+    };
+
     try {
       const respond = await axios.request(options);
       setData(respond.data);
@@ -35,11 +35,11 @@ const useFetch = (endpoint, query) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [endpoint, query]);
 
   useEffect(() => {
     fetchData();
-  });
+  }, [fetchData]);
 
   const refetch = () => {
     setIsLoading(true);
