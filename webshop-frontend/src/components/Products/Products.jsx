@@ -48,14 +48,16 @@ const Products = () => {
   const filteredProducts = useMemo(() => {
     let productsToFilter = productsOriginal;
 
-    if (selectedCategory === "Sale") {
-      productsToFilter = productsToFilter.filter(
-        (product) => product.sale === true
-      );
-    } else if (selectedCategory) {
-      productsToFilter = productsToFilter.filter(
-        (product) => product.category.name === selectedCategory
-      );
+    if (!showAllProducts) {
+      if (selectedCategory === "Sale") {
+        productsToFilter = productsToFilter.filter(
+          (product) => product.sale === true
+        );
+      } else if (selectedCategory) {
+        productsToFilter = productsToFilter.filter(
+          (product) => product.category.name === selectedCategory
+        );
+      }
     }
 
     if (searchTerm) {
@@ -64,7 +66,7 @@ const Products = () => {
       );
     }
 
-    return showAllProducts ? productsOriginal : productsToFilter;
+    return productsToFilter;
   }, [selectedCategory, productsOriginal, searchTerm, showAllProducts]);
 
   const [sortDirection, setSortDirection] = useState(null);
