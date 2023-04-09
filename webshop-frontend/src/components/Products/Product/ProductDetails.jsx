@@ -8,6 +8,7 @@ import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
+import { useCart } from "../../../context/CartContext";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -48,6 +49,12 @@ function ProductDetails() {
       });
     }
   }, [product]);
+
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
+  };
 
   return (
     <div>
@@ -134,6 +141,7 @@ function ProductDetails() {
                     variant="contained"
                     color="primary"
                     startIcon={<ShoppingCartIcon />}
+                    onClick={handleAddToCart}
                   >
                     Add to cart
                   </Button>
