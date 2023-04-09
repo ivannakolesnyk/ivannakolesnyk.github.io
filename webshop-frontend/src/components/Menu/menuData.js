@@ -1,4 +1,4 @@
-export const menuBar = ["hot drinks", "cold drinks", "food", "pastries"];
+export const menuBar = ["hot", "cold", "food", "pastries"];
 
 export const menu = [
   {

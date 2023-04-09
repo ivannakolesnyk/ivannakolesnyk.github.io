@@ -17,7 +17,10 @@ const MenuSection = forwardRef(
     return (
       <Box
         sx={{
-          padding: "6.4rem 13.2rem",
+          padding: {
+            xs: "5.2rem 2rem",
+            lg: "5.2rem 4rem",
+          },
         }}
         ref={sectionRef}
       >

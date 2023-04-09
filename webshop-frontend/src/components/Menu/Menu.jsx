@@ -78,7 +78,11 @@ const Menu = () => {
         <>
           <Box
             sx={{
-              padding: "2.4rem 13.2rem",
+              padding: {
+                xs: "2rem 1rem",
+                sm: "2.4rem 6rem",
+                md: "2.4rem 13.2rem",
+              },
               borderTop: ".3rem solid #1F3A33",
               borderBottom: ".3rem solid #1F3A33",
             }}

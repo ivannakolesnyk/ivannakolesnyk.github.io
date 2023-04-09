@@ -8,14 +8,20 @@ const MenuHeader = ({ onSearchChange }) => {
   return (
     <Box
       sx={{
-        padding: "6.4rem 13.2rem",
+        padding: {
+          xs: "3.2rem 2rem",
+          md: "6.4rem 13.2rem",
+        },
         bgcolor: theme.palette.primary.main,
       }}
     >
       <Box
         sx={{
           color: theme.palette.primary.contrastText,
-          width: "50%",
+          width: {
+            md: "70%",
+            lg: "50%",
+          },
         }}
       >
         <Typography variant="h1" mb={"2rem"}>
