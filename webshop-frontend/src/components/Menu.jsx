@@ -53,6 +53,24 @@ const Menu = () => {
     });
   };
 
+  const [expandedCategory, setExpandedCategory] = useState(null);
+
+  const handleViewAllClick = (categoryName) => {
+    if (expandedCategory === categoryName) {
+      setExpandedCategory(null);
+    } else {
+      setExpandedCategory(categoryName);
+    }
+  };
+
+  const renderCategoryItems = (categoryName, products) => {
+    if (expandedCategory === categoryName) {
+      return renderMenuItems(products);
+    } else {
+      return renderMenuItems(sliceMenuItems(products));
+    }
+  };
+
   return (
     <>
       <Box
@@ -158,18 +176,25 @@ const Menu = () => {
               >
                 {name}
               </Typography>
-              {renderMenuItems(sliceMenuItems(products))}
+              {renderCategoryItems(name, products)}
               <Box sx={{ textAlign: "center", marginTop: "2rem" }}>
-                <Button variant="outlined" color="secondary" sx={buttonStyles}>
-                  <Typography
-                    variant="button"
-                    sx={{ borderBottom: ".2rem solid #1F3A33" }}
+                {expandedCategory !== name && (
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    sx={buttonStyles}
+                    onClick={() => handleViewAllClick(name)}
                   >
-                    {`VIEW ALL(${
-                      products.length - 3 > 0 ? products.length - 3 : 0
-                    })`}
-                  </Typography>
-                </Button>
+                    <Typography
+                      variant="button"
+                      sx={{ borderBottom: ".2rem solid #1F3A33" }}
+                    >
+                      {`VIEW ALL(${
+                        products.length - 3 > 0 ? products.length - 3 : 0
+                      })`}
+                    </Typography>
+                  </Button>
+                )}
               </Box>
             </Box>
           ))}
