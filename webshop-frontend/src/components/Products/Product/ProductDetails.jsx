@@ -52,9 +52,16 @@ function ProductDetails() {
   return (
     <div>
       {product ? (
-        <Box sx={{ padding: "7.6rem 6.4rem" }}>
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "3.2rem",
+          }}
+        >
+          <Grid container spacing={0}>
+            <Grid item xs={12} sm={6}>
               <Box
                 display="flex"
                 justifyContent="center"
@@ -69,7 +76,17 @@ function ProductDetails() {
                 />
               </Box>
             </Grid>
-            <Grid item xs={6} sx={{ color: "secondary.main" }}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                color: "secondary.main",
+              }}
+            >
               <Typography variant="h4" gutterBottom>
                 {product.name}
               </Typography>
