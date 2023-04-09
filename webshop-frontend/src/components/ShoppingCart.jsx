@@ -62,10 +62,10 @@ function ShoppingCart() {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Product</TableCell>
-                <TableCell>Price</TableCell>
-                <TableCell>Quantity</TableCell>
-                <TableCell>Total</TableCell>
+                <TableCell style={{ width: "30%" }}>Product</TableCell>
+                <TableCell style={{ width: "20%" }}>Price</TableCell>
+                <TableCell style={{ width: "25%" }}>Quantity</TableCell>
+                <TableCell style={{ width: "25%" }}>Total</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
