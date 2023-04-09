@@ -25,6 +25,10 @@ const Menu = () => {
     setSearchTerm(value);
   };
 
+  const sliceMenuItems = (products) => {
+    return products.slice(0, 3);
+  };
+
   const renderMenuItems = (filteredProducts) => (
     <Grid container spacing={2.5}>
       {filteredProducts.map(({ id, productName, imagePath }) => (
@@ -142,32 +146,16 @@ const Menu = () => {
               >
                 {name}
               </Typography>
-              <Grid container spacing={2.5}>
-                {products
-                  .filter((product) =>
-                    product.productName
-                      .toLowerCase()
-                      .includes(searchTerm.toLowerCase())
-                  )
-                  .map(({ id, productName, imagePath }) => (
-                    <Grid item key={id} xs={12} sm={6} md={4} lg={4}>
-                      <Box textAlign={"center"}>
-                        <ProductCard
-                          productName={productName}
-                          imagePath={imagePath}
-                          isClickable={false}
-                        />
-                      </Box>
-                    </Grid>
-                  ))}
-              </Grid>
+              {renderMenuItems(sliceMenuItems(products))}
               <Box sx={{ textAlign: "center", marginTop: "2rem" }}>
                 <Button variant="outlined" color="secondary" sx={buttonStyles}>
                   <Typography
                     variant="button"
                     sx={{ borderBottom: ".2rem solid #1F3A33" }}
                   >
-                    VIEW ALL(20)
+                    {`VIEW ALL(${
+                      products.length - 3 > 0 ? products.length - 3 : 0
+                    })`}
                   </Typography>
                 </Button>
               </Box>
