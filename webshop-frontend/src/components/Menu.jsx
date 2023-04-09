@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import React from "react";
+import React, { useState } from "react";
 import ProductCard from "./Products/Product/ProductCard";
 import SearchBar from "./Products/Controls/SearchBar";
 
@@ -117,6 +117,11 @@ const Menu = () => {
     padding: "1.2rem 2.4rem",
     color: theme.palette.secondary.main,
   };
+  const [searchTerm, setSearchTerm] = useState("");
+  const handleSearchChange = (value) => {
+    setSearchTerm(value);
+  };
+
   return (
     <>
       <Box
@@ -138,7 +143,7 @@ const Menu = () => {
             Indulge in the rich flavors of our handcrafted coffee creations -
             One sip, and you'll be hooked!
           </Typography>
-          <SearchBar />
+          <SearchBar onSearchChange={handleSearchChange} />
         </Box>
       </Box>
 
@@ -191,17 +196,23 @@ const Menu = () => {
             {name}
           </Typography>
           <Grid container spacing={2.5}>
-            {products.map(({ id, productName, imagePath }) => (
-              <Grid item key={id} xs={12} sm={6} md={4} lg={4}>
-                <Box textAlign={"center"}>
-                  <ProductCard
-                    productName={productName}
-                    imagePath={imagePath}
-                    isClickable={false}
-                  />
-                </Box>
-              </Grid>
-            ))}
+            {products
+              .filter((product) =>
+                product.productName
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
+              )
+              .map(({ id, productName, imagePath }) => (
+                <Grid item key={id} xs={12} sm={6} md={4} lg={4}>
+                  <Box textAlign={"center"}>
+                    <ProductCard
+                      productName={productName}
+                      imagePath={imagePath}
+                      isClickable={false}
+                    />
+                  </Box>
+                </Grid>
+              ))}
           </Grid>
           <Box sx={{ textAlign: "center", marginTop: "2rem" }}>
             <Button variant="outlined" color="secondary" sx={buttonStyles}>
