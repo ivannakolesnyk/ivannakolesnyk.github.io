@@ -13,7 +13,7 @@ import Footer from "./components/Footer";
 import Frontpage from "./components/Home/Frontpage";
 import LogIn from "./components/LogIn/LogIn";
 import RegisterNewUser from "./components/LogIn/RegisterNewUser";
-import Menu from "./components/Menu";
+import Menu from "./components/Menu/Menu";
 import Navbar from "./components/Navbar/Navbar";
 import ProductDetails from "./components/Products/Product/ProductDetails";
 import Products from "./components/Products/Products";
