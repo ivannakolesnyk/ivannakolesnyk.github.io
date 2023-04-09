@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import SearchBar from "./Products/Controls/SearchBar";
 import ProductCard from "./Products/Product/ProductCard";
 import { menu, menuBar } from "./menuData";
@@ -44,6 +44,14 @@ const Menu = () => {
       ))}
     </Grid>
   );
+
+  const sectionRefs = useRef(menu.map(() => React.createRef()));
+  const scrollToSection = (index) => {
+    sectionRefs.current[index].current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
 
   return (
     <>
@@ -121,7 +129,10 @@ const Menu = () => {
                     width: "auto",
                   }}
                 >
-                  <Button sx={{ padding: 0 }}>
+                  <Button
+                    sx={{ padding: 0 }}
+                    onClick={() => scrollToSection(index)}
+                  >
                     <ListItemText
                       primary={item.toUpperCase()}
                       sx={{ padding: 0, color: "primary.contrastText" }}
@@ -137,6 +148,7 @@ const Menu = () => {
               sx={{
                 padding: "6.4rem 13.2rem",
               }}
+              ref={sectionRefs.current[index]}
               key={index}
             >
               <Typography
