@@ -95,4 +95,74 @@ export const menu = [
       },
     ],
   },
+  {
+    name: "Food",
+    products: [
+      {
+        id: 1,
+        productName: "Grilled cheese",
+        sale: false,
+        imagePath: "menu/Grilled cheese.jpg",
+      },
+      {
+        id: 2,
+        productName: "Grilled chicken",
+        sale: true,
+        imagePath: "menu/Grilled chicken.jpg",
+      },
+      {
+        id: 3,
+        productName: "Turkey",
+        sale: false,
+        imagePath: "menu/Turkey.jpg",
+      },
+      {
+        id: 5,
+        productName: "Vegetable soup",
+        sale: true,
+        imagePath: "menu/Vegetable soup.jpg",
+      },
+      {
+        id: 6,
+        productName: "Garlic bread",
+        sale: true,
+        imagePath: "menu/Garlic bread.jpg",
+      },
+      {
+        id: 7,
+        productName: "Breakfast pizza",
+        sale: true,
+        imagePath: "menu/Breakfast pizza.jpg",
+      },
+    ],
+  },
+  {
+    name: "Pastries",
+    products: [
+      {
+        id: 1,
+        productName: "Brown Macarons",
+        sale: false,
+        imagePath: "products/snacks/brown_macarons.png",
+      },
+      {
+        id: 2,
+        productName: "Choco Cookie",
+        sale: true,
+        imagePath: "products/snacks/cho_cookie.png",
+      },
+      {
+        id: 3,
+        productName: "Nut Cookie",
+        sale: false,
+        imagePath: "products/snacks/nut_cookie.png",
+      },
+      {
+        id: 4,
+        productName: "Popcorn",
+        sale: false,
+        imagePath: "products/snacks/popcorn.png",
+      },
+    ],
+  },
 ];
