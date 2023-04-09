@@ -9,8 +9,8 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import React, { useState } from "react";
-import ProductCard from "./Products/Product/ProductCard";
 import SearchBar from "./Products/Controls/SearchBar";
+import ProductCard from "./Products/Product/ProductCard";
 import { menu, menuBar } from "./menuData";
 
 const Menu = () => {
@@ -24,6 +24,22 @@ const Menu = () => {
   const handleSearchChange = (value) => {
     setSearchTerm(value);
   };
+
+  const renderMenuItems = (filteredProducts) => (
+    <Grid container spacing={2.5}>
+      {filteredProducts.map(({ id, productName, imagePath }) => (
+        <Grid item key={id} xs={12} sm={6} md={4} lg={4}>
+          <Box textAlign={"center"}>
+            <ProductCard
+              productName={productName}
+              imagePath={imagePath}
+              isClickable={false}
+            />
+          </Box>
+        </Grid>
+      ))}
+    </Grid>
+  );
 
   return (
     <>
@@ -49,86 +65,116 @@ const Menu = () => {
           <SearchBar onSearchChange={handleSearchChange} />
         </Box>
       </Box>
-
-      <Box
-        sx={{
-          padding: "2.4rem 13.2rem",
-          borderTop: ".3rem solid #1F3A33",
-          borderBottom: ".3rem solid #1F3A33",
-        }}
-      >
-        <List
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            padding: 0,
-          }}
-        >
-          {menuBar.map((item, index) => (
-            <ListItem
-              key={index}
+      {searchTerm ? (
+        // Render "Search results" and filtered menu items if searchTerm is not empty
+        <>
+          <Box
+            sx={{
+              padding: "6.4rem 13.2rem",
+            }}
+          >
+            <Typography
+              variant="h2"
+              mb={"2rem"}
+              color={theme.palette.primary.contrastText}
+            >
+              Search results
+            </Typography>
+            {renderMenuItems(
+              menu
+                // Replace flatMap with reduce
+                .reduce((acc, { products }) => acc.concat(products), [])
+                .filter((product) =>
+                  product.productName
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase())
+                )
+            )}
+          </Box>
+        </>
+      ) : (
+        <>
+          <Box
+            sx={{
+              padding: "2.4rem 13.2rem",
+              borderTop: ".3rem solid #1F3A33",
+              borderBottom: ".3rem solid #1F3A33",
+            }}
+          >
+            <List
               sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
                 padding: 0,
-                width: "auto",
               }}
             >
-              <Button sx={{ padding: 0 }}>
-                <ListItemText
-                  primary={item.toUpperCase()}
-                  sx={{ padding: 0, color: "primary.contrastText" }}
-                />
-              </Button>
-            </ListItem>
-          ))}
-        </List>
-      </Box>
-
-      {menu.map(({ name, products }, index) => (
-        <Box
-          sx={{
-            padding: "6.4rem 13.2rem",
-          }}
-          key={index}
-        >
-          <Typography
-            variant="h2"
-            mb={"2rem"}
-            color={theme.palette.primary.contrastText}
-          >
-            {name}
-          </Typography>
-          <Grid container spacing={2.5}>
-            {products
-              .filter((product) =>
-                product.productName
-                  .toLowerCase()
-                  .includes(searchTerm.toLowerCase())
-              )
-              .map(({ id, productName, imagePath }) => (
-                <Grid item key={id} xs={12} sm={6} md={4} lg={4}>
-                  <Box textAlign={"center"}>
-                    <ProductCard
-                      productName={productName}
-                      imagePath={imagePath}
-                      isClickable={false}
+              {menuBar.map((item, index) => (
+                <ListItem
+                  key={index}
+                  sx={{
+                    padding: 0,
+                    width: "auto",
+                  }}
+                >
+                  <Button sx={{ padding: 0 }}>
+                    <ListItemText
+                      primary={item.toUpperCase()}
+                      sx={{ padding: 0, color: "primary.contrastText" }}
                     />
-                  </Box>
-                </Grid>
+                  </Button>
+                </ListItem>
               ))}
-          </Grid>
-          <Box sx={{ textAlign: "center", marginTop: "2rem" }}>
-            <Button variant="outlined" color="secondary" sx={buttonStyles}>
-              <Typography
-                variant="button"
-                sx={{ borderBottom: ".2rem solid #1F3A33" }}
-              >
-                VIEW ALL(20)
-              </Typography>
-            </Button>
+            </List>
           </Box>
-        </Box>
-      ))}
+
+          {menu.map(({ name, products }, index) => (
+            <Box
+              sx={{
+                padding: "6.4rem 13.2rem",
+              }}
+              key={index}
+            >
+              <Typography
+                variant="h2"
+                mb={"2rem"}
+                color={theme.palette.primary.contrastText}
+              >
+                {name}
+              </Typography>
+              <Grid container spacing={2.5}>
+                {products
+                  .filter((product) =>
+                    product.productName
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase())
+                  )
+                  .map(({ id, productName, imagePath }) => (
+                    <Grid item key={id} xs={12} sm={6} md={4} lg={4}>
+                      <Box textAlign={"center"}>
+                        <ProductCard
+                          productName={productName}
+                          imagePath={imagePath}
+                          isClickable={false}
+                        />
+                      </Box>
+                    </Grid>
+                  ))}
+              </Grid>
+              <Box sx={{ textAlign: "center", marginTop: "2rem" }}>
+                <Button variant="outlined" color="secondary" sx={buttonStyles}>
+                  <Typography
+                    variant="button"
+                    sx={{ borderBottom: ".2rem solid #1F3A33" }}
+                  >
+                    VIEW ALL(20)
+                  </Typography>
+                </Button>
+              </Box>
+            </Box>
+          ))}
+        </>
+      )}
     </>
   );
 };
