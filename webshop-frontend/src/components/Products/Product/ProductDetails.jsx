@@ -13,6 +13,7 @@ import { AuthContext } from "../../../context/AuthContext";
 import { useCart } from "../../../context/CartContext";
 import InternalError from "../../Standard_components/InternalError";
 import Loading from "../../Standard_components/Loading";
+import useFetch from "../../../hooks/useFetch";
 
 function ProductDetails() {
   const { loggedIn } = useContext(AuthContext);
@@ -22,33 +23,24 @@ function ProductDetails() {
   let navigate = useNavigate();
 
   const [product, setProduct] = useState(productData);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
 
-  const fetchProductDetails = async (id) => {
-    try {
-      setLoading(true);
-      setError(false);
-
-      // Replace this URL with your actual API endpoint
-      const response = await fetch(`http://localhost:8080/products/${id}`);
-      if (!response.ok) throw new Error("Error fetching data");
-
-      const data = await response.json();
-
-      setProduct(data);
-    } catch (error) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { data, isLoading, error, refetch, fetched } = useFetch(
+    `products/${id}`,
+    {},
+    false
+  );
 
   useEffect(() => {
-    if (!productData) {
-      fetchProductDetails(id);
+    if (!product) {
+      refetch();
     }
-  }, [id, productData]);
+  }, [product]);
+
+  useEffect(() => {
+    if (fetched && data) {
+      setProduct(data);
+    }
+  }, [data, fetched]);
 
   const [imageSrc, setImageSrc] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -62,7 +54,7 @@ function ProductDetails() {
   };
 
   useEffect(() => {
-    if (product) {
+    if (product && product.product_image) {
       import(`../../../assets/img/${product.product_image}`).then((module) => {
         setImageSrc(module.default);
       });
@@ -82,7 +74,7 @@ function ProductDetails() {
   };
 
   if (error) return <InternalError />;
-  if (loading) return <Loading />;
+  if (isLoading) return <Loading />;
 
   return (
     <>
