@@ -9,10 +9,11 @@ import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { Grid, useMediaQuery } from "@mui/material";
 import { useContext, useMemo, useState } from "react";
+import { ProductsContext } from "../../context/ProductsContext";
 import useFetch from "../../hooks/useFetch";
+import InternalError from "../Standard_components/InternalError";
 import { MainContent } from "./Layout/MainContent";
 import { Sidebar } from "./Layout/Sidebar";
-import { ProductsContext } from "../../context/ProductsContext";
 
 /**
  * Products component that displays the list of products with filtering and sorting options.
@@ -27,7 +28,7 @@ const Products = () => {
   const { selectedCategory, showAllProducts } = useContext(ProductsContext);
 
   // Fetching product data from API
-  const { data: productsOriginal } = useFetch("products");
+  const { data: productsOriginal, showError } = useFetch("products");
 
   const theme = useTheme();
   const isBigScreen = useMediaQuery("(min-width: 900px)");
@@ -94,20 +95,26 @@ const Products = () => {
   };
 
   return (
-    <Grid container spacing={0}>
-      <Sidebar isBigScreen={isBigScreen} />
-      <MainContent
-        onSearchChange={setSearchTerm}
-        theme={theme}
-        buttonStyles={buttonStyles}
-        sortButtonMenu={sortButtonMenu}
-        sortAnchorEl={sortAnchorEl}
-        sortSetAnchorEl={sortSetAnchorEl}
-        handleSort={handleSort}
-        isBigScreen={isBigScreen}
-        sortedProducts={sortedProducts}
-      />
-    </Grid>
+    <>
+      {showError ? (
+        <InternalError />
+      ) : (
+        <Grid container spacing={0}>
+          <Sidebar isBigScreen={isBigScreen} />
+          <MainContent
+            onSearchChange={setSearchTerm}
+            theme={theme}
+            buttonStyles={buttonStyles}
+            sortButtonMenu={sortButtonMenu}
+            sortAnchorEl={sortAnchorEl}
+            sortSetAnchorEl={sortSetAnchorEl}
+            handleSort={handleSort}
+            isBigScreen={isBigScreen}
+            sortedProducts={sortedProducts}
+          />
+        </Grid>
+      )}
+    </>
   );
 };
 

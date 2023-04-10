@@ -17,6 +17,8 @@ const useFetch = (endpoint, query) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const [showError, setShowError] = useState(false);
+
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     const options = {
@@ -31,11 +33,16 @@ const useFetch = (endpoint, query) => {
       setIsLoading(false);
     } catch (error) {
       setError(error);
-      alert("There is an error");
+      // Remove alert and set showError to true
+      setShowError(true);
     } finally {
       setIsLoading(false);
     }
   }, [endpoint, query]);
+
+  const dismissError = () => {
+    setShowError(false);
+  };
 
   useEffect(() => {
     fetchData();
@@ -46,7 +53,7 @@ const useFetch = (endpoint, query) => {
     fetchData();
   };
 
-  return { data, isLoading, error, refetch };
+  return { data, isLoading, error, refetch, showError, dismissError };
 };
 
 export default useFetch;
