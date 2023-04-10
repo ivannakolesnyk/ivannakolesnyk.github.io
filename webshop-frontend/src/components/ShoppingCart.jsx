@@ -16,15 +16,17 @@ import {
   TableHead,
   TableRow,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 function ShoppingCart() {
-  //TODO: Fix colors
   const { cart, removeFromCart, adjustQuantity } = useCart();
   const navigate = useNavigate();
+  const isSmallScreen = useMediaQuery("(max-width: 700px)");
+  const isVerySmallScreen = useMediaQuery("(max-width: 500px)");
 
   const calculateTotalPrice = () => {
     return cart.reduce(
@@ -78,6 +80,24 @@ function ShoppingCart() {
     );
   }
 
+  const adjutQty = (item) => (
+    <>
+      <IconButton
+        onClick={() => adjustQuantity(item.product.id, -1)}
+        sx={{ color: "secondary.main" }}
+      >
+        <RemoveIcon />
+      </IconButton>
+      {item.quantity}
+      <IconButton
+        onClick={() => adjustQuantity(item.product.id, 1)}
+        sx={{ color: "secondary.main" }}
+      >
+        <AddIcon />
+      </IconButton>
+    </>
+  );
+
   return (
     <Box
       sx={{
@@ -108,18 +128,22 @@ function ShoppingCart() {
             <TableHead>
               <TableRow>
                 <TableCell></TableCell>
-                <TableCell style={{ width: "30%" }}>
+                <TableCell style={{ width: "40%" }}>
                   <Typography>Product</Typography>
                 </TableCell>
-                <TableCell style={{ width: "20%" }}>
+                <TableCell style={{ width: "30%" }}>
                   <Typography>Price</Typography>
                 </TableCell>
-                <TableCell style={{ width: "25%" }}>
-                  <Typography>Quantity</Typography>
-                </TableCell>
-                <TableCell style={{ width: "13%" }}>
-                  <Typography>Total</Typography>
-                </TableCell>
+                {!isSmallScreen && (
+                  <TableCell style={{ width: "25%" }}>
+                    <Typography>Quantity</Typography>
+                  </TableCell>
+                )}
+                {!isVerySmallScreen && (
+                  <TableCell style={{ width: "13%" }}>
+                    <Typography>Total</Typography>
+                  </TableCell>
+                )}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -149,30 +173,21 @@ function ShoppingCart() {
                         alt={item.product.name}
                         sx={{ width: "50px", height: "auto", mr: 1 }}
                       />
-                      <Typography variant="body1">
+                      <Typography
+                        variant={isVerySmallScreen ? "body2" : "body1"}
+                      >
                         {item.product.name}
                       </Typography>
                     </Box>
+                    {isSmallScreen && adjutQty(item)}
                   </TableCell>
                   <TableCell>{`${item.product.price} NOK`}</TableCell>
-                  <TableCell>
-                    <IconButton
-                      onClick={() => adjustQuantity(item.product.id, -1)}
-                      sx={{ color: "secondary.main" }}
-                    >
-                      <RemoveIcon />
-                    </IconButton>
-                    {item.quantity}
-                    <IconButton
-                      onClick={() => adjustQuantity(item.product.id, 1)}
-                      sx={{ color: "secondary.main" }}
-                    >
-                      <AddIcon />
-                    </IconButton>
-                  </TableCell>
-                  <TableCell>{`${
-                    item.product.price * item.quantity
-                  } NOK`}</TableCell>
+                  {!isSmallScreen && <TableCell>{adjutQty(item)}</TableCell>}
+                  {!isVerySmallScreen && (
+                    <TableCell>{`${
+                      item.product.price * item.quantity
+                    } NOK`}</TableCell>
+                  )}
                 </TableRow>
               ))}
             </TableBody>
