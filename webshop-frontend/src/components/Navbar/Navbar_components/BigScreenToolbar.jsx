@@ -7,22 +7,18 @@ import * as PropTypes from "prop-types";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import coffeeLogo from "../../../assets/img/logos/logo_bigscreen.png";
+import { useCart } from "../../../context/CartContext";
+import { ProductsContext } from "../../../context/ProductsContext";
 import { AccountMenu } from "./AccountMenu";
 import { AccountTooltip } from "./AccountTooltip";
 import NavbarButton from "./NavbarButton";
 import StyledToolbar from "./StyledToolbar";
-import { ProductsContext } from "../../../context/ProductsContext";
+import { Badge } from "@mui/material";
 
 const leftNavItems = [
   { text: "Menu", to: "/menu" },
   { text: "Products", to: "/products" },
   { text: "About us", to: "/about" },
-];
-
-const rightNavItems = [
-  { text: "Find us", to: "/findus", icon: <PlaceOutlinedIcon /> },
-  //{ text: "Log in", to: "/login", icon: <Person2OutlinedIcon /> },
-  { to: "/shoppingcart", icon: <ShoppingCartIcon /> },
 ];
 
 AccountMenu.propTypes = {
@@ -58,6 +54,29 @@ const BigScreenToolbar = ({ loggedIn, handleLogout }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const { cart } = useCart();
+
+  const getTotalCartItems = () => {
+    return cart.reduce((total, item) => total + item.quantity, 0);
+  };
+
+  const rightNavItems = [
+    { text: "Find us", to: "/findus", icon: <PlaceOutlinedIcon /> },
+    {
+      to: "/shoppingcart",
+      icon: (
+        <Badge
+          badgeContent={getTotalCartItems()}
+          color="primary"
+          showZero={false}
+        >
+          <ShoppingCartIcon />
+        </Badge>
+      ),
+    },
+  ];
+
   return (
     <StyledToolbar>
       <div
