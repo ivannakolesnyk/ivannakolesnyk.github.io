@@ -45,7 +45,10 @@ function App() {
             <Route path="/about" element={<AboutUs />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/products" element={<Products />} />
-            <Route path="/products/:id" element={<ProductDetails />} />
+            <Route
+              path="/products/:id"
+              element={<ProductDetails loggedIn={loggedIn} />}
+            />
             <Route path="/findus" element={<FindUs />} />
             <Route
               path="/login"

@@ -8,12 +8,14 @@ import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../../../context/CartContext";
 
-function ProductDetails() {
+function ProductDetails({ loggedIn }) {
   const { id } = useParams();
   const location = useLocation();
   const productData = location.state?.product;
+  let navigate = useNavigate();
 
   const [product, setProduct] = useState(productData);
 
@@ -54,8 +56,13 @@ function ProductDetails() {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const handleAddToCart = () => {
-    addToCart(product, quantity);
-    setSnackbarOpen(true);
+    if (loggedIn) {
+      addToCart(product, quantity);
+      setSnackbarOpen(true);
+    } else {
+      //TODO: Remember to implement redirection to from in login.jsx
+      navigate("/login", { state: { from: location.pathname } });
+    }
   };
 
   return (
