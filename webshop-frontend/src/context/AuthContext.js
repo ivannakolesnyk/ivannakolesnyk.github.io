@@ -10,14 +10,19 @@ It manages the user's login state and provides functions for logging in and logg
 @returns {JSX.Element} - The JSX code for the AuthProvider component.
 */
 export const AuthProvider = ({ children }) => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(() => {
+    const savedLoggedIn = localStorage.getItem("loggedIn");
+    return savedLoggedIn === "true" ? true : false;
+  });
 
   const handleLogin = () => {
     setLoggedIn(true);
+    localStorage.setItem("loggedIn", "true");
   };
 
   const handleLogout = () => {
     setLoggedIn(false);
+    localStorage.removeItem("loggedIn");
   };
 
   const value = {
