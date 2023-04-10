@@ -10,10 +10,10 @@ import { ProductsContext } from "../../../context/ProductsContext";
 import { AuthContext } from "../../../context/AuthContext";
 
 /**
+ *
  * The SmallScreenToolbar component is used to display a navigation bar for small screen devices.
  * It consists of a logo and a hamburger menu icon that opens a dropdown menu with links to
- * different pages on the website.
- *
+ * different pages on the website, and an option to log out if the user is logged in.
  * @returns {JSX.Element} The JSX code for the SmallScreenToolbar component.
  */
 const SmallScreenToolbar = () => {

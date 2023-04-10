@@ -12,10 +12,11 @@ import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
 import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 
 /**
-The ProfileViewOrders component is a React functional component used for displaying
-the orders a user has made.
-@returns {JSX.Element} The JSX code for the AdminViewOrders component.
-*/
+ *
+ * The ProfileViewOrders component is a React functional component used for displaying
+ * the orders a user has made.
+ * @returns {JSX.Element} The JSX code for the AdminViewOrders component.
+ */
 const AdminViewOrders = () => {
   const navigate = useNavigate();
   return (

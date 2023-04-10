@@ -6,11 +6,11 @@ import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 import { ProfileTextField } from "../Standard_components/Profile_and_Admin/ProfileTextField";
 
 /**
- The RegisterNewUser component is a React functional component used for displaying
- a form allowing users to edit their profile information. This component is
- part of a user profile management system.
-
- @returns {JSX.Element} The JSX code for the RegisterNewUser component.
+ *
+ * The RegisterNewUser component is a React functional component used for displaying
+ * a form allowing users to edit their profile information. This component is
+ * part of a user profile management system.
+ * @returns {JSX.Element} The JSX code for the RegisterNewUser component.
  */
 const RegisterNewUser = () => {
   const navigate = useNavigate();

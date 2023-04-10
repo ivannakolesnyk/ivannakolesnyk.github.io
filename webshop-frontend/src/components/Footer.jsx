@@ -5,13 +5,14 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
 /**
-The Footer component displays the footer section of the web page.
-It includes information such as the address and contact details of the business,
-as well as links to social media pages.
-This component is rendered at the bottom of the page. It is responsive and will
-show three, two or one columns with content based on screen width. 
-@returns {JSX.Element} Footer component
-*/
+ *
+ * The Footer component displays the footer section of the web page.
+ * It includes information such as the address and contact details of the business,
+ * as well as links to social media pages.
+ * This component is rendered at the bottom of the page. It is responsive and will
+ * show three, two or one columns with content based on screen width.
+ * @returns {JSX.Element} Footer component
+ */
 const Footer = () => {
   return (
     <Grid

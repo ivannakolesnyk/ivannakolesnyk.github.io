@@ -6,12 +6,12 @@ import StandardCenteredCard from "../StandardCenteredCard";
 import { PasswordTextField } from "./PasswordTextField";
 
 /**
-This React component allows users to change their password by providing input fields 
-for their current password, new password, and confirmation of the new password. 
-The component uses Material-UI components for styling and layout.
-
-@returns {JSX.Element} The JSX code for the ChangePassword component.
-*/
+ *
+ * This React component allows users to change their password by providing input fields
+ * for their current password, new password, and confirmation of the new password.
+ * The component uses Material-UI components for styling and layout.
+ * @returns {JSX.Element} The JSX code for the ChangePassword component.
+ */
 const ChangePassword = ({ navigateTo }) => {
   const navigate = useNavigate();
   const [currentPassword, setCurrentPassword] = useState("");
