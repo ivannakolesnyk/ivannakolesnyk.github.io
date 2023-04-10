@@ -18,7 +18,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 function ShoppingCart() {
@@ -55,6 +55,27 @@ function ShoppingCart() {
       setImagesSrc([]);
     }
   }, [cart]);
+
+  if (cart.length === 0) {
+    return (
+      <Box
+        textAlign={"center"}
+        sx={{ padding: { xs: "14rem 2rem", sm: "14rem 6rem", md: "14rem" } }}
+      >
+        <Typography variant="h4" sx={{ color: "secondary.main" }} mb={3}>
+          Your shopping cart is empty. Why not browse our products?
+        </Typography>
+        <Button
+          component={Link}
+          to="/products"
+          variant="contained"
+          color="primary"
+        >
+          Browse Products
+        </Button>
+      </Box>
+    );
+  }
 
   return (
     <Box
