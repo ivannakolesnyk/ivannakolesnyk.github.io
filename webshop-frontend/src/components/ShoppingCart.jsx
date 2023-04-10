@@ -85,6 +85,8 @@ function ShoppingCart() {
         alignItems: "center",
         width: "100%",
         mt: 4,
+        padding: "3.6rem 0 6.4rem 0",
+        color: "yellow",
       }}
     >
       <Paper
@@ -100,30 +102,51 @@ function ShoppingCart() {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell style={{ width: "30%" }}>Product</TableCell>
-                <TableCell style={{ width: "20%" }}>Price</TableCell>
-                <TableCell style={{ width: "25%" }}>Quantity</TableCell>
-                <TableCell style={{ width: "25%" }}>Total</TableCell>
+                <TableCell></TableCell>
+                <TableCell style={{ width: "30%" }}>
+                  <Typography>Product</Typography>
+                </TableCell>
+                <TableCell style={{ width: "20%" }}>
+                  <Typography>Price</Typography>
+                </TableCell>
+                <TableCell style={{ width: "25%" }}>
+                  <Typography>Quantity</Typography>
+                </TableCell>
+                <TableCell style={{ width: "13%" }}>
+                  <Typography>Total</Typography>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {cart.map((item, index) => (
                 <TableRow key={item.product.id}>
                   <TableCell>
-                    <IconButton
-                      edge="end"
-                      aria-label="delete"
-                      onClick={() => handleRemoveFromCart(item.product.id)}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
                     <Box
-                      component="img"
-                      src={imagesSrc[index]}
-                      alt={item.product.name}
-                      sx={{ width: "50px", height: "auto", mr: 1 }}
-                    />
-                    <Typography variant="body1">{item.product.name}</Typography>
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                    >
+                      <IconButton
+                        edge="end"
+                        aria-label="delete"
+                        onClick={() => handleRemoveFromCart(item.product.id)}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </Box>
+                  </TableCell>
+                  <TableCell>
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <Box
+                        component="img"
+                        src={imagesSrc[index]}
+                        alt={item.product.name}
+                        sx={{ width: "50px", height: "auto", mr: 1 }}
+                      />
+                      <Typography variant="body1">
+                        {item.product.name}
+                      </Typography>
+                    </Box>
                   </TableCell>
                   <TableCell>{`${item.product.price} NOK`}</TableCell>
                   <TableCell>
@@ -148,7 +171,11 @@ function ShoppingCart() {
           </Table>
         </TableContainer>
         <Divider sx={{ my: 2 }} />
-        <Box display="flex" justifyContent="space-between">
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          sx={{ padding: "0 4rem" }}
+        >
           <Typography variant="h6">Subtotal:</Typography>
           <Typography variant="h6">{`${calculateTotalPrice()} NOK`}</Typography>
         </Box>
