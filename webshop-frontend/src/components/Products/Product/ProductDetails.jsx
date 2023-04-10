@@ -6,11 +6,12 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../../context/CartContext";
 import { AuthContext } from "../../../context/AuthContext";
+import { useCart } from "../../../context/CartContext";
+import InternalError from "../../Standard_components/InternalError";
 import Loading from "../../Standard_components/Loading";
 
 function ProductDetails() {
@@ -21,13 +22,26 @@ function ProductDetails() {
   let navigate = useNavigate();
 
   const [product, setProduct] = useState(productData);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const fetchProductDetails = async (id) => {
-    // Replace this URL with your actual API endpoint
-    const response = await fetch(`http://localhost:8080/products/${id}`);
-    const data = await response.json();
+    try {
+      setLoading(true);
+      setError(false);
 
-    setProduct(data);
+      // Replace this URL with your actual API endpoint
+      const response = await fetch(`http://localhost:8080/products/${id}`);
+      if (!response.ok) throw new Error("Error fetching data");
+
+      const data = await response.json();
+
+      setProduct(data);
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -63,15 +77,17 @@ function ProductDetails() {
       addToCart(product, quantity);
       setSnackbarOpen(true);
     } else {
-      //TODO: Remember to implement redirection to from in login.jsx
       navigate("/login", { state: { from: location.pathname } });
     }
   };
 
+  if (error) return <InternalError />;
+  if (loading) return <Loading />;
+
   return (
     <>
-      <div>
-        {product ? (
+      {product ? (
+        <div>
           <Box
             sx={{
               display: "flex",
@@ -163,10 +179,8 @@ function ProductDetails() {
               </Grid>
             </Grid>
           </Box>
-        ) : (
-          <Loading />
-        )}
-      </div>
+        </div>
+      ) : null}
       <div>
         <Snackbar
           open={snackbarOpen}
