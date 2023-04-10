@@ -13,12 +13,13 @@ import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 import { ProfileInformation } from "../Standard_components/Profile_and_Admin/ProfileInformation";
 
 /**
-The ProfilePage component displays a user's profile information and provides
-links to edit the profile, change the password, and view orders. The user's
-profile information is displayed in a Card component, with each piece of
-information shown as a ListItem.
-@returns {JSX.Element} The JSX code for the ProfilePage component.
-*/
+ *
+ * The ProfilePage component displays a user's profile information and provides
+ * links to edit the profile, change the password, and view orders. The user's
+ * profile information is displayed in a Card component, with each piece of
+ * information shown as a ListItem.
+ * @returns {JSX.Element} The JSX code for the ProfilePage component.
+ */
 const ProfilePage = () => {
   const theme = useTheme();
 

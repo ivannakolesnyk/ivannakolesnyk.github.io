@@ -31,6 +31,14 @@ const StyledButton = styled(Button)({
   width: "100%",
 });
 
+/**
+ *
+ * The Login component is a form that allows users to log in to the website.
+ * It displays two fields (email and password) for the user to fill in and a "Login"
+ * button to submit the form.If the user does not have an account, there is a link
+ * to the registration page.
+ * @returns {JSX.Element} The JSX code for the Login component.
+ */
 const Login = () => {
   const navigate = useNavigate();
   const { handleLogin } = useContext(AuthContext);

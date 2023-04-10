@@ -35,12 +35,12 @@ AccountTooltip.propTypes = {
 };
 
 /**
-
- The BigScreenToolbar component displays a navigation bar for the website
- when the screen is large. It consists of a logo, and a menu with links to different pages
- on the website. Some with just text, others with appropriate icons. If the user is logged in,
- an account menu is shown when clicking on an avatar icon, otherwise, a "Log in" button is displayed.
- @returns {JSX.Element} The JSX code for the BigScreenToolbar component.
+ *
+ * The BigScreenToolbar component displays a navigation bar for the website
+ * when the screen is large. It consists of a logo, and a menu with links to different pages
+ * on the website. Some with just text, others with appropriate icons. If the user is logged in,
+ * an account menu is shown when clicking on an avatar icon, otherwise, a "Log in" button is displayed.
+ * @returns {JSX.Element} The JSX code for the BigScreenToolbar component.
  */
 const BigScreenToolbar = () => {
   const { loggedIn, handleLogout } = useContext(AuthContext);
