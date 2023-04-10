@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../../context/CartContext";
+import Loading from "../../Standard_components/Loading";
 
 function ProductDetails({ loggedIn }) {
   const { id } = useParams();
@@ -161,7 +162,7 @@ function ProductDetails({ loggedIn }) {
             </Grid>
           </Box>
         ) : (
-          <div>Loading...</div>
+          <Loading />
         )}
       </div>
       <div>
