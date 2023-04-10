@@ -22,6 +22,7 @@ import ProfileChangePW from "./components/Profile/ProfileChangePW";
 import ProfileEdit from "./components/Profile/ProfileEdit";
 import ProfileViewOrders from "./components/Profile/ProfileViewOrders";
 import ShoppingCart from "./components/ShoppingCart";
+import NotFound from "./components/Standard_components/NotFound";
 
 function App() {
   // handle logging in and out, keeping track of the state
@@ -66,6 +67,7 @@ function App() {
             <Route path="/admin/vieworders" element={<AdminViewOrders />} />
             <Route path="/admin/testimonials" element={<AdminTestimonials />} />
             <Route path="/admin/products" element={<AdminProducts />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Box>
         <Footer marginTop="auto" />
