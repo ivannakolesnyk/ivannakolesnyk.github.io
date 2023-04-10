@@ -1,7 +1,7 @@
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Typography } from "@mui/material";
+import { Alert, Snackbar, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
@@ -51,109 +51,125 @@ function ProductDetails() {
   }, [product]);
 
   const { addToCart } = useCart();
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const handleAddToCart = () => {
     addToCart(product, quantity);
+    setSnackbarOpen(true);
   };
 
   return (
-    <div>
-      {product ? (
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "3.2rem",
-          }}
-        >
-          <Grid container spacing={0}>
-            <Grid item xs={12} sm={6}>
-              <Box
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                height="100%"
-              >
+    <>
+      <div>
+        {product ? (
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "3.2rem",
+            }}
+          >
+            <Grid container spacing={0}>
+              <Grid item xs={12} sm={6}>
                 <Box
-                  component="img"
-                  src={imageSrc}
-                  alt={product.name}
-                  sx={{ width: "70%", height: "auto" }}
-                />
-              </Box>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                color: "secondary.main",
-              }}
-            >
-              <Typography variant="h4" gutterBottom>
-                {product.name}
-              </Typography>
-              <Typography variant="h6" gutterBottom>
-                {`${product.price} NOK`}
-              </Typography>
-              <Typography variant="body1" paragraph>
-                {product.description}
-              </Typography>
-              {product.ingredients.length !== 0 && (
-                <Grid container alignItems="center" mb={"3.2rem"}>
-                  <Grid item>
-                    <Typography variant="body1">Ingredients:</Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography variant="body2" sx={{ marginLeft: 1 }}>
-                      {product.ingredients.join(", ")}
-                    </Typography>
-                  </Grid>
-                </Grid>
-              )}
-              <Grid container spacing={2} alignItems="center">
-                <Grid item>
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  height="100%"
+                >
                   <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      border: ".15rem solid #1F3A33",
-                      borderRadius: "8px",
-                    }}
-                  >
-                    <IconButton onClick={decrementQuantity}>
-                      <RemoveIcon sx={{ color: "secondary.main" }} />
-                    </IconButton>
-                    <Typography variant="body2" sx={{ margin: "0 10px" }}>
-                      {quantity}
-                    </Typography>
-                    <IconButton onClick={incrementQuantity}>
-                      <AddIcon sx={{ color: "secondary.main" }} />
-                    </IconButton>
-                  </Box>
-                </Grid>
-                <Grid item>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    startIcon={<ShoppingCartIcon />}
-                    onClick={handleAddToCart}
-                  >
-                    Add to cart
-                  </Button>
+                    component="img"
+                    src={imageSrc}
+                    alt={product.name}
+                    sx={{ width: "70%", height: "auto" }}
+                  />
+                </Box>
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  color: "secondary.main",
+                }}
+              >
+                <Typography variant="h4" gutterBottom>
+                  {product.name}
+                </Typography>
+                <Typography variant="h6" gutterBottom>
+                  {`${product.price} NOK`}
+                </Typography>
+                <Typography variant="body1" paragraph>
+                  {product.description}
+                </Typography>
+                {product.ingredients.length !== 0 && (
+                  <Grid container alignItems="center" mb={"3.2rem"}>
+                    <Grid item>
+                      <Typography variant="body1">Ingredients:</Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="body2" sx={{ marginLeft: 1 }}>
+                        {product.ingredients.join(", ")}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                )}
+                <Grid container spacing={2} alignItems="center">
+                  <Grid item>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        border: ".15rem solid #1F3A33",
+                        borderRadius: "8px",
+                      }}
+                    >
+                      <IconButton onClick={decrementQuantity}>
+                        <RemoveIcon sx={{ color: "secondary.main" }} />
+                      </IconButton>
+                      <Typography variant="body2" sx={{ margin: "0 10px" }}>
+                        {quantity}
+                      </Typography>
+                      <IconButton onClick={incrementQuantity}>
+                        <AddIcon sx={{ color: "secondary.main" }} />
+                      </IconButton>
+                    </Box>
+                  </Grid>
+                  <Grid item>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      startIcon={<ShoppingCartIcon />}
+                      onClick={handleAddToCart}
+                    >
+                      Add to cart
+                    </Button>
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>
-          </Grid>
-        </Box>
-      ) : (
-        <div>Loading...</div>
-      )}
-    </div>
+          </Box>
+        ) : (
+          <div>Loading...</div>
+        )}
+      </div>
+      <div>
+        <Snackbar
+          open={snackbarOpen}
+          autoHideDuration={6000}
+          onClose={() => setSnackbarOpen(false)}
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        >
+          <Alert onClose={() => setSnackbarOpen(false)} severity="success">
+            Product added to the cart!
+          </Alert>
+        </Snackbar>
+      </div>
+    </>
   );
 }
 
