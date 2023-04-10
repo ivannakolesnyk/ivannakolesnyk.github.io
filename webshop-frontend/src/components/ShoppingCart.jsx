@@ -88,6 +88,9 @@ function ShoppingCart() {
         mt: 4,
         padding: "3.6rem 0 6.4rem 0",
         color: "yellow",
+        "& .MuiTableCell-root": {
+          color: "secondary.main",
+        },
       }}
     >
       <Paper
@@ -97,6 +100,7 @@ function ShoppingCart() {
           bgcolor: "white",
           borderRadius: 2,
           p: 2,
+          color: "secondary.main",
         }}
       >
         <TableContainer>
@@ -131,6 +135,7 @@ function ShoppingCart() {
                         edge="end"
                         aria-label="delete"
                         onClick={() => handleRemoveFromCart(item.product.id)}
+                        sx={{ color: "secondary.main" }}
                       >
                         <DeleteIcon />
                       </IconButton>
@@ -153,12 +158,14 @@ function ShoppingCart() {
                   <TableCell>
                     <IconButton
                       onClick={() => adjustQuantity(item.product.id, -1)}
+                      sx={{ color: "secondary.main" }}
                     >
                       <RemoveIcon />
                     </IconButton>
                     {item.quantity}
                     <IconButton
                       onClick={() => adjustQuantity(item.product.id, 1)}
+                      sx={{ color: "secondary.main" }}
                     >
                       <AddIcon />
                     </IconButton>
