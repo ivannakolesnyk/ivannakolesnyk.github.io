@@ -7,17 +7,17 @@ import Menu from "@mui/material/Menu";
 import StyledToolbar from "./StyledToolbar";
 import { MenuItem } from "@mui/material";
 import { ProductsContext } from "../../../context/ProductsContext";
+import { AuthContext } from "../../../context/AuthContext";
 
 /**
  * The SmallScreenToolbar component is used to display a navigation bar for small screen devices.
  * It consists of a logo and a hamburger menu icon that opens a dropdown menu with links to
  * different pages on the website.
  *
- * @param {boolean} loggedIn - Indicates whether the user is logged in or not.
- * @param {function} handleLogout - Function to call when user logs out.
  * @returns {JSX.Element} The JSX code for the SmallScreenToolbar component.
  */
-const SmallScreenToolbar = ({ loggedIn, handleLogout }) => {
+const SmallScreenToolbar = () => {
+  const { loggedIn, handleLogout } = useContext(AuthContext);
   const { handleProductsClick } = useContext(ProductsContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);

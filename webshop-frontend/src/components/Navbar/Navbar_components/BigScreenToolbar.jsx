@@ -1,14 +1,15 @@
+import React, { useContext } from "react";
 import {
   Person2Outlined as Person2OutlinedIcon,
   PlaceOutlined as PlaceOutlinedIcon,
   ShoppingCart as ShoppingCartIcon,
 } from "@mui/icons-material";
 import * as PropTypes from "prop-types";
-import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import coffeeLogo from "../../../assets/img/logos/logo_bigscreen.png";
 import { useCart } from "../../../context/CartContext";
 import { ProductsContext } from "../../../context/ProductsContext";
+import { AuthContext } from "../../../context/AuthContext";
 import { AccountMenu } from "./AccountMenu";
 import { AccountTooltip } from "./AccountTooltip";
 import NavbarButton from "./NavbarButton";
@@ -39,12 +40,10 @@ AccountTooltip.propTypes = {
  when the screen is large. It consists of a logo, and a menu with links to different pages
  on the website. Some with just text, others with appropriate icons. If the user is logged in,
  an account menu is shown when clicking on an avatar icon, otherwise, a "Log in" button is displayed.
- @param {Object} props - The component props.
- @param {boolean} props.loggedIn - Indicates whether the user is logged in or not.
- @param {Function} props.handleLogout - The function to call when the user logs out.
  @returns {JSX.Element} The JSX code for the BigScreenToolbar component.
  */
-const BigScreenToolbar = ({ loggedIn, handleLogout }) => {
+const BigScreenToolbar = () => {
+  const { loggedIn, handleLogout } = useContext(AuthContext);
   const { handleProductsClick } = useContext(ProductsContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);

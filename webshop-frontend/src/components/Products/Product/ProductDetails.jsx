@@ -6,13 +6,15 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useLocation, useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../../context/CartContext";
+import { AuthContext } from "../../../context/AuthContext";
 import Loading from "../../Standard_components/Loading";
 
-function ProductDetails({ loggedIn }) {
+function ProductDetails() {
+  const { loggedIn } = useContext(AuthContext);
   const { id } = useParams();
   const location = useLocation();
   const productData = location.state?.product;

@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AboutUs from "./components/AboutUs";
 import Admin from "./components/Admin/Admin";
@@ -25,36 +25,19 @@ import ShoppingCart from "./components/ShoppingCart";
 import NotFound from "./components/Standard_components/NotFound";
 
 function App() {
-  // handle logging in and out, keeping track of the state
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  const handleLogin = () => {
-    setLoggedIn(true);
-  };
-
-  const handleLogout = () => {
-    setLoggedIn(false);
-  };
-
   return (
     <BrowserRouter>
       <Box display="flex" flexDirection="column" minHeight="100vh">
-        <Navbar loggedIn={loggedIn} handleLogout={handleLogout} />
+        <Navbar />
         <Box flex="1">
           <Routes>
             <Route path="/" element={<Frontpage />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/products" element={<Products />} />
-            <Route
-              path="/products/:id"
-              element={<ProductDetails loggedIn={loggedIn} />}
-            />
+            <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/findus" element={<FindUs />} />
-            <Route
-              path="/login"
-              element={<LogIn handleLogin={handleLogin} />}
-            />
+            <Route path="/login" element={<LogIn />} />
             <Route path="/register" element={<RegisterNewUser />} />
             <Route path="/shoppingcart" element={<ShoppingCart />} />
             <Route path="/profile" element={<Profile />} />

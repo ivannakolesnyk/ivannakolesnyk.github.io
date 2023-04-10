@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   TextField,
@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 const LoginBox = styled(Paper)({
   display: "flex",
@@ -30,9 +31,9 @@ const StyledButton = styled(Button)({
   width: "100%",
 });
 
-const Login = ({ handleLogin }) => {
+const Login = () => {
   const navigate = useNavigate();
-
+  const { handleLogin } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
