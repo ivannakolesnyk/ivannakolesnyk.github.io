@@ -45,15 +45,15 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    public ResponseEntity getProductById(@PathVariable Integer id) {
-        ResponseEntity response;
-        Optional<Product> productOptional = this.productRepository.findById(id);
-        if (productOptional.isPresent()) {
-            response = new ResponseEntity(productOptional.get(), HttpStatus.OK);
-        } else {
-            response = new ResponseEntity(HttpStatus.NOT_FOUND);
+    public ResponseEntity getProductById(@PathVariable String id) {
+        try {
+            Integer parsedId = Integer.parseInt(id);
+            return this.productRepository.findById(parsedId)
+                    .map(product -> new ResponseEntity<>(product, HttpStatus.OK))
+                    .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        } catch (NumberFormatException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return response;
     }
 
     /**
