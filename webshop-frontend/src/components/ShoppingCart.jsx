@@ -22,6 +22,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 function ShoppingCart() {
+  //TODO: Fix colors
   const { cart, removeFromCart, adjustQuantity } = useCart();
   const navigate = useNavigate();
 
@@ -183,7 +184,7 @@ function ShoppingCart() {
       <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
         <Button
           variant="outlined"
-          color="primary"
+          color="secondary"
           onClick={handleContinueShopping}
           sx={{ mr: 1 }}
         >
