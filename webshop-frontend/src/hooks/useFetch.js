@@ -12,11 +12,11 @@ import { useCallback, useEffect, useState } from "react";
  * import useFetch from "./useFetch";
  * const { data, isLoading, error, refetch } = useFetch("products", { name: "Coffee" });
  */
-const useFetch = (endpoint, query) => {
+const useFetch = (endpoint, query, autoFetch = true) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  const [fetched, setFetched] = useState(false);
   const [showError, setShowError] = useState(false);
 
   const fetchData = useCallback(async () => {
@@ -30,6 +30,7 @@ const useFetch = (endpoint, query) => {
     try {
       const respond = await axios.request(options);
       setData(respond.data);
+      setFetched(true);
       setIsLoading(false);
     } catch (error) {
       setError(error);
@@ -45,15 +46,17 @@ const useFetch = (endpoint, query) => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    if (autoFetch) {
+      fetchData();
+    }
+  }, [fetchData, autoFetch]);
 
   const refetch = () => {
     setIsLoading(true);
     fetchData();
   };
 
-  return { data, isLoading, error, refetch, showError, dismissError };
+  return { data, isLoading, error, refetch, showError, dismissError, fetched };
 };
 
 export default useFetch;
