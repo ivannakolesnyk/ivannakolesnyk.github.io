@@ -17,6 +17,7 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
@@ -38,6 +39,22 @@ function ShoppingCart() {
   const handleContinueShopping = () => {
     navigate("/products");
   };
+
+  const [imagesSrc, setImagesSrc] = useState([]);
+
+  useEffect(() => {
+    if (cart && cart.length > 0) {
+      Promise.all(
+        cart.map((item) =>
+          import(`../assets/img/${item.product.product_image}`)
+        )
+      ).then((modules) => {
+        setImagesSrc(modules.map((module) => module.default));
+      });
+    } else {
+      setImagesSrc([]);
+    }
+  }, [cart]);
 
   return (
     <Box
@@ -69,7 +86,7 @@ function ShoppingCart() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {cart.map((item) => (
+              {cart.map((item, index) => (
                 <TableRow key={item.product.id}>
                   <TableCell>
                     <IconButton
@@ -81,7 +98,7 @@ function ShoppingCart() {
                     </IconButton>
                     <Box
                       component="img"
-                      src={item.product.imageSrc}
+                      src={imagesSrc[index]}
                       alt={item.product.name}
                       sx={{ width: "50px", height: "auto", mr: 1 }}
                     />
