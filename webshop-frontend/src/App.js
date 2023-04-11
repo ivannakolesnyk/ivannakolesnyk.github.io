@@ -40,8 +40,7 @@ function App() {
             <Route path="/products" element={<Products />} />
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/findus" element={<FindUs />} />
-            <Route path="/login" element={<LogIn />} />
-            <Route path="/register" element={<RegisterNewUser />} />
+
             <Route path="/shoppingcart" element={<ShoppingCart />} />
             {loggedIn ? (
               <>
@@ -52,9 +51,15 @@ function App() {
                 />
                 <Route path="/profile/edit" element={<ProfileEdit />} />
                 <Route path="/profile/changepw" element={<ProfileChangePW />} />
+                <Route path="/login" element={<Navigate to="/profile" />} />
+                <Route path="/register" element={<Navigate to="/profile" />} />
               </>
             ) : (
-              <Route path="/profile/*" element={<Navigate to="/login" />} />
+              <>
+                <Route path="/profile/*" element={<Navigate to="/login" />} />
+                <Route path="/login" element={<LogIn />} />
+                <Route path="/register" element={<RegisterNewUser />} />
+              </>
             )}
             {/* TODO: restrict access to admin too. (user.role) */}
             <Route path="/admin" element={<Admin />} />
