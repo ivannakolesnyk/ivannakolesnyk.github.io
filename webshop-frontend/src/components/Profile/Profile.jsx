@@ -1,19 +1,3 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import {
-  Button,
-  CardActions,
-  CardContent,
-  Divider,
-  Typography,
-} from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
-import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
-import { ProfileInformation } from "../Standard_components/Profile_and_Admin/ProfileInformation";
-import { AuthContext } from "../../context/AuthContext";
-import cookie from "cookie";
-
 /**
  *
  * The ProfilePage component displays a user's profile information and provides
@@ -22,10 +6,30 @@ import cookie from "cookie";
  * information shown as a ListItem.
  * @returns {JSX.Element} The JSX code for the ProfilePage component.
  */
+import {
+  Button,
+  CardActions,
+  CardContent,
+  Divider,
+  Typography,
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import cookie from "cookie";
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { ProfileInformation } from "../Standard_components/Profile_and_Admin/ProfileInformation";
+import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
+import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
+import Loading from "../Standard_components/Loading";
+import InternalError from "../Standard_components/InternalError";
+
 const ProfilePage = () => {
   const theme = useTheme();
   const { getJwtPayload } = useContext(AuthContext);
   const [profileData, setProfileData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(false);
 
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -50,49 +54,72 @@ const ProfilePage = () => {
             setProfileData(data);
           } else {
             console.error("Error fetching profile data:", response.status);
+            setFetchError(true);
           }
         }
       } catch (error) {
         console.error("Error fetching profile data:", error);
+        setFetchError(true);
       }
+      setIsLoading(false);
     };
 
     fetchProfileData();
   }, [getJwtPayload]);
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (fetchError) {
+    return <InternalError />;
+  }
+
   return (
-    <StandardCenteredBox>
-      <StandardCenteredCard>
-        <ProfileInformation theme={theme} profileData={profileData} />
-        <CardActions sx={{ justifyContent: "flex-end" }}>
-          <Button component={Link} to="/profile/edit" variant="contained">
-            Edit Profile
-          </Button>
-          <Button component={Link} to="/profile/changepw" variant="contained">
-            Change password
-          </Button>
-        </CardActions>
-        <Divider />
-        <CardContent>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="div"
-            sx={{ color: "secondary.main" }}
-          >
-            Orders
-          </Typography>
-          <Typography variant="body2">
-            Here you can view your orders.
-          </Typography>
-        </CardContent>
-        <CardActions sx={{ justifyContent: "flex-end" }}>
-          <Button component={Link} to="/profile/vieworders" variant="contained">
-            View Orders
-          </Button>
-        </CardActions>
-      </StandardCenteredCard>
-    </StandardCenteredBox>
+    <>
+      {profileData ? (
+        <StandardCenteredBox>
+          <StandardCenteredCard>
+            <ProfileInformation theme={theme} profileData={profileData} />
+            <CardActions sx={{ justifyContent: "flex-end" }}>
+              <Button component={Link} to="/profile/edit" variant="contained">
+                Edit Profile
+              </Button>
+              <Button
+                component={Link}
+                to="/profile/changepw"
+                variant="contained"
+              >
+                Change password
+              </Button>
+            </CardActions>
+            <Divider />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                sx={{ color: "secondary.main" }}
+              >
+                Orders
+              </Typography>
+              <Typography variant="body2">
+                Here you can view your orders.
+              </Typography>
+            </CardContent>
+            <CardActions sx={{ justifyContent: "flex-end" }}>
+              <Button
+                component={Link}
+                to="/profile/vieworders"
+                variant="contained"
+              >
+                View Orders
+              </Button>
+            </CardActions>
+          </StandardCenteredCard>
+        </StandardCenteredBox>
+      ) : null}
+    </>
   );
 };
 
