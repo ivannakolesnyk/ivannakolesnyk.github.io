@@ -32,7 +32,7 @@ public class ProductController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @GetMapping("/products")
+    @GetMapping("/api/products")
     public ResponseEntity getProducts(@RequestParam(required = false) String name) {
         ResponseEntity response;
         if (name != null) {
@@ -44,7 +44,7 @@ public class ProductController {
         return response;
     }
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/api/products/{id}")
     public ResponseEntity getProductById(@PathVariable String id) {
         try {
             Integer parsedId = Integer.parseInt(id);
