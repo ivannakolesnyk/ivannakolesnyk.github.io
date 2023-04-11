@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import cookie from "cookie";
 
 export const AuthContext = React.createContext();
@@ -25,11 +25,13 @@ export const AuthProvider = ({ children }) => {
     document.cookie = cookie.serialize("jwt", "", { maxAge: -1 }); // Remove the JWT cookie
   };
 
-  const value = {
-    loggedIn,
-    handleLogin,
-    handleLogout,
-  };
-
+  const value = useMemo(
+    () => ({
+      loggedIn,
+      handleLogin,
+      handleLogout,
+    }),
+    [loggedIn]
+  );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
