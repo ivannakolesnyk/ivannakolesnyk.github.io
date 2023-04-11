@@ -131,24 +131,49 @@ const ProfileViewOrders = () => {
         </DialogTitle>
         <DialogContent>
           <Grid container spacing={2} sx={{ mb: 2 }}>
-            <Grid item xs={6}>
+            <Grid item xs={4}>
               <Typography variant="subtitle1">Product</Typography>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={2}>
               <Typography variant="subtitle1" align="right">
                 Quantity
               </Typography>
             </Grid>
+            <Grid item xs={2}>
+              <Typography variant="subtitle1" align="right">
+                Price
+              </Typography>
+            </Grid>
+            <Grid item xs={4}>
+              <Typography variant="subtitle1" align="right">
+                Total
+              </Typography>
+            </Grid>
             {selectedOrder?.order_lines.map((orderLine) => (
               <Fragment key={orderLine.id}>
-                <Grid item xs={6}>
+                <Grid item xs={4}>
                   <Typography variant="body1">
                     {products.find((p) => p.id === orderLine.product_id).name}
                   </Typography>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={2}>
                   <Typography variant="body1" align="right">
                     {orderLine.quantity}
+                  </Typography>
+                </Grid>
+                <Grid item xs={3}>
+                  <Typography variant="body1" align="right">
+                    {products
+                      .find((p) => p.id === orderLine.product_id)
+                      .price.toFixed(2)}
+                  </Typography>
+                </Grid>
+                <Grid item xs={3}>
+                  <Typography variant="body1" align="right">
+                    {(
+                      products.find((p) => p.id === orderLine.product_id)
+                        .price * orderLine.quantity
+                    ).toFixed(2)}
                   </Typography>
                 </Grid>
               </Fragment>
@@ -158,13 +183,15 @@ const ProfileViewOrders = () => {
             </Grid>
             <Grid item xs={6}>
               <Typography variant="h6" align="right">
-                {selectedOrder?.order_lines.reduce((total, ol) => {
-                  return (
-                    total +
-                    products.find((p) => p.id === ol.product_id).price *
-                      ol.quantity
-                  );
-                }, 0)}{" "}
+                {selectedOrder?.order_lines
+                  .reduce((total, ol) => {
+                    return (
+                      total +
+                      products.find((p) => p.id === ol.product_id).price *
+                        ol.quantity
+                    );
+                  }, 0)
+                  .toFixed(2)}{" "}
                 NOK
               </Typography>
             </Grid>
