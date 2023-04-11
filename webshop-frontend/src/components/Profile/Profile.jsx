@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Button,
@@ -11,6 +11,8 @@ import { useTheme } from "@mui/material/styles";
 import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
 import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 import { ProfileInformation } from "../Standard_components/Profile_and_Admin/ProfileInformation";
+import { AuthContext } from "../../context/AuthContext";
+import cookie from "cookie";
 
 /**
  *
@@ -22,11 +24,46 @@ import { ProfileInformation } from "../Standard_components/Profile_and_Admin/Pro
  */
 const ProfilePage = () => {
   const theme = useTheme();
+  const { getJwtPayload } = useContext(AuthContext);
+  const [profileData, setProfileData] = useState(null);
+
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const payload = getJwtPayload();
+        if (payload) {
+          const userEmail = payload.sub; // Replace 'sub' with the claim name containing the user's email
+          const jwt = cookie.parse(document.cookie).jwt;
+
+          const response = await fetch(
+            `http://localhost:8080/api/users/${userEmail}`,
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${jwt}`,
+              },
+            }
+          );
+
+          if (response.ok) {
+            const data = await response.json();
+            setProfileData(data);
+          } else {
+            console.error("Error fetching profile data:", response.status);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+      }
+    };
+
+    fetchProfileData();
+  }, [getJwtPayload]);
 
   return (
     <StandardCenteredBox>
       <StandardCenteredCard>
-        <ProfileInformation theme={theme} />
+        <ProfileInformation theme={theme} profileData={profileData} />
         <CardActions sx={{ justifyContent: "flex-end" }}>
           <Button component={Link} to="/profile/edit" variant="contained">
             Edit Profile

@@ -20,12 +20,13 @@ import React from "react";
  * CardHeader, CardContent, and List.
  * @returns {JSX.Element} The JSX code for the ProfileInformation component.
  */
-export function ProfileInformation(props) {
+export function ProfileInformation({ theme, profileData }) {
+  const { name, phone_number, postal_code, address, city } = profileData;
   const profileItems = [
     {
       icon: <PersonIcon />,
       primary: "Name",
-      secondary: "Simon Doe",
+      secondary: name,
     },
     {
       icon: <EmailIcon />,
@@ -35,22 +36,18 @@ export function ProfileInformation(props) {
     {
       icon: <PhoneIcon />,
       primary: "Phone",
-      secondary: "+47 90090900",
+      secondary: phone_number,
     },
     {
       icon: <LocationOnIcon />,
       primary: "Address",
-      secondary: "Chicken Road 13, 7080 Farm County",
+      secondary: `${address}, ${postal_code} ${city}`,
     },
   ];
 
   return (
     <>
-      <CardHeader
-        sx={{ color: "secondary.main" }}
-        title="My Monoca"
-        subheader="User id: 123, usertype" //customer can be changed to admin if it's an admin
-      />
+      <CardHeader sx={{ color: "secondary.main" }} title="My Monoca" />
       <Divider />
       <CardContent>
         <Typography
