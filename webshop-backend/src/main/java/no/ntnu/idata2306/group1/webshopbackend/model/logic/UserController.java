@@ -1,8 +1,5 @@
 package no.ntnu.idata2306.group1.webshopbackend.model.logic;
 
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.UserProfileDto;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.User;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.AccessUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,9 +23,8 @@ public class UserController {
   @GetMapping("/api/users/{username}")
   public ResponseEntity<?> getProfile(@PathVariable String username) throws InterruptedException {
     User sessionUser = userService.getSessionUser();
-    if (sessionUser != null && sessionUser.getUsername().equals(username)) {
-      UserProfileDto profile = new UserProfileDto(sessionUser.getBio());
-      Thread.sleep(2000); // Simulate sleep
+    if (sessionUser != null && sessionUser.getEmail().equals(username)) {
+      UserProfileDto profile = new UserProfileDto();
       return new ResponseEntity<>(profile, HttpStatus.OK);
     } else if (sessionUser == null) {
       return new ResponseEntity<>("Profile data accessible only to authenticated users",
@@ -50,7 +46,7 @@ public class UserController {
       @RequestBody UserProfileDto profileData) throws InterruptedException {
     User sessionUser = userService.getSessionUser();
     ResponseEntity<String> response;
-    if (sessionUser != null && sessionUser.getUsername().equals(username)) {
+    if (sessionUser != null && sessionUser.getEmail().equals(username)) {
       if (profileData != null) {
         if (userService.updateProfile(sessionUser, profileData)) {
           Thread.sleep(2000); // Simulate long operation

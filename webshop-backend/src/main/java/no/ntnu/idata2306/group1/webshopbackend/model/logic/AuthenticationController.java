@@ -1,10 +1,5 @@
 package no.ntnu.idata2306.group1.webshopbackend.model.logic;
 
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.AuthenticationRequest;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.AuthenticationResponse;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.SignupDto;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.JwtUtil;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.AccessUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +7,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -39,12 +33,12 @@ public class AuthenticationController {
   public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
     try {
       authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-          authenticationRequest.getUsername(), authenticationRequest.getPassword()));
+          authenticationRequest.getEmail(), authenticationRequest.getPassword()));
     } catch (BadCredentialsException e) {
       return new ResponseEntity<>("Invalid username or password", HttpStatus.UNAUTHORIZED);
     }
     final UserDetails userDetails =
-        userService.loadUserByUsername(authenticationRequest.getUsername());
+        userService.loadUserByUsername(authenticationRequest.getEmail());
     final String jwt = jwtUtil.generateToken(userDetails);
     return ResponseEntity.ok(new AuthenticationResponse(jwt));
   }
@@ -57,7 +51,7 @@ public class AuthenticationController {
   @PostMapping("/api/signup")
   public ResponseEntity<String> signupProcess(@RequestBody SignupDto signupData) {
     String errorMessage =
-        userService.tryCreateNewUser(signupData.getUsername(), signupData.getPassword());
+        userService.tryCreateNewUser(signupData.getEmail(), signupData.getPassword());
     ResponseEntity<String> response;
     if (errorMessage == null) {
       response = new ResponseEntity<>(HttpStatus.OK);

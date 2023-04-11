@@ -32,13 +32,13 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
    */
   @Override
   public void onApplicationEvent(ApplicationReadyEvent event) {
-    Optional<User> existingChuckUser = userRepository.findByUsername("chuck");
+    Optional<User> existingChuckUser = userRepository.findByEmail("chuck@chuck.com");
     if (existingChuckUser.isEmpty()) {
       logger.info("Importing test data...");
-      User chuck = new User("chuck", "$2a$10$TdrxcA8tiOyvs8pDq6t6EuXjkKZ5s6SAux0bP1Rm8oqDQnpxU4GgW",
-          "I don't need a mic for remote conferences. My voice goes directly into USB.");
-      User dave = new User("dave", "$2a$10$nwbEjYKgcomq2rjUPge2JegqI.y4zEcNqRMPdqwFnd1ytorNCQM/y",
-          "Dangerous Dave");
+      User chuck = new User("chuck@chuck.com", "$2a$10$TdrxcA8tiOyvs8pDq6t6EuXjkKZ5s6SAux0bP1Rm8oqDQnpxU4GgW"
+      );
+      User dave = new User("dave", "$2a$10$nwbEjYKgcomq2rjUPge2JegqI.y4zEcNqRMPdqwFnd1ytorNCQM/y"
+      );
       Role user = new Role("ROLE_USER");
       Role admin = new Role("ROLE_ADMIN");
       chuck.addRole(user);

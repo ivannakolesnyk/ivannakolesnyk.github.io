@@ -1,11 +1,5 @@
 package no.ntnu.idata2306.group1.webshopbackend.model.logic;
 
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.UserProfileDto;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.Role;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.User;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.RoleRepository;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.UserRepository;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.AccessUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -31,7 +25,7 @@ public class AccessUserService implements UserDetailsService {
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    Optional<User> user = userRepository.findByUsername(username);
+    Optional<User> user = userRepository.findByEmail(username);
     if (user.isPresent()) {
       return new AccessUserDetails(user.get());
     } else {
@@ -48,18 +42,18 @@ public class AccessUserService implements UserDetailsService {
     SecurityContext securityContext = SecurityContextHolder.getContext();
     Authentication authentication = securityContext.getAuthentication();
     String username = authentication.getName();
-    return userRepository.findByUsername(username).orElse(null);
+    return userRepository.findByEmail(username).orElse(null);
   }
 
   /**
    * Check if user with given username exists in the database.
    *
-   * @param username Username of the user to check, case-sensitive
+   * @param email Username of the user to check, case-sensitive
    * @return True if user exists, false otherwise
    */
-  private boolean userExists(String username) {
+  private boolean userExists(String email) {
     try {
-      loadUserByUsername(username);
+      loadUserByUsername(email);
       return true;
     } catch (UsernameNotFoundException ex) {
       return false;
@@ -69,20 +63,20 @@ public class AccessUserService implements UserDetailsService {
   /**
    * Try to create a new user.
    *
-   * @param username Username of the new user
+   * @param email    Username of the new user
    * @param password Plaintext password of the new user
    * @return null when user created, error message on error
    */
-  public String tryCreateNewUser(String username, String password) {
+  public String tryCreateNewUser(String email, String password) {
     String errorMessage;
-    if ("".equals(username)) {
+    if ("".equals(email)) {
       errorMessage = "Username can't be empty";
-    } else if (userExists(username)) {
+    } else if (userExists(email)) {
       errorMessage = "Username already taken";
     } else {
       errorMessage = checkPasswordRequirements(password);
       if (errorMessage == null) {
-        createUser(username, password);
+        createUser(email, password);
       }
     }
     return errorMessage;
@@ -108,13 +102,13 @@ public class AccessUserService implements UserDetailsService {
   /**
    * Create a new user in the database.
    *
-   * @param username Username of the new user
+   * @param email    Username of the new user
    * @param password Plaintext password of the new user
    */
-  private void createUser(String username, String password) {
+  private void createUser(String email, String password) {
     Role userRole = roleRepository.findOneByName("ROLE_USER");
     if (userRole != null) {
-      User user = new User(username, createHash(password));
+      User user = new User(email, createHash(password));
       user.addRole(userRole);
       userRepository.save(user);
     }
@@ -138,7 +132,6 @@ public class AccessUserService implements UserDetailsService {
    * @return True on success, false otherwise
    */
   public boolean updateProfile(User user, UserProfileDto profileData) {
-    user.setBio(profileData.getBio());
     userRepository.save(user);
     return true;
   }

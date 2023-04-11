@@ -13,9 +13,8 @@ public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String username;
+  private String email;
   private String password;
-  private String bio;
   private boolean active = true;
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
@@ -27,15 +26,9 @@ public class User {
    */
   public User() {}
 
-  public User(String username, String password) {
-    this.username = username;
+  public User(String email, String password) {
+    this.email = email;
     this.password = password;
-  }
-
-  public User(String username, String password, String bio) {
-    this.username = username;
-    this.password = password;
-    this.bio = bio;
   }
 
   public void setRoles(Set<Role> roles) {
@@ -55,12 +48,12 @@ public class User {
     this.id = id;
   }
 
-  public String getUsername() {
-    return username;
+  public String getEmail() {
+    return email;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
+  public void setEmail(String username) {
+    this.email = username;
   }
 
   public String getPassword() {
@@ -115,11 +108,4 @@ public class User {
     return found;
   }
 
-  public String getBio() {
-    return bio;
-  }
-
-  public void setBio(String bio) {
-    this.bio = bio;
-  }
 }

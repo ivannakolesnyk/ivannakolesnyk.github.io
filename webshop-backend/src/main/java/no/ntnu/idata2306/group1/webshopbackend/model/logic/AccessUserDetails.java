@@ -11,13 +11,13 @@ import org.springframework.security.core.userdetails.UserDetails;
  * Contains authentication information, needed by UserDetailsService.
  */
 public class AccessUserDetails implements UserDetails {
-  private final String username;
+  private final String email;
   private final String password;
   private final boolean isActive;
   private final Set<GrantedAuthority> authorities = new HashSet<>();
 
   public AccessUserDetails(User user) {
-    this.username = user.getUsername();
+    this.email = user.getEmail();
     this.password = user.getPassword();
     this.isActive = user.isActive();
     this.convertRoles(user.getRoles());
@@ -42,7 +42,7 @@ public class AccessUserDetails implements UserDetails {
 
   @Override
   public String getUsername() {
-    return username;
+    return email;
   }
 
   @Override
