@@ -1,16 +1,17 @@
-import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
-  TextField,
-  Button,
-  Typography,
   Box,
+  Button,
   Container,
   Paper,
+  TextField,
+  Typography,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import axios from "axios";
+import cookie from "cookie";
 
 const LoginBox = styled(Paper)({
   display: "flex",
@@ -45,42 +46,34 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const tempHandleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/profile");
-    handleLogin();
-  };
-
-  /*  Use this code when login API is ready:
-    const handleSubmit = async (e) => {
-    e.preventDefault();
-
     try {
-      const response = await fetch("http://localhost:8080/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (response.ok) {
-        const { token } = await response.json();
-        // Store the token in local storage or a state management library (e.g., Redux)
-        localStorage.setItem("token", token);
-      } else {
-        // Handle error response
-        console.error("Login failed");
+      const response = await axios.post(
+        "http://localhost:8080/api/authenticate",
+        {
+          email,
+          password,
+        }
+      );
+      if (response.status === 200) {
+        const token = response.data.jwt;
+        //TODO: Remember to adjust the expiration date in the backend
+        document.cookie = cookie.serialize("jwt", token, {
+          maxAge: 7 * 24 * 60 * 60,
+        }); // Set the JWT in a cookie with a 7-day expiration
+        handleLogin();
+        navigate("/profile");
       }
-    } catch (err) {
-      console.error("Error during login:", err);
+    } catch (error) {
+      console.error("Invalid username or password");
     }
-  }; */
+  };
 
   return (
     <Container maxWidth="lg" sx={{ display: "flex", justifyContent: "center" }}>
       <Box sx={{ mt: "4rem", mb: "2rem" }}>
-        <LoginBox elevation={3} component="form" onSubmit={tempHandleSubmit}>
+        <LoginBox elevation={3} component="form" onSubmit={handleSubmit}>
           <Typography
             variant="h4"
             sx={{ color: "secondary.main", marginBottom: "2rem" }}

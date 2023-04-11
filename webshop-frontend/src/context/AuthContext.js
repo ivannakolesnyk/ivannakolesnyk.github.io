@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import cookie from "cookie";
 
 export const AuthContext = React.createContext();
 
@@ -11,18 +12,17 @@ export const AuthContext = React.createContext();
  */
 export const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(() => {
-    const savedLoggedIn = localStorage.getItem("loggedIn");
-    return savedLoggedIn === "true" ? true : false;
+    const cookies = cookie.parse(document.cookie);
+    return cookies.jwt ? true : false;
   });
 
   const handleLogin = () => {
     setLoggedIn(true);
-    localStorage.setItem("loggedIn", "true");
   };
 
   const handleLogout = () => {
     setLoggedIn(false);
-    localStorage.removeItem("loggedIn");
+    document.cookie = cookie.serialize("jwt", "", { maxAge: -1 }); // Remove the JWT cookie
   };
 
   const value = {
