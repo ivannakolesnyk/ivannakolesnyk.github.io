@@ -140,6 +140,16 @@ public class AccessUserService implements UserDetailsService {
    * @return True on success, false otherwise
    */
   public boolean updateProfile(User user, UserProfileDto profileData) {
+    if (user == null || profileData == null) {
+      return false;
+    }
+
+    user.setName(profileData.getName());
+    user.setPhone_number(profileData.getPhone_number());
+    user.setPostal_code(profileData.getPostal_code());
+    user.setAddress(profileData.getAddress());
+    user.setCity(profileData.getCity());
+
     userRepository.save(user);
     return true;
   }
