@@ -1,6 +1,8 @@
-package no.ntnu.idata2306.group1.webshopbackend.model.logic;
+package no.ntnu.idata2306.group1.webshopbackend.models;
 
 import jakarta.persistence.*;
+import no.ntnu.idata2306.group1.webshopbackend.models.Role;
+
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;

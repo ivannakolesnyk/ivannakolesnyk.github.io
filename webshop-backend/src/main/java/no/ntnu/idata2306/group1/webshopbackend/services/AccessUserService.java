@@ -1,5 +1,11 @@
-package no.ntnu.idata2306.group1.webshopbackend.model.logic;
+package no.ntnu.idata2306.group1.webshopbackend.services;
 
+import no.ntnu.idata2306.group1.webshopbackend.dto.UserProfileDto;
+import no.ntnu.idata2306.group1.webshopbackend.models.Role;
+import no.ntnu.idata2306.group1.webshopbackend.models.User;
+import no.ntnu.idata2306.group1.webshopbackend.repositories.RoleRepository;
+import no.ntnu.idata2306.group1.webshopbackend.repositories.UserRepository;
+import no.ntnu.idata2306.group1.webshopbackend.security.AccessUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;

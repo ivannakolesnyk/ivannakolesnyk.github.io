@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this
  * license Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package no.ntnu.idata2306.group1.webshopbackend.model.data;
+package no.ntnu.idata2306.group1.webshopbackend.models;
 
-import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import no.ntnu.idata2306.group1.webshopbackend.models.Category;
 
 /**
  * A product in our webshop.

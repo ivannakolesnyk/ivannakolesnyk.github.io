@@ -1,5 +1,8 @@
-package no.ntnu.idata2306.group1.webshopbackend.model.logic;
+package no.ntnu.idata2306.group1.webshopbackend.controllers;
 
+import no.ntnu.idata2306.group1.webshopbackend.dto.UserProfileDto;
+import no.ntnu.idata2306.group1.webshopbackend.models.User;
+import no.ntnu.idata2306.group1.webshopbackend.services.AccessUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package no.ntnu.idata2306.group1.webshopbackend;
+package no.ntnu.idata2306.group1.webshopbackend.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.Role;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.RoleRepository;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.User;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.UserRepository;
+import no.ntnu.idata2306.group1.webshopbackend.models.Role;
+import no.ntnu.idata2306.group1.webshopbackend.repositories.RoleRepository;
+import no.ntnu.idata2306.group1.webshopbackend.models.User;
+import no.ntnu.idata2306.group1.webshopbackend.repositories.UserRepository;
 import java.util.Optional;
 
 /**

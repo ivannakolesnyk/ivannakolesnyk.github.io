@@ -1,5 +1,6 @@
-package no.ntnu.idata2306.group1.webshopbackend.model.logic;
+package no.ntnu.idata2306.group1.webshopbackend.security;
 
+import no.ntnu.idata2306.group1.webshopbackend.security.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

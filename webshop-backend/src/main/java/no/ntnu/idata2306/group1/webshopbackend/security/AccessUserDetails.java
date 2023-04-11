@@ -1,8 +1,11 @@
-package no.ntnu.idata2306.group1.webshopbackend.model.logic;
+package no.ntnu.idata2306.group1.webshopbackend.security;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
+import no.ntnu.idata2306.group1.webshopbackend.models.Role;
+import no.ntnu.idata2306.group1.webshopbackend.models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

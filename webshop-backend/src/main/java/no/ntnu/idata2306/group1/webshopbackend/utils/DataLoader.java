@@ -1,13 +1,13 @@
-package no.ntnu.idata2306.group1.webshopbackend;
+package no.ntnu.idata2306.group1.webshopbackend.utils;
 
 import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
-import no.ntnu.idata2306.group1.webshopbackend.model.data.Category;
-import no.ntnu.idata2306.group1.webshopbackend.model.data.Product;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.CategoryRepository;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.ProductRepository;
+import no.ntnu.idata2306.group1.webshopbackend.models.Category;
+import no.ntnu.idata2306.group1.webshopbackend.models.Product;
+import no.ntnu.idata2306.group1.webshopbackend.repositories.CategoryRepository;
+import no.ntnu.idata2306.group1.webshopbackend.repositories.ProductRepository;
 
 @Component
 @DependsOn("dataSource")

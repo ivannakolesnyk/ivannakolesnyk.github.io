@@ -1,4 +1,4 @@
-package no.ntnu.idata2306.group1.webshopbackend.model.logic;
+package no.ntnu.idata2306.group1.webshopbackend.security;
 
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;

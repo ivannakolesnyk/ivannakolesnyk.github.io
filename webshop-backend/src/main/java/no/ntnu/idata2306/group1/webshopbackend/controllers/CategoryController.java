@@ -1,4 +1,4 @@
-package no.ntnu.idata2306.group1.webshopbackend.controller;
+package no.ntnu.idata2306.group1.webshopbackend.controllers;
 
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import no.ntnu.idata2306.group1.webshopbackend.model.data.Category;
-import no.ntnu.idata2306.group1.webshopbackend.model.logic.CategoryRepository;
+import no.ntnu.idata2306.group1.webshopbackend.models.Category;
+import no.ntnu.idata2306.group1.webshopbackend.repositories.CategoryRepository;
 
 @RestController
 @RequestMapping("/categories")

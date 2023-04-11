@@ -1,4 +1,4 @@
-package no.ntnu.idata2306.group1.webshopbackend.model.logic;
+package no.ntnu.idata2306.group1.webshopbackend.dto;
 
 /**
  * Data that we will send as a response to the user when the authentication is successful.

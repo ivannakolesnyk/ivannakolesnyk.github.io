@@ -1,4 +1,4 @@
-package no.ntnu.idata2306.group1.webshopbackend.model.logic;
+package no.ntnu.idata2306.group1.webshopbackend.dto;
 
 /**
  * Data transfer object (DTO) for data from the sign-up form.
