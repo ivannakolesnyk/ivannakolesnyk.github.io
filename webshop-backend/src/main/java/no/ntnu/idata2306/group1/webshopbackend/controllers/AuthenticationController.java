@@ -40,7 +40,7 @@ public class AuthenticationController {
       authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
           authenticationRequest.getEmail(), authenticationRequest.getPassword()));
     } catch (BadCredentialsException e) {
-      return new ResponseEntity<>("Invalid username or password", HttpStatus.UNAUTHORIZED);
+      return new ResponseEntity<>("Invalid email or password", HttpStatus.UNAUTHORIZED);
     }
     final UserDetails userDetails =
         userService.loadUserByUsername(authenticationRequest.getEmail());
@@ -56,7 +56,7 @@ public class AuthenticationController {
   @PostMapping("/api/signup")
   public ResponseEntity<String> signupProcess(@RequestBody SignupDto signupData) {
     String errorMessage =
-        userService.tryCreateNewUser(signupData.getEmail(), signupData.getPassword());
+        userService.tryCreateNewUser(signupData.getEmail(), signupData.getPassword(), signupData.getName(), signupData.getPhone_number(), signupData.getPostal_code(), signupData.getAddress(), signupData.getCity());
     ResponseEntity<String> response;
     if (errorMessage == null) {
       response = new ResponseEntity<>(HttpStatus.OK);

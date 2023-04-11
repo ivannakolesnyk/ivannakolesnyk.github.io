@@ -73,7 +73,8 @@ public class AccessUserService implements UserDetailsService {
    * @param password Plaintext password of the new user
    * @return null when user created, error message on error
    */
-  public String tryCreateNewUser(String email, String password) {
+  public String tryCreateNewUser(String email, String password, String name, String phone_number,
+                                 int postal_code, String address, String city) {
     String errorMessage;
     if ("".equals(email)) {
       errorMessage = "Username can't be empty";
@@ -82,7 +83,7 @@ public class AccessUserService implements UserDetailsService {
     } else {
       errorMessage = checkPasswordRequirements(password);
       if (errorMessage == null) {
-        createUser(email, password);
+        createUser(email, password, name, phone_number, postal_code, address, city);
       }
     }
     return errorMessage;
@@ -111,10 +112,11 @@ public class AccessUserService implements UserDetailsService {
    * @param email    Username of the new user
    * @param password Plaintext password of the new user
    */
-  private void createUser(String email, String password) {
+  private void createUser(String email, String password, String name, String phone_number,
+                          int postal_code, String address, String city) {
     Role userRole = roleRepository.findOneByName("ROLE_USER");
     if (userRole != null) {
-      User user = new User(email, createHash(password));
+      User user = new User(email, createHash(password), name,phone_number, postal_code, address, city);
       user.addRole(userRole);
       userRepository.save(user);
     }
