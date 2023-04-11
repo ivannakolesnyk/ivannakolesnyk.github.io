@@ -24,17 +24,22 @@ public class UserController {
    * @return The profile information or error code when not authorized
    */
   @GetMapping("/api/users/{username}")
-  public ResponseEntity<?> getProfile(@PathVariable String username) throws InterruptedException {
+  public ResponseEntity<?> getProfile(@PathVariable String username) {
     User sessionUser = userService.getSessionUser();
     if (sessionUser != null && sessionUser.getEmail().equals(username)) {
       UserProfileDto profile = new UserProfileDto();
+      profile.setName(sessionUser.getName());
+      profile.setPhone_number(sessionUser.getPhone_number());
+      profile.setPostal_code(sessionUser.getPostal_code());
+      profile.setAddress(sessionUser.getAddress());
+      profile.setCity(sessionUser.getCity());
       return new ResponseEntity<>(profile, HttpStatus.OK);
     } else if (sessionUser == null) {
       return new ResponseEntity<>("Profile data accessible only to authenticated users",
-          HttpStatus.UNAUTHORIZED);
+              HttpStatus.UNAUTHORIZED);
     } else {
       return new ResponseEntity<>("Profile data for other users not accessible!",
-          HttpStatus.FORBIDDEN);
+              HttpStatus.FORBIDDEN);
     }
   }
 
@@ -46,27 +51,26 @@ public class UserController {
    */
   @PutMapping("/api/users/{username}")
   public ResponseEntity<String> updateProfile(@PathVariable String username,
-      @RequestBody UserProfileDto profileData) throws InterruptedException {
+                                              @RequestBody UserProfileDto profileData) {
     User sessionUser = userService.getSessionUser();
     ResponseEntity<String> response;
     if (sessionUser != null && sessionUser.getEmail().equals(username)) {
       if (profileData != null) {
         if (userService.updateProfile(sessionUser, profileData)) {
-          Thread.sleep(2000); // Simulate long operation
           response = new ResponseEntity<>("", HttpStatus.OK);
         } else {
           response = new ResponseEntity<>("Could not update Profile data",
-              HttpStatus.INTERNAL_SERVER_ERROR);
+                  HttpStatus.INTERNAL_SERVER_ERROR);
         }
       } else {
         response = new ResponseEntity<>("Profile data not supplied", HttpStatus.BAD_REQUEST);
       }
     } else if (sessionUser == null) {
       response = new ResponseEntity<>("Profile data accessible only to authenticated users",
-          HttpStatus.UNAUTHORIZED);
+              HttpStatus.UNAUTHORIZED);
     } else {
       response = new ResponseEntity<>("Profile data for other users not accessible!",
-          HttpStatus.FORBIDDEN);
+              HttpStatus.FORBIDDEN);
     }
     return response;
   }
