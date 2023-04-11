@@ -23,7 +23,7 @@ const useFetch = (endpoint, query, autoFetch = true) => {
     setIsLoading(true);
     const options = {
       method: "GET",
-      url: `http://localhost:8080/${endpoint}`,
+      url: `http://localhost:8080/api/${endpoint}`,
       params: { ...query },
     };
 
