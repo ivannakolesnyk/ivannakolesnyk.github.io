@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import cookie from "cookie";
+import jwt_decode from "jwt-decode";
 
 export const AuthContext = React.createContext();
 
@@ -25,11 +26,24 @@ export const AuthProvider = ({ children }) => {
     document.cookie = cookie.serialize("jwt", "", { maxAge: -1 }); // Remove the JWT cookie
   };
 
+  const getJwtPayload = () => {
+    const cookies = cookie.parse(document.cookie);
+    const jwt = cookies.jwt;
+
+    if (jwt) {
+      const payload = jwt_decode(jwt);
+      return payload;
+    }
+
+    return null;
+  };
+
   const value = useMemo(
     () => ({
       loggedIn,
       handleLogin,
       handleLogout,
+      getJwtPayload,
     }),
     [loggedIn]
   );
