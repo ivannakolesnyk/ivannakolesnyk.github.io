@@ -4,6 +4,7 @@ import { Box, Button, CardContent, CardHeader, Divider } from "@mui/material";
 import StandardCenteredBox from "../Standard_components//StandardCenteredBox";
 import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 import { ProfileTextField } from "../Standard_components/Profile_and_Admin/ProfileTextField";
+import axios from "axios";
 
 /**
  *
@@ -21,20 +22,39 @@ const RegisterNewUser = () => {
   const [phone, setPhone] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
 
   // Used to check if the passwords are similar
   const passwordsMatch = () => password === confirmPassword;
   // Used to make sure message for dissimilar passwords on show after confirm new PW field is touched
   const [confirmPasswordTouched, setConfirmPasswordTouched] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!passwordsMatch()) {
-      // Show an error message or handle the case when passwords don't match
+      //TODO: Show an error message or handle the case when passwords don't match
       return;
     }
-    // Save updated profile information to database or backend service
-    navigate("/profile");
+
+    try {
+      const response = await axios.post("http://localhost:8080/api/signup", {
+        name,
+        email,
+        password,
+        phone_number: phone,
+        postal_code: postalCode,
+        address,
+        city: city, // Add city to state if it's required
+      });
+
+      if (response.status === 200) {
+        // Redirect to the login page, assuming registration was successful
+        navigate("/login");
+      }
+    } catch (error) {
+      console.error("Registration error:", error.response.data);
+      // Show an error message or handle the error
+    }
   };
 
   const profileFields = [
@@ -53,6 +73,7 @@ const RegisterNewUser = () => {
       type: "email",
     },
     {
+      //TODO: make sure it is at least 6 characters!
       label: "Password",
       name: "password",
       value: password,
@@ -89,6 +110,13 @@ const RegisterNewUser = () => {
       name: "address",
       value: address,
       setValue: setAddress,
+      type: "text",
+    },
+    {
+      label: "City",
+      name: "city",
+      value: city,
+      setValue: setCity,
       type: "text",
     },
   ];
