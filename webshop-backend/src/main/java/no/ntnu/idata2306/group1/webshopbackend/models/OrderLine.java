@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 /**
+ * A single line representing a product in an order.
  *
  * @author julian
  */
