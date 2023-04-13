@@ -24,10 +24,10 @@ import ProfileViewOrders from "./components/Profile/ProfileViewOrders";
 import ShoppingCart from "./components/ShoppingCart";
 import NotFound from "./components/Standard_components/NotFound";
 import { AuthContext } from "./context/AuthContext";
+import InternalError from "./components/Standard_components/InternalError";
 
 function App() {
-  const { loggedIn } = useContext(AuthContext);
-
+  const { loggedIn, getJwtPayload } = useContext(AuthContext);
   return (
     <BrowserRouter>
       <Box display="flex" flexDirection="column" minHeight="100vh">
@@ -42,7 +42,10 @@ function App() {
             <Route path="/findus" element={<FindUs />} />
 
             <Route path="/shoppingcart" element={<ShoppingCart />} />
-            {loggedIn ? (
+            {loggedIn &&
+            !getJwtPayload().roles.some(
+              (role) => role.authority === "ROLE_ADMIN"
+            ) ? (
               <>
                 <Route path="/profile" element={<Profile />} />
                 <Route
@@ -62,13 +65,29 @@ function App() {
               </>
             )}
             {/* TODO: restrict access to admin too. (user.role) */}
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/admin/edit" element={<AdminEditProfilePage />} />
-            <Route path="/admin/changepw" element={<AdminChangePassword />} />
-            <Route path="/admin/vieworders" element={<AdminViewOrders />} />
-            <Route path="/admin/testimonials" element={<AdminTestimonials />} />
-            <Route path="/admin/products" element={<AdminProducts />} />
-            <Route path="*" element={<NotFound />} />
+
+            {loggedIn &&
+            getJwtPayload().roles.some(
+              (role) => role.authority === "ROLE_ADMIN"
+            ) ? (
+              <>
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/admin/edit" element={<AdminEditProfilePage />} />
+                <Route
+                  path="/admin/changepw"
+                  element={<AdminChangePassword />}
+                />
+                <Route path="/admin/vieworders" element={<AdminViewOrders />} />
+                <Route
+                  path="/admin/testimonials"
+                  element={<AdminTestimonials />}
+                />
+                <Route path="/admin/products" element={<AdminProducts />} />
+                <Route path="*" element={<NotFound />} />
+              </>
+            ) : (
+              <Route path="/admin/*" element={<InternalError />} />
+            )}
           </Routes>
         </Box>
         <Footer marginTop="auto" />

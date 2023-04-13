@@ -42,7 +42,7 @@ const StyledButton = styled(Button)({
  */
 const Login = () => {
   const navigate = useNavigate();
-  const { handleLogin } = useContext(AuthContext);
+  const { handleLogin, getJwtPayload } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -60,10 +60,12 @@ const Login = () => {
         const token = response.data.jwt;
         //TODO: Remember to adjust the expiration date in the backend
         document.cookie = cookie.serialize("jwt", token, {
-          maxAge: 7 * 24 * 60 * 60,
+          maxAge: 1 * 24 * 60 * 60,
         }); // Set the JWT in a cookie with a 7-day expiration
         handleLogin();
-        navigate("/profile");
+        getJwtPayload().roles.some((role) => role.authority === "ROLE_ADMIN")
+          ? navigate("/admin")
+          : navigate("/profile");
       }
     } catch (error) {
       console.error("Invalid username or password");
