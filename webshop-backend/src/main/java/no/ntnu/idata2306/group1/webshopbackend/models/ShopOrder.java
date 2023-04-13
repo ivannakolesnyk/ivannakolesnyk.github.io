@@ -19,7 +19,7 @@ import java.util.Date;
  * @author julian
  */
 @Entity
-public class Order {
+public class ShopOrder {
     @Id
     @GeneratedValue
     private int id;
@@ -30,9 +30,9 @@ public class Order {
     private User user;
     private String status;
 
-    public Order() {}
+    public ShopOrder() {}
 
-    public Order(Date order_date, User user, String status) {
+    public ShopOrder(Date order_date, User user, String status) {
         this.order_date = order_date;
         this.user = user;
         this.status = status;
