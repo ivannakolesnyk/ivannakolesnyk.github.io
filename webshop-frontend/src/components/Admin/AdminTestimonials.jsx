@@ -1,5 +1,5 @@
 import React from "react";
-import { CardContent, Typography } from "@mui/material";
+import { CardContent, Divider, Typography } from "@mui/material";
 import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
 import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 
@@ -13,6 +13,7 @@ const AdminTestimonials = () => {
   return (
     <StandardCenteredBox>
       <StandardCenteredCard title="Testimonials">
+        <Divider />
         <CardContent>
           <Typography variant="body1">
             Testimonials and option to change them will show here.

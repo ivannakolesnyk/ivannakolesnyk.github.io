@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardHeader, Divider } from "@mui/material";
+import { Card, CardHeader } from "@mui/material";
 
 /**
  *
@@ -39,7 +39,6 @@ const StandardCenteredCard = ({ children, title }) => (
       sx={{ color: "secondary.main", textAlign: "center" }}
       title={title}
     />
-    <Divider />
     {children}
   </Card>
 );

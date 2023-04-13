@@ -81,7 +81,7 @@ const ProfilePage = () => {
         <StandardCenteredBox>
           <StandardCenteredCard title="My Monoca">
             <ProfileInformation theme={theme} profileData={profileData} />
-            <CardActions sx={{ justifyContent: "flex-end" }}>
+            <CardActions sx={{ justifyContent: "flex-end", paddingBottom: 2 }}>
               <Button component={Link} to="/profile/edit" variant="contained">
                 Edit Profile
               </Button>
@@ -107,7 +107,7 @@ const ProfilePage = () => {
                 Here you can view your orders.
               </Typography>
             </CardContent>
-            <CardActions sx={{ justifyContent: "flex-end" }}>
+            <CardActions sx={{ justifyContent: "flex-end", paddingBottom: 2 }}>
               <Button
                 component={Link}
                 to="/profile/vieworders"

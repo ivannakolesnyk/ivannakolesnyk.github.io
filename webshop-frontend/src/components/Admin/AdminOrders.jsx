@@ -1,5 +1,5 @@
 import React from "react";
-import { CardContent, Typography } from "@mui/material";
+import { CardContent, Divider, Typography } from "@mui/material";
 import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
 import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 
@@ -13,6 +13,7 @@ const AdminOrders = () => {
   return (
     <StandardCenteredBox>
       <StandardCenteredCard title="Orders">
+        <Divider />
         <CardContent>
           <Typography variant="body1">
             All orders and option to edit them will appear here.

@@ -10,7 +10,7 @@ import InternalError from "../Standard_components/InternalError";
 import { AuthContext } from "../../context/AuthContext";
 import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
 import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
-import { Button, CardActions } from "@mui/material";
+import { Button, CardActions, Divider } from "@mui/material";
 import { Link } from "react-router-dom";
 import AdminProducts from "./AdminProducts";
 import AdminOrders from "./AdminOrders";
@@ -119,8 +119,11 @@ const Admin = () => {
         {
           <StandardCenteredBox>
             <StandardCenteredCard title="Admin page">
+              <Divider />
               <ProfileInformation profileData={profileData} />
-              <CardActions sx={{ justifyContent: "flex-end" }}>
+              <CardActions
+                sx={{ justifyContent: "flex-end", paddingBottom: 2 }}
+              >
                 <Button component={Link} to="/admin/edit" variant="contained">
                   Edit Profile
                 </Button>
