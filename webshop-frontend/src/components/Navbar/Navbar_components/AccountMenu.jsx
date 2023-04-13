@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Logout from "@mui/icons-material/Logout";
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../context/AuthContext";
 
 /**
  Renders a menu with account settings.
@@ -16,6 +17,7 @@ import React from "react";
  @returns {JSX.Element} The AccountMenu component.
  */
 export function AccountMenu(props) {
+  const { getJwtPayload } = useContext(AuthContext);
   return (
     <Menu
       anchorEl={props.anchorEl}
@@ -52,7 +54,15 @@ export function AccountMenu(props) {
       transformOrigin={{ horizontal: "right", vertical: "top" }}
       anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
     >
-      <MenuItem component={Link} to="/profile" onClick={props.onClose}>
+      <MenuItem
+        component={Link}
+        to={
+          getJwtPayload()?.roles.some((role) => role.authority === "ROLE_ADMIN")
+            ? "/admin"
+            : "/profile"
+        }
+        onClick={props.onClose}
+      >
         <Avatar /> My account
       </MenuItem>
       <MenuItem component={Link} to="/" onClick={props.onClick}>

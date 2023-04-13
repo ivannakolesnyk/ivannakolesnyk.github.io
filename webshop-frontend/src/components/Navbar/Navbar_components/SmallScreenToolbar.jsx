@@ -17,7 +17,7 @@ import { AuthContext } from "../../../context/AuthContext";
  * @returns {JSX.Element} The JSX code for the SmallScreenToolbar component.
  */
 const SmallScreenToolbar = () => {
-  const { loggedIn, handleLogout } = useContext(AuthContext);
+  const { loggedIn, handleLogout, getJwtPayload } = useContext(AuthContext);
   const { handleProductsClick } = useContext(ProductsContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -80,7 +80,18 @@ const SmallScreenToolbar = () => {
         }}
       >
         <CustomMenuItem to="/" text="Home" />
-        {loggedIn && <CustomMenuItem to="/profile" text="My account" />}
+        {loggedIn && (
+          <CustomMenuItem
+            to={
+              getJwtPayload().roles.some(
+                (role) => role.authority === "ROLE_ADMIN"
+              )
+                ? "/admin"
+                : "/profile"
+            }
+            text="My account"
+          />
+        )}
         <CustomMenuItem to="/menu" text="Menu" />
         <MenuItem
           component={Link}
