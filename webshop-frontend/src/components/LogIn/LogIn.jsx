@@ -58,10 +58,9 @@ const Login = () => {
       );
       if (response.status === 200) {
         const token = response.data.jwt;
-        //TODO: Remember to adjust the expiration date in the backend
         document.cookie = cookie.serialize("jwt", token, {
-          maxAge: 1 * 24 * 60 * 60,
-        }); // Set the JWT in a cookie with a 7-day expiration
+          maxAge: getJwtPayload.exp,
+        });
         handleLogin();
         getJwtPayload().roles.some((role) => role.authority === "ROLE_ADMIN")
           ? navigate("/admin")
