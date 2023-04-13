@@ -12,8 +12,8 @@ export const AuthContext = React.createContext();
  * @returns {JSX.Element} - The JSX code for the AuthProvider component.
  */
 export const AuthProvider = ({ children }) => {
+  const cookies = cookie.parse(document.cookie);
   const [loggedIn, setLoggedIn] = useState(() => {
-    const cookies = cookie.parse(document.cookie);
     return cookies.jwt ? true : false;
   });
 
@@ -27,7 +27,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const getJwtPayload = () => {
-    const cookies = cookie.parse(document.cookie);
     const jwt = cookies.jwt;
 
     if (jwt) {
