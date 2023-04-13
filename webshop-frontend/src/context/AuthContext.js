@@ -3,6 +3,9 @@ import cookie from "cookie";
 import jwt_decode from "jwt-decode";
 
 export const AuthContext = React.createContext();
+const getCookies = () => {
+  return cookie.parse(document.cookie);
+};
 
 /**
  *
@@ -12,9 +15,8 @@ export const AuthContext = React.createContext();
  * @returns {JSX.Element} - The JSX code for the AuthProvider component.
  */
 export const AuthProvider = ({ children }) => {
-  const cookies = cookie.parse(document.cookie);
   const [loggedIn, setLoggedIn] = useState(() => {
-    return cookies.jwt ? true : false;
+    return getCookies().jwt ? true : false;
   });
 
   const handleLogin = () => {
@@ -27,7 +29,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const getJwtPayload = () => {
-    const jwt = cookies.jwt;
+    const jwt = getCookies().jwt;
 
     if (jwt) {
       const payload = jwt_decode(jwt);
