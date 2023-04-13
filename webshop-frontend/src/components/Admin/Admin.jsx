@@ -59,7 +59,6 @@ const Admin = () => {
         if (payload) {
           const userEmail = payload.sub; // Replace 'sub' with the claim name containing the user's email
           const jwt = cookie.parse(document.cookie).jwt;
-          console.log(jwt);
           const response = await fetch(
             `http://localhost:8080/api/users/${userEmail}`,
             {
