@@ -80,6 +80,7 @@ const ProfilePage = () => {
       {profileData ? (
         <StandardCenteredBox>
           <StandardCenteredCard title="My Monoca">
+            <Divider />
             <ProfileInformation theme={theme} profileData={profileData} />
             <CardActions sx={{ justifyContent: "flex-end", paddingBottom: 2 }}>
               <Button component={Link} to="/profile/edit" variant="contained">
