@@ -79,7 +79,7 @@ const ProfilePage = () => {
     <>
       {profileData ? (
         <StandardCenteredBox>
-          <StandardCenteredCard>
+          <StandardCenteredCard title="My Monoca">
             <ProfileInformation theme={theme} profileData={profileData} />
             <CardActions sx={{ justifyContent: "flex-end" }}>
               <Button component={Link} to="/profile/edit" variant="contained">
@@ -97,7 +97,7 @@ const ProfilePage = () => {
             <CardContent>
               <Typography
                 gutterBottom
-                variant="h5"
+                variant="h6"
                 component="div"
                 sx={{ color: "secondary.main" }}
               >

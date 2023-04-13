@@ -1,10 +1,4 @@
-import {
-  CardContent,
-  CardHeader,
-  Divider,
-  List,
-  Typography,
-} from "@mui/material";
+import { CardContent, Divider, List, Typography } from "@mui/material";
 import { ProfileListItem } from "./ProfileListItem";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
@@ -20,27 +14,27 @@ import React from "react";
  * CardHeader, CardContent, and List.
  * @returns {JSX.Element} The JSX code for the ProfileInformation component.
  */
-export function ProfileInformation({ theme, profileData }) {
+export function ProfileInformation({ profileData }) {
   const { name, userEmail, phone_number, postal_code, address, city } =
     profileData;
   const profileItems = [
     {
-      icon: <PersonIcon />,
+      icon: <PersonIcon sx={{ color: "secondary.main" }} />,
       primary: "Name",
       secondary: name,
     },
     {
-      icon: <EmailIcon />,
+      icon: <EmailIcon sx={{ color: "secondary.main" }} />,
       primary: "Email",
       secondary: userEmail,
     },
     {
-      icon: <PhoneIcon />,
+      icon: <PhoneIcon sx={{ color: "secondary.main" }} />,
       primary: "Phone",
       secondary: phone_number,
     },
     {
-      icon: <LocationOnIcon />,
+      icon: <LocationOnIcon sx={{ color: "secondary.main" }} />,
       primary: "Address",
       secondary: `${address}, ${postal_code} ${city}`,
     },
@@ -48,17 +42,16 @@ export function ProfileInformation({ theme, profileData }) {
 
   return (
     <>
-      <CardHeader sx={{ color: "secondary.main" }} title="My Monoca" />
-      <Divider />
       <CardContent>
         <Typography
           gutterBottom
-          variant="h5"
+          variant="h6"
           component="div"
           sx={{ color: "secondary.main" }}
         >
           Profile Information
         </Typography>
+        <Divider />
         <List>
           {profileItems.map((item) => (
             <ProfileListItem

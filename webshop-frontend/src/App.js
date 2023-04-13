@@ -5,9 +5,6 @@ import AboutUs from "./components/AboutUs";
 import Admin from "./components/Admin/Admin";
 import AdminChangePassword from "./components/Admin/AdminChangePW";
 import AdminEditProfilePage from "./components/Admin/AdminEdit";
-import AdminProducts from "./components/Admin/AdminProducts";
-import AdminTestimonials from "./components/Admin/AdminTestimonials";
-import AdminViewOrders from "./components/Admin/AdminViewOrders";
 import FindUs from "./components/FindUs";
 import Footer from "./components/Footer";
 import Frontpage from "./components/Home/Frontpage";
@@ -40,7 +37,6 @@ function App() {
             <Route path="/products" element={<Products />} />
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/findus" element={<FindUs />} />
-
             <Route path="/shoppingcart" element={<ShoppingCart />} />
             {loggedIn &&
             !getJwtPayload().roles.some(
@@ -77,12 +73,6 @@ function App() {
                   path="/admin/changepw"
                   element={<AdminChangePassword />}
                 />
-                <Route path="/admin/vieworders" element={<AdminViewOrders />} />
-                <Route
-                  path="/admin/testimonials"
-                  element={<AdminTestimonials />}
-                />
-                <Route path="/admin/products" element={<AdminProducts />} />
                 <Route path="*" element={<NotFound />} />
               </>
             ) : (

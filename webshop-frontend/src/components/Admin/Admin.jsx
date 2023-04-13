@@ -1,20 +1,20 @@
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import {
-  Button,
-  CardActions,
-  CardContent,
-  Divider,
-  Typography,
-} from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
-import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 import { ProfileInformation } from "../Standard_components/Profile_and_Admin/ProfileInformation";
 import cookie from "cookie";
 import Loading from "../Standard_components/Loading";
 import InternalError from "../Standard_components/InternalError";
 import { AuthContext } from "../../context/AuthContext";
+import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
+import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
+import { Button, CardActions } from "@mui/material";
+import { Link } from "react-router-dom";
+import AdminProducts from "./AdminProducts";
+import AdminOrders from "./AdminOrders";
+import AdminTestimonials from "./AdminTestimonials";
 
 /**
  *
@@ -25,28 +25,33 @@ import { AuthContext } from "../../context/AuthContext";
  * @returns {JSX.Element} The JSX code for the Admin component.
  */
 
-const sections = [
-  {
-    title: "Orders",
-    description: "Enter the orders page to see all the orders",
-    buttonText: "View Orders",
-    link: "/admin/vieworders",
-  },
-  {
-    title: "Testimonials",
-    description: "Enter the testimonials page to add or remove testimonials",
-    buttonText: "Testimonials",
-    link: "/admin/testimonials",
-  },
-  {
-    title: "Products",
-    description: "Enter the products page to edit products.",
-    buttonText: "Products",
-    link: "/admin/products",
-  },
-];
+const TabPanel = (props) => {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`tabpanel-${index}`}
+      aria-labelledby={`tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+};
+
 const Admin = () => {
-  const theme = useTheme();
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   const { getJwtPayload } = useContext(AuthContext);
   const [profileData, setProfileData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -96,40 +101,50 @@ const Admin = () => {
   }
 
   return (
-    <StandardCenteredBox>
-      <StandardCenteredCard>
-        <ProfileInformation theme={theme} profileData={profileData} />
-        <CardActions sx={{ justifyContent: "flex-end" }}>
-          <Button component={Link} to="/admin/edit" variant="contained">
-            Edit Profile
-          </Button>
-          <Button component={Link} to="/admin/changepw" variant="contained">
-            Change password
-          </Button>
-        </CardActions>
-        {sections.map((section) => (
-          <React.Fragment key={section.title}>
-            <Divider />
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h5"
-                component="div"
-                sx={{ color: "secondary.main" }}
-              >
-                {section.title}
-              </Typography>
-              <Typography variant="body2">{section.description}</Typography>
-            </CardContent>
-            <CardActions sx={{ justifyContent: "flex-end" }}>
-              <Button component={Link} to={section.link} variant="contained">
-                {section.buttonText}
-              </Button>
-            </CardActions>
-          </React.Fragment>
-        ))}
-      </StandardCenteredCard>
-    </StandardCenteredBox>
+    <Box>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        indicatorColor="primary"
+        textColor="secondary"
+        centered
+      >
+        <Tab label="Profile" />
+        <Tab label="Orders" />
+        <Tab label="Products" />
+        <Tab label="Testimonials" />
+      </Tabs>
+      <TabPanel value={value} index={0}>
+        {
+          <StandardCenteredBox>
+            <StandardCenteredCard title="Admin page">
+              <ProfileInformation profileData={profileData} />
+              <CardActions sx={{ justifyContent: "flex-end" }}>
+                <Button component={Link} to="/admin/edit" variant="contained">
+                  Edit Profile
+                </Button>
+                <Button
+                  component={Link}
+                  to="/admin/changepw"
+                  variant="contained"
+                >
+                  Change password
+                </Button>
+              </CardActions>
+            </StandardCenteredCard>
+          </StandardCenteredBox>
+        }
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        {<AdminOrders />}
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        {<AdminProducts />}
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        {<AdminTestimonials />}
+      </TabPanel>
+    </Box>
   );
 };
 

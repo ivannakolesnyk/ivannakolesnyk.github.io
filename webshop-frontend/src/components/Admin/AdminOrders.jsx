@@ -5,17 +5,17 @@ import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 
 /**
  *
- * The AdminTestimonials component is a React functional component used for displaying
+ * The ProfileViewOrders component is a React functional component used for displaying
  * the orders a user has made.
- * @returns {JSX.Element} The JSX code for the AdminTestimonials component.
+ * @returns {JSX.Element} The JSX code for the AdminViewOrders component.
  */
-const AdminTestimonials = () => {
+const AdminOrders = () => {
   return (
     <StandardCenteredBox>
-      <StandardCenteredCard title="Testimonials">
+      <StandardCenteredCard title="Orders">
         <CardContent>
           <Typography variant="body1">
-            Testimonials and option to change them will show here.
+            All orders and option to edit them will appear here.
           </Typography>
         </CardContent>
       </StandardCenteredCard>
@@ -23,4 +23,4 @@ const AdminTestimonials = () => {
   );
 };
 
-export default AdminTestimonials;
+export default AdminOrders;
