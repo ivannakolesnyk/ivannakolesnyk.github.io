@@ -30,12 +30,12 @@ public class JwtUtil {
    */
   public String generateToken(UserDetails userDetails) {
     final long TIME_NOW = System.currentTimeMillis();
-    final long MILLISECONDS_IN_HOUR = 60 * 60 * 1000;
-    final long TIME_AFTER_ONE_HOUR = TIME_NOW + MILLISECONDS_IN_HOUR;
+    final long MILLISECONDS_IN_WEEK = 7 * 24 * 60 * 60 * 1000;
+    final long TIME_AFTER_ONE_WEEK = TIME_NOW + MILLISECONDS_IN_WEEK;
 
     return Jwts.builder().setSubject(userDetails.getUsername())
         .claim(JWT_AUTH_KEY, userDetails.getAuthorities()).setIssuedAt(new Date(TIME_NOW))
-        .setExpiration(new Date(TIME_AFTER_ONE_HOUR)).signWith(SignatureAlgorithm.HS256, SECRET_KEY)
+        .setExpiration(new Date(TIME_AFTER_ONE_WEEK)).signWith(SignatureAlgorithm.HS256, SECRET_KEY)
         .compact();
   }
 
