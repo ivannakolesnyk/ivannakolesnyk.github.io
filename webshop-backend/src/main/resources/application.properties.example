@@ -11,5 +11,7 @@ db.name=mocha_nooka
 db.user=YOUR_DB_USERNAME
 db.password=YOUR_DB_PASSWORD
 
+jwt_secret_key=YOUR_JWT_SECRET_KEY
+
 # update tables on application restart
 spring.jpa.hibernate.ddl-auto=update
