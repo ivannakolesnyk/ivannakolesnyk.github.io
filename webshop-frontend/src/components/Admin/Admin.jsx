@@ -108,6 +108,7 @@ const Admin = () => {
         indicatorColor="primary"
         textColor="secondary"
         centered
+        sx={{ paddingTop: 2 }}
       >
         <Tab label="Profile" />
         <Tab label="Orders" />

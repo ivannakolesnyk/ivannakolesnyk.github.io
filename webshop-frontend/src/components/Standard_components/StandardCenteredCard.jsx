@@ -30,9 +30,9 @@ const StandardCenteredCard = ({ children, title }) => (
       width: {
         xs: "96%",
         md: "75%",
-        lg: "50%",
+        lg: "70%",
       },
-      maxWidth: "700px",
+      maxWidth: "1300px",
     }}
   >
     <CardHeader
