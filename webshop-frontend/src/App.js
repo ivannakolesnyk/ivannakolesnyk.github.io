@@ -73,11 +73,11 @@ function App() {
                   path="/admin/changepw"
                   element={<AdminChangePassword />}
                 />
-                <Route path="*" element={<NotFound />} />
               </>
             ) : (
               <Route path="/admin/*" element={<InternalError />} />
             )}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Box>
         <Footer marginTop="auto" />
