@@ -25,7 +25,10 @@ function ProductDetails() {
   const [product, setProduct] = useState(productData);
 
   const { data, isLoading, error, refetch, fetched } = useFetch(
+    "GET",
     `products/${id}`,
+    {},
+    {},
     {},
     false
   );
@@ -34,7 +37,7 @@ function ProductDetails() {
     if (!product) {
       refetch();
     }
-  }, [product]);
+  }, [product, refetch]);
 
   useEffect(() => {
     if (fetched && data) {

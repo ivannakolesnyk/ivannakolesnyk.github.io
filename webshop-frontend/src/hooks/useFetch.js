@@ -12,7 +12,14 @@ import { useCallback, useEffect, useState } from "react";
  * import useFetch from "./useFetch";
  * const { data, isLoading, error, refetch } = useFetch("products", { name: "Coffee" });
  */
-const useFetch = (endpoint, query, autoFetch = true) => {
+const useFetch = (
+  method,
+  endpoint,
+  headers,
+  query,
+  requestBody,
+  autoFetch = true
+) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -22,9 +29,11 @@ const useFetch = (endpoint, query, autoFetch = true) => {
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     const options = {
-      method: "GET",
+      method: method,
       url: `http://localhost:8080/api/${endpoint}`,
+      headers: { ...headers },
       params: { ...query },
+      data: requestBody,
     };
 
     try {
@@ -39,7 +48,7 @@ const useFetch = (endpoint, query, autoFetch = true) => {
     } finally {
       setIsLoading(false);
     }
-  }, [endpoint, query]);
+  }, [method, endpoint, headers, query, requestBody]);
 
   const dismissError = () => {
     setShowError(false);

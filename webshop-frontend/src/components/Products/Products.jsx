@@ -29,7 +29,11 @@ const Products = () => {
   const { selectedCategory, showAllProducts } = useContext(ProductsContext);
 
   // Fetching product data from API
-  const { data: productsOriginal, showError, isLoading } = useFetch("products");
+  const {
+    data: productsOriginal,
+    showError,
+    isLoading,
+  } = useFetch("GET", "products");
 
   const theme = useTheme();
   const isBigScreen = useMediaQuery("(min-width: 900px)");
