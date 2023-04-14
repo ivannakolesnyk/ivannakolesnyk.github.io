@@ -15,8 +15,7 @@ import React from "react";
  * @returns {JSX.Element} The JSX code for the ProfileInformation component.
  */
 export function ProfileInformation({ profileData }) {
-  const { name, userEmail, phone_number, postal_code, address, city } =
-    profileData;
+  const { name, email, phone_number, postal_code, address, city } = profileData;
   const profileItems = [
     {
       icon: <PersonIcon sx={{ color: "secondary.main" }} />,
@@ -26,7 +25,7 @@ export function ProfileInformation({ profileData }) {
     {
       icon: <EmailIcon sx={{ color: "secondary.main" }} />,
       primary: "Email",
-      secondary: userEmail,
+      secondary: email,
     },
     {
       icon: <PhoneIcon sx={{ color: "secondary.main" }} />,

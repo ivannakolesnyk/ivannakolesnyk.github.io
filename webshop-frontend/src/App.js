@@ -75,6 +75,7 @@ function App() {
                 <Route path="/register" element={<Navigate to="/admin" />} />
               </>
             ) : (
+              //   TODO: Change this to Unauthorized
               <Route path="/admin/*" element={<InternalError />} />
             )}
 

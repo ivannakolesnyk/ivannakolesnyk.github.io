@@ -51,7 +51,7 @@ const ProfilePage = () => {
 
           if (response.ok) {
             const data = await response.json();
-            setProfileData({ ...data, userEmail });
+            setProfileData(data);
           } else {
             console.error("Error fetching profile data:", response.status);
             setFetchError(true);
