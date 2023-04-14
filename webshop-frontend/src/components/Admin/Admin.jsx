@@ -1,6 +1,5 @@
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import React, { useContext, useEffect, useState } from "react";
 import { ProfileInformation } from "../Standard_components/Profile_and_Admin/ProfileInformation";
@@ -38,7 +37,7 @@ const TabPanel = (props) => {
     >
       {value === index && (
         <Box>
-          <Typography>{children}</Typography>
+          <div>{children}</div>
         </Box>
       )}
     </div>
