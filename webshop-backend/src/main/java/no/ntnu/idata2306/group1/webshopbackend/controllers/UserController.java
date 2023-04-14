@@ -29,6 +29,7 @@ public class UserController {
     if (sessionUser != null && sessionUser.getEmail().equals(username)) {
       UserProfileDto profile = new UserProfileDto();
       profile.setName(sessionUser.getName());
+      profile.setEmail(sessionUser.getEmail());
       profile.setPhone_number(sessionUser.getPhone_number());
       profile.setPostal_code(sessionUser.getPostal_code());
       profile.setAddress(sessionUser.getAddress());

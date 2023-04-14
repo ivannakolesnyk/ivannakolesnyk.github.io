@@ -5,6 +5,7 @@ package no.ntnu.idata2306.group1.webshopbackend.dto;
  */
 public class UserProfileDto {
   private String name;
+  private String email;
   private String phone_number;
   private int postal_code;
   private String address;
@@ -21,10 +22,13 @@ public class UserProfileDto {
     this.name = name;
   }
 
+  public void setEmail(String username) {
+    this.email = username;
+  }
+
   public String getPhone_number() {
     return phone_number;
   }
-
   public void setPhone_number(String phone_number) {
     this.phone_number = phone_number;
   }
