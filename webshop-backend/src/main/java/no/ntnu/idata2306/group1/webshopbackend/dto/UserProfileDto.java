@@ -22,6 +22,10 @@ public class UserProfileDto {
     this.name = name;
   }
 
+  public String getEmail() {
+    return email;
+  }
+
   public void setEmail(String username) {
     this.email = username;
   }
@@ -29,6 +33,7 @@ public class UserProfileDto {
   public String getPhone_number() {
     return phone_number;
   }
+
   public void setPhone_number(String phone_number) {
     this.phone_number = phone_number;
   }

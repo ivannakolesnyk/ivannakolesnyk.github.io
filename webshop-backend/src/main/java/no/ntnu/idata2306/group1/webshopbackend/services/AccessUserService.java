@@ -145,6 +145,7 @@ public class AccessUserService implements UserDetailsService {
     }
 
     user.setName(profileData.getName());
+    user.setEmail(profileData.getEmail());
     user.setPhone_number(profileData.getPhone_number());
     user.setPostal_code(profileData.getPostal_code());
     user.setAddress(profileData.getAddress());
