@@ -22,15 +22,10 @@ import ShoppingCart from "./components/ShoppingCart";
 import NotFound from "./components/Standard_components/NotFound";
 import { AuthContext } from "./context/AuthContext";
 import InternalError from "./components/Standard_components/InternalError";
+import { isLoggedInAndAdmin, isLoggedInAndNotAdmin } from "./utils/auth/auth";
 
 function App() {
   const { loggedIn, getJwtPayload } = useContext(AuthContext);
-  const isLoggedInAndNotAdmin = (loggedIn, getJwtPayload) =>
-    loggedIn &&
-    !getJwtPayload().roles.some((role) => role.authority === "ROLE_ADMIN");
-  const isLoggedInAndAdmin = (loggedIn, getJwtPayload) =>
-    loggedIn &&
-    getJwtPayload().roles.some((role) => role.authority === "ROLE_ADMIN");
 
   return (
     <BrowserRouter>
@@ -82,6 +77,8 @@ function App() {
             ) : (
               <Route path="/admin/*" element={<InternalError />} />
             )}
+
+            {/*Must always be at the bottom of <Routes>*/}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Box>
