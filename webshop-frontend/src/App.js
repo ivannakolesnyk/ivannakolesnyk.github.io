@@ -25,6 +25,13 @@ import InternalError from "./components/Standard_components/InternalError";
 
 function App() {
   const { loggedIn, getJwtPayload } = useContext(AuthContext);
+  const isLoggedInAndNotAdmin = (loggedIn, getJwtPayload) =>
+    loggedIn &&
+    !getJwtPayload().roles.some((role) => role.authority === "ROLE_ADMIN");
+  const isLoggedInAndAdmin = (loggedIn, getJwtPayload) =>
+    loggedIn &&
+    getJwtPayload().roles.some((role) => role.authority === "ROLE_ADMIN");
+
   return (
     <BrowserRouter>
       <Box display="flex" flexDirection="column" minHeight="100vh">
@@ -38,10 +45,7 @@ function App() {
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/findus" element={<FindUs />} />
             <Route path="/shoppingcart" element={<ShoppingCart />} />
-            {loggedIn &&
-            !getJwtPayload().roles.some(
-              (role) => role.authority === "ROLE_ADMIN"
-            ) ? (
+            {isLoggedInAndNotAdmin(loggedIn, getJwtPayload) ? (
               <>
                 <Route path="/profile" element={<Profile />} />
                 <Route
@@ -54,18 +58,16 @@ function App() {
                 <Route path="/register" element={<Navigate to="/profile" />} />
               </>
             ) : (
-              <>
-                <Route path="/profile/*" element={<Navigate to="/login" />} />
-                <Route path="/login" element={<LogIn />} />
-                <Route path="/register" element={<RegisterNewUser />} />
-              </>
+              !loggedIn && (
+                <>
+                  <Route path="/profile/*" element={<Navigate to="/login" />} />
+                  <Route path="/login" element={<LogIn />} />
+                  <Route path="/register" element={<RegisterNewUser />} />
+                </>
+              )
             )}
-            {/* TODO: restrict access to admin too. (user.role) */}
 
-            {loggedIn &&
-            getJwtPayload().roles.some(
-              (role) => role.authority === "ROLE_ADMIN"
-            ) ? (
+            {isLoggedInAndAdmin(loggedIn, getJwtPayload) ? (
               <>
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/admin/edit" element={<AdminEditProfilePage />} />
@@ -73,6 +75,9 @@ function App() {
                   path="/admin/changepw"
                   element={<AdminChangePassword />}
                 />
+                <Route path="/profile/*" element={<Navigate to="/admin" />} />
+                <Route path="/login" element={<Navigate to="/admin" />} />
+                <Route path="/register" element={<Navigate to="/admin" />} />
               </>
             ) : (
               <Route path="/admin/*" element={<InternalError />} />
