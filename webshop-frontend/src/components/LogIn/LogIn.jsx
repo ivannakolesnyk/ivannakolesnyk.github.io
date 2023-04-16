@@ -87,7 +87,7 @@ const Login = () => {
             label="Email"
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value.toLowerCase)}
           />
           <StyledTextField
             label="Password"
