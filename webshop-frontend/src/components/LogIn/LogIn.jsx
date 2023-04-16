@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
+  CircularProgress,
   Container,
   Paper,
   TextField,
@@ -87,7 +88,7 @@ const Login = () => {
             label="Email"
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value.toLowerCase)}
+            onChange={(e) => setEmail(e.target.value.toLowerCase())}
           />
           <StyledTextField
             label="Password"
