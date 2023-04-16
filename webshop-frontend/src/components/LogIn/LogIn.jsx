@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Box,
@@ -10,8 +10,8 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { AuthContext } from "../../context/AuthContext";
-import axios from "axios";
 import cookie from "cookie";
+import useFetch from "../../hooks/useFetch";
 
 const LoginBox = styled(Paper)({
   display: "flex",
@@ -46,29 +46,31 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/api/authenticate",
-        {
-          email,
-          password,
-        }
-      );
-      if (response.status === 200) {
-        const token = response.data.jwt;
-        document.cookie = cookie.serialize("jwt", token, {
-          maxAge: getJwtPayload.exp,
-        });
-        handleLogin();
-        getJwtPayload().roles.some((role) => role.authority === "ROLE_ADMIN")
-          ? navigate("/admin")
-          : navigate("/profile");
-      }
-    } catch (error) {
-      console.error("Invalid username or password");
+  const { data, isLoading, error, refetch, fetched } = useFetch(
+    "POST",
+    "authenticate",
+    { "Content-Type": "application/json" },
+    {},
+    { email, password },
+    false
+  );
+
+  useEffect(() => {
+    if (fetched && !error) {
+      const token = data.jwt;
+      document.cookie = cookie.serialize("jwt", token, {
+        maxAge: getJwtPayload.exp,
+      });
+      handleLogin();
+      getJwtPayload().roles.some((role) => role.authority === "ROLE_ADMIN")
+        ? navigate("/admin")
+        : navigate("/profile");
     }
+  }, [fetched, data, error, getJwtPayload, handleLogin, navigate]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    refetch();
   };
 
   return (
