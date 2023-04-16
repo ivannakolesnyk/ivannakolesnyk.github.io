@@ -95,8 +95,17 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <StyledButton type="submit" variant="contained" color="primary">
-            Login
+          <StyledButton
+            type="submit"
+            variant="contained"
+            color="primary"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <CircularProgress size={24} color="inherit" />
+            ) : (
+              "Login"
+            )}
           </StyledButton>
           <Typography
             sx={{
