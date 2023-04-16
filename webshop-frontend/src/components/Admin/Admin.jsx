@@ -9,11 +9,12 @@ import InternalError from "../Standard_components/InternalError";
 import { AuthContext } from "../../context/AuthContext";
 import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
 import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
-import { Button, CardActions, Divider } from "@mui/material";
+import { Button, CardActions, Divider, useMediaQuery } from "@mui/material";
 import { Link } from "react-router-dom";
 import AdminProducts from "./AdminProducts";
 import AdminOrders from "./AdminOrders";
 import AdminTestimonials from "./AdminTestimonials";
+import AdminCustomers from "./AdminCustomers";
 
 /**
  *
@@ -45,6 +46,7 @@ const TabPanel = (props) => {
 };
 
 const Admin = () => {
+  const mediumViewport = useMediaQuery("(max-width:640px)");
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -106,6 +108,7 @@ const Admin = () => {
         onChange={handleChange}
         indicatorColor="primary"
         textColor="secondary"
+        orientation={mediumViewport ? "vertical" : "horizontal"}
         centered
         sx={{ paddingTop: 2 }}
       >
@@ -113,6 +116,7 @@ const Admin = () => {
         <Tab label="Orders" />
         <Tab label="Products" />
         <Tab label="Testimonials" />
+        <Tab label="Customers" />
       </Tabs>
       <TabPanel value={value} index={0}>
         {
@@ -146,6 +150,9 @@ const Admin = () => {
       </TabPanel>
       <TabPanel value={value} index={3}>
         {<AdminTestimonials />}
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        {<AdminCustomers />}
       </TabPanel>
     </Box>
   );

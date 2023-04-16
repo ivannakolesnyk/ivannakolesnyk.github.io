@@ -5,18 +5,18 @@ import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 
 /**
  *
- * The AdminTestimonials component is a React functional component used for displaying
- * and changing the front page testimonials
+ * The AdminCustomers component is a React functional component used for showing
+ * all the customers in the database
  * @returns {JSX.Element} The JSX code for the AdminTestimonials component.
  */
-const AdminTestimonials = () => {
+const AdminCustomers = () => {
   return (
     <StandardCenteredBox>
       <StandardCenteredCard title="Testimonials">
         <Divider />
         <CardContent>
           <Typography variant="body1">
-            Testimonials and option to change them will show here.
+            A list with all the customers will be added here.
           </Typography>
         </CardContent>
       </StandardCenteredCard>
@@ -24,4 +24,4 @@ const AdminTestimonials = () => {
   );
 };
 
-export default AdminTestimonials;
+export default AdminCustomers;
