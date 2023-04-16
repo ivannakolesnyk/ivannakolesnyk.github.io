@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, CardContent, CardHeader, Divider } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  CardContent,
+  CardHeader,
+  CircularProgress,
+  Divider,
+} from "@mui/material";
 import StandardCenteredBox from "../Standard_components//StandardCenteredBox";
 import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 import { ProfileTextField } from "../Standard_components/Profile_and_Admin/ProfileTextField";
-import axios from "axios";
+import useFetch from "../../hooks/useFetch";
 
 /**
  *
@@ -23,38 +31,45 @@ const RegisterNewUser = () => {
   const [postalCode, setPostalCode] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [passwordTouched, setPasswordTouched] = useState(false);
 
-  // Used to check if the passwords are similar
+  const { isLoading, error, refetch, fetched } = useFetch(
+    "POST",
+    "signup",
+    { "Content-Type": "application/json" },
+    {},
+    {
+      name,
+      email,
+      password,
+      phone_number: phone,
+      postal_code: postalCode,
+      address,
+      city: city,
+    },
+    false
+  );
+
+  useEffect(() => {
+    if (!error && fetched) {
+      navigate("/login");
+    } else if (error) {
+      setErrorMessage("Registration error, please try again.");
+    }
+  }, [fetched, error, navigate]);
+
   const passwordsMatch = () => password === confirmPassword;
-  // Used to make sure message for dissimilar passwords on show after confirm new PW field is touched
+
   const [confirmPasswordTouched, setConfirmPasswordTouched] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!passwordsMatch()) {
-      //TODO: Show an error message or handle the case when passwords don't match
+      setErrorMessage("Passwords do not match.");
       return;
     }
-
-    try {
-      const response = await axios.post("http://localhost:8080/api/signup", {
-        name,
-        email,
-        password,
-        phone_number: phone,
-        postal_code: postalCode,
-        address,
-        city: city, // Add city to state if it's required
-      });
-
-      if (response.status === 200) {
-        // Redirect to the login page, assuming registration was successful
-        navigate("/login");
-      }
-    } catch (error) {
-      console.error("Registration error:", error.response.data);
-      // Show an error message or handle the error
-    }
+    refetch();
   };
 
   const profileFields = [
@@ -73,12 +88,17 @@ const RegisterNewUser = () => {
       type: "email",
     },
     {
-      //TODO: make sure it is at least 6 characters!
       label: "Password",
       name: "password",
       value: password,
       setValue: setPassword,
       type: "password",
+      error: password.length < 6 && passwordTouched,
+      helperText:
+        password.length < 6 &&
+        passwordTouched &&
+        "Password must be at least 6 characters",
+      onFocus: () => setPasswordTouched(true),
     },
     {
       label: "Confirm Password",
@@ -145,17 +165,33 @@ const RegisterNewUser = () => {
                 onFocus={field.onFocus}
               />
             ))}
+            {errorMessage && (
+              <Alert severity="error" sx={{ mt: 2 }}>
+                {errorMessage}
+              </Alert>
+            )}
             <Box display="flex" justifyContent="flex-end" marginTop={2}>
               <Button
                 variant="contained"
                 color="primary"
                 onClick={() => navigate("/login")}
+                style={{ width: "10rem", height: "4rem" }}
               >
                 Cancel
               </Button>
               <Box marginLeft={1}>
-                <Button type="submit" variant="contained" color="primary">
-                  Register
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  disabled={isLoading}
+                  style={{ width: "10rem", height: "4rem" }}
+                >
+                  {isLoading ? (
+                    <CircularProgress size={24} color={"inherit"} />
+                  ) : (
+                    "Register"
+                  )}
                 </Button>
               </Box>
             </Box>
