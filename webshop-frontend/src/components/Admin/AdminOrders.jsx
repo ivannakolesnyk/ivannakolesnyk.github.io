@@ -18,6 +18,8 @@ import {
   Select,
 } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
+import OrderTable from "../Standard_components/Profile_and_Admin/OrderTable";
+import TitledBox from "../Standard_components/TitledBox";
 
 // Dummy data for orders
 const orders = [
@@ -84,58 +86,13 @@ const AdminOrders = () => {
 
   return (
     <Box sx={{ p: { xs: 2, md: 4 } }}>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          mb: 2,
-        }}
-      >
-        <Typography variant="h5" sx={{ color: "secondary.main" }}>
-          Orders
-        </Typography>
-      </Box>
+      <TitledBox title="Orders" />
 
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 350 }}>
-          <TableHead>
-            <TableRow>
-              <TableCell>Order ID</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell>Order Date</TableCell>
-              <TableCell>User ID</TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>Total</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {orders.map((order) => (
-              <TableRow
-                key={order.id}
-                onClick={() => handleOrderClick(order)}
-                sx={{ cursor: "pointer" }}
-              >
-                <TableCell>{order.id}</TableCell>
-                <TableCell>{order.status}</TableCell>
-                <TableCell>{order.order_date}</TableCell>
-                <TableCell>{order.user_id}</TableCell>
-                <TableCell>{order.name}</TableCell>
-                <TableCell>
-                  {order.order_lines.reduce((total, ol) => {
-                    return (
-                      total +
-                      products.find((p) => p.id === ol.product_id).price *
-                        ol.quantity
-                    );
-                  }, 0)}{" "}
-                  NOK
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <OrderTable
+        orders={orders}
+        handleOrderClick={handleOrderClick}
+        products={products}
+      />
 
       <Dialog open={Boolean(selectedOrder)} onClose={handleClose}>
         <DialogTitle>

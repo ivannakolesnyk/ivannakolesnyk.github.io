@@ -20,8 +20,9 @@ import useFetch from "../../hooks/useFetch";
 
 /**
  *
- *  The Admin component displays an admin's profile information and provides
- * links to edit the profile, change the password, and view orders. The user's
+ * The Admin component displays an admin's profile information and provides
+ * links to edit the profile and change the password. It also provides
+ * tabs for orders, products, testimonials and customers. The user's
  * profile information is displayed in a Card component, with each piece of
  * information shown as a ListItem.
  * @returns {JSX.Element} The JSX code for the Admin component.

@@ -19,13 +19,14 @@ import {
   Grid,
 } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
+import OrderTable from "../Standard_components/Profile_and_Admin/OrderTable";
+import TitledBox from "../Standard_components/TitledBox";
 
 // Dummy data for orders
 const orders = [
   {
     id: 1,
     order_date: "2022-02-15",
-    user_id: 1,
     status: "Delivered",
     order_lines: [
       { id: 1, order_id: 1, product_id: 1, quantity: 2 },
@@ -35,7 +36,6 @@ const orders = [
   {
     id: 2,
     order_date: "2022-03-01",
-    user_id: 1,
     status: "In Transit",
     order_lines: [
       { id: 3, order_id: 2, product_id: 3, quantity: 3 },
@@ -73,57 +73,17 @@ const ProfileViewOrders = () => {
 
   return (
     <Box sx={{ p: { xs: 2, md: 4 } }}>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          mb: 2,
-        }}
-      >
-        <Typography variant="h5" sx={{ color: "secondary.main" }}>
-          Orders
-        </Typography>
+      <TitledBox title="Orders">
         <IconButton onClick={() => navigate("/profile")}>
           <ArrowBack />
         </IconButton>
-      </Box>
+      </TitledBox>
 
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 350 }}>
-          <TableHead>
-            <TableRow>
-              <TableCell>Order ID</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell>Order Date</TableCell>
-              <TableCell>Total</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {orders.map((order) => (
-              <TableRow
-                key={order.id}
-                onClick={() => handleOrderClick(order)}
-                sx={{ cursor: "pointer" }}
-              >
-                <TableCell>{order.id}</TableCell>
-                <TableCell>{order.status}</TableCell>
-                <TableCell>{order.order_date}</TableCell>
-                <TableCell>
-                  {order.order_lines.reduce((total, ol) => {
-                    return (
-                      total +
-                      products.find((p) => p.id === ol.product_id).price *
-                        ol.quantity
-                    );
-                  }, 0)}{" "}
-                  NOK
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <OrderTable
+        orders={orders}
+        handleOrderClick={handleOrderClick}
+        products={products}
+      />
 
       <Dialog open={Boolean(selectedOrder)} onClose={handleClose}>
         <DialogTitle>
