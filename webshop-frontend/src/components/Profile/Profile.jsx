@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import cookie from "cookie";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { ProfileInformation } from "../Standard_components/Profile_and_Admin/ProfileInformation";
@@ -23,104 +23,71 @@ import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
 import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 import Loading from "../Standard_components/Loading";
 import InternalError from "../Standard_components/InternalError";
+import useFetch from "../../hooks/useFetch";
+import jwt_decode from "jwt-decode";
 
 const ProfilePage = () => {
   const theme = useTheme();
-  const { getJwtPayload } = useContext(AuthContext);
-  const [profileData, setProfileData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [fetchError, setFetchError] = useState(false);
+  const jwt = cookie.parse(document.cookie).jwt;
+  const payload = jwt_decode(jwt);
+  const userEmail = payload ? payload.sub : ""; // Replace 'sub' with the claim name containing the user's email
 
-  useEffect(() => {
-    const fetchProfileData = async () => {
-      try {
-        const payload = getJwtPayload();
-        if (payload) {
-          const userEmail = payload.sub; // Replace 'sub' with the claim name containing the user's email
-          const jwt = cookie.parse(document.cookie).jwt;
+  const headers = useMemo(
+    () => ({
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwt}`,
+    }),
+    [jwt]
+  );
 
-          const response = await fetch(
-            `http://localhost:8080/api/users/${userEmail}`,
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${jwt}`,
-              },
-            }
-          );
-
-          if (response.ok) {
-            const data = await response.json();
-            setProfileData(data);
-          } else {
-            console.error("Error fetching profile data:", response.status);
-            setFetchError(true);
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching profile data:", error);
-        setFetchError(true);
-      }
-      setIsLoading(false);
-    };
-
-    fetchProfileData();
-  }, [getJwtPayload]);
+  const {
+    data: profileData,
+    isLoading,
+    error,
+  } = useFetch("GET", `users/${userEmail}`, headers);
 
   if (isLoading) {
     return <Loading />;
   }
 
-  if (fetchError) {
+  if (error) {
     return <InternalError />;
   }
 
   return (
-    <>
-      {profileData ? (
-        <StandardCenteredBox>
-          <StandardCenteredCard title="My Monoca">
-            <Divider />
-            <ProfileInformation theme={theme} profileData={profileData} />
-            <CardActions sx={{ justifyContent: "flex-end", paddingBottom: 2 }}>
-              <Button component={Link} to="/profile/edit" variant="contained">
-                Edit Profile
-              </Button>
-              <Button
-                component={Link}
-                to="/profile/changepw"
-                variant="contained"
-              >
-                Change password
-              </Button>
-            </CardActions>
-            <Divider />
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                sx={{ color: "secondary.main" }}
-              >
-                Orders
-              </Typography>
-              <Typography variant="body2">
-                Here you can view your orders.
-              </Typography>
-            </CardContent>
-            <CardActions sx={{ justifyContent: "flex-end", paddingBottom: 2 }}>
-              <Button
-                component={Link}
-                to="/profile/vieworders"
-                variant="contained"
-              >
-                View Orders
-              </Button>
-            </CardActions>
-          </StandardCenteredCard>
-        </StandardCenteredBox>
-      ) : null}
-    </>
+    <StandardCenteredBox>
+      <StandardCenteredCard title="My Monoca">
+        <Divider />
+        <ProfileInformation theme={theme} profileData={profileData} />
+        <CardActions sx={{ justifyContent: "flex-end", paddingBottom: 2 }}>
+          <Button component={Link} to="/profile/edit" variant="contained">
+            Edit Profile
+          </Button>
+          <Button component={Link} to="/profile/changepw" variant="contained">
+            Change password
+          </Button>
+        </CardActions>
+        <Divider />
+        <CardContent>
+          <Typography
+            gutterBottom
+            variant="h6"
+            component="div"
+            sx={{ color: "secondary.main" }}
+          >
+            Orders
+          </Typography>
+          <Typography variant="body2">
+            Here you can view your orders.
+          </Typography>
+        </CardContent>
+        <CardActions sx={{ justifyContent: "flex-end", paddingBottom: 2 }}>
+          <Button component={Link} to="/profile/vieworders" variant="contained">
+            View Orders
+          </Button>
+        </CardActions>
+      </StandardCenteredCard>
+    </StandardCenteredBox>
   );
 };
 

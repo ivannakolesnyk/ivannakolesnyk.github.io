@@ -20,9 +20,9 @@ import { useCallback, useEffect, useState } from "react";
 const useFetch = (
   method,
   endpoint,
-  headers,
-  query,
-  requestBody,
+  headers= null,
+  query=null,
+  requestBody = null,
   autoFetch = true,
   baseURL = "http://localhost:8080/api/"
 ) => {
