@@ -1,7 +1,7 @@
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { ProfileInformation } from "../Standard_components/Profile_and_Admin/ProfileInformation";
 import cookie from "cookie";
 import Loading from "../Standard_components/Loading";
@@ -15,6 +15,8 @@ import AdminProducts from "./AdminProducts";
 import AdminOrders from "./AdminOrders";
 import AdminTestimonials from "./AdminTestimonials";
 import AdminCustomers from "./AdminCustomers";
+import jwt_decode from "jwt-decode";
+import useFetch from "../../hooks/useFetch";
 
 /**
  *
@@ -53,51 +55,29 @@ const Admin = () => {
     setValue(newValue);
   };
 
-  const { getJwtPayload } = useContext(AuthContext);
-  const [profileData, setProfileData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [fetchError, setFetchError] = useState(false);
+  const jwt = cookie.parse(document.cookie).jwt;
+  const payload = jwt_decode(jwt);
+  const userEmail = payload ? payload.sub : ""; // Replace 'sub' with the claim name containing the user's email
 
-  useEffect(() => {
-    const fetchProfileData = async () => {
-      try {
-        const payload = getJwtPayload();
-        if (payload) {
-          const userEmail = payload.sub; // Replace 'sub' with the claim name containing the user's email
-          const jwt = cookie.parse(document.cookie).jwt;
-          const response = await fetch(
-            `http://localhost:8080/api/users/${userEmail}`,
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${jwt}`,
-              },
-            }
-          );
+  const headers = useMemo(
+    () => ({
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwt}`,
+    }),
+    [jwt]
+  );
 
-          if (response.ok) {
-            const data = await response.json();
-            setProfileData({ ...data, userEmail });
-          } else {
-            console.error("Error fetching profile data:", response.status);
-            setFetchError(true);
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching profile data:", error);
-        setFetchError(true);
-      }
-      setIsLoading(false);
-    };
-
-    fetchProfileData();
-  }, [getJwtPayload]);
+  const {
+    data: profileData,
+    isLoading,
+    error,
+  } = useFetch("GET", `users/${userEmail}`, headers);
 
   if (isLoading) {
     return <Loading />;
   }
 
-  if (fetchError) {
+  if (error) {
     return <InternalError />;
   }
 
