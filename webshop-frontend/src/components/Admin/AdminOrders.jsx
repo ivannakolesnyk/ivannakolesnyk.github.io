@@ -1,13 +1,6 @@
 import React, { useState, Fragment } from "react";
 import {
   Box,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   Typography,
   Dialog,
   DialogTitle,
