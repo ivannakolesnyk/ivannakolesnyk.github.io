@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, CardContent, CardHeader, Divider } from "@mui/material";
+import {Box, Button, CardContent, CardHeader, CircularProgress, Divider} from "@mui/material";
 import StandardCenteredBox from "../StandardCenteredBox";
 import StandardCenteredCard from "../StandardCenteredCard";
 import { PasswordTextField } from "./PasswordTextField";
+import useFetch from "../../../hooks/useFetch";
+import cookie from "cookie";
+import jwt_decode from "jwt-decode";
+import InternalError from "../InternalError";
 
 /**
  *
@@ -24,13 +28,49 @@ const ChangePassword = ({ navigateTo }) => {
   const [confirmNewPasswordTouched, setConfirmNewPasswordTouched] =
     useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const jwt = cookie.parse(document.cookie).jwt;
+  const payload = jwt_decode(jwt);
+  const userEmail = payload ? payload.sub : ""; // Replace 'sub' with the claim name containing the user's email
+
+  const headers = useMemo(
+    () => ({
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwt}`,
+    }),
+    [jwt]
+  );
+
+  const { isLoading, error, refetch } = useFetch(
+    "PUT",
+    `users/${userEmail}/password`,
+    headers,
+    null,
+    null,
+    false
+  );
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     if (!newPasswordsMatch()) {
       // Handle the case when the new password and confirm new password don't match
       return;
     }
-    // Handle form submission logic here
+
+    const passwordData = {
+      currentPassword,
+      newPassword,
+    };
+
+    await refetch(passwordData);
+
+    if (!error) {
+      navigate(navigateTo);
+    }
+
+    if (error) {
+      return <InternalError />;
+    }
   };
 
   return (
@@ -74,8 +114,12 @@ const ChangePassword = ({ navigateTo }) => {
                 Cancel
               </Button>
               <Box marginLeft={1}>
-                <Button type="submit" variant="contained" color="primary">
-                  Save Changes
+                <Button type="submit" variant="contained" color="primary" sx={{height: "4rem", width: "18rem"}} disabled={isLoading}>
+                  {isLoading ? (
+                      <CircularProgress size={24} color="inherit" />
+                  ) : (
+                      "Save Changes"
+                  )}
                 </Button>
               </Box>
             </Box>
