@@ -14,8 +14,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -151,6 +153,24 @@ public class AccessUserService implements UserDetailsService {
     user.setAddress(profileData.getAddress());
     user.setCity(profileData.getCity());
 
+    userRepository.save(user);
+    return true;
+  }
+
+  public boolean changePassword(User user, String currentPassword, String newPassword) {
+    if (user == null || currentPassword == null || newPassword == null) {
+      return false;
+    }
+
+    // Check if the current password matches the user's password
+    if (!BCrypt.checkpw(currentPassword, user.getPassword())) {
+      return false;
+    }
+
+    // Set the new password after encoding
+    user.setPassword(createHash(newPassword));
+
+    // Save the updated user object to the repository
     userRepository.save(user);
     return true;
   }

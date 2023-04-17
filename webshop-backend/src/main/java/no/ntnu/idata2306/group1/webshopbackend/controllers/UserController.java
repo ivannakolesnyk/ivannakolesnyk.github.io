@@ -1,5 +1,6 @@
 package no.ntnu.idata2306.group1.webshopbackend.controllers;
 
+import no.ntnu.idata2306.group1.webshopbackend.dto.ChangePasswordDto;
 import no.ntnu.idata2306.group1.webshopbackend.dto.UserProfileDto;
 import no.ntnu.idata2306.group1.webshopbackend.models.User;
 import no.ntnu.idata2306.group1.webshopbackend.services.AccessUserService;
@@ -75,4 +76,28 @@ public class UserController {
     }
     return response;
   }
+
+  @PutMapping("/api/users/{username}/password")
+  public ResponseEntity<String> changePassword(@PathVariable String username,
+                                               @RequestBody ChangePasswordDto passwordData) {
+    User sessionUser = userService.getSessionUser();
+    ResponseEntity<String> response;
+    if (sessionUser != null && sessionUser.getEmail().equals(username)) {
+      if (passwordData != null) {
+        if (userService.changePassword(sessionUser, passwordData.getCurrentPassword(), passwordData.getNewPassword())) {
+          response = new ResponseEntity<>("", HttpStatus.OK);
+        } else {
+          response = new ResponseEntity<>("Could not change password", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+      } else {
+        response = new ResponseEntity<>("Password data not supplied", HttpStatus.BAD_REQUEST);
+      }
+    } else if (sessionUser == null) {
+      response = new ResponseEntity<>("Password change accessible only to authenticated users", HttpStatus.UNAUTHORIZED);
+    } else {
+      response = new ResponseEntity<>("Password change for other users not accessible!", HttpStatus.FORBIDDEN);
+    }
+    return response;
+  }
+
 }
