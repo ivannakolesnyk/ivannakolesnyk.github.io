@@ -57,14 +57,14 @@ const useFetch = (
   }, [method, endpoint, headers, query, requestBody, baseURL]);
 
   useEffect(() => {
-    if (autoFetch) {
-      fetchData();
-    }
+    (async () => {if (autoFetch) {
+      await fetchData();
+    }})();
   }, [fetchData, autoFetch]);
 
-  const refetch = () => {
+  const refetch = async () => {
     setIsLoading(true);
-    fetchData();
+    await fetchData();
   };
 
   return { data, isLoading, error, refetch, fetched };
