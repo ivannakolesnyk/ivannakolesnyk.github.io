@@ -19,12 +19,31 @@ const EditProfilePage = ({ navigateTo }) => {
   const [phone, setPhone] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Save updated profile information to database or backend service
     navigate(navigateTo);
   };
+
+  const createProfileTextField = (
+    label,
+    name,
+    value,
+    setValue,
+    type = "text",
+    required = true
+  ) => (
+    <ProfileTextField
+      label={label}
+      name={name}
+      value={value}
+      setValue={setValue}
+      type={type}
+      required={required}
+    />
+  );
 
   return (
     <StandardCenteredBox>
@@ -36,42 +55,17 @@ const EditProfilePage = ({ navigateTo }) => {
         <Divider />
         <CardContent>
           <form onSubmit={handleSubmit}>
-            <ProfileTextField
-              label="Name"
-              name="name"
-              value={name}
-              setValue={setName}
-              required
-            />
-            <ProfileTextField
-              label="Email"
-              name="email"
-              value={email}
-              setValue={setEmail}
-              type="email"
-              required
-            />
-            <ProfileTextField
-              label="Phone"
-              name="phone"
-              value={phone}
-              setValue={setPhone}
-              required
-            />
-            <ProfileTextField
-              label="Postal Code"
-              name="postalCode"
-              value={postalCode}
-              setValue={setPostalCode}
-              required
-            />
-            <ProfileTextField
-              label="Address"
-              name="address"
-              value={address}
-              setValue={setAddress}
-              required
-            />
+            {createProfileTextField("Name", "name", name, setName)}
+            {createProfileTextField("Email", "email", email, setEmail, "email")}
+            {createProfileTextField("Phone", "phone", phone, setPhone)}
+            {createProfileTextField("Address", "address", address, setAddress)}
+            {createProfileTextField(
+              "Postal Code",
+              "postalCode",
+              postalCode,
+              setPostalCode
+            )}
+            {createProfileTextField("City", "city", city, setCity)}
             <Box display="flex" justifyContent="flex-end" marginTop={2}>
               <Button
                 variant="contained"
