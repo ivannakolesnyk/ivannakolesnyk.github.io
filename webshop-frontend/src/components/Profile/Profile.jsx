@@ -15,9 +15,8 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import cookie from "cookie";
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
 import { ProfileInformation } from "../Standard_components/Profile_and_Admin/ProfileInformation";
 import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
 import StandardCenteredCard from "../Standard_components/StandardCenteredCard";

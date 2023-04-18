@@ -12,7 +12,7 @@ import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 const AdminCustomers = () => {
   return (
     <StandardCenteredBox>
-      <StandardCenteredCard title="Testimonials">
+      <StandardCenteredCard title="Customers">
         <Divider />
         <CardContent>
           <Typography variant="body1">
