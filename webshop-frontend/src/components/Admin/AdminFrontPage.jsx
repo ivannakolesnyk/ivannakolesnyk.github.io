@@ -5,6 +5,14 @@ import { ProfileInformation } from "../Standard_components/Profile_and_Admin/Pro
 import { Link } from "react-router-dom";
 import React from "react";
 
+/**
+ *
+ * AdminFrontPage is a React component that renders the Admin Front Page, which
+ * includes profile information, an Edit Profile button, and a Change Password button.
+ * @param {Object} props - The properties passed to the component
+ * @param {Object} props.profileData - The data to be displayed in the ProfileInformation component
+ * @returns {JSX.Element} The JSX code for the AdminFrontPage component
+ */
 export function AdminFrontPage(props) {
   return (
     <>

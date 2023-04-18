@@ -10,6 +10,16 @@ import AdminCustomers from "./AdminCustomers";
 import { AdminFrontPage } from "./AdminFrontPage";
 import SwipeIcon from "@mui/icons-material/Swipe";
 
+/**
+ *
+ * AdminTabs is a responsive React component designed to display a set of tabs
+ * with various admin-related content, such as Profile, Orders, Products,
+ * Testimonials, and Customers. The component adjusts its behavior for mobile
+ * and non-mobile devices.
+ * @param {Object} props - The properties passed to the component
+ * @param {Object} props.profileData - The data to be passed to the AdminFrontPage component
+ * @returns {JSX.Element} The JSX code for the AdminTabs component.
+ */
 export function AdminTabs(props) {
   const isMobile = useMediaQuery("(max-width:600px)");
   const [value, setValue] = useState("0");
