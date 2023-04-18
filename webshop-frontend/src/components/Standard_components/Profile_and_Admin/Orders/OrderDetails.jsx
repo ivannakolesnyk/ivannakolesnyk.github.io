@@ -1,5 +1,5 @@
 import React from "react";
-import {Grid, Typography} from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import OrderLine from "./OrderLine";
 import TableHeader from "./TableHeader";
