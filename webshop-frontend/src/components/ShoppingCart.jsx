@@ -17,12 +17,17 @@ import {
   TableRow,
   Typography,
   useMediaQuery,
+  CircularProgress,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import axios from "axios";
 
 function ShoppingCart() {
+  // Add this state inside ShoppingCart function
+  const [isLoading, setIsLoading] = useState(false);
+
   const { cart, removeFromCart, adjustQuantity } = useCart();
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery("(max-width: 700px)");
@@ -97,6 +102,31 @@ function ShoppingCart() {
       </IconButton>
     </>
   );
+
+  const handleOrderNow = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/create-checkout-session",
+        {
+          cart: cart.map((item) => ({
+            productId: item.product.id,
+            quantity: item.quantity,
+          })),
+        }
+      );
+
+      const { data } = response;
+      if (data && data.url) {
+        window.location = data.url;
+      } else {
+        throw new Error("Failed to create checkout session");
+      }
+    } catch (error) {
+      console.error(error);
+      setIsLoading(false);
+    }
+  };
 
   return (
     <Box
@@ -212,8 +242,14 @@ function ShoppingCart() {
         >
           Continue Shopping
         </Button>
-        <Button variant="contained" color="primary">
-          Order Now
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleOrderNow}
+          disabled={isLoading}
+          sx={{ width: "14rem", height: "4rem" }}
+        >
+          {isLoading ? <CircularProgress size={24} /> : "Order Now"}
         </Button>
       </Box>
     </Box>
