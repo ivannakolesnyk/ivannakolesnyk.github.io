@@ -1,11 +1,8 @@
-import {
-  Add as AddIcon,
-  Delete as DeleteIcon,
-  Remove as RemoveIcon,
-} from "@mui/icons-material";
+import {Add as AddIcon, Delete as DeleteIcon, Remove as RemoveIcon,} from "@mui/icons-material";
 import {
   Box,
   Button,
+  CircularProgress,
   Divider,
   IconButton,
   Paper,
@@ -17,11 +14,10 @@ import {
   TableRow,
   Typography,
   useMediaQuery,
-  CircularProgress,
 } from "@mui/material";
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useCart } from "../context/CartContext";
+import {useEffect, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {useCart} from "../context/CartContext";
 import axios from "axios";
 
 function ShoppingCart() {
