@@ -1,6 +1,5 @@
 import { ReactNode, useState } from "react";
 import { IconButton, Stack } from "@mui/material";
-import SwipeableViews from "react-swipeable-views";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
@@ -29,15 +28,12 @@ export default function Carousel(props: Props) {
     }
   };
 
-  const handleChangeIndex = (index: number) => {
-    setCurrent(index);
-  };
-
   return (
     <>
       <Stack
         width={"100%"}
         direction={"row"}
+        justifyContent={"center"}
         alignItems={"center"}
         height={props.height || undefined}
       >
@@ -47,11 +43,7 @@ export default function Carousel(props: Props) {
         >
           <ArrowBackIosNewIcon />
         </IconButton>
-        <SwipeableViews index={current} onChangeIndex={handleChangeIndex}>
-          {props.items.map((item, index) => (
-            <Stack key={index}>{item}</Stack>
-          ))}
-        </SwipeableViews>
+        <Stack alignItems={"center"}>{props.items[current]}</Stack>
         <IconButton
           onClick={handleRight}
           disabled={props.infinite ? false : current === props.items.length - 1}
