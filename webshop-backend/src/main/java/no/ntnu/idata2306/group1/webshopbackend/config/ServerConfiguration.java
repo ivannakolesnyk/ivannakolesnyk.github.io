@@ -1,4 +1,4 @@
-package no.ntnu.idata2306.group1.webshopbackend;
+package no.ntnu.idata2306.group1.webshopbackend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
