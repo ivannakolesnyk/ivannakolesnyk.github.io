@@ -24,7 +24,7 @@ export function AdminTabs(props) {
   const isMobile = useMediaQuery("(max-width:600px)");
   const [value, setValue] = useState("0");
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
