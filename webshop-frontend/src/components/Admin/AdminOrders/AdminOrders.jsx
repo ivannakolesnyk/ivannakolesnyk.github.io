@@ -1,10 +1,19 @@
-import React, {useState} from "react";
-import {Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Select, Typography,} from "@mui/material";
+import React, { useState } from "react";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Select,
+  Typography,
+} from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
-import OrderTable from "../../Standard_components/Profile_and_Admin/OrderTable";
+import OrderTable from "../../Standard_components/Profile_and_Admin/Orders/OrderTable";
 import TitledBox from "../../Standard_components/TitledBox";
-import {orders, products} from "./dummy";
-import OrderDetails from "./OrderDetails";
+import { orders, products } from "./dummy";
+import OrderDetails from "../../Standard_components/Profile_and_Admin/Orders/OrderDetails";
 
 /**
  * AdminOrders is a React functional component used for managing and displaying
