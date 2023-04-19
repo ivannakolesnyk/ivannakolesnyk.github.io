@@ -15,6 +15,7 @@ import no.ntnu.idata2306.group1.webshopbackend.repositories.ProductRepository;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.ShopOrderRepository;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +34,10 @@ import java.util.stream.Collectors;
 @RestController
 public class CheckoutController {
 
-    private static final String STRIPE_WEBHOOK_SECRET = "whsec_ae49e0485ed5e7850ef2111680449350829e29c4eb5ba80fb8a373a9a8b270f8";
+    @Value("${baseUrl}")
+    private String baseUrl;
+    @Value("${stripe.webhook.secret}")
+    private String STRIPE_WEBHOOK_SECRET;
     @Autowired
     private ProductRepository productRepository;
     @Autowired
@@ -63,7 +67,7 @@ public class CheckoutController {
             return SessionCreateParams.LineItem.builder().setQuantity(item.getQuantity().longValue()).setPriceData(SessionCreateParams.LineItem.PriceData.builder().setCurrency("nok").setUnitAmount((long) (product.getPrice() * 100)).setProductData(SessionCreateParams.LineItem.PriceData.ProductData.builder().setName(product.getName()).build()).build()).build();
         }).filter(item -> item != null).collect(Collectors.toList());
 
-        SessionCreateParams.Builder paramsBuilder = SessionCreateParams.builder().addAllLineItem(lineItems).addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD).setMode(SessionCreateParams.Mode.PAYMENT).setSuccessUrl("http://localhost:3000/profile/vieworders").setCancelUrl("http://localhost:3000/shoppingcart").putMetadata("user_id", String.valueOf(userId));
+        SessionCreateParams.Builder paramsBuilder = SessionCreateParams.builder().addAllLineItem(lineItems).addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD).setMode(SessionCreateParams.Mode.PAYMENT).setSuccessUrl(baseUrl + "/profile/vieworders").setCancelUrl(baseUrl + "/shoppingcart").putMetadata("user_id", String.valueOf(userId));
 
         // Add the product IDs and quantities to the metadata
         for (int i = 0; i < cart.size(); i++) {
