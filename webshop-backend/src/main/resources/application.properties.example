@@ -12,7 +12,11 @@ db.user=YOUR_DB_USERNAME
 db.password=YOUR_DB_PASSWORD
 
 jwt_secret_key=YOUR_JWT_SECRET_KEY
+
+baseUrl=http://localhost:3000
+
 stripe.secret.key=YOUR_STRIPE_SECRET_KEY
+stripe.webhook.secret=YOUR_STRIPE_WEBHOOK_SECRET
 
 # update tables on application restart
 spring.jpa.hibernate.ddl-auto=update
