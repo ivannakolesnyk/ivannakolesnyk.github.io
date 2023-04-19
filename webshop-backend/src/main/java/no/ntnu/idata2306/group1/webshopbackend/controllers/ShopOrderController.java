@@ -1,5 +1,6 @@
 package no.ntnu.idata2306.group1.webshopbackend.controllers;
 
+import java.util.Optional;
 import no.ntnu.idata2306.group1.webshopbackend.dto.OrderLineDTO;
 import no.ntnu.idata2306.group1.webshopbackend.dto.ShopOrderDTO;
 import no.ntnu.idata2306.group1.webshopbackend.models.OrderLine;
@@ -77,6 +78,33 @@ public class ShopOrderController {
         } else {
             return new ResponseEntity("Orders for other users not accessible!",
                     HttpStatus.FORBIDDEN);
+        }
+    }
+
+    @GetMapping("/api/orders/orderlines/{orderid}")
+    public ResponseEntity getOrderLines(@PathVariable String orderid) {
+        try {
+            Integer parsedId = Integer.parseInt(orderid);
+            Optional<ShopOrder> found = this.shopOrderRepository.findById(parsedId);
+            if (found.isPresent()) {
+                ShopOrder order = found.get();
+                String email = order.getUser().getEmail();
+                User sessionUser = userService.getSessionUser();
+                if (sessionUser != null && sessionUser.getEmail().equals(email)) {
+                    return new ResponseEntity(this.orderLineRepository.findByOrder(order),
+                            HttpStatus.OK);
+                } else if (sessionUser == null) {
+                    return new ResponseEntity("Order lines accessible only to authenticated users",
+                            HttpStatus.UNAUTHORIZED);
+                } else {
+                    return new ResponseEntity("Order lines for other users not accessible!",
+                            HttpStatus.FORBIDDEN);
+                }
+            } else {
+                return new ResponseEntity(HttpStatus.NOT_FOUND);
+            }
+        } catch (NumberFormatException e) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
 }

@@ -56,7 +56,8 @@ public class SecurityConfiguration {
                 .permitAll().requestMatchers("/api/products/*").permitAll().requestMatchers("/api/create-checkout-session")
                 .permitAll().requestMatchers(HttpMethod.GET, "/api/testimonials")
                 .permitAll().requestMatchers(HttpMethod.DELETE, "/api/testimonials/*")
-                .hasRole("ADMIN").requestMatchers(HttpMethod.GET, "/api/orders").hasRole("ADMIN").anyRequest().authenticated()
+                .hasRole("ADMIN").requestMatchers(HttpMethod.GET, "/api/orders")
+                .hasRole("ADMIN").requestMatchers("/api/orders/orderlines/*").permitAll().anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
