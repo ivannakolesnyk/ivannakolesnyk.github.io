@@ -3,6 +3,7 @@ package no.ntnu.idata2306.group1.webshopbackend.controllers;
 import no.ntnu.idata2306.group1.webshopbackend.dto.ChangePasswordDTO;
 import no.ntnu.idata2306.group1.webshopbackend.dto.UserProfileDTO;
 import no.ntnu.idata2306.group1.webshopbackend.models.User;
+import no.ntnu.idata2306.group1.webshopbackend.repositories.UserRepository;
 import no.ntnu.idata2306.group1.webshopbackend.services.AccessUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,19 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class UserController {
   @Autowired
+  private UserRepository userRepository;
+  @Autowired
   private AccessUserService userService;
+
+  /**
+   * Return all users.
+   *
+   * @return A list of all users
+   */
+  @GetMapping("/api/users")
+  public ResponseEntity getAllUsers() {
+    return new ResponseEntity(this.userRepository.findAll(), HttpStatus.OK);
+  }
 
   /**
    * Return user profile information
