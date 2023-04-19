@@ -54,7 +54,9 @@ public class SecurityConfiguration {
         http.cors().and().csrf().disable().authorizeHttpRequests().requestMatchers("/api/authenticate")
                 .permitAll().requestMatchers("/api/signup").permitAll().requestMatchers("/api/products")
                 .permitAll().requestMatchers("/api/products/*").permitAll().requestMatchers("/api/create-checkout-session")
-                .permitAll().requestMatchers(HttpMethod.GET, "/api/testimonials").permitAll().requestMatchers(HttpMethod.DELETE, "/api/testimonials/*").hasRole("ADMIN").anyRequest().authenticated()
+                .permitAll().requestMatchers(HttpMethod.GET, "/api/testimonials")
+                .permitAll().requestMatchers(HttpMethod.DELETE, "/api/testimonials/*")
+                .hasRole("ADMIN").requestMatchers(HttpMethod.GET, "/api/orders").hasRole("ADMIN").anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
