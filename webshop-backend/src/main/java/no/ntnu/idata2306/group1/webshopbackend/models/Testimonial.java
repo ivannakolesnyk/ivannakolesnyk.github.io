@@ -23,9 +23,6 @@ public class Testimonial {
     @GeneratedValue
     private int id;
     private String name;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
     private int rating;
     private String description;
     @JsonProperty("testimonial_image")
@@ -33,10 +30,9 @@ public class Testimonial {
 
     public Testimonial() {}
 
-    public Testimonial(String name, User user, int rating, String description,
+    public Testimonial(String name, int rating, String description,
             String testimonial_image) {
         this.name = name;
-        this.user = user;
         this.rating = rating;
         this.description = description;
         this.testimonial_image = testimonial_image;
@@ -50,9 +46,6 @@ public class Testimonial {
         return this.name;
     }
 
-    public User getUser() {
-        return this.user;
-    }
 
     public int getRating() {
         return this.rating;
@@ -66,9 +59,6 @@ public class Testimonial {
         return this.testimonial_image;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public void setTestimonialImage(String testimonial_image) {
         this.testimonial_image = testimonial_image;
