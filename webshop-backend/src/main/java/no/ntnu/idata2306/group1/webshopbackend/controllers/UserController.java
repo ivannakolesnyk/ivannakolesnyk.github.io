@@ -1,5 +1,6 @@
 package no.ntnu.idata2306.group1.webshopbackend.controllers;
 
+import java.util.Optional;
 import no.ntnu.idata2306.group1.webshopbackend.dto.ChangePasswordDTO;
 import no.ntnu.idata2306.group1.webshopbackend.dto.UserProfileDTO;
 import no.ntnu.idata2306.group1.webshopbackend.models.User;
@@ -111,6 +112,33 @@ public class UserController {
       response = new ResponseEntity<>("Password change for other users not accessible!", HttpStatus.FORBIDDEN);
     }
     return response;
+  }
+
+  /**
+   * Delete a user
+   *
+   * @param username Username for which profile to delete
+   * @return The HTTP status code indicated whether or not it was deleted
+   */
+  @DeleteMapping("/api/users/{username}")
+  public ResponseEntity deleteProfile(@PathVariable String username) {
+    User sessionUser = userService.getSessionUser();
+    if (sessionUser != null && sessionUser.isAdmin()) {
+      Optional<User> found = this.userRepository.findByEmail(username);
+      if (found.isPresent()) {
+        User user = found.get();
+        this.userRepository.deleteById(user.getId());
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+      } else {
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
+      }
+    } else if (sessionUser == null) {
+      return new ResponseEntity("Delete endpoint accessible only to authenticated users",
+              HttpStatus.UNAUTHORIZED);
+    } else {
+      return new ResponseEntity("Delete endpoint accessible only to admins",
+              HttpStatus.FORBIDDEN);
+    }
   }
 
 }
