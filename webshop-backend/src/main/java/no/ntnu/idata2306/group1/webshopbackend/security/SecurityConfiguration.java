@@ -1,6 +1,5 @@
 package no.ntnu.idata2306.group1.webshopbackend.security;
 
-import no.ntnu.idata2306.group1.webshopbackend.security.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -53,9 +52,8 @@ public class SecurityConfiguration {
         // Allow JWT authentication
         http.cors().and().csrf().disable().authorizeHttpRequests().requestMatchers("/api/authenticate")
                 .permitAll().requestMatchers("/api/signup").permitAll().requestMatchers("/api/products")
-                .permitAll().requestMatchers("/api/products/*").permitAll().requestMatchers("/api/create-checkout-session").permitAll().requestMatchers("/api/webhook").permitAll().anyRequest().authenticated()
                 .permitAll().requestMatchers("/api/products/*").permitAll().requestMatchers("/api/create-checkout-session")
-                .permitAll().requestMatchers(HttpMethod.GET, "/api/testimonials")
+                .permitAll().requestMatchers("/api/webhook").permitAll().requestMatchers(HttpMethod.GET, "/api/testimonials")
                 .permitAll().requestMatchers(HttpMethod.DELETE, "/api/testimonials/*")
                 .hasRole("ADMIN").requestMatchers(HttpMethod.GET, "/api/orders")
                 .hasRole("ADMIN").requestMatchers("/api/orders/orderlines/*").permitAll().anyRequest().authenticated()
