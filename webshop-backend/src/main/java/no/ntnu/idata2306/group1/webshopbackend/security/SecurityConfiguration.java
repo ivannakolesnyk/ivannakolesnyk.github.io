@@ -52,7 +52,7 @@ public class SecurityConfiguration {
         // Allow JWT authentication
         http.cors().and().csrf().disable().authorizeHttpRequests().requestMatchers("/api/authenticate")
                 .permitAll().requestMatchers("/api/signup").permitAll().requestMatchers("/api/products")
-                .permitAll().requestMatchers("/api/products/*").permitAll().requestMatchers("/api/create-checkout-session").permitAll().anyRequest().authenticated()
+                .permitAll().requestMatchers("/api/products/*").permitAll().requestMatchers("/api/create-checkout-session").permitAll().requestMatchers("/api/webhook").permitAll().anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
