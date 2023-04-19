@@ -1,4 +1,8 @@
-import {Add as AddIcon, Delete as DeleteIcon, Remove as RemoveIcon,} from "@mui/icons-material";
+import {
+  Add as AddIcon,
+  Delete as DeleteIcon,
+  Remove as RemoveIcon,
+} from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -15,10 +19,11 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import {useEffect, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import {useCart} from "../context/CartContext";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
 
 function ShoppingCart() {
   // Add this state inside ShoppingCart function
@@ -28,6 +33,7 @@ function ShoppingCart() {
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery("(max-width: 700px)");
   const isVerySmallScreen = useMediaQuery("(max-width: 500px)");
+  const { getJwtPayload } = useContext(AuthContext);
 
   const calculateTotalPrice = () => {
     return cart.reduce(
@@ -101,6 +107,7 @@ function ShoppingCart() {
 
   const handleOrderNow = async () => {
     setIsLoading(true);
+    const userEmail = getJwtPayload().sub;
     try {
       const response = await axios.post(
         "http://localhost:8080/api/create-checkout-session",
@@ -109,6 +116,7 @@ function ShoppingCart() {
             productId: item.product.id,
             quantity: item.quantity,
           })),
+          userId: userEmail,
         }
       );
 
