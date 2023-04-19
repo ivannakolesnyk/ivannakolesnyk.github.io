@@ -4,6 +4,7 @@ import no.ntnu.idata2306.group1.webshopbackend.security.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -52,7 +53,8 @@ public class SecurityConfiguration {
         // Allow JWT authentication
         http.cors().and().csrf().disable().authorizeHttpRequests().requestMatchers("/api/authenticate")
                 .permitAll().requestMatchers("/api/signup").permitAll().requestMatchers("/api/products")
-                .permitAll().requestMatchers("/api/products/*").permitAll().requestMatchers("/api/create-checkout-session").permitAll().anyRequest().authenticated()
+                .permitAll().requestMatchers("/api/products/*").permitAll().requestMatchers("/api/create-checkout-session")
+                .permitAll().requestMatchers(HttpMethod.GET, "/api/testimonials").permitAll().requestMatchers(HttpMethod.DELETE, "/api/testimonials/*").hasRole("ADMIN").anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
