@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { useMediaQuery } from "@mui/material";
 import AdminProducts from "./AdminProducts";
 import AdminOrders from "./AdminOrders/AdminOrders";
-import AdminTestimonials from "./AdminTestimonials";
+import AdminTestimonials from "./AdminTestimonials/AdminTestimonials";
 import AdminCustomers from "./AdminCustomers/AdminCustomers";
 import { AdminFrontPage } from "./AdminFrontPage";
 import SwipeIcon from "@mui/icons-material/Swipe";

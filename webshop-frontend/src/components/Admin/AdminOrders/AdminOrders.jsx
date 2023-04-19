@@ -83,7 +83,7 @@ const AdminOrders = () => {
         <DialogActions>
           <Button
             variant="contained"
-            sx={{ color: "error.main" }}
+            color="error"
             onClick={() => {
               if (window.confirm("Delete order?")) {
                 console.log("Order deleted!");

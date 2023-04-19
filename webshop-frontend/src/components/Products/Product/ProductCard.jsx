@@ -32,6 +32,8 @@ function ProductCard({
     });
   }, [imagePath]);
 
+  // This is can be bad because content will get reinitialized,
+  // every time this function updates, which is often, because of how React component rendering works (React component lifecycle)
   const content = (
     <Card>
       {specialOffer && (
@@ -58,7 +60,8 @@ function ProductCard({
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: 300,
+            objectFit: "contain",
+            height: 250,
           }}
         />
       </LazyLoad>

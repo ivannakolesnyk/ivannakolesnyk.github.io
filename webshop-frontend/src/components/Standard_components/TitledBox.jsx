@@ -5,9 +5,10 @@ import { Box, Typography } from "@mui/material";
  *
  * A custom Box component that displays a title.
  * @param {string} title - The title to be displayed in the Box.
+ * @param {string} titleAlignment - The alignment of the title (left, center, or right).
  * @returns {JSX.Element} - The JSX code for the OrderBox component.
  */
-const TitledBox = ({ title }) => {
+const TitledBox = ({ title, titleAlignment = "left" }) => {
   return (
     <Box
       sx={{
@@ -17,9 +18,11 @@ const TitledBox = ({ title }) => {
         mb: 2,
       }}
     >
-      <Typography variant="h5" sx={{ color: "secondary.main" }}>
-        {title}
-      </Typography>
+      <Box sx={{ width: "100%", textAlign: titleAlignment }}>
+        <Typography variant="h5" sx={{ color: "secondary.main" }}>
+          {title}
+        </Typography>
+      </Box>
     </Box>
   );
 };

@@ -43,6 +43,9 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
   @Autowired
   private OrderLineRepository orderLineRepository;
 
+  @Autowired
+  private TestimonialRepository testimonialRepository;
+
   private final Logger logger = LoggerFactory.getLogger("DummyInit");
 
   /**
@@ -55,6 +58,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
     loadUsers();
     loadCategoriesAndProducts();
     loadOrders();
+    loadTestimonials();
   }
 
   private void loadUsers() {
@@ -143,6 +147,27 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
       OrderLine orderLine3 = new OrderLine(order2, products.get(2), 3, products.get(2).getPrice());
       orderLineRepository.save(orderLine3);
+    }
+  }
+
+  private void loadTestimonials() {
+    List<Testimonial> testimonials = testimonialRepository.findAll();
+
+    if (testimonials.isEmpty()) {
+      Testimonial review1 = new Testimonial("Sean (25)", 5,
+          "Mocha Nooka Cafe is my favorite spot for a chill, hip atmosphere. The coffee is always on point and the staff are super helpful. A definite must-visit for anyone who's looking for a unique cafe experience!",
+          "missing.png");
+      testimonialRepository.save(review1);
+
+      Testimonial review2 = new Testimonial("John (65)", 5,
+          "I've been coming to Mocha Nooka Cafe for years and it's never disappointed. The coffee is always freshly brewed and the food is always delicious. It's a great spot for a quick break, or a leisurely chat with friends.",
+          "missing.png");
+      testimonialRepository.save(review2);
+
+      Testimonial review3 = new Testimonial("Toni (16)", 5,
+          "I love coming to Mocha Nooka Cafe! It's the perfect spot to hang out with friends and enjoy something tasty and refreshing. The atmosphere is always chill and the staff are really friendly. Highly recommended!",
+          "missing.png");
+      testimonialRepository.save(review3);
     }
   }
 }

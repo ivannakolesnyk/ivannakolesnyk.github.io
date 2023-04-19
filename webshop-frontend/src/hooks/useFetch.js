@@ -20,8 +20,8 @@ import { useCallback, useEffect, useState } from "react";
 const useFetch = (
   method,
   endpoint,
-  headers= null,
-  query=null,
+  headers = null,
+  query = null,
   requestBody = null,
   autoFetch = true,
   baseURL = "http://localhost:8080/api/"
@@ -31,35 +31,42 @@ const useFetch = (
   const [error, setError] = useState(null);
   const [fetched, setFetched] = useState(false);
 
-  const fetchData = useCallback(async (body = null) => {
-    setIsLoading(true);
-    const options = {
-      method: method,
-      url: `${baseURL}${endpoint}`,
-      headers: { ...headers },
-      params: { ...query },
-      data: body || requestBody,
-    };
+  const fetchData = useCallback(
+    async (body = null) => {
+      setIsLoading(true);
+      const options = {
+        method: method,
+        url: `${baseURL}${endpoint}`,
+        headers: { ...headers },
+        params: { ...query },
+        data: body || requestBody,
+      };
 
-    try {
-      const response = await axios.request(options);
-      if (response.status >= 200 && response.status < 300) {
-        setData(response.data);
-        setFetched(true);
-      } else {
-        setError(new Error(`Server responded with status ${response.status}`));
+      try {
+        const response = await axios.request(options);
+        if (response.status >= 200 && response.status < 300) {
+          setData(response.data);
+          setFetched(true);
+        } else {
+          setError(
+            new Error(`Server responded with status ${response.status}`)
+          );
+        }
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
       }
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [method, endpoint, headers, query, requestBody, baseURL]);
+    },
+    [method, endpoint, headers, query, requestBody, baseURL]
+  );
 
   useEffect(() => {
-    (async () => {if (autoFetch) {
-      await fetchData();
-    }})();
+    (async () => {
+      if (autoFetch) {
+        await fetchData();
+      }
+    })();
   }, [fetchData, autoFetch]);
 
   const refetch = async (body = null) => {
