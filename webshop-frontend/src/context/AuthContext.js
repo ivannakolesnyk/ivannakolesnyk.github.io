@@ -1,6 +1,7 @@
-import React, { useMemo, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import cookie from "cookie";
 import jwt_decode from "jwt-decode";
+import { useCart } from "./CartContext";
 
 export const AuthContext = React.createContext();
 const getCookies = () => {
@@ -15,6 +16,7 @@ const getCookies = () => {
  * @returns {JSX.Element} - The JSX code for the AuthProvider component.
  */
 export const AuthProvider = ({ children }) => {
+  const { clearCart } = useCart();
   const [loggedIn, setLoggedIn] = useState(() => {
     return getCookies().jwt ? true : false;
   });
@@ -24,8 +26,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const handleLogout = () => {
-    setLoggedIn(false);
+    clearCart();
     document.cookie = cookie.serialize("jwt", "", { maxAge: -1 }); // Remove the JWT cookie
+    setLoggedIn(false);
   };
 
   const getJwtPayload = () => {
