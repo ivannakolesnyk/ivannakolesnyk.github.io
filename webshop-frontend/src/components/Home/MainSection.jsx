@@ -5,7 +5,7 @@ import backgroundImage from "../../assets/img/home.png";
 const MainSection = () => {
   return (
     <Stack
-      height={"70vh"}
+      minHeight={"70vh"}
       py={12}
       px={8}
       sx={{
@@ -14,12 +14,7 @@ const MainSection = () => {
         backgroundPosition: "center",
       }}
     >
-      <Grid
-        container
-        justifyContent="left"
-        alignItems="center"
-        sx={{ height: "100%" }}
-      >
+      <Grid container alignItems="center" sx={{ height: "100%" }}>
         <Grid item xs={12} md={8} lg={6}>
           <Paper sx={{ p: 7, maxWidth: 500, backgroundColor: "primary.main" }}>
             <Stack spacing={3} alignItems="left">
