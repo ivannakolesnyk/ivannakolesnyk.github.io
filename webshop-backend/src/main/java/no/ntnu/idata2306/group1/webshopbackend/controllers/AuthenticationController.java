@@ -2,7 +2,7 @@ package no.ntnu.idata2306.group1.webshopbackend.controllers;
 
 import no.ntnu.idata2306.group1.webshopbackend.dto.AuthenticationRequest;
 import no.ntnu.idata2306.group1.webshopbackend.dto.AuthenticationResponse;
-import no.ntnu.idata2306.group1.webshopbackend.dto.SignupDto;
+import no.ntnu.idata2306.group1.webshopbackend.dto.SignupDTO;
 import no.ntnu.idata2306.group1.webshopbackend.security.JwtUtil;
 import no.ntnu.idata2306.group1.webshopbackend.services.AccessUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +54,7 @@ public class AuthenticationController {
    * @return Name of the template for the result page
    */
   @PostMapping("/api/signup")
-  public ResponseEntity<String> signupProcess(@RequestBody SignupDto signupData) {
+  public ResponseEntity<String> signupProcess(@RequestBody SignupDTO signupData) {
     String errorMessage =
         userService.tryCreateNewUser(signupData.getEmail(), signupData.getPassword(), signupData.getName(), signupData.getPhone_number(), signupData.getPostal_code(), signupData.getAddress(), signupData.getCity());
     ResponseEntity<String> response;

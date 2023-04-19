@@ -30,7 +30,7 @@ public class CheckoutController {
     @PostMapping("/api/create-checkout-session")
     public ResponseEntity<Map<String, String>> createCheckoutSession(@RequestBody CartRequest cartRequest) {
         List<CartItem> cart = cartRequest.getCart();
-
+//        TODO: Save the order to DB
         List<SessionCreateParams.LineItem> lineItems = cart.stream().map(item -> {
             Product product = productRepository.findById(item.getProductId()).orElse(null);
             if (product == null) {

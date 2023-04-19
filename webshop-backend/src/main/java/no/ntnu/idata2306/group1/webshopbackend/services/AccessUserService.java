@@ -1,6 +1,6 @@
 package no.ntnu.idata2306.group1.webshopbackend.services;
 
-import no.ntnu.idata2306.group1.webshopbackend.dto.UserProfileDto;
+import no.ntnu.idata2306.group1.webshopbackend.dto.UserProfileDTO;
 import no.ntnu.idata2306.group1.webshopbackend.models.Role;
 import no.ntnu.idata2306.group1.webshopbackend.models.User;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.RoleRepository;
@@ -14,10 +14,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -141,7 +139,7 @@ public class AccessUserService implements UserDetailsService {
    * @param profileData Profile data to set for the user
    * @return True on success, false otherwise
    */
-  public boolean updateProfile(User user, UserProfileDto profileData) {
+  public boolean updateProfile(User user, UserProfileDTO profileData) {
     if (user == null || profileData == null) {
       return false;
     }

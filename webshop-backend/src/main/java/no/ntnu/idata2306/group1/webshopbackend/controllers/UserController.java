@@ -1,7 +1,7 @@
 package no.ntnu.idata2306.group1.webshopbackend.controllers;
 
-import no.ntnu.idata2306.group1.webshopbackend.dto.ChangePasswordDto;
-import no.ntnu.idata2306.group1.webshopbackend.dto.UserProfileDto;
+import no.ntnu.idata2306.group1.webshopbackend.dto.ChangePasswordDTO;
+import no.ntnu.idata2306.group1.webshopbackend.dto.UserProfileDTO;
 import no.ntnu.idata2306.group1.webshopbackend.models.User;
 import no.ntnu.idata2306.group1.webshopbackend.services.AccessUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class UserController {
   public ResponseEntity<?> getProfile(@PathVariable String username) {
     User sessionUser = userService.getSessionUser();
     if (sessionUser != null && sessionUser.getEmail().equals(username)) {
-      UserProfileDto profile = new UserProfileDto();
+      UserProfileDTO profile = new UserProfileDTO();
       profile.setName(sessionUser.getName());
       profile.setEmail(sessionUser.getEmail());
       profile.setPhone_number(sessionUser.getPhone_number());
@@ -53,7 +53,7 @@ public class UserController {
    */
   @PutMapping("/api/users/{username}")
   public ResponseEntity<String> updateProfile(@PathVariable String username,
-                                              @RequestBody UserProfileDto profileData) {
+                                              @RequestBody UserProfileDTO profileData) {
     User sessionUser = userService.getSessionUser();
     ResponseEntity<String> response;
     if (sessionUser != null && sessionUser.getEmail().equals(username)) {
@@ -79,7 +79,7 @@ public class UserController {
 
   @PutMapping("/api/users/{username}/password")
   public ResponseEntity<String> changePassword(@PathVariable String username,
-                                               @RequestBody ChangePasswordDto passwordData) {
+                                               @RequestBody ChangePasswordDTO passwordData) {
     User sessionUser = userService.getSessionUser();
     ResponseEntity<String> response;
     if (sessionUser != null && sessionUser.getEmail().equals(username)) {

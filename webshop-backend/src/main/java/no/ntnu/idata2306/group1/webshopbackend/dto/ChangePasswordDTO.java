@@ -1,6 +1,6 @@
 package no.ntnu.idata2306.group1.webshopbackend.dto;
 
-public class ChangePasswordDto {
+public class ChangePasswordDTO {
     private String currentPassword;
     private String newPassword;
 

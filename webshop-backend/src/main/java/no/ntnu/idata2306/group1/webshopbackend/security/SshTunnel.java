@@ -1,4 +1,4 @@
-package no.ntnu.idata2306.group1.webshopbackend.utils;
+package no.ntnu.idata2306.group1.webshopbackend.security;
 
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;

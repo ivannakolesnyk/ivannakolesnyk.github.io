@@ -3,7 +3,7 @@ package no.ntnu.idata2306.group1.webshopbackend.dto;
 /**
  * Data transfer object (DTO) for submitting changes to user profile data.
  */
-public class UserProfileDto {
+public class UserProfileDTO {
   private String name;
   private String email;
   private String phone_number;
@@ -11,7 +11,7 @@ public class UserProfileDto {
   private String address;
   private String city;
 
-  public UserProfileDto() {
+  public UserProfileDTO() {
   }
 
   public String getName() {

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import com.jcraft.jsch.JSchException;
-import no.ntnu.idata2306.group1.webshopbackend.utils.SshTunnel;
+import no.ntnu.idata2306.group1.webshopbackend.security.SshTunnel;
 
 /**
  * WebshopBackendApplication is the main entry point for the Spring Boot application. It sets up an

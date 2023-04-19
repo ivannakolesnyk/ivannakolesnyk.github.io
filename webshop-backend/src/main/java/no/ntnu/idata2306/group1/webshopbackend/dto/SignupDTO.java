@@ -3,7 +3,7 @@ package no.ntnu.idata2306.group1.webshopbackend.dto;
 /**
  * Data transfer object (DTO) for data from the sign-up form.
  */
-public class SignupDto {
+public class SignupDTO {
   private final String email;
   private final String password;
   private final String name;
@@ -12,7 +12,7 @@ public class SignupDto {
   private final String address;
   private final String city;
 
-  public SignupDto(String email, String password, String name, String phone_number,
+  public SignupDTO(String email, String password, String name, String phone_number,
                    int postal_code, String address, String city) {
     this.email = email;
     this.password = password;
