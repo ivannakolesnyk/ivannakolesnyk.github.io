@@ -86,4 +86,80 @@ public class CheckoutController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+
+    /**
+     * Handles Stripe webhook events, specifically "checkout.session.completed".
+     *
+     * @param payload the webhook payload
+     * @param request the HTTP request object
+     * @return an HTTP response indicating the result of handling the webhook
+     */
+    @PostMapping("/api/webhook")
+    public ResponseEntity<String> handleStripeWebhook(@RequestBody String payload, HttpServletRequest request) {
+        String sigHeader = request.getHeader("Stripe-Signature");
+        Event event = null;
+
+        try {
+            event = Webhook.constructEvent(payload, sigHeader, STRIPE_WEBHOOK_SECRET);
+        } catch (JsonSyntaxException e) {
+            // Invalid payload
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("");
+        } catch (SignatureVerificationException e) {
+            // Invalid signature
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("");
+        }
+
+        // Handle the event
+        if (event.getType().equals("checkout.session.completed")) {
+            Session session = null;
+            try {
+                session = Session.retrieve(this.sessionId);
+            } catch (StripeException e) {
+                e.printStackTrace();
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("");
+            }
+
+            if (session == null) {
+                System.out.println("Session data not available");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("");
+            }
+
+            // Retrieve userId and product information from metadata
+            String userId = session.getMetadata().get("user_id");
+
+            // Use the metadata to create a list of OrderLine objects
+            List<OrderLine> orderLines = new ArrayList<>();
+
+            session.getMetadata().forEach((key, value) -> {
+                if (key.startsWith("product_")) {
+                    String[] productIdAndQuantity = value.split(",");
+                    int productId = Integer.parseInt(productIdAndQuantity[0]);
+                    int quantity = Integer.parseInt(productIdAndQuantity[1]);
+
+                    Product product = productRepository.findById(productId).orElse(null);
+
+                    if (product != null) {
+                        OrderLine orderLine = new OrderLine(null, product, quantity, product.getPrice());
+                        orderLines.add(orderLine);
+                    }
+                }
+            });
+
+            User user = userRepository.findByEmail(userId).orElse(null);
+            if (user != null) {
+                // Create and save the ShopOrder
+                ShopOrder shopOrder = new ShopOrder(new Date(), user, "Paid");
+                shopOrderRepository.save(shopOrder);
+
+                // Update the OrderLines with the saved ShopOrder
+                orderLines.forEach(orderLine -> orderLine.setOrder(shopOrder));
+
+                // Save the OrderLines
+                orderLineRepository.saveAll(orderLines);
+            }
+        }
+
+        return ResponseEntity.ok("");
+    }
 }
