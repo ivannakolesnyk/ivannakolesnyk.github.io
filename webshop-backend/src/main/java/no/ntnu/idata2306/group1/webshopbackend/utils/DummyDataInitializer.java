@@ -1,25 +1,21 @@
 package no.ntnu.idata2306.group1.webshopbackend.utils;
 
-import no.ntnu.idata2306.group1.webshopbackend.models.Category;
-import no.ntnu.idata2306.group1.webshopbackend.models.Product;
+import no.ntnu.idata2306.group1.webshopbackend.models.*;
+import no.ntnu.idata2306.group1.webshopbackend.repositories.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
-import no.ntnu.idata2306.group1.webshopbackend.models.Role;
-import no.ntnu.idata2306.group1.webshopbackend.repositories.RoleRepository;
-import no.ntnu.idata2306.group1.webshopbackend.models.User;
-import no.ntnu.idata2306.group1.webshopbackend.repositories.UserRepository;
+
+import java.util.Date;
 import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 import no.ntnu.idata2306.group1.webshopbackend.models.Category;
 import no.ntnu.idata2306.group1.webshopbackend.models.Product;
-import no.ntnu.idata2306.group1.webshopbackend.repositories.CategoryRepository;
-import no.ntnu.idata2306.group1.webshopbackend.repositories.ProductRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,6 +37,12 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
   @Autowired
   private ProductRepository productRepository;
 
+  @Autowired
+  private ShopOrderRepository shopOrderRepository;
+
+  @Autowired
+  private OrderLineRepository orderLineRepository;
+
   private final Logger logger = LoggerFactory.getLogger("DummyInit");
 
   /**
@@ -52,6 +54,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
   public void onApplicationEvent(ApplicationReadyEvent event) {
     loadUsers();
     loadCategoriesAndProducts();
+    loadOrders();
   }
 
   private void loadUsers() {
@@ -116,4 +119,30 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
     }
   }
 
+  private void loadOrders() {
+    List<User> users = userRepository.findAll();
+    List<Product> products = productRepository.findAll();
+    List<ShopOrder> shopOrders = shopOrderRepository.findAll();
+    List<OrderLine> orderLines = orderLineRepository.findAll();
+
+    if (users.isEmpty() || products.isEmpty()) {
+      logger.warn("Unable to create dummy orders. Make sure users and products are loaded first.");
+      return;
+    }
+
+    if (shopOrders.isEmpty() && orderLines.isEmpty()) {
+      ShopOrder order1 = new ShopOrder(new Date(), users.get(0), "Processing");
+      shopOrderRepository.save(order1);
+
+      OrderLine orderLine1 = new OrderLine(order1, products.get(0), 2, products.get(0).getPrice());
+      OrderLine orderLine2 = new OrderLine(order1, products.get(1), 1, products.get(1).getPrice());
+      orderLineRepository.saveAll(List.of(orderLine1, orderLine2));
+
+      ShopOrder order2 = new ShopOrder(new Date(), users.get(1), "Shipped");
+      shopOrderRepository.save(order2);
+
+      OrderLine orderLine3 = new OrderLine(order2, products.get(2), 3, products.get(2).getPrice());
+      orderLineRepository.save(orderLine3);
+    }
+  }
 }
