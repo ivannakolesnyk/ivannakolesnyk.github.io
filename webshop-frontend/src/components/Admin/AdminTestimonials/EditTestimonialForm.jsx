@@ -93,6 +93,7 @@ const EditTestimonialForm = ({ testimonial, onClose, onSave, onDelete }) => {
                 mr: 1,
                 color: "secondary.main",
                 borderColor: "primary.main",
+                mb: 1,
               }}
             >
               Cancel
