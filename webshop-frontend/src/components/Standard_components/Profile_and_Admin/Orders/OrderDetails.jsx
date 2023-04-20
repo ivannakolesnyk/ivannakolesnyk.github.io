@@ -1,5 +1,5 @@
-import React, {useMemo} from "react";
-import {Grid, Typography} from "@mui/material";
+import React, { useEffect, useMemo } from "react";
+import { Grid, Typography } from "@mui/material";
 import OrderLine from "./OrderLine";
 import TableHeader from "./TableHeader";
 import useFetch from "../../../../hooks/useFetch";
@@ -28,11 +28,20 @@ const OrderDetails = ({ order }) => {
     [jwt]
   );
 
+  const shouldFetch = useMemo(() => !!order?.id, [order]);
+
   const {
     data: orderlines,
     isLoading,
     error,
-  } = useFetch("GET", `orders/orderlines/${order?.id}`, headers);
+  } = useFetch(
+    "GET",
+    `orders/orderlines/${order?.id}`,
+    headers,
+    null,
+    null,
+    shouldFetch
+  );
 
   const orderTotal = orderlines?.reduce((total, orderLine) => {
     return total + orderLine.quantity * orderLine.product.price;
