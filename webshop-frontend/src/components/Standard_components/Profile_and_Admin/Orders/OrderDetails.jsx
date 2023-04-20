@@ -6,6 +6,7 @@ import useFetch from "../../../../hooks/useFetch";
 import cookie from "cookie";
 import Loading from "../../Loading";
 import InternalError from "../../InternalError";
+import { useMediaQuery } from "@mui/material";
 
 /**
  * OrderDetails is a React functional component used for displaying
@@ -19,6 +20,7 @@ import InternalError from "../../InternalError";
  */
 const OrderDetails = ({ order }) => {
   const jwt = cookie.parse(document.cookie).jwt;
+  const isWidthAbove460 = useMediaQuery("(min-width:460px)");
 
   const headers = useMemo(
     () => ({
@@ -58,7 +60,11 @@ const OrderDetails = ({ order }) => {
   return (
     <Grid container spacing={2} sx={{ mb: 2 }}>
       <TableHeader title="Product" width={4} />
-      <TableHeader title="Quantity" width={2} align="right" />
+      <TableHeader
+        title={isWidthAbove460 ? "Number" : "Nr"}
+        width={2}
+        align="right"
+      />
       <TableHeader title="Price" width={2} align="right" />
       <TableHeader title="Total" width={4} align="right" />
       {orderlines.map((orderLine) => (
