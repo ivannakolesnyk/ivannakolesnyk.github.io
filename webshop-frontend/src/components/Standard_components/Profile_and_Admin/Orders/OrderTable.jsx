@@ -48,7 +48,7 @@ const OrderTable = ({ orders, handleOrderClick }) => {
             >
               {order.id && <TableCell>{order.id}</TableCell>}
               {order.status && <TableCell>{order.status}</TableCell>}
-              {order.order_date && <TableCell>{order.order_date}</TableCell>}
+              {order.order_date && <TableCell>{new Date(order.order_date).toISOString().slice(0, 10)}</TableCell>}
               {order.user_id && <TableCell>{order.user_id}</TableCell>}
               {order.name && <TableCell>{order.name}</TableCell>}
             </TableRow>
