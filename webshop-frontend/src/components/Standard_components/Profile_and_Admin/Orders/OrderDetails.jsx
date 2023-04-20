@@ -1,8 +1,11 @@
-import React from "react";
-import { Grid, Typography } from "@mui/material";
-import PropTypes from "prop-types";
+import React, {useMemo} from "react";
+import {Grid, Typography} from "@mui/material";
 import OrderLine from "./OrderLine";
 import TableHeader from "./TableHeader";
+import useFetch from "../../../../hooks/useFetch";
+import cookie from "cookie";
+import Loading from "../../Loading";
+import InternalError from "../../InternalError";
 
 /**
  * OrderDetails is a React functional component used for displaying
@@ -13,27 +16,35 @@ import TableHeader from "./TableHeader";
  * @component
  * @param {Object} props - The properties passed to the component
  * @param {Object} props.order - The order object containing order details
- * @param {Array} props.products - The array of product objects
- * @example
- * const order = {
- *   // ... order data
- * };
- * const products = [
- *   // ... product data
- * ];
- *
- * return (
- *   <OrderDetails order={order} products={products} />
- * );
  */
-const OrderDetails = ({ order, products }) => {
-  const orderTotal = order?.order_lines
-    .reduce((total, ol) => {
-      return (
-        total + products.find((p) => p.id === ol.product_id).price * ol.quantity
-      );
-    }, 0)
-    .toFixed(2);
+const OrderDetails = ({ order }) => {
+  const jwt = cookie.parse(document.cookie).jwt;
+
+  const headers = useMemo(
+    () => ({
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwt}`,
+    }),
+    [jwt]
+  );
+
+  const {
+    data: orderlines,
+    isLoading,
+    error,
+  } = useFetch("GET", `orders/orderlines/${order?.id}`, headers);
+
+  const orderTotal = orderlines?.reduce((total, orderLine) => {
+    return total + orderLine.quantity * orderLine.product.price;
+  }, 0);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <InternalError />;
+  }
 
   return (
     <Grid container spacing={2} sx={{ mb: 2 }}>
@@ -41,10 +52,10 @@ const OrderDetails = ({ order, products }) => {
       <TableHeader title="Quantity" width={2} align="right" />
       <TableHeader title="Price" width={2} align="right" />
       <TableHeader title="Total" width={4} align="right" />
-      {order?.order_lines.map((orderLine) => (
+      {orderlines.map((orderLine) => (
         <OrderLine
           key={orderLine.id}
-          product={products.find((p) => p.id === orderLine.product_id)}
+          product={orderLine.product}
           quantity={orderLine.quantity}
         />
       ))}
