@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   Typography,
 } from "@mui/material";
-import { orders, products } from "./dummy";
 import { ArrowBack } from "@mui/icons-material";
 import OrderTable from "../../Standard_components/Profile_and_Admin/Orders/OrderTable";
 import TitledBox from "../../Standard_components/TitledBox";
 import OrderDetails from "../../Standard_components/Profile_and_Admin/Orders/OrderDetails";
+import cookie from "cookie";
+import jwt_decode from "jwt-decode";
+import useFetch from "../../../hooks/useFetch";
+import Loading from "../../Standard_components/Loading";
+import InternalError from "../../Standard_components/InternalError";
 
 /**
  *
@@ -34,6 +38,33 @@ const ProfileViewOrders = () => {
     setSelectedOrder(null);
   };
 
+  const jwt = cookie.parse(document.cookie).jwt;
+  const payload = jwt_decode(jwt);
+  const userEmail = payload ? payload.sub : ""; // Replace 'sub' with the claim name containing the user's email
+
+  const headers = useMemo(
+    () => ({
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwt}`,
+    }),
+    [jwt]
+  );
+
+  const {
+    data: orders,
+    isLoading,
+    error,
+    refetch,
+  } = useFetch("GET", `orders/${userEmail}`, headers);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <InternalError />;
+  }
+
   return (
     <Box sx={{ p: { xs: 2, md: 4 } }}>
       <TitledBox title="Orders"></TitledBox>
@@ -53,7 +84,7 @@ const ProfileViewOrders = () => {
           {selectedOrder && `Order ${selectedOrder.id}`}
         </DialogTitle>
         <DialogContent>
-          <OrderDetails order={selectedOrder} products={products} />
+          <OrderDetails order={selectedOrder} />
         </DialogContent>
 
         <DialogActions>
