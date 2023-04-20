@@ -1,9 +1,10 @@
-import React from "react";
+// AdminTestimonials.jsx
+import React, { useState } from "react";
 import TitledBox from "../../Standard_components/TitledBox";
-import { Box } from "@mui/system";
+import { Box, Button, Typography } from "@mui/material";
 import TestimonialCards from "./TestimonialCards";
 import EditTestimonialForm from "./EditTestimonialForm";
-import { Typography } from "@mui/material";
+import NewTestimonialDialog from "./NewTestimonialDialog";
 import axios from "axios";
 
 /**
@@ -12,11 +13,25 @@ import axios from "axios";
  * An edit form will appear below the testimonial cards if a card is clicked.
  * The component allows the user to edit or delete testimonials, and uses a
  * confirmation dialog to ensure the user wants to delete a testimonial before
- * performing the action.
+ * performing the action. The user can also create a new testimonial.
  * @returns {JSX.Element} The JSX code for the AdminTestimonials component.
  */
 const AdminTestimonials = () => {
-  const [selectedTestimonial, setSelectedTestimonial] = React.useState(null);
+  const [selectedTestimonial, setSelectedTestimonial] = useState(null);
+  const [newTestimonialDialogOpen, setNewTestimonialDialogOpen] =
+    useState(false);
+
+  const handleCreate = (newTestimonial) => {
+    axios
+      .post("/api/testimonials", newTestimonial)
+      .then((response) => {
+        // handle success
+        setNewTestimonialDialogOpen(false);
+      })
+      .catch((error) => {
+        // handle error
+      });
+  };
 
   const handleSave = (testimonialId, updatedData) => {
     axios
@@ -57,6 +72,15 @@ const AdminTestimonials = () => {
       <TestimonialCards
         onCardClick={(testimonial) => setSelectedTestimonial(testimonial)}
       />
+      <Box sx={{ textAlign: "center", my: 2 }}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => setNewTestimonialDialogOpen(true)}
+        >
+          Create New Testimonial
+        </Button>
+      </Box>
       {selectedTestimonial && (
         <EditTestimonialForm
           testimonial={selectedTestimonial}
@@ -67,6 +91,11 @@ const AdminTestimonials = () => {
           onDelete={handleDelete}
         />
       )}
+      <NewTestimonialDialog
+        open={newTestimonialDialogOpen}
+        onClose={() => setNewTestimonialDialogOpen(false)}
+        onCreate={handleCreate}
+      />
     </Box>
   );
 };
