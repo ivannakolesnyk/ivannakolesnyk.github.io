@@ -10,14 +10,14 @@ import {
   Typography,
 } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
-import OrderTable from "../../Standard_components/Profile_and_Admin/Orders/OrderTable";
-import TitledBox from "../../Standard_components/TitledBox";
-import OrderDetails from "../../Standard_components/Profile_and_Admin/Orders/OrderDetails";
+import OrderTable from "../Standard_components/Profile_and_Admin/Orders/OrderTable";
+import TitledBox from "../Standard_components/TitledBox";
+import OrderDetails from "../Standard_components/Profile_and_Admin/Orders/OrderDetails";
 import cookie from "cookie";
 import jwt_decode from "jwt-decode";
-import useFetch from "../../../hooks/useFetch";
-import Loading from "../../Standard_components/Loading";
-import InternalError from "../../Standard_components/InternalError";
+import useFetch from "../../hooks/useFetch";
+import Loading from "../Standard_components/Loading";
+import InternalError from "../Standard_components/InternalError";
 
 /**
  *

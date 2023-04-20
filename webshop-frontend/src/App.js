@@ -17,7 +17,7 @@ import Products from "./components/Products/Products";
 import Profile from "./components/Profile/Profile";
 import ProfileChangePW from "./components/Profile/ProfileChangePW";
 import ProfileEdit from "./components/Profile/ProfileEdit";
-import ProfileViewOrders from "./components/Profile/ProfileViewOrders/ProfileViewOrders";
+import ProfileViewOrders from "./components/Profile/ProfileViewOrders";
 import ShoppingCart from "./components/ShoppingCart";
 import NotFound from "./components/Standard_components/NotFound";
 import { AuthContext } from "./context/AuthContext";
