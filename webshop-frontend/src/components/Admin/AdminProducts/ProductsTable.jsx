@@ -12,6 +12,16 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import ProductDialog from "./ProductDialog";
 
+/**
+ *
+ * The ProductsTable component is a React functional component used for displaying
+ * a table of products with their details. It allows users to edit or delete a product
+ * using the ProductDialog component.
+ * @param {Array} products - An array of product objects containing product information.
+ * @param {Function} onEditProduct - A callback function for handling the edit product action.
+ * @param {Function} onDeleteProduct - A callback function for handling the delete product action.
+ * @returns {JSX.Element} The JSX code for the ProductsTable component.
+ */
 const ProductsTable = ({ products, onEditProduct, onDeleteProduct }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
