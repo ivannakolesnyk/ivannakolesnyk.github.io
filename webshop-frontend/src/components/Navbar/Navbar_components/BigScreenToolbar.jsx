@@ -4,7 +4,6 @@ import {
   PlaceOutlined as PlaceOutlinedIcon,
   ShoppingCart as ShoppingCartIcon,
 } from "@mui/icons-material";
-import * as PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import coffeeLogo from "../../../assets/img/logos/logo_bigscreen.png";
 import { useCart } from "../../../context/CartContext";
@@ -15,24 +14,6 @@ import { AccountTooltip } from "./AccountTooltip";
 import NavbarButton from "./NavbarButton";
 import StyledToolbar from "./StyledToolbar";
 import { Badge } from "@mui/material";
-
-const leftNavItems = [
-  { text: "Menu", to: "/menu" },
-  { text: "Products", to: "/products" },
-  { text: "About us", to: "/about" },
-];
-
-AccountMenu.propTypes = {
-  anchorEl: PropTypes.any,
-  open: PropTypes.bool,
-  onClose: PropTypes.func,
-  onClick: PropTypes.func,
-};
-
-AccountTooltip.propTypes = {
-  onClick: PropTypes.func,
-  open: PropTypes.bool,
-};
 
 /**
  *
@@ -59,6 +40,12 @@ const BigScreenToolbar = () => {
   const getTotalCartItems = () => {
     return cart.reduce((total, item) => total + item.quantity, 0);
   };
+
+  const leftNavItems = [
+    { text: "Menu", to: "/menu" },
+    { text: "Products", to: "/products" },
+    { text: "About us", to: "/about" },
+  ];
 
   const rightNavItems = [
     { text: "Find us", to: "/findus", icon: <PlaceOutlinedIcon /> },

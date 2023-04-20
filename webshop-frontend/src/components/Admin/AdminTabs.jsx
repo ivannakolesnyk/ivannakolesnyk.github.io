@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import React, { useState } from "react";
 import { useMediaQuery } from "@mui/material";
-import AdminProducts from "./AdminProducts";
+import AdminProducts from "./AdminProducts/AdminProducts";
 import AdminOrders from "./AdminOrders/AdminOrders";
 import AdminTestimonials from "./AdminTestimonials/AdminTestimonials";
 import AdminCustomers from "./AdminCustomers/AdminCustomers";

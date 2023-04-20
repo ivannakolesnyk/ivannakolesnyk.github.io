@@ -1,6 +1,5 @@
 import React from "react";
-import {Grid, Typography} from "@mui/material";
-import PropTypes from "prop-types";
+import { Grid, Typography } from "@mui/material";
 
 /**
  * OrderLine is a React functional component used for rendering an individual
@@ -41,11 +40,6 @@ const OrderLine = ({ product, quantity }) => {
       </Grid>
     </>
   );
-};
-
-OrderLine.propTypes = {
-  product: PropTypes.object.isRequired,
-  quantity: PropTypes.number.isRequired,
 };
 
 export default OrderLine;

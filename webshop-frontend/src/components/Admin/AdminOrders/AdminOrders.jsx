@@ -50,11 +50,7 @@ const AdminOrders = () => {
   return (
     <Box sx={{ p: { xs: 2, md: 4 } }}>
       <TitledBox title="Orders" />
-      <OrderTable
-        orders={orders}
-        handleOrderClick={handleOrderClick}
-        products={products}
-      />
+      <OrderTable orders={orders} handleOrderClick={handleOrderClick} />
       <Dialog open={Boolean(selectedOrder)} onClose={handleClose}>
         <DialogTitle>
           {selectedOrder && `Order ${selectedOrder.id}`}

@@ -1,6 +1,5 @@
 import React from "react";
-import {Grid, Typography} from "@mui/material";
-import PropTypes from "prop-types";
+import { Grid, Typography } from "@mui/material";
 
 /**
  * TableHeader is a React functional component used for rendering a header cell
@@ -24,16 +23,6 @@ const TableHeader = ({ title, width, align }) => {
       </Typography>
     </Grid>
   );
-};
-
-TableHeader.propTypes = {
-  title: PropTypes.string.isRequired,
-  width: PropTypes.number.isRequired,
-  align: PropTypes.oneOf(["inherit", "left", "center", "right", "justify"]),
-};
-
-TableHeader.defaultProps = {
-  align: "inherit",
 };
 
 export default TableHeader;
