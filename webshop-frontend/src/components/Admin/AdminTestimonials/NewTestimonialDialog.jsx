@@ -10,6 +10,17 @@ import {
 } from "@mui/material";
 import Rating from "@mui/material/Rating";
 
+/**
+ *
+ * NewTestimonialDialog is a React functional component that renders a dialog
+ * for creating a new testimonial. It allows the user to input the name,
+ * image URL, comment, and rating for a new testimonial.
+ * @param {Object} props - The component's props
+ * @param {boolean} props.open - Determines if the dialog is open or closed
+ * @param {function} props.onClose - A function to close the dialog
+ * @param {function} props.onCreate - A function to create a new testimonial
+ * @returns {JSX.Element} The rendered NewTestimonialDialog component
+ */
 const NewTestimonialDialog = ({ open, onClose, onCreate }) => {
   const [newTestimonial, setNewTestimonial] = useState({
     name: "",
