@@ -60,9 +60,4 @@ const OrderDetails = ({ order, products }) => {
   );
 };
 
-OrderDetails.propTypes = {
-  order: PropTypes.object,
-  products: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
-
 export default OrderDetails;

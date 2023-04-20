@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {
   TableContainer,
   Table,
@@ -17,10 +16,9 @@ import {
  * prop is provided.
  * @param {Array} orders - An array of order objects
  * @param {Function} handleOrderClick - A function to handle order click events
- * @param {Array} products - An array of product objects
  * @returns {JSX.Element} - Returns a custom table component
  */
-const OrderTable = ({ orders, handleOrderClick, products }) => {
+const OrderTable = ({ orders, handleOrderClick }) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 350 }}>
@@ -39,7 +37,6 @@ const OrderTable = ({ orders, handleOrderClick, products }) => {
               <TableCell>User ID</TableCell>
             )}
             {orders.some((order) => order.name) && <TableCell>Name</TableCell>}
-            <TableCell>Total</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -54,47 +51,12 @@ const OrderTable = ({ orders, handleOrderClick, products }) => {
               {order.order_date && <TableCell>{order.order_date}</TableCell>}
               {order.user_id && <TableCell>{order.user_id}</TableCell>}
               {order.name && <TableCell>{order.name}</TableCell>}
-              <TableCell>
-                {order.order_lines.reduce((total, ol) => {
-                  return (
-                    total +
-                    products.find((p) => p.id === ol.product_id).price *
-                      ol.quantity
-                  );
-                }, 0)}{" "}
-                NOK
-              </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
-};
-
-OrderTable.propTypes = {
-  orders: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      status: PropTypes.string,
-      order_date: PropTypes.string,
-      user_id: PropTypes.number,
-      name: PropTypes.string,
-      order_lines: PropTypes.arrayOf(
-        PropTypes.shape({
-          product_id: PropTypes.number,
-          quantity: PropTypes.number,
-        })
-      ),
-    })
-  ),
-  handleOrderClick: PropTypes.func.isRequired,
-  products: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      price: PropTypes.number.isRequired,
-    })
-  ).isRequired,
 };
 
 export default OrderTable;

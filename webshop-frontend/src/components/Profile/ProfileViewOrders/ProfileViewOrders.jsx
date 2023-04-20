@@ -7,6 +7,7 @@ import {
   DialogContent,
   DialogActions,
   Button,
+  Typography,
 } from "@mui/material";
 import { orders, products } from "./dummy";
 import { ArrowBack } from "@mui/icons-material";
@@ -36,12 +37,16 @@ const ProfileViewOrders = () => {
   return (
     <Box sx={{ p: { xs: 2, md: 4 } }}>
       <TitledBox title="Orders"></TitledBox>
-
-      <OrderTable
-        orders={orders}
-        handleOrderClick={handleOrderClick}
-        products={products}
-      />
+      <Typography
+        variant="body1"
+        sx={{
+          color: "secondary.main",
+          textAlign: "center",
+        }}
+      >
+        Click on an order to view more details.
+      </Typography>
+      <OrderTable orders={orders} handleOrderClick={handleOrderClick} />
 
       <Dialog open={Boolean(selectedOrder)} onClose={handleClose}>
         <DialogTitle>
