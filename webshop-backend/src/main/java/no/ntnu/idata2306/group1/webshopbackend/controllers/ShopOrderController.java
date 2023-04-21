@@ -1,6 +1,5 @@
 package no.ntnu.idata2306.group1.webshopbackend.controllers;
 
-import java.util.Optional;
 import no.ntnu.idata2306.group1.webshopbackend.dto.OrderLineDTO;
 import no.ntnu.idata2306.group1.webshopbackend.dto.ShopOrderDTO;
 import no.ntnu.idata2306.group1.webshopbackend.models.OrderLine;
@@ -12,14 +11,15 @@ import no.ntnu.idata2306.group1.webshopbackend.repositories.ProductRepository;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.ShopOrderRepository;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.UserRepository;
 import no.ntnu.idata2306.group1.webshopbackend.services.AccessUserService;
+import no.ntnu.idata2306.group1.webshopbackend.utils.ShopOrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class ShopOrderController {
@@ -38,6 +38,9 @@ public class ShopOrderController {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private ShopOrderMapper shopOrderMapper;
 
     @PostMapping("/api/orders")
     public ResponseEntity<ShopOrder> createOrder(@RequestBody ShopOrderDTO shopOrderDTO) {
@@ -64,14 +67,22 @@ public class ShopOrderController {
 
     @GetMapping("/api/orders")
     public ResponseEntity getOrders() {
-        return new ResponseEntity(this.shopOrderRepository.findAll(), HttpStatus.OK);
+        List<ShopOrder> shopOrders = this.shopOrderRepository.findAll();
+        List<ShopOrderDTO> shopOrderDTOs = shopOrders.stream()
+                .map(shopOrderMapper::toShopOrderDTOWithUser)
+                .collect(Collectors.toList());
+        return new ResponseEntity(shopOrderDTOs, HttpStatus.OK);
     }
 
     @GetMapping("/api/orders/{username}")
     public ResponseEntity getUsersOrders(@PathVariable String username) {
         User sessionUser = userService.getSessionUser();
         if (sessionUser != null && sessionUser.getEmail().equals(username)) {
-            return new ResponseEntity(this.shopOrderRepository.findByUser(sessionUser), HttpStatus.OK);
+            List<ShopOrder> shopOrders = this.shopOrderRepository.findByUser(sessionUser);
+            List<ShopOrderDTO> shopOrderDTOs = shopOrders.stream()
+                    .map(shopOrder -> shopOrderMapper.toShopOrderDTOWithTotal(shopOrder, this.orderLineRepository))
+                    .collect(Collectors.toList());
+            return new ResponseEntity(shopOrderDTOs, HttpStatus.OK);
         } else if (sessionUser == null) {
             return new ResponseEntity("Orders accessible only to authenticated users",
                     HttpStatus.UNAUTHORIZED);
