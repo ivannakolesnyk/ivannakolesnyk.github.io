@@ -12,12 +12,23 @@ import ContinueShoppingButton from "./ContinueShoppingButton";
 import OrderNowButton from "./OrderNowButton";
 import CustomSnackbar from "../Standard_components/CustomSnackbar";
 
+/**
+ * Transforms the cart items into a format that can be sent to the server.
+ * @param {object[]} cartItems - The items currently in the cart
+ * @param {object} cartItems[].product - The product being purchased
+ * @param {number} cartItems[].quantity - The quantity of the product being purchased
+ * @returns {object[]} The transformed cart items
+ */
 const transformCartItems = (cartItems) =>
   cartItems.map((item) => ({
     productId: item.product.id,
     quantity: item.quantity,
   }));
 
+/**
+ * Renders the shopping cart page, including cart items, subtotal, and buttons to continue shopping or place an order.
+ * @returns {JSX.Element} The rendered shopping cart page
+ */
 function ShoppingCart() {
   const { cart } = useCart();
   const navigate = useNavigate();
@@ -35,6 +46,7 @@ function ShoppingCart() {
 
   useEffect(() => {
     if (data && data.url) {
+      // Stripe checkout page
       window.location = data.url;
     } else if (error) {
       setSnackbarOpen(true);
