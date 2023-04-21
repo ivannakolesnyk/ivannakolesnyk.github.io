@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -18,6 +18,7 @@ import jwt_decode from "jwt-decode";
 import useFetch from "../../hooks/useFetch";
 import Loading from "../Standard_components/Loading";
 import InternalError from "../Standard_components/InternalError";
+import { useCart } from "../../context/CartContext";
 
 /**
  *
@@ -29,6 +30,7 @@ import InternalError from "../Standard_components/InternalError";
 const ProfileViewOrders = () => {
   const navigate = useNavigate();
   const [selectedOrder, setSelectedOrder] = useState(null);
+  const { clearCart } = useCart();
 
   const handleOrderClick = (order) => {
     setSelectedOrder(order);
@@ -56,6 +58,18 @@ const ProfileViewOrders = () => {
     error,
     refetch,
   } = useFetch("GET", `orders/${userEmail}`, headers);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const paymentSuccess = searchParams.get("paymentSuccess");
+
+    if (paymentSuccess === "true") {
+      clearCart();
+      // Remove the paymentSuccess flag from the URL
+      searchParams.delete("paymentSuccess");
+      navigate("?", { replace: true, search: searchParams.toString() });
+    }
+  }, [navigate]);
 
   if (isLoading) {
     return <Loading />;
