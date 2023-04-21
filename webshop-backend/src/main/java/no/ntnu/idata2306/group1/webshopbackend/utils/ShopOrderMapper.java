@@ -1,8 +1,10 @@
 package no.ntnu.idata2306.group1.webshopbackend.utils;
 
 import no.ntnu.idata2306.group1.webshopbackend.dto.ShopOrderDTO;
+import no.ntnu.idata2306.group1.webshopbackend.dto.UserProfileDTO;
 import no.ntnu.idata2306.group1.webshopbackend.models.OrderLine;
 import no.ntnu.idata2306.group1.webshopbackend.models.ShopOrder;
+import no.ntnu.idata2306.group1.webshopbackend.models.User;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.OrderLineRepository;
 import org.springframework.stereotype.Component;
 
@@ -38,6 +40,32 @@ public class ShopOrderMapper {
         shopOrderDTO.setOrder_date(shopOrder.getOrderDate());
         shopOrderDTO.setStatus(shopOrder.getStatus());
         shopOrderDTO.setTotal(totalPrice);
+
+        return shopOrderDTO;
+    }
+
+    /**
+     * Converts a {@link ShopOrder} object to a {@link ShopOrderDTO} object,
+     * including user information.
+     *
+     * @param shopOrder the ShopOrder object to be converted
+     * @return a ShopOrderDTO object with user information
+     */
+    public ShopOrderDTO toShopOrderDTOWithUser(ShopOrder shopOrder) {
+        // Convert User to UserDTO
+        User user = shopOrder.getUser();
+        UserProfileDTO userDTO = new UserProfileDTO();
+        userDTO.setId(user.getId());
+        userDTO.setName(user.getName());
+
+        // Convert ShopOrder to ShopOrderDTO
+        ShopOrderDTO shopOrderDTO = new ShopOrderDTO();
+        shopOrderDTO.setId(shopOrder.getId());
+        shopOrderDTO.setOrder_date(shopOrder.getOrderDate());
+        shopOrderDTO.setStatus(shopOrder.getStatus());
+
+        // Set the UserProfileDTO object
+        shopOrderDTO.setUser(userDTO);
 
         return shopOrderDTO;
     }
