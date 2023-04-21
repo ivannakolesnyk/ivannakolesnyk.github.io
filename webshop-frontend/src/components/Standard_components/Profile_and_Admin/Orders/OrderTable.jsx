@@ -23,7 +23,6 @@ import { isLoggedInAndAdmin } from "../../../../utils/auth/auth";
 const OrderTable = ({ orders, handleOrderClick }) => {
   const { loggedIn, getJwtPayload } = useContext(AuthContext);
 
-  console.log(orders);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 350 }}>

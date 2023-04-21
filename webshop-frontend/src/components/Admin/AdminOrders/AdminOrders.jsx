@@ -84,7 +84,7 @@ const AdminOrders = () => {
               value={selectedOrder?.status ?? ""}
               onChange={handleStatusChange}
             >
-              <MenuItem value="Pending">Pending</MenuItem>
+              <MenuItem value="Paid">Paid</MenuItem>
               <MenuItem value="Processing">Processing</MenuItem>
               <MenuItem value="Shipped">Shipped</MenuItem>
               <MenuItem value="Delivered">Delivered</MenuItem>
