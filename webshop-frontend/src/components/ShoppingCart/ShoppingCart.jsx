@@ -1,16 +1,14 @@
 import { Box, Button, CircularProgress, Divider, Paper } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
-import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import CartEmpty from "./CartEmpty";
 import CartTable from "./CartTable";
 import Subtotal from "./Subtotal";
+import useFetch from "../../hooks/useFetch";
 
 function ShoppingCart() {
-  const [isLoading, setIsLoading] = useState(false);
-
   const { cart } = useCart();
   const navigate = useNavigate();
   const { getJwtPayload } = useContext(AuthContext);
@@ -19,35 +17,38 @@ function ShoppingCart() {
     navigate("/products");
   };
 
+  const { data, isLoading, error, refetch } = useFetch(
+    "POST",
+    "create-checkout-session",
+    null,
+    null,
+    null,
+    false
+  );
+
+  useEffect(() => {
+    if (data && data.url) {
+      window.location = data.url;
+    } else if (error) {
+      console.error("Failed to create checkout session");
+    }
+  }, [data, error]);
+
+  const handleOrderNow = () => {
+    const userEmail = getJwtPayload().sub;
+
+    refetch({
+      cart: cart.map((item) => ({
+        productId: item.product.id,
+        quantity: item.quantity,
+      })),
+      userId: userEmail,
+    });
+  };
+
   if (cart.length === 0) {
     return <CartEmpty />;
   }
-
-  const handleOrderNow = async () => {
-    setIsLoading(true);
-    const userEmail = getJwtPayload().sub;
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/api/create-checkout-session",
-        {
-          cart: cart.map((item) => ({
-            productId: item.product.id,
-            quantity: item.quantity,
-          })),
-          userId: userEmail,
-        }
-      );
-
-      const { data } = response;
-      if (data && data.url) {
-        window.location = data.url;
-      } else {
-        throw new Error("Failed to create checkout session");
-      }
-    } catch (error) {
-      setIsLoading(false);
-    }
-  };
 
   return (
     <Box
