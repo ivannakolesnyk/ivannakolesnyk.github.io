@@ -1,6 +1,5 @@
 import { Button, Grid, Paper, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import banner from "../../assets/img/banner.png";
 
 const BannerSection = () => {
   return (
@@ -11,7 +10,7 @@ const BannerSection = () => {
       alignItems={"flex-start"}
       justifyContent={"center"}
       sx={{
-        backgroundImage: `url(${banner})`,
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/img/banner.png)`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

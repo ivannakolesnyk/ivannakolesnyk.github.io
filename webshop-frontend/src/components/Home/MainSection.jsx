@@ -1,6 +1,5 @@
 import { Button, Grid, Paper, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import backgroundImage from "../../assets/img/home.png";
 
 const MainSection = () => {
   return (
@@ -12,7 +11,7 @@ const MainSection = () => {
       justifyContent={"center"}
       alignItems={"flex-start"}
       sx={{
-        backgroundImage: `url(${backgroundImage})`,
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/img/home.png)`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

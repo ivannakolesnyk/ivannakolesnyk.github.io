@@ -59,9 +59,7 @@ function ProductDetails() {
 
   useEffect(() => {
     if (product && product.product_image) {
-      import(`../../../assets/img/${product.product_image}`).then((module) => {
-        setImageSrc(module.default);
-      });
+      setImageSrc(`${process.env.PUBLIC_URL}/assets/img/${product.product_image}`);
     }
   }, [product]);
 
@@ -190,3 +188,4 @@ function ProductDetails() {
 }
 
 export default ProductDetails;
+

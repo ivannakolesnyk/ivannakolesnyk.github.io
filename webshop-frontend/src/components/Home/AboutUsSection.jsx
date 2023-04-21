@@ -1,9 +1,6 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
-import boxImage from "../../assets/img/aboutus/box.png";
-import productsImage from "../../assets/img/aboutus/products.png";
-import productsBoxImage from "../../assets/img/aboutus/productsbox.png";
 
 const AboutUsSection = () => (
   <Box sx={{ py: 8, pl: 8, pr: 8 }}>
@@ -35,10 +32,10 @@ const AboutUsSection = () => (
     </Box>
     <Box sx={{ display: "flex", pt: 6 }}>
       <Grid container spacing={2}>
-        {[productsImage, boxImage, productsBoxImage].map((image, index) => (
+        {["/box.png", "/products.png", "/productsbox.png"].map((image, index) => (
           <Grid key={index} item xs={4}>
             <img
-              src={image}
+              src={`${process.env.PUBLIC_URL}/assets/img/aboutus${image}`}
               alt={`Image ${index}`}
               style={{ maxWidth: "100%" }}
             />

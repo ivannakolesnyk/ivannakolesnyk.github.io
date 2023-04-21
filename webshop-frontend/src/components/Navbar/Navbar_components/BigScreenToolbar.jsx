@@ -5,7 +5,6 @@ import {
   ShoppingCart as ShoppingCartIcon,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import coffeeLogo from "../../../assets/img/logos/logo_bigscreen.png";
 import { useCart } from "../../../context/CartContext";
 import { ProductsContext } from "../../../context/ProductsContext";
 import { AuthContext } from "../../../context/AuthContext";
@@ -14,6 +13,8 @@ import { AccountTooltip } from "./AccountTooltip";
 import NavbarButton from "./NavbarButton";
 import StyledToolbar from "./StyledToolbar";
 import { Badge } from "@mui/material";
+
+const coffeeLogo = `${process.env.PUBLIC_URL}/assets/img/logos/logo_bigscreen.png`
 
 /**
  *

@@ -1,7 +1,6 @@
 import { Stack, Typography, useTheme, Paper } from "@mui/material";
 import Carousel from "../Home/Carousel.tsx";
 import Section from "../Home/Section.tsx";
-import Divider from "../../assets/img/testimonials/divider.svg";
 import Avatar from "@mui/material/Avatar";
 import StarIcon from "@mui/icons-material/Star";
 
@@ -12,19 +11,21 @@ interface TestimonialProps {
   rating: number;
 }
 
+const divider = `${process.env.PUBLIC_URL}/assets/img/testimonials/divider.svg`;
+
 export default function TestimonialSection() {
   const theme = useTheme();
   const items = [
     <Testimonial
       name={"Sean 25"}
-      image_url={require("../../assets/img/testimonials/sean.png")}
+      image_url={`${process.env.PUBLIC_URL}/assets/img/testimonials/sean.png`}
       comment={
         "Mocha Nooka Cafe is my favorite spot for a chill, hip atmosphere. The coffee is always on point and the staff are super helpful. A definite must-visit for anyone who's looking for a unique cafe experience!"
       }
       rating={5}
     />,
     <Testimonial
-      image_url={require("../../assets/img/testimonials/john.png")}
+      image_url={`${process.env.PUBLIC_URL}/assets/img/testimonials/john.png`}
       name={"John 65"}
       comment={
         "I've been coming to Mocha Nooka Cafe for years and it's never disappointed. The coffee is always freshly brewed and the food is always delicious. It's a great spot for a quick break, or a leisurely chat with friends."
@@ -32,7 +33,7 @@ export default function TestimonialSection() {
       rating={4}
     />,
     <Testimonial
-      image_url={require("../../assets/img/testimonials/toni.png")}
+      image_url={`${process.env.PUBLIC_URL}/assets/img/testimonials/toni.png`}
       name={"Toni 16"}
       comment={
         "I love coming to Mocha Nooka Cafe! It's the perfect spot to hang out with friends and enjoy something tasty and refreshing. The atmosphere is always chill and the staff are really friendly. Highly recommended!"
@@ -44,7 +45,7 @@ export default function TestimonialSection() {
   return (
     <>
       <Stack bgcolor={theme.palette.primary.light}>
-        <img src={Divider} alt={""} style={{ transform: "scaleX(-1)" }} />
+        <img src={divider} alt={""} style={{ transform: "scaleX(-1)" }} />
         <Section sx={{ my: -1 }}>
           <Typography
             variant="h2"
@@ -56,7 +57,7 @@ export default function TestimonialSection() {
           <Carousel items={items} infinite />
         </Section>
         <img
-          src={Divider}
+          src={divider}
           alt={""}
           style={{ transform: "scale(1, -1)", marginBottom: -1 }}
         />

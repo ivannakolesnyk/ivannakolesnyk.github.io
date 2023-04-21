@@ -1,7 +1,5 @@
 import React from "react";
 import { Typography, Container, Grid, CardMedia } from "@mui/material";
-import aboutUs1 from "../assets/img/aboutus/aboutUS1.jpg";
-import aboutUs2 from "../assets/img/aboutus/aboutUS2.jpg";
 
 /**
  *
@@ -39,7 +37,7 @@ const AboutUs = () => {
         <Grid item xs={12} md={6} order={{ xs: 2, md: 2 }}>
           <CardMedia
             component="img"
-            image={aboutUs1}
+            image={`${process.env.PUBLIC_URL}/assets/img/aboutus/aboutUS1.jpg`}
             alt="Coffee shop"
             sx={{ borderRadius: "1rem", width: "100%", height: "auto" }}
           />
@@ -76,7 +74,7 @@ const AboutUs = () => {
         <Grid item xs={12} md={6} order={{ xs: 4, md: 6 }}>
           <CardMedia
             component="img"
-            image={aboutUs2}
+            image={`${process.env.PUBLIC_URL}/assets/img/aboutus/aboutUS2.jpg`}
             alt="Coffee shop"
             sx={{ borderRadius: "1rem", width: "100%", height: "auto" }}
           />

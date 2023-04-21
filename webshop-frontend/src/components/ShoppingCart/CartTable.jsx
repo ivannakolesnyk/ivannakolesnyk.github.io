@@ -26,15 +26,12 @@ const CartTable = () => {
 
     const [imagesSrc, setImagesSrc] = useState([]);
 
+
     useEffect(() => {
         if (cart && cart.length > 0) {
-            Promise.all(
-                cart.map((item) =>
-                    import(`../../assets/img/${item.product.product_image}`)
-                )
-            ).then((modules) => {
-                setImagesSrc(modules.map((module) => module.default));
-            });
+            setImagesSrc(
+                cart.map(item => `${process.env.PUBLIC_URL}/assets/img/${item.product.product_image}`)
+            );
         } else {
             setImagesSrc([]);
         }

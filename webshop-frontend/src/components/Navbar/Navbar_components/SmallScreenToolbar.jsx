@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
-import smallCoffeeLogo from "../../../assets/img/logos/logo_smallscreen.png";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import StyledToolbar from "./StyledToolbar";
 import { MenuItem } from "@mui/material";
 import { ProductsContext } from "../../../context/ProductsContext";
 import { AuthContext } from "../../../context/AuthContext";
+
+const smallCoffeeLogo = `${process.env.PUBLIC_URL}/assets/img/logos/logo_smallscreen.png`;
 
 /**
  *

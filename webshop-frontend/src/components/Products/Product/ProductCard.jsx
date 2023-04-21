@@ -26,13 +26,12 @@ function ProductCard({
 }) {
   const [imageSrc, setImageSrc] = useState("");
 
-  useEffect(() => {
-    import(`../../../assets/img/${imagePath}`).then((module) => {
-      setImageSrc(module.default);
-    });
-  }, [imagePath]);
+    useEffect(() => {
+        setImageSrc(`${process.env.PUBLIC_URL}/assets/img/${imagePath}`);
+    }, [imagePath]);
 
-  // This is can be bad because content will get reinitialized,
+
+    // This is can be bad because content will get reinitialized,
   // every time this function updates, which is often, because of how React component rendering works (React component lifecycle)
   const content = (
     <Card>
