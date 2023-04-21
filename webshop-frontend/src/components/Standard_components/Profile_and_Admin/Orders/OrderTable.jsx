@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   TableContainer,
   Table,
@@ -8,6 +8,8 @@ import {
   TableBody,
   Paper,
 } from "@mui/material";
+import { AuthContext } from "../../../../context/AuthContext";
+import { isLoggedInAndAdmin } from "../../../../utils/auth/auth";
 
 /**
  *
@@ -19,6 +21,9 @@ import {
  * @returns {JSX.Element} - Returns a custom table component
  */
 const OrderTable = ({ orders, handleOrderClick }) => {
+  const { loggedIn, getJwtPayload } = useContext(AuthContext);
+
+  console.log(orders);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 350 }}>
@@ -33,10 +38,15 @@ const OrderTable = ({ orders, handleOrderClick }) => {
             {orders.some((order) => order.order_date) && (
               <TableCell>Order Date</TableCell>
             )}
-            {orders.some((order) => order.user_id) && (
-              <TableCell>User ID</TableCell>
+
+            {isLoggedInAndAdmin(loggedIn, getJwtPayload) ? (
+              <>
+                <TableCell>User ID</TableCell>
+                <TableCell>Name</TableCell>
+              </>
+            ) : (
+              <TableCell>Total</TableCell>
             )}
-            {orders.some((order) => order.name) && <TableCell>Name</TableCell>}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -48,9 +58,20 @@ const OrderTable = ({ orders, handleOrderClick }) => {
             >
               {order.id && <TableCell>{order.id}</TableCell>}
               {order.status && <TableCell>{order.status}</TableCell>}
-              {order.order_date && <TableCell>{new Date(order.order_date).toISOString().slice(0, 10)}</TableCell>}
-              {order.user_id && <TableCell>{order.user_id}</TableCell>}
-              {order.name && <TableCell>{order.name}</TableCell>}
+              {order.order_date && (
+                <TableCell>
+                  {new Date(order.order_date).toISOString().slice(0, 10)}
+                </TableCell>
+              )}
+
+              {isLoggedInAndAdmin(loggedIn, getJwtPayload) ? (
+                  <>
+                    <TableCell>{order?.user?.id}</TableCell>
+                    <TableCell>{order?.user?.name}</TableCell>
+                  </>
+              ) : (
+                  <TableCell>{order?.total} NOK</TableCell>
+              )}
             </TableRow>
           ))}
         </TableBody>
