@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Box,
   Button,
@@ -12,8 +12,11 @@ import {
 import MenuItem from "@mui/material/MenuItem";
 import OrderTable from "../../Standard_components/Profile_and_Admin/Orders/OrderTable";
 import TitledBox from "../../Standard_components/TitledBox";
-import { orders, products } from "./dummy";
 import OrderDetails from "../../Standard_components/Profile_and_Admin/Orders/OrderDetails";
+import cookie from "cookie";
+import useFetch from "../../../hooks/useFetch";
+import Loading from "../../Standard_components/Loading";
+import InternalError from "../../Standard_components/InternalError";
 
 /**
  * AdminOrders is a React functional component used for managing and displaying
@@ -28,6 +31,17 @@ import OrderDetails from "../../Standard_components/Profile_and_Admin/Orders/Ord
  */
 const AdminOrders = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
+
+  const jwt = cookie.parse(document.cookie).jwt;
+  const headers = useMemo(
+    () => ({
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwt}`,
+    }),
+    [jwt]
+  );
+
+  const { data: orders, isLoading, error } = useFetch("GET", `orders`, headers);
 
   const handleStatusChange = (event) => {
     const newStatus = event.target.value;
@@ -47,6 +61,9 @@ const AdminOrders = () => {
     setSelectedOrder(null);
   };
 
+  if (isLoading) return <Loading />;
+  if (error) return <InternalError />;
+
   return (
     <Box sx={{ p: { xs: 2, md: 4 } }}>
       <TitledBox title="Orders" />
@@ -56,7 +73,7 @@ const AdminOrders = () => {
           {selectedOrder && `Order ${selectedOrder.id}`}
         </DialogTitle>
         <DialogContent>
-          <OrderDetails order={selectedOrder} products={products} />
+          <OrderDetails order={selectedOrder} />
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Typography variant="subtitle1" sx={{ mr: 2 }}>
               Status:
