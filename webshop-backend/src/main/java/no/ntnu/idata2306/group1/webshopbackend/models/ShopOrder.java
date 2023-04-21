@@ -6,12 +6,8 @@ package no.ntnu.idata2306.group1.webshopbackend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+
 import java.util.Date;
 
 /**
@@ -32,7 +28,8 @@ public class ShopOrder {
     private User user;
     private String status;
 
-    public ShopOrder() {}
+    public ShopOrder() {
+    }
 
     public ShopOrder(Date order_date, User user, String status) {
         this.order_date = order_date;
@@ -40,8 +37,20 @@ public class ShopOrder {
         this.status = status;
     }
 
+    public Date getOrder_date() {
+        return order_date;
+    }
+
+    public void setOrder_date(Date order_date) {
+        this.order_date = order_date;
+    }
+
     public int getId() {
         return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Date getOrderDate() {
@@ -52,15 +61,15 @@ public class ShopOrder {
         return this.user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public String getStatus() {
         return this.status;
     }
 
-    public void setOrderDate(Date order_date) {
-        this.order_date = order_date;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
