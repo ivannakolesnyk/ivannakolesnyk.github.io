@@ -89,7 +89,7 @@ const ProfileViewOrders = () => {
           textAlign: "center",
         }}
       >
-        Click on an order to view more details.
+        Click on orders for more details.
       </Typography>
       <OrderTable orders={orders} handleOrderClick={handleOrderClick} />
 
