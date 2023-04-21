@@ -58,16 +58,31 @@ public class CheckoutController {
     public ResponseEntity<Map<String, String>> createCheckoutSession(@RequestBody CartRequest cartRequest) {
         List<CartItem> cart = cartRequest.getCart();
         String userId = cartRequest.getUserId();
-        List<SessionCreateParams.LineItem> lineItems = cart.stream().map(item -> {
-            Product product = productRepository.findById(item.getProductId()).orElse(null);
-            if (product == null) {
-                return null;
-            }
+        List<SessionCreateParams.LineItem> lineItems = cart.stream()
+                .map(item -> {
+                    Product product = productRepository.findById(item.getProductId()).orElse(null);
+                    if (product == null) {
+                        return null;
+                    }
 
-            return SessionCreateParams.LineItem.builder().setQuantity(item.getQuantity().longValue()).setPriceData(SessionCreateParams.LineItem.PriceData.builder().setCurrency("nok").setUnitAmount((long) (product.getPrice() * 100)).setProductData(SessionCreateParams.LineItem.PriceData.ProductData.builder().setName(product.getName()).build()).build()).build();
-        }).filter(item -> item != null).collect(Collectors.toList());
+                    return SessionCreateParams.LineItem.builder()
+                            .setQuantity(item.getQuantity().longValue())
+                            .setPriceData(SessionCreateParams.LineItem.PriceData.builder()
+                                    .setCurrency("nok")
+                                    .setUnitAmount((long) (product.getPrice() * 100))
+                                    .setProductData(SessionCreateParams.LineItem.PriceData.ProductData.builder()
+                                            .setName(product.getName())
+                                            .build())
+                                    .build())
+                            .build();
+                }).filter(item -> item != null).collect(Collectors.toList());
 
-        SessionCreateParams.Builder paramsBuilder = SessionCreateParams.builder().addAllLineItem(lineItems).addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD).setMode(SessionCreateParams.Mode.PAYMENT).setSuccessUrl(baseUrl + "/profile/vieworders").setCancelUrl(baseUrl + "/shoppingcart").putMetadata("user_id", String.valueOf(userId));
+        SessionCreateParams.Builder paramsBuilder = SessionCreateParams.builder()
+                .addAllLineItem(lineItems)
+                .addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
+                .setMode(SessionCreateParams.Mode.PAYMENT)
+                .setSuccessUrl(baseUrl + "/profile/vieworders").setCancelUrl(baseUrl + "/shoppingcart")
+                .putMetadata("user_id", String.valueOf(userId));
 
         // Add the product IDs and quantities to the metadata
         for (int i = 0; i < cart.size(); i++) {

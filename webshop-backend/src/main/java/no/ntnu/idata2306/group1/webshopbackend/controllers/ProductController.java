@@ -4,20 +4,16 @@
  */
 package no.ntnu.idata2306.group1.webshopbackend.controllers;
 
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import no.ntnu.idata2306.group1.webshopbackend.models.Category;
 import no.ntnu.idata2306.group1.webshopbackend.models.Product;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.CategoryRepository;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 /**
  * Determines API endpoints for products.
@@ -61,11 +57,10 @@ public class ProductController {
      * in the product data must already exist in the database.
      *
      * @param product A Product object representing the product data to be stored. The object must
-     *        include a valid Category object with an existing ID.
-     * 
+     *                include a valid Category object with an existing ID.
      * @return ResponseEntity with HTTP status code 201 (Created) if the product is successfully
-     *         created, or HTTP status code 404 (Not Found) if the specified category does not
-     *         exist.
+     * created, or HTTP status code 404 (Not Found) if the specified category does not
+     * exist.
      */
     @PostMapping("/products")
     public ResponseEntity createProduct(@RequestBody Product product) {
