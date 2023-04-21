@@ -81,7 +81,8 @@ public class CheckoutController {
                 .addAllLineItem(lineItems)
                 .addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
                 .setMode(SessionCreateParams.Mode.PAYMENT)
-                .setSuccessUrl(baseUrl + "/profile/vieworders").setCancelUrl(baseUrl + "/shoppingcart")
+                .setSuccessUrl(baseUrl + "/profile/vieworders?paymentSuccess=true")
+                .setCancelUrl(baseUrl + "/shoppingcart")
                 .putMetadata("user_id", String.valueOf(userId));
 
         // Add the product IDs and quantities to the metadata
