@@ -14,6 +14,7 @@ import { useCart } from "../../../context/CartContext";
 import InternalError from "../../Standard_components/InternalError";
 import Loading from "../../Standard_components/Loading";
 import useFetch from "../../../hooks/useFetch";
+import CustomSnackbar from "../../Standard_components/CustomSnackbar";
 
 function ProductDetails() {
   const { loggedIn } = useContext(AuthContext);
@@ -75,6 +76,7 @@ function ProductDetails() {
       navigate("/login", { state: { from: location.pathname } });
     }
   };
+  const handleSnackbarClose = () => setSnackbarOpen(false);
 
   if (error) return <InternalError />;
   if (isLoading) return <Loading />;
@@ -176,18 +178,8 @@ function ProductDetails() {
           </Box>
         </div>
       ) : null}
-      <div>
-        <Snackbar
-          open={snackbarOpen}
-          autoHideDuration={6000}
-          onClose={() => setSnackbarOpen(false)}
-          anchorOrigin={{ vertical: "top", horizontal: "right" }}
-        >
-          <Alert onClose={() => setSnackbarOpen(false)} severity="success">
-            Product added to the cart!
-          </Alert>
-        </Snackbar>
-      </div>
+
+      <CustomSnackbar open={snackbarOpen} onClose={handleSnackbarClose} severity="success" message="Product added to the cart!"/>
     </>
   );
 }
