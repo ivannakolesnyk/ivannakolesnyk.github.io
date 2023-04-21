@@ -104,6 +104,9 @@ public class ShopOrderController {
                 if (sessionUser != null && sessionUser.getEmail().equals(email)) {
                     return new ResponseEntity(this.orderLineRepository.findByOrder(order),
                             HttpStatus.OK);
+                } else if (sessionUser.isAdmin()) {
+                    return new ResponseEntity(this.orderLineRepository.findByOrder(order),
+                            HttpStatus.OK);
                 } else if (sessionUser == null) {
                     return new ResponseEntity("Order lines accessible only to authenticated users",
                             HttpStatus.UNAUTHORIZED);
