@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Divider, Paper } from "@mui/material";
+import { Box, Divider, Paper } from "@mui/material";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
@@ -7,15 +7,14 @@ import CartEmpty from "./CartEmpty";
 import CartTable from "./CartTable";
 import Subtotal from "./Subtotal";
 import useFetch from "../../hooks/useFetch";
+import styles from "./styles";
+import ContinueShoppingButton from "./ContinueShoppingButton";
+import OrderNowButton from "./OrderNowButton";
 
 function ShoppingCart() {
   const { cart } = useCart();
   const navigate = useNavigate();
   const { getJwtPayload } = useContext(AuthContext);
-
-  const handleContinueShopping = () => {
-    navigate("/products");
-  };
 
   const { data, isLoading, error, refetch } = useFetch(
     "POST",
@@ -34,16 +33,23 @@ function ShoppingCart() {
     }
   }, [data, error]);
 
+  const transformCartItems = (cartItems) =>
+    cartItems.map((item) => ({
+      productId: item.product.id,
+      quantity: item.quantity,
+    }));
+
   const handleOrderNow = () => {
     const userEmail = getJwtPayload().sub;
 
     refetch({
-      cart: cart.map((item) => ({
-        productId: item.product.id,
-        quantity: item.quantity,
-      })),
+      cart: transformCartItems(cart),
       userId: userEmail,
     });
+  };
+
+  const handleContinueShopping = () => {
+    navigate("/products");
   };
 
   if (cart.length === 0) {
@@ -51,51 +57,15 @@ function ShoppingCart() {
   }
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "100%",
-        mt: 4,
-        padding: "3.6rem 0 6.4rem 0",
-        "& .MuiTableCell-root": {
-          color: "secondary.main",
-        },
-      }}
-    >
-      <Paper
-        elevation={3}
-        sx={{
-          width: "80%",
-          bgcolor: "white",
-          borderRadius: 2,
-          p: 2,
-          color: "secondary.main",
-        }}
-      >
+    <Box sx={styles.ShoppingCartSection}>
+      <Paper elevation={3} sx={styles.TableContainer}>
         <CartTable />
         <Divider sx={{ my: 2 }} />
         <Subtotal />
       </Paper>
       <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={handleContinueShopping}
-          sx={{ mr: 1 }}
-        >
-          Continue Shopping
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleOrderNow}
-          disabled={isLoading}
-          sx={{ width: "14rem", height: "4rem" }}
-        >
-          {isLoading ? <CircularProgress size={24} /> : "Order Now"}
-        </Button>
+        <ContinueShoppingButton onClick={handleContinueShopping} />
+        <OrderNowButton onClick={handleOrderNow} isLoading={isLoading} />
       </Box>
     </Box>
   );
