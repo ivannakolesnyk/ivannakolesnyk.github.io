@@ -1,12 +1,11 @@
-import React, { useEffect, useMemo } from "react";
-import { Grid, Typography } from "@mui/material";
+import React, {useMemo} from "react";
+import {Grid, Typography, useMediaQuery} from "@mui/material";
 import OrderLine from "./OrderLine";
 import TableHeader from "./TableHeader";
 import useFetch from "../../../../hooks/useFetch";
 import cookie from "cookie";
 import Loading from "../../Loading";
 import InternalError from "../../InternalError";
-import { useMediaQuery } from "@mui/material";
 
 /**
  * OrderDetails is a React functional component used for displaying

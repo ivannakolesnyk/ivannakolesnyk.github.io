@@ -1,8 +1,4 @@
-import {
-  Add as AddIcon,
-  Delete as DeleteIcon,
-  Remove as RemoveIcon,
-} from "@mui/icons-material";
+import { Delete as DeleteIcon } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -20,16 +16,18 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useCart } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 import axios from "axios";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
+import CartEmpty from "./CartEmpty";
+import QuantityAdjuster from "./QuantityAdjuster";
 
 function ShoppingCart() {
   // Add this state inside ShoppingCart function
   const [isLoading, setIsLoading] = useState(false);
 
-  const { cart, removeFromCart, adjustQuantity } = useCart();
+  const { cart, removeFromCart } = useCart();
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery("(max-width: 700px)");
   const isVerySmallScreen = useMediaQuery("(max-width: 500px)");
@@ -56,7 +54,7 @@ function ShoppingCart() {
     if (cart && cart.length > 0) {
       Promise.all(
         cart.map((item) =>
-          import(`../assets/img/${item.product.product_image}`)
+          import(`../../assets/img/${item.product.product_image}`)
         )
       ).then((modules) => {
         setImagesSrc(modules.map((module) => module.default));
@@ -67,43 +65,8 @@ function ShoppingCart() {
   }, [cart]);
 
   if (cart.length === 0) {
-    return (
-      <Box
-        textAlign={"center"}
-        sx={{ padding: { xs: "14rem 2rem", sm: "14rem 6rem", md: "14rem" } }}
-      >
-        <Typography variant="h4" sx={{ color: "secondary.main" }} mb={3}>
-          Your shopping cart is empty. Why not browse our products?
-        </Typography>
-        <Button
-          component={Link}
-          to="/products"
-          variant="contained"
-          color="primary"
-        >
-          Browse Products
-        </Button>
-      </Box>
-    );
+    return <CartEmpty />;
   }
-
-  const adjutQty = (item) => (
-    <>
-      <IconButton
-        onClick={() => adjustQuantity(item.product.id, -1)}
-        sx={{ color: "secondary.main" }}
-      >
-        <RemoveIcon />
-      </IconButton>
-      {item.quantity}
-      <IconButton
-        onClick={() => adjustQuantity(item.product.id, 1)}
-        sx={{ color: "secondary.main" }}
-      >
-        <AddIcon />
-      </IconButton>
-    </>
-  );
 
   const handleOrderNow = async () => {
     setIsLoading(true);
@@ -213,10 +176,14 @@ function ShoppingCart() {
                         {item.product.name}
                       </Typography>
                     </Box>
-                    {isSmallScreen && adjutQty(item)}
+                    {isSmallScreen && <QuantityAdjuster item={item} />}
                   </TableCell>
                   <TableCell>{`${item.product.price} NOK`}</TableCell>
-                  {!isSmallScreen && <TableCell>{adjutQty(item)}</TableCell>}
+                  {!isSmallScreen && (
+                    <TableCell>
+                      <QuantityAdjuster item={item} />
+                    </TableCell>
+                  )}
                   {!isVerySmallScreen && (
                     <TableCell>{`${
                       item.product.price * item.quantity

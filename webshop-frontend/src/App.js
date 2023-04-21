@@ -18,7 +18,7 @@ import Profile from "./components/Profile/Profile";
 import ProfileChangePW from "./components/Profile/ProfileChangePW";
 import ProfileEdit from "./components/Profile/ProfileEdit";
 import ProfileViewOrders from "./components/Profile/ProfileViewOrders";
-import ShoppingCart from "./components/ShoppingCart";
+import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import NotFound from "./components/Standard_components/NotFound";
 import { AuthContext } from "./context/AuthContext";
 import InternalError from "./components/Standard_components/InternalError";
