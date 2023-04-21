@@ -12,6 +12,12 @@ import ContinueShoppingButton from "./ContinueShoppingButton";
 import OrderNowButton from "./OrderNowButton";
 import CustomSnackbar from "../Standard_components/CustomSnackbar";
 
+const transformCartItems = (cartItems) =>
+  cartItems.map((item) => ({
+    productId: item.product.id,
+    quantity: item.quantity,
+  }));
+
 function ShoppingCart() {
   const { cart } = useCart();
   const navigate = useNavigate();
@@ -34,12 +40,6 @@ function ShoppingCart() {
       setSnackbarOpen(true);
     }
   }, [data, error]);
-
-  const transformCartItems = (cartItems) =>
-    cartItems.map((item) => ({
-      productId: item.product.id,
-      quantity: item.quantity,
-    }));
 
   const handleOrderNow = () => {
     const userEmail = getJwtPayload().sub;
