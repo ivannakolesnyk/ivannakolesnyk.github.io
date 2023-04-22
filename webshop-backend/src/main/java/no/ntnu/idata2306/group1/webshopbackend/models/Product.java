@@ -6,6 +6,7 @@ package no.ntnu.idata2306.group1.webshopbackend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,22 +16,42 @@ import java.util.List;
  *
  * @author julian
  */
+@Schema(description = "Product entity representing a product in the system")
 @Entity
 public class Product {
+    @Schema(description = "Unique identifier of the product")
     @Id
     @GeneratedValue
     private int id;
+
+    @Schema(description = "Name of the product")
     private String name;
+
+    @Schema(description = "Price of the product")
     private double price;
+
+    @Schema(description = "Sale status of the product")
     private boolean sale;
+
+    @Schema(description = "Description of the product")
     @Column(length = 1000)
     private String description;
+
+    @Schema(description = "List of ingredients for the product")
     private List<String> ingredients;
+
+    @Schema(description = "Alternative text for the product image")
     private String imageAlt;
+
+    @Schema(description = "URL of the product image")
     @JsonProperty("product_image")
     private String product_image;
+
+    @Schema(description = "Quantity of the product in stock")
     @JsonProperty("qty_in_stock")
     private int qty_in_stock;
+
+    @Schema(description = "Category to which the product belongs")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})

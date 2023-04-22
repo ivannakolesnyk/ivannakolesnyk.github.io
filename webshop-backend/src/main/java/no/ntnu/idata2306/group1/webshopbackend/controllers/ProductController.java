@@ -4,6 +4,7 @@
  */
 package no.ntnu.idata2306.group1.webshopbackend.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
 import no.ntnu.idata2306.group1.webshopbackend.models.Category;
 import no.ntnu.idata2306.group1.webshopbackend.models.Product;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.CategoryRepository;
@@ -16,9 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 /**
- * Determines API endpoints for products.
- *
- * @author julian
+ * REST API controller for all endpoints related to products.
  */
 @RestController
 public class ProductController {
@@ -28,7 +27,17 @@ public class ProductController {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    /**
+     * HTTP GET endpoint for getting a list of products.
+     *
+     * @param name Optional name parameter to search for products by name
+     * @return A list of products, filtered by name if the name parameter is provided.
+     */
     @GetMapping("/api/products")
+    @Operation(
+            summary = "Get all products or search products by name",
+            description = "Get a list of all products, or a list of products filtered by name if the name parameter is provided."
+    )
     public ResponseEntity getProducts(@RequestParam(required = false) String name) {
         ResponseEntity response;
         if (name != null) {
@@ -40,7 +49,17 @@ public class ProductController {
         return response;
     }
 
+    /**
+     * HTTP GET endpoint for getting a product by ID.
+     *
+     * @param id ID of the product
+     * @return The product, or 404 code if not found or 400 code if the ID is not a valid integer.
+     */
     @GetMapping("/api/products/{id}")
+    @Operation(
+            summary = "Get product by ID",
+            description = "Get a product by its ID. Return the product in the response body, 404 code if not found, or 400 code if the ID is not a valid integer."
+    )
     public ResponseEntity getProductById(@PathVariable String id) {
         try {
             Integer parsedId = Integer.parseInt(id);
@@ -53,16 +72,16 @@ public class ProductController {
     }
 
     /**
-     * Creates a new product in the database with the provided product data. The category specified
-     * in the product data must already exist in the database.
+     * HTTP POST endpoint for creating a new product.
      *
-     * @param product A Product object representing the product data to be stored. The object must
-     *                include a valid Category object with an existing ID.
-     * @return ResponseEntity with HTTP status code 201 (Created) if the product is successfully
-     * created, or HTTP status code 404 (Not Found) if the specified category does not
-     * exist.
+     * @param product The product object to be created
+     * @return 201 Created status code if the product is created, or 404 code if the related category is not found.
      */
     @PostMapping("/products")
+    @Operation(
+            summary = "Create a new product",
+            description = "Create a new product with the given data. Return a 201 Created status code if the product is created, or 404 code if the related category is not found."
+    )
     public ResponseEntity createProduct(@RequestBody Product product) {
         Optional<Category> optionalCategory =
                 categoryRepository.findById(product.getCategory().getId());
