@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -31,10 +31,17 @@ const EditTestimonialForm = ({
   onSave,
   onDelete,
 }) => {
-  const [name, setName] = useState(testimonial.name);
-  const [testimonial_image, setTestimonialImage] = useState(testimonial.testimonial_image);
-  const [description, setComment] = useState(testimonial.description);
-  const [rating, setRating] = useState(testimonial.rating);
+  const [name, setName] = useState("");
+  const [testimonial_image, setTestimonialImage] = useState("");
+  const [description, setComment] = useState("");
+  const [rating, setRating] = useState(null);
+
+  useEffect(() => {
+    setName(testimonial.name || "");
+    setTestimonialImage(testimonial.testimonial_image || "");
+    setComment(testimonial.description || "");
+    setRating(testimonial.rating || null);
+  }, [testimonial]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -51,7 +58,7 @@ const EditTestimonialForm = ({
     >
       <DialogTitle>Edit Testimonial</DialogTitle>
       <Box component="form" onSubmit={handleSubmit} sx={{ p: 3 }}>
-        <Box component="form" onSubmit={handleSubmit}>
+        <Box>
           <FormGroup>
             <FormLabel>Name</FormLabel>
             <TextField
@@ -84,6 +91,7 @@ const EditTestimonialForm = ({
           <FormControl>
             <FormLabel>Rating</FormLabel>
             <Rating
+                name="rating"
               value={rating}
               onChange={(event, newValue) => setRating(newValue)}
               required
@@ -110,7 +118,7 @@ const EditTestimonialForm = ({
                     "Are you sure you want to delete this testimonial?"
                   )
                 ) {
-                  onDelete(testimonial.testimonial_id);
+                  onDelete(testimonial.id);
                 }
               }}
               sx={{ mr: 1, mb: 1 }}
