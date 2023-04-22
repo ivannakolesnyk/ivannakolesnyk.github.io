@@ -1,7 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import TestimonialCard from "./TestimonialCard";
-import testimonials from "./dummytestimonials";
 
 /**
  *
@@ -11,16 +10,16 @@ import testimonials from "./dummytestimonials";
  * @param {function} onCardClick - A function that triggers when a card is clicked.
  * @returns {JSX.Element} The JSX code for the TestimonialCards component.
  */
-const TestimonialCards = ({ onCardClick }) => {
+const TestimonialCards = ({ onCardClick, testimonials }) => {
   return (
     <Box display="flex" flexWrap="wrap" justifyContent="center">
-      {testimonials.map((testimonial) => (
+      {testimonials?.map((testimonial) => (
         <TestimonialCard
-          key={testimonial.testimonial_id}
+          key={testimonial.id}
           testimonial={testimonial}
           name={testimonial.name}
-          image_url={testimonial.image_url}
-          comment={testimonial.comment}
+          image_url={`${process.env.PUBLIC_URL}/assets/img/${testimonial.testimonial_image}`}
+          comment={testimonial.description}
           rating={testimonial.rating}
           onCardClick={() => onCardClick(testimonial)}
         />

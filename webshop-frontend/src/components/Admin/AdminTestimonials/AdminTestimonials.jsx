@@ -6,6 +6,8 @@ import TestimonialCards from "./TestimonialCards";
 import EditTestimonialForm from "./EditTestimonialForm";
 import NewTestimonialDialog from "./NewTestimonialDialog";
 import axios from "axios";
+import useFetch from "../../../hooks/useFetch";
+import Loading from "../../Standard_components/Loading";
 
 /**
  *
@@ -56,6 +58,14 @@ const AdminTestimonials = () => {
       });
   };
 
+  const {
+    data: testimonials,
+    isLoading,
+    error,
+  } = useFetch("GET", "testimonials");
+
+  if (isLoading) return <Loading />;
+
   return (
     <Box sx={{ p: { xs: 2, md: 4 } }}>
       <TitledBox title="Testimonials" titleAlignment="center" />
@@ -71,6 +81,7 @@ const AdminTestimonials = () => {
       </Typography>
       <TestimonialCards
         onCardClick={(testimonial) => setSelectedTestimonial(testimonial)}
+        testimonials={testimonials}
       />
       <Box sx={{ textAlign: "center", my: 2 }}>
         <Button
