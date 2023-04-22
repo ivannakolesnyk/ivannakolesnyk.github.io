@@ -23,6 +23,22 @@ const AdminTestimonials = () => {
   const [newTestimonialDialogOpen, setNewTestimonialDialogOpen] =
     useState(false);
 
+  const createTestimonialFetch = useFetch(
+    "POST",
+    "testimonials",
+    null,
+    null,
+    null,
+    false
+  );
+  const handleCreate = async (testimonial) => {
+    await createTestimonialFetch.refetch(testimonial);
+    if (!createTestimonialFetch.error) {
+      setNewTestimonialDialogOpen(false);
+      setSelectedTestimonial(null);
+    }
+  };
+
   const updateTestimonialFetch = useFetch(
     "PUT",
     `testimonials/${selectedTestimonial?.id}`,
