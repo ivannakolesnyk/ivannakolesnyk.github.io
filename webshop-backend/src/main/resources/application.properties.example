@@ -20,3 +20,6 @@ stripe.webhook.secret=YOUR_STRIPE_WEBHOOK_SECRET
 
 # update tables on application restart
 spring.jpa.hibernate.ddl-auto=update
+
+# Make the Swagger UI available at http://localhost:8080/api-docs
+springdoc.swagger-ui.path=api-docs

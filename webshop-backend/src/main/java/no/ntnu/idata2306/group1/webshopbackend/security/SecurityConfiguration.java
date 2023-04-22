@@ -50,14 +50,22 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain configureAuthorizationFilterChain(HttpSecurity http) throws Exception {
         // Allow JWT authentication
-        http.cors().and().csrf().disable().authorizeHttpRequests().requestMatchers("/api/authenticate")
-                .permitAll().requestMatchers("/api/signup").permitAll().requestMatchers("/api/products")
-                .permitAll().requestMatchers("/api/products/*").permitAll().requestMatchers("/api/create-checkout-session")
-                .permitAll().requestMatchers("/api/webhook").permitAll().requestMatchers(HttpMethod.GET, "/api/testimonials")
-                .permitAll().requestMatchers(HttpMethod.DELETE, "/api/testimonials/*")
-                .hasRole("ADMIN").requestMatchers(HttpMethod.GET, "/api/orders")
-                .hasRole("ADMIN").requestMatchers("/api/orders/orderlines/*").permitAll().anyRequest().authenticated()
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+        http.cors().and().csrf().disable().authorizeHttpRequests()
+                .requestMatchers("/api-docs").permitAll()
+                .requestMatchers("/v3/api-docs/**").permitAll()
+                .requestMatchers("/swagger-ui/**").permitAll()
+                .requestMatchers("/api/authenticate").permitAll()
+                .requestMatchers("/api/signup").permitAll()
+                .requestMatchers("/api/products").permitAll()
+                .requestMatchers("/api/products/*").permitAll()
+                .requestMatchers("/api/create-checkout-session").permitAll()
+                .requestMatchers("/api/webhook").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/testimonials").permitAll()
+                .requestMatchers(HttpMethod.DELETE, "/api/testimonials/*").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/api/orders").hasRole("ADMIN")
+                .requestMatchers("/api/orders/orderlines/*").permitAll()
+                .anyRequest().authenticated().and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
