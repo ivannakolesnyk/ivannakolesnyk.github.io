@@ -23,6 +23,20 @@ const AdminTestimonials = () => {
   const [newTestimonialDialogOpen, setNewTestimonialDialogOpen] =
     useState(false);
 
+  const updateTestimonialFetch = useFetch(
+    "PUT",
+    `testimonials/${selectedTestimonial?.id}`,
+    null,
+    null,
+    null,
+    false
+  );
+  const handleUpdate = async (testimonial) => {
+    await updateTestimonialFetch.refetch(testimonial);
+    if (!updateTestimonialFetch.error) {
+      setSelectedTestimonial(null);
+    }
+  };
 
   const deleteTestimonialFetch = useFetch(
     "DELETE",
@@ -32,9 +46,6 @@ const AdminTestimonials = () => {
     null,
     false
   );
-
-
-
   const handleDelete = async () => {
     await deleteTestimonialFetch.refetch();
     if (!deleteTestimonialFetch.error) {
@@ -80,9 +91,7 @@ const AdminTestimonials = () => {
         <EditTestimonialForm
           testimonial={selectedTestimonial}
           onClose={() => setSelectedTestimonial(null)}
-          onSave={(updatedData) =>
-            handleUpdate(updatedData)
-          }
+          onSave={(updatedData) => handleUpdate(updatedData)}
           onDelete={handleDelete}
         />
       )}
