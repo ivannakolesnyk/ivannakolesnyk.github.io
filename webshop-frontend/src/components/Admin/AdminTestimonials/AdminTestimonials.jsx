@@ -23,39 +23,23 @@ const AdminTestimonials = () => {
   const [newTestimonialDialogOpen, setNewTestimonialDialogOpen] =
     useState(false);
 
-  const handleCreate = (newTestimonial) => {
-    axios
-      .post("/api/testimonials", newTestimonial)
-      .then((response) => {
-        // handle success
-        setNewTestimonialDialogOpen(false);
-      })
-      .catch((error) => {
-        // handle error
-      });
-  };
 
-  const handleSave = (testimonialId, updatedData) => {
-    axios
-      .put(`/api/testimonials/${testimonialId}`, updatedData)
-      .then((response) => {
-        // handle success
-      })
-      .catch((error) => {
-        // handle error
-      });
-  };
+  const deleteTestimonialFetch = useFetch(
+    "DELETE",
+    `testimonials/${selectedTestimonial?.id}`,
+    null,
+    null,
+    null,
+    false
+  );
 
-  const handleDelete = (testimonialId) => {
-    axios
-      .delete(`/api/testimonials/${testimonialId}`)
-      .then((response) => {
-        // Close the edit form
-        setSelectedTestimonial(null);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+
+
+  const handleDelete = async () => {
+    await deleteTestimonialFetch.refetch();
+    if (!deleteTestimonialFetch.error) {
+      setSelectedTestimonial(null);
+    }
   };
 
   const {
@@ -97,7 +81,7 @@ const AdminTestimonials = () => {
           testimonial={selectedTestimonial}
           onClose={() => setSelectedTestimonial(null)}
           onSave={(updatedData) =>
-            handleSave(selectedTestimonial.testimonial_id, updatedData)
+            handleUpdate(updatedData)
           }
           onDelete={handleDelete}
         />
