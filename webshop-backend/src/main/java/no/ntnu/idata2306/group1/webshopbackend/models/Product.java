@@ -4,16 +4,11 @@
  */
 package no.ntnu.idata2306.group1.webshopbackend.models;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import no.ntnu.idata2306.group1.webshopbackend.models.Category;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 /**
  * A product in our webshop.
@@ -28,6 +23,7 @@ public class Product {
     private String name;
     private double price;
     private boolean sale;
+    @Column(length = 1000)
     private String description;
     private List<String> ingredients;
     private String imageAlt;
@@ -40,11 +36,12 @@ public class Product {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Category category;
 
-    public Product() {}
+    public Product() {
+    }
 
     public Product(String name, double price, boolean sale, String description,
-            List<String> ingredients, String imageAlt, String product_image, int qty_in_stock,
-            Category category) {
+                   List<String> ingredients, String imageAlt, String product_image, int qty_in_stock,
+                   Category category) {
         this.name = name;
         this.price = price;
         this.sale = sale;
@@ -80,36 +77,36 @@ public class Product {
         return this.ingredients;
     }
 
+    public void setIngredients(List<String> ingredients) {
+        this.ingredients = ingredients;
+    }
+
     public String getImageAlt() {
         return this.imageAlt;
-    }
-
-    public String getProductImage() {
-        return this.product_image;
-    }
-
-    public int getQtyInStock() {
-        return this.qty_in_stock;
-    }
-
-    public Category getCategory() {
-        return this.category;
-    }
-
-    public void setProductImage(String product_image) {
-        this.product_image = product_image;
     }
 
     public void setImageAlt(String imageAlt) {
         this.imageAlt = imageAlt;
     }
 
-    public void setIngredients(List<String> ingredients) {
-        this.ingredients = ingredients;
+    public String getProductImage() {
+        return this.product_image;
+    }
+
+    public void setProductImage(String product_image) {
+        this.product_image = product_image;
+    }
+
+    public int getQtyInStock() {
+        return this.qty_in_stock;
     }
 
     public void setQtyInStock(int qty_in_stock) {
         this.qty_in_stock = qty_in_stock;
+    }
+
+    public Category getCategory() {
+        return this.category;
     }
 
     public Category setCategory(Category category) {
