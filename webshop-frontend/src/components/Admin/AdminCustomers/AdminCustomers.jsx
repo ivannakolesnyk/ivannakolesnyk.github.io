@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import TitledBox from "../../Standard_components/TitledBox";
 import { Box } from "@mui/system";
 import CustomerTable from "./CustomerTable";
@@ -27,7 +27,36 @@ const AdminCustomers = () => {
     data: customers,
     isLoading,
     error,
+    refetch: refetchUsers,
   } = useFetch("GET", "users", headers);
+
+  const [emailToDelete, setEmailToDelete] = useState(null);
+  const { refetch: refetchDelete } = useFetch(
+    "DELETE",
+    emailToDelete ? `users/${emailToDelete}` : null,
+    headers,
+    null,
+    null,
+    false
+  );
+
+  useEffect(() => {
+    const deleteAndRefetch = async () => {
+      if (emailToDelete) {
+        await refetchDelete();
+        setEmailToDelete(null);
+        await refetchUsers();
+      }
+    };
+
+    if (emailToDelete) {
+      deleteAndRefetch();
+    }
+  }, [emailToDelete, refetchDelete, refetchUsers]);
+
+  const handleDelete = (email) => {
+    setEmailToDelete(email);
+  };
 
   if (isLoading) return <Loading />;
   if (error) return <InternalError />;
@@ -35,7 +64,7 @@ const AdminCustomers = () => {
   return (
     <Box sx={{ p: { xs: 2, md: 4 } }}>
       <TitledBox title="Customers" />
-      <CustomerTable customers={customers} />
+      <CustomerTable customers={customers} handleDelete={handleDelete} />
     </Box>
   );
 };

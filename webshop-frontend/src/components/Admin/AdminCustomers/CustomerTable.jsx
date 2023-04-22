@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import {
   Button,
   Paper,
@@ -9,6 +9,8 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import useFetch from "../../../hooks/useFetch";
+import cookie from "cookie";
 
 /**
  *
@@ -18,13 +20,7 @@ import {
  * The component uses a confirmation dialog to ensure the user wants to delete the customer before performing the action.
  * @returns {JSX.Element} The JSX code for the CustomerTable component.
  */
-const CustomerTable = ({ customers }) => {
-  const [customerData, setCustomerData] = React.useState(customers);
-
-  const handleDelete = (userId) => {
-    setCustomerData(customerData.filter((customer) => customer.id !== userId));
-  };
-
+const CustomerTable = ({ customers, handleDelete }) => {
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -58,7 +54,7 @@ const CustomerTable = ({ customers }) => {
                         "Are you sure you want to delete this customer?"
                       )
                     ) {
-                      handleDelete(customer.id);
+                      handleDelete(customer.email);
                     }
                   }}
                 >
