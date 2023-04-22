@@ -119,7 +119,7 @@ const ChangePassword = ({ navigateTo }) => {
             <Box display="flex" justifyContent="flex-end" marginTop={2}>
               <Button
                 variant="contained"
-                sx={{ height: "4rem", width: "10rem" }}
+                sx={{ width: "10rem" }}
                 onClick={() => navigate(navigateTo)}
               >
                 Cancel
@@ -129,13 +129,13 @@ const ChangePassword = ({ navigateTo }) => {
                   type="submit"
                   variant="contained"
                   color="primary"
-                  sx={{ height: "4rem", width: "18rem" }}
+                  sx={{ width: "10rem" }}
                   disabled={isLoading}
                 >
                   {isLoading ? (
                     <CircularProgress size={24} color="inherit" />
                   ) : (
-                    "Save Changes"
+                    "Save"
                   )}
                 </Button>
               </Box>

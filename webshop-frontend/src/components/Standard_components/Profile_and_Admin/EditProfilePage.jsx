@@ -122,7 +122,7 @@ const EditProfilePage = ({ navigateTo }) => {
                 variant="contained"
                 color="primary"
                 onClick={() => navigate(navigateTo)}
-                sx={{ height: "4rem", width: "10rem" }}
+                sx={{ width: "10rem" }}
               >
                 Cancel
               </Button>
@@ -131,13 +131,13 @@ const EditProfilePage = ({ navigateTo }) => {
                   type="submit"
                   variant="contained"
                   color="primary"
-                  sx={{ height: "4rem", width: "18rem" }}
+                  sx={{ width: "10rem" }}
                   disabled={isLoading}
                 >
                   {isLoading ? (
                     <CircularProgress size={24} color="inherit" />
                   ) : (
-                    "Save Changes"
+                    "Save"
                   )}
                 </Button>
               </Box>
