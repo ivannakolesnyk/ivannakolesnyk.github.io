@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import {
   Box,
-  TextField,
   Button,
+  Dialog,
+  DialogTitle,
   FormControl,
-  FormLabel,
   FormGroup,
-  Rating,
-  Card,
-  CardContent,
+  FormLabel,
   Grid,
+  Rating,
+  TextField,
 } from "@mui/material";
 
 /**
@@ -24,7 +24,13 @@ import {
  * @param {function} onDelete - The function to be called when the user deletes the testimonial.
  * @returns {JSX.Element} The JSX code for the EditTestimonialForm component.
  */
-const EditTestimonialForm = ({ testimonial, onClose, onSave, onDelete }) => {
+const EditTestimonialForm = ({
+  open,
+  testimonial,
+  onClose,
+  onSave,
+  onDelete,
+}) => {
   const [name, setName] = useState(testimonial.name);
   const [imageUrl, setImageUrl] = useState(testimonial.image_url);
   const [comment, setComment] = useState(testimonial.comment);
@@ -36,16 +42,15 @@ const EditTestimonialForm = ({ testimonial, onClose, onSave, onDelete }) => {
   };
 
   return (
-    <Card
-      sx={{
-        width: "100%",
-        maxWidth: { xs: "100%", sm: "80%" },
-        mx: "auto",
-        mt: 1,
-        mb: 4,
-      }}
+    <Dialog
+      open={open}
+      onClose={onClose}
+      maxWidth="sm"
+      fullWidth
+      sx={{ mt: 1, mb: 4 }}
     >
-      <CardContent>
+      <DialogTitle>Edit Testimonial</DialogTitle>
+      <Box component="form" onSubmit={handleSubmit} sx={{ p: 3 }}>
         <Box component="form" onSubmit={handleSubmit}>
           <FormGroup>
             <FormLabel>Name</FormLabel>
@@ -87,19 +92,17 @@ const EditTestimonialForm = ({ testimonial, onClose, onSave, onDelete }) => {
 
           <Grid container justifyContent="flex-end" sx={{ mt: 2 }}>
             <Button
-              variant="outlined"
+              variant="contained"
               onClick={onClose}
               sx={{
                 mr: 1,
-                color: "secondary.main",
-                borderColor: "primary.main",
                 mb: 1,
               }}
             >
               Cancel
             </Button>
-            <Button type="submit" variant="contained" sx={{ mr: 1 }}>
-              Save Changes
+            <Button type="submit" variant="contained" sx={{ mr: 1, mb: 1 }}>
+              Save
             </Button>
             <Button
               variant="contained"
@@ -113,14 +116,14 @@ const EditTestimonialForm = ({ testimonial, onClose, onSave, onDelete }) => {
                   onDelete(testimonial.testimonial_id);
                 }
               }}
-              sx={{ mr: 1 }}
+              sx={{ mr: 1, mb: 1 }}
             >
               Delete
             </Button>
           </Grid>
         </Box>
-      </CardContent>
-    </Card>
+      </Box>
+    </Dialog>
   );
 };
 

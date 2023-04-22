@@ -82,14 +82,7 @@ const NewTestimonialDialog = ({ open, onClose, onCreate }) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button
-          variant="outlined"
-          onClick={onClose}
-          sx={{
-            color: "secondary.main",
-            borderColor: "primary.main",
-          }}
-        >
+        <Button variant="contained" onClick={onClose}>
           Cancel
         </Button>
         <Button

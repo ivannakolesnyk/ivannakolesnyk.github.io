@@ -1,4 +1,3 @@
-// AdminTestimonials.jsx
 import React, { useState } from "react";
 import TitledBox from "../../Standard_components/TitledBox";
 import { Box, Button, Typography } from "@mui/material";
@@ -66,8 +65,7 @@ const AdminTestimonials = () => {
           textAlign: "center",
         }}
       >
-        Click on a testimonial card to edit or delete it in an edit form below
-        the cards.
+        Click on a testimonial to edit or delete.
       </Typography>
       <TestimonialCards
         onCardClick={(testimonial) => setSelectedTestimonial(testimonial)}
@@ -81,16 +79,15 @@ const AdminTestimonials = () => {
           Create New Testimonial
         </Button>
       </Box>
-      {selectedTestimonial && (
-        <EditTestimonialForm
-          testimonial={selectedTestimonial}
-          onClose={() => setSelectedTestimonial(null)}
-          onSave={(updatedData) =>
-            handleSave(selectedTestimonial.testimonial_id, updatedData)
-          }
-          onDelete={handleDelete}
-        />
-      )}
+      <EditTestimonialForm
+        open={!!selectedTestimonial}
+        testimonial={selectedTestimonial || {}}
+        onClose={() => setSelectedTestimonial(null)}
+        onSave={(updatedData) =>
+          handleSave(selectedTestimonial.testimonial_id, updatedData)
+        }
+        onDelete={handleDelete}
+      />
       <NewTestimonialDialog
         open={newTestimonialDialogOpen}
         onClose={() => setNewTestimonialDialogOpen(false)}
