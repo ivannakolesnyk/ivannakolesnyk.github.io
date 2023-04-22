@@ -1,18 +1,8 @@
+import React from "react";
+import PropTypes from "prop-types";
 import { Chip, Grid, Stack, Typography } from "@mui/material";
-import { ReactNode } from "react";
-import { SxProps } from "@mui/system";
 
-interface Props {
-  children?: ReactNode;
-  height?: any;
-  bgColor?: string;
-  backgroundUrl?: string;
-  backgroundUrlMobile?: string;
-  sx?: SxProps;
-  label?: string;
-}
-
-export default function Section(props: Props) {
+const Section = (props) => {
   return (
     <>
       <Grid
@@ -58,4 +48,6 @@ export default function Section(props: Props) {
       </Grid>
     </>
   );
-}
+};
+
+export default Section;

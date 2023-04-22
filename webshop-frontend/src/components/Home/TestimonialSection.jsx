@@ -1,15 +1,8 @@
 import { Stack, Typography, useTheme, Paper } from "@mui/material";
-import Carousel from "../Home/Carousel.tsx";
-import Section from "../Home/Section.tsx";
+import Carousel from "../Home/Carousel";
+import Section from "../Home/Section";
 import Avatar from "@mui/material/Avatar";
 import StarIcon from "@mui/icons-material/Star";
-
-interface TestimonialProps {
-  name: string;
-  image_url: string;
-  comment: string;
-  rating: number;
-}
 
 const divider = `${process.env.PUBLIC_URL}/assets/img/testimonials/divider.svg`;
 
@@ -66,10 +59,10 @@ export default function TestimonialSection() {
   );
 }
 
-function Testimonial(props: TestimonialProps) {
+function Testimonial(props) {
   const stars = [];
   for (let i = 0; i < props.rating; i++) {
-    stars.push(<StarIcon color="secondary" sx={{ fontSize: "20" }} key={i} />);
+    stars.push(<StarIcon color="secondary" sx={{ fontSize: 20 }} key={i} />);
   }
 
   return (
@@ -106,3 +99,5 @@ function Testimonial(props: TestimonialProps) {
     </>
   );
 }
+
+export { TestimonialSection };
