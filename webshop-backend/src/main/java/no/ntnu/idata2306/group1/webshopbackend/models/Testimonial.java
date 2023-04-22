@@ -25,10 +25,11 @@ public class Testimonial {
     @JsonProperty("testimonial_image")
     private String testimonial_image;
 
-    public Testimonial() {}
+    public Testimonial() {
+    }
 
     public Testimonial(String name, int rating, String description,
-            String testimonial_image) {
+                       String testimonial_image) {
         this.name = name;
         this.rating = rating;
         this.description = description;
@@ -39,25 +40,43 @@ public class Testimonial {
         return this.id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return this.name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getRating() {
         return this.rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     public String getDescription() {
         return this.description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getTestimonialImage() {
         return this.testimonial_image;
     }
 
-
     public void setTestimonialImage(String testimonial_image) {
+        this.testimonial_image = testimonial_image;
+    }
+
+    public void setTestimonial_image(String testimonial_image) {
         this.testimonial_image = testimonial_image;
     }
 }
