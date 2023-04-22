@@ -53,4 +53,27 @@ public class TestimonialController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @PutMapping("/api/testimonials/{id}")
+    public ResponseEntity updateTestimonial(@PathVariable String id, @RequestBody Testimonial testimonial) {
+        try {
+            Integer parsedId = Integer.parseInt(id);
+
+            if (!testimonialRepository.existsById(parsedId)) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+
+            testimonialRepository.findById(parsedId).map(existingTestimonial -> {
+                existingTestimonial.setName(testimonial.getName());
+                existingTestimonial.setRating(testimonial.getRating());
+                existingTestimonial.setDescription(testimonial.getDescription());
+                existingTestimonial.setTestimonialImage(testimonial.getTestimonialImage());
+                return testimonialRepository.save(existingTestimonial);
+            });
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (NumberFormatException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 }
