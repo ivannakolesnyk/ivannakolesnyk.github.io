@@ -36,6 +36,7 @@ const AdminTestimonials = () => {
     if (!createTestimonialFetch.error) {
       setNewTestimonialDialogOpen(false);
       setSelectedTestimonial(null);
+      refetchTestimonials();
     }
   };
 
@@ -51,6 +52,7 @@ const AdminTestimonials = () => {
     await updateTestimonialFetch.refetch(testimonial);
     if (!updateTestimonialFetch.error) {
       setSelectedTestimonial(null);
+      refetchTestimonials();
     }
   };
 
@@ -66,6 +68,7 @@ const AdminTestimonials = () => {
     await deleteTestimonialFetch.refetch();
     if (!deleteTestimonialFetch.error) {
       setSelectedTestimonial(null);
+      refetchTestimonials();
     }
   };
 
@@ -73,6 +76,7 @@ const AdminTestimonials = () => {
     data: testimonials,
     isLoading,
     error,
+    refetch: refetchTestimonials,
   } = useFetch("GET", "testimonials");
 
   if (isLoading) return <Loading />;
