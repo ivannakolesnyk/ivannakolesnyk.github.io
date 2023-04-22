@@ -114,23 +114,23 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
                     100, tea));
 
             productRepository.save(new Product("Bamboo Plate ", 199, true, "Eco-Friendly Bamboo Plate - Sustainable, Stylish, and Earth-Friendly. Our bamboo plate is not only an elegant addition to your dining table, but it's also made from sustainable bamboo, making it an eco-friendly choice for conscious consumers. This durable and versatile plate is perfect for serving appetizers, salads, or main dishes, and adds a touch of natural beauty to your dining experience.",
-                    List.of(""), "Equipment image", "products/equipment/banboo_plate.png",
+                    List.of(""), "Equipment image", "products/equipment/bamboo-plate.png",
                     100, equipment));
             productRepository.save(new Product("Carafe", 149, true, "Elegant Carafe - Sleek, Functional, and Versatile. Our carafe is designed to impress with its sleek and elegant design. Made from high-quality glass, this versatile piece is perfect for serving water, juice, wine, or other beverages. Its ergonomic handle and easy-pour spout make it a practical and stylish choice for any occasion, whether it's a formal dinner or a casual gathering..",
                     List.of(""), "Equipment image", "products/equipment/carafe.png",
                     100, equipment));
             productRepository.save(new Product("Cinnamon Infuser", 299, false, "Cinnamon Infuser - Aromatic, Flavorful, and Convenient. Our cinnamon infuser is a must-have accessory for any coffee or tea lover. Made from high-quality stainless steel, this handy tool is designed to hold cinnamon sticks, releasing their aromatic flavors into your hot beverages. It's a simple and convenient way to add a touch of warmth and spice to your favorite drinks.",
-                    List.of(""), "Equipment image", "products/equipment/cinnamon.png",
+                    List.of(""), "Equipment image", "products/equipment/cinnamon-infuser.png",
                     100, equipment));
             productRepository.save(new Product("Coffee Cup", 199, false, "Classic Coffee Cup - Timeless, Durable, and Comfortable. Our classic coffee cup is a timeless piece that never goes out of style. Made from high-quality ceramic, this durable cup is designed to retain heat, keeping your coffee or tea at the perfect temperature. Its comfortable handle and classic design make it a favorite\n" +
                     " among coffee enthusiasts who appreciate a simple and elegant cup for their daily brew.\n",
-                    List.of(""), "Equipment image", "products/equipment/classic_cup.png",
+                    List.of(""), "Equipment image", "products/equipment/white-cup.png",
                     100, equipment));
             productRepository.save(new Product("Coffee Machine", 1249, false, "Professional Coffee Machine - Powerful, Efficient, and Reliable. Our coffee machine is a top-of-the-line piece of equipment for serious coffee enthusiasts. With its powerful brewing capabilities, precise temperature control, and customizable settings, this machine delivers a superior coffee experience every time. Its sleek design and stainless steel construction make it a stylish and durable addition to any coffee lover's kitchen.",
-                    List.of(""), "Equipment image", "products/equipment/coffee_machin.png",
+                    List.of(""), "Equipment image", "products/equipment/coffee-machine.png",
                     100, equipment));
             productRepository.save(new Product("Coffee Pot", 249, false, "Stylish Coffee Pot - Sleek, Functional, and Elegant. Our coffee pot is designed to impress with its sleek and stylish design. Made from high-quality glass or stainless steel, this coffee pot is perfect for brewing and serving coffee in style. Its ergonomic handle and easy-pour spout make it a practical and elegant choice for serving coffee to guests or enjoying a quiet moment alone.",
-                    List.of(""), "Equipment image", "products/equipment/coffee_pot.png",
+                    List.of(""), "Equipment image", "products/equipment/coffeepot.png",
                     100, equipment));
         }
     }
