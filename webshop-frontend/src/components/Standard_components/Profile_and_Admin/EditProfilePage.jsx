@@ -1,4 +1,11 @@
-import {Box, Button, CardContent, CardHeader, CircularProgress, Divider} from "@mui/material";
+import {
+  Box,
+  Button,
+  CardContent,
+  CardHeader,
+  CircularProgress,
+  Divider,
+} from "@mui/material";
 import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import StandardCenteredBox from "../StandardCenteredBox";
@@ -115,16 +122,22 @@ const EditProfilePage = ({ navigateTo }) => {
                 variant="contained"
                 color="primary"
                 onClick={() => navigate(navigateTo)}
+                sx={{ height: "4rem", width: "10rem" }}
               >
                 Cancel
               </Button>
               <Box marginLeft={1}>
-
-                <Button type="submit" variant="contained" color="primary" sx={{height: "4rem", width: "18rem"}} disabled={isLoading}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  sx={{ height: "4rem", width: "18rem" }}
+                  disabled={isLoading}
+                >
                   {isLoading ? (
-                      <CircularProgress size={24} color="inherit" />
+                    <CircularProgress size={24} color="inherit" />
                   ) : (
-                      "Save Changes"
+                    "Save Changes"
                   )}
                 </Button>
               </Box>

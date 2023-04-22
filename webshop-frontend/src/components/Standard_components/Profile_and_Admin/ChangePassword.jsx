@@ -1,6 +1,13 @@
 import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {Box, Button, CardContent, CardHeader, CircularProgress, Divider} from "@mui/material";
+import {
+  Box,
+  Button,
+  CardContent,
+  CardHeader,
+  CircularProgress,
+  Divider,
+} from "@mui/material";
 import StandardCenteredBox from "../StandardCenteredBox";
 import StandardCenteredCard from "../StandardCenteredCard";
 import { PasswordTextField } from "./PasswordTextField";
@@ -110,15 +117,25 @@ const ChangePassword = ({ navigateTo }) => {
             />
 
             <Box display="flex" justifyContent="flex-end" marginTop={2}>
-              <Button variant="contained" onClick={() => navigate(navigateTo)}>
+              <Button
+                variant="contained"
+                sx={{ height: "4rem", width: "10rem" }}
+                onClick={() => navigate(navigateTo)}
+              >
                 Cancel
               </Button>
               <Box marginLeft={1}>
-                <Button type="submit" variant="contained" color="primary" sx={{height: "4rem", width: "18rem"}} disabled={isLoading}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  sx={{ height: "4rem", width: "18rem" }}
+                  disabled={isLoading}
+                >
                   {isLoading ? (
-                      <CircularProgress size={24} color="inherit" />
+                    <CircularProgress size={24} color="inherit" />
                   ) : (
-                      "Save Changes"
+                    "Save Changes"
                   )}
                 </Button>
               </Box>

@@ -121,14 +121,7 @@ const NewProductDialog = ({ open, onClose, onCreate }) => {
         </FormControl>
       </DialogContent>
       <DialogActions>
-        <Button
-          variant="outlined"
-          onClick={onClose}
-          sx={{
-            color: "secondary.main",
-            borderColor: "primary.main",
-          }}
-        >
+        <Button variant="contained" onClick={onClose}>
           Cancel
         </Button>
         <Button

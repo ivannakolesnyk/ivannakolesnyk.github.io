@@ -101,9 +101,6 @@ const EditTestimonialForm = ({
             >
               Cancel
             </Button>
-            <Button type="submit" variant="contained" sx={{ mr: 1, mb: 1 }}>
-              Save
-            </Button>
             <Button
               variant="contained"
               color="error"
@@ -119,6 +116,9 @@ const EditTestimonialForm = ({
               sx={{ mr: 1, mb: 1 }}
             >
               Delete
+            </Button>
+            <Button type="submit" variant="contained" sx={{ mr: 1, mb: 1 }}>
+              Save
             </Button>
           </Grid>
         </Box>
