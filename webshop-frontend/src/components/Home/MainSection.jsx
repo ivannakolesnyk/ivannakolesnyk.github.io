@@ -7,7 +7,6 @@ const MainSection = () => {
       minHeight={"70vh"}
       py={12}
       px={8}
-      bgcolor={"red"}
       justifyContent={"center"}
       alignItems={"flex-start"}
       sx={{
