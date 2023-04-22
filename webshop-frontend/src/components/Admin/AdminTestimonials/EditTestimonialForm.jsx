@@ -26,13 +26,13 @@ import {
  */
 const EditTestimonialForm = ({ testimonial, onClose, onSave, onDelete }) => {
   const [name, setName] = useState(testimonial.name);
-  const [imageUrl, setImageUrl] = useState(testimonial.image_url);
-  const [comment, setComment] = useState(testimonial.comment);
+  const [testimonial_image, setTestimonialImage] = useState(testimonial.testimonial_image);
+  const [description, setComment] = useState(testimonial.description);
   const [rating, setRating] = useState(testimonial.rating);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSave({ name, imageUrl, comment, rating });
+    onSave({ name, testimonial_image, description, rating });
   };
 
   return (
@@ -59,8 +59,8 @@ const EditTestimonialForm = ({ testimonial, onClose, onSave, onDelete }) => {
           <FormGroup>
             <FormLabel>Image URL</FormLabel>
             <TextField
-              value={imageUrl}
-              onChange={(event) => setImageUrl(event.target.value)}
+              value={testimonial_image}
+              onChange={(event) => setTestimonialImage(event.target.value)}
               required
             />
           </FormGroup>
@@ -68,7 +68,7 @@ const EditTestimonialForm = ({ testimonial, onClose, onSave, onDelete }) => {
           <FormGroup>
             <FormLabel>Comment</FormLabel>
             <TextField
-              value={comment}
+              value={description}
               onChange={(event) => setComment(event.target.value)}
               required
               multiline

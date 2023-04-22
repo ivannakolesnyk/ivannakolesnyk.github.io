@@ -24,8 +24,8 @@ import Rating from "@mui/material/Rating";
 const NewTestimonialDialog = ({ open, onClose, onCreate }) => {
   const [newTestimonial, setNewTestimonial] = useState({
     name: "",
-    image_url: "",
-    comment: "",
+    testimonial_image: "",
+    description: "",
     rating: 0,
   });
 
@@ -40,7 +40,7 @@ const NewTestimonialDialog = ({ open, onClose, onCreate }) => {
 
   const handleSubmit = () => {
     onCreate(newTestimonial);
-    setNewTestimonial({ name: "", image_url: "", comment: "", rating: 0 });
+    setNewTestimonial({ name: "", testimonial_image: "", description: "", rating: 0 });
   };
 
   return (
@@ -59,16 +59,16 @@ const NewTestimonialDialog = ({ open, onClose, onCreate }) => {
         <TextField
           fullWidth
           label="Image URL"
-          name="image_url"
-          value={newTestimonial.image_url}
+          name="testimonial_image"
+          value={newTestimonial.testimonial_image}
           onChange={handleChange}
           helperText="Example: /assets/img/testimonials/example.png"
         />
         <TextField
           fullWidth
           label="Comment"
-          name="comment"
-          value={newTestimonial.comment}
+          name="description"
+          value={newTestimonial.description}
           onChange={handleChange}
           multiline
           rows={4}
@@ -98,8 +98,8 @@ const NewTestimonialDialog = ({ open, onClose, onCreate }) => {
           onClick={handleSubmit}
           disabled={
             !newTestimonial.name ||
-            !newTestimonial.image_url ||
-            !newTestimonial.comment ||
+            !newTestimonial.testimonial_image ||
+            !newTestimonial.description ||
             !newTestimonial.rating
           }
         >
