@@ -96,7 +96,7 @@ const NewTestimonialDialog = ({ open, onClose, onCreate }) => {
             !newTestimonial.rating
           }
         >
-          Create Testimonial
+          Create
         </Button>
       </DialogActions>
     </Dialog>
