@@ -56,43 +56,62 @@ const AdminTestimonials = () => {
   };
 
   return (
-    <Box sx={{ p: { xs: 2, md: 4 } }}>
-      <TitledBox title="Testimonials" titleAlignment="center" />
-      <Typography
-        variant="body1"
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        width: "100%",
+      }}
+    >
+      <Box
         sx={{
-          color: "secondary.main",
-          textAlign: "center",
+          p: { xs: 2, md: 4 },
+          maxWidth: "100%",
+          "@media (min-width: 600px)": {
+            maxWidth: "60%",
+          },
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        Click on a testimonial to edit or delete.
-      </Typography>
-      <TestimonialCards
-        onCardClick={(testimonial) => setSelectedTestimonial(testimonial)}
-      />
-      <Box sx={{ textAlign: "center", my: 2 }}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => setNewTestimonialDialogOpen(true)}
+        <TitledBox title="Testimonials" titleAlignment="center" />
+        <Typography
+          variant="body1"
+          sx={{
+            color: "secondary.main",
+            textAlign: "center",
+          }}
         >
-          Create New Testimonial
-        </Button>
+          Click on a testimonial to edit or delete.
+        </Typography>
+        <TestimonialCards
+          onCardClick={(testimonial) => setSelectedTestimonial(testimonial)}
+        />
+        <Box sx={{ textAlign: "center", my: 2 }}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setNewTestimonialDialogOpen(true)}
+          >
+            Create New Testimonial
+          </Button>
+        </Box>
+        <EditTestimonialForm
+          open={!!selectedTestimonial}
+          testimonial={selectedTestimonial || {}}
+          onClose={() => setSelectedTestimonial(null)}
+          onSave={(updatedData) =>
+            handleSave(selectedTestimonial.testimonial_id, updatedData)
+          }
+          onDelete={handleDelete}
+        />
+        <NewTestimonialDialog
+          open={newTestimonialDialogOpen}
+          onClose={() => setNewTestimonialDialogOpen(false)}
+          onCreate={handleCreate}
+        />
       </Box>
-      <EditTestimonialForm
-        open={!!selectedTestimonial}
-        testimonial={selectedTestimonial || {}}
-        onClose={() => setSelectedTestimonial(null)}
-        onSave={(updatedData) =>
-          handleSave(selectedTestimonial.testimonial_id, updatedData)
-        }
-        onDelete={handleDelete}
-      />
-      <NewTestimonialDialog
-        open={newTestimonialDialogOpen}
-        onClose={() => setNewTestimonialDialogOpen(false)}
-        onCreate={handleCreate}
-      />
     </Box>
   );
 };
