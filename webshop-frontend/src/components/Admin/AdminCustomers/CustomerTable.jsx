@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Button,
   Paper,
   Table,
   TableBody,
@@ -7,9 +8,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Button,
 } from "@mui/material";
-import customers from "./dummycustomers";
 
 /**
  *
@@ -19,13 +18,11 @@ import customers from "./dummycustomers";
  * The component uses a confirmation dialog to ensure the user wants to delete the customer before performing the action.
  * @returns {JSX.Element} The JSX code for the CustomerTable component.
  */
-const CustomerTable = () => {
+const CustomerTable = ({ customers }) => {
   const [customerData, setCustomerData] = React.useState(customers);
 
   const handleDelete = (userId) => {
-    setCustomerData(
-      customerData.filter((customer) => customer.user_id !== userId)
-    );
+    setCustomerData(customerData.filter((customer) => customer.id !== userId));
   };
 
   return (
@@ -44,8 +41,8 @@ const CustomerTable = () => {
         </TableHead>
         <TableBody>
           {customers.map((customer) => (
-            <TableRow key={customer.user_id}>
-              <TableCell>{customer.user_id}</TableCell>
+            <TableRow key={customer.id}>
+              <TableCell>{customer.id}</TableCell>
               <TableCell>{customer.name}</TableCell>
               <TableCell>{customer.email}</TableCell>
               <TableCell>{customer.phone_number}</TableCell>
@@ -61,7 +58,7 @@ const CustomerTable = () => {
                         "Are you sure you want to delete this customer?"
                       )
                     ) {
-                      handleDelete(customer.user_id);
+                      handleDelete(customer.id);
                     }
                   }}
                 >
