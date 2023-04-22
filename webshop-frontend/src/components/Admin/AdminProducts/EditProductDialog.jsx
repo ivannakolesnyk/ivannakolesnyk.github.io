@@ -7,11 +7,15 @@ import {
   TextField,
   Button,
   Grid,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
 } from "@mui/material";
 
 /**
  *
- * The ProductDialog component is a React functional component used for displaying
+ * The EditProductDialog component is a React functional component used for displaying
  * a dialog with form fields to edit or delete a product. It allows users to modify
  * product properties or confirm the deletion of a product.
  * @param {boolean} open - A boolean value that determines if the dialog is open or closed.
@@ -19,9 +23,9 @@ import {
  * @param {Function} onClose - A callback function for handling the closing of the dialog.
  * @param {Function} onEditProduct - A callback function for handling the edit product action.
  * @param {Function} onDeleteProduct - A callback function for handling the delete product action.
- * @returns {JSX.Element} The JSX code for the ProductDialog component.
+ * @returns {JSX.Element} The JSX code for the EditProductDialog component.
  */
-const ProductDialog = ({
+const EditProductDialog = ({
   open,
   product,
   onClose,
@@ -97,13 +101,22 @@ const ProductDialog = ({
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Category ID"
-              name="category_id"
-              value={editedProduct.category_id}
-              onChange={handleChange}
-            />
+            <FormControl fullWidth>
+              <InputLabel htmlFor="category_name">Category</InputLabel>
+              <Select
+                label="Category name"
+                name="category_name"
+                value={editedProduct.category_name}
+                onChange={handleChange}
+                inputProps={{
+                  id: "category_name",
+                }}
+              >
+                <MenuItem value="Coffee">Coffee</MenuItem>
+                <MenuItem value="Tea">Tea</MenuItem>
+                <MenuItem value="Equipment">Equipment</MenuItem>
+              </Select>
+            </FormControl>
           </Grid>
         </Grid>
       </DialogContent>
@@ -139,4 +152,4 @@ const ProductDialog = ({
   );
 };
 
-export default ProductDialog;
+export default EditProductDialog;
