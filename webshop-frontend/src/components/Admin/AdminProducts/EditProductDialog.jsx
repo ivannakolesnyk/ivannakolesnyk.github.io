@@ -121,18 +121,8 @@ const EditProductDialog = ({
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button
-          variant="outlined"
-          onClick={onClose}
-          sx={{
-            color: "secondary.main",
-            borderColor: "primary.main",
-          }}
-        >
+        <Button variant="contained" onClick={onClose}>
           Cancel
-        </Button>
-        <Button onClick={handleSaveChanges} variant="contained" color="primary">
-          Save Changes
         </Button>
         <Button
           variant="contained"
@@ -145,7 +135,10 @@ const EditProductDialog = ({
             }
           }}
         >
-          Delete Product
+          Delete
+        </Button>
+        <Button onClick={handleSaveChanges} variant="contained" color="primary">
+          Save
         </Button>
       </DialogActions>
     </Dialog>

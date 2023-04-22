@@ -1,4 +1,3 @@
-// AdminTestimonials.jsx
 import React, { useState } from "react";
 import TitledBox from "../../Standard_components/TitledBox";
 import { Box, Button, Typography } from "@mui/material";
@@ -82,23 +81,40 @@ const AdminTestimonials = () => {
   if (isLoading) return <Loading />;
 
   return (
-    <Box sx={{ p: { xs: 2, md: 4 } }}>
-      <TitledBox title="Testimonials" titleAlignment="center" />
-      <Typography
-        variant="body1"
-        sx={{
-          color: "secondary.main",
-          textAlign: "center",
-        }}
+      <Box
+          sx={{
+              display: "flex",
+              justifyContent: "center",
+              width: "100%",
+          }}
       >
-        Click on a testimonial card to edit or delete it in an edit form below
-        the cards.
-      </Typography>
-      <TestimonialCards
-        onCardClick={(testimonial) => setSelectedTestimonial(testimonial)}
-        testimonials={testimonials}
-      />
-      <Box sx={{ textAlign: "center", my: 2 }}>
+          <Box
+              sx={{
+                  p: { xs: 2, md: 4 },
+                  maxWidth: "100%",
+                  "@media (min-width: 600px)": {
+                      maxWidth: "60%",
+                  },
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+              }}
+          >
+              <TitledBox title="Testimonials" titleAlignment="center" />
+              <Typography
+                  variant="body1"
+                  sx={{
+                      color: "secondary.main",
+                      textAlign: "center",
+                  }}
+              >
+                  Click on a testimonial to edit or delete.
+              </Typography>
+              <TestimonialCards
+                  onCardClick={(testimonial) => setSelectedTestimonial(testimonial)}
+                  testimonials={testimonials}
+              />
+              <Box sx={{ textAlign: "center", my: 2 }}>
         <Button
           variant="contained"
           color="primary"
@@ -107,20 +123,22 @@ const AdminTestimonials = () => {
           Create New Testimonial
         </Button>
       </Box>
-      {selectedTestimonial && (
+
         <EditTestimonialForm
-          testimonial={selectedTestimonial}
+          open={!!selectedTestimonial}
+          testimonial={selectedTestimonial || {}}
           onClose={() => setSelectedTestimonial(null)}
           onSave={(updatedData) => handleUpdate(updatedData)}
           onDelete={handleDelete}
         />
-      )}
+
       <NewTestimonialDialog
         open={newTestimonialDialogOpen}
         onClose={() => setNewTestimonialDialogOpen(false)}
         onCreate={handleCreate}
       />
     </Box>
+      </Box>
   );
 };
 
