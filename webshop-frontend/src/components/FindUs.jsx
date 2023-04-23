@@ -5,6 +5,9 @@ import { theme } from "../theme";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import DirectionsIcon from "@mui/icons-material/Directions";
 
+// needs to be defined outside "FindUs" to avoid libraries prop being passed as a new array on each render
+const libraries = ["places"];
+
 //For placing Direction Butoon component right on top of the Google Map, used wraping both the GoogleMap and DirectionButton components inside a container element and use CSS to position the last one over the map.
 const DirectionButton = ({ address, onGetDirections }) => {
   return (
@@ -20,13 +23,12 @@ const DirectionButton = ({ address, onGetDirections }) => {
           justifyContent: "center",
           textAlign: "left",
           position: "absolute",
-          top: "35%",
-          left: "17%",
+          top: "20%",
+          left: "35%",
           transform: "translate(-30%, -50%)",
           zIndex: 1,
           "& > *": {
             margin: "10px 0",
-            // last two lines used for spacing between text
           },
         }}
       >
@@ -61,7 +63,7 @@ const DirectionButton = ({ address, onGetDirections }) => {
 const FindUs = () => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyDPk_iIoIf7gKWMTEdQ6G5OzlwrmxJ-TpY",
-    libraries: ["places"],
+    libraries,
   });
 
   const mapRef = useRef(null);
@@ -76,14 +78,26 @@ const FindUs = () => {
   if (!isLoaded) return "Loading maps";
 
   return (
-    <div style={{ position: "relative", width: "100%", height: "600px" }}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "calc(100vh - 60px - 40px)",
+      }}
+    >
       <GoogleMap
         mapContainerStyle={{ width: "100%", height: "100%" }}
         center={{ lat: 62.47194, lng: 6.23559 }}
         zoom={15}
         onLoad={onMapLoad}
       >
-        <Marker position={{ lat: 62.47194, lng: 6.23559 }} />
+        <Marker
+          position={{ lat: 62.47194, lng: 6.23559 }}
+          icon={{
+            url: "https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2_hdpi.png",
+            scaledSize: new window.google.maps.Size(25, 40),
+          }}
+        />
       </GoogleMap>
       <DirectionButton
         address="Larsgårdsvegen 2, 6009 Ålesund"
