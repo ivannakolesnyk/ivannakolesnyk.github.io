@@ -19,6 +19,7 @@ import useFetch from "../../hooks/useFetch";
 import Loading from "../Standard_components/Loading";
 import InternalError from "../Standard_components/InternalError";
 import { useCart } from "../../context/CartContext";
+import {usePaymentSuccess} from "../../hooks/usePaymentSuccess";
 
 /**
  *
@@ -59,17 +60,7 @@ const ProfileViewOrders = () => {
     refetch,
   } = useFetch("GET", `orders/${userEmail}`, headers);
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    const paymentSuccess = searchParams.get("paymentSuccess");
-
-    if (paymentSuccess === "true") {
-      clearCart();
-      // Remove the paymentSuccess flag from the URL
-      searchParams.delete("paymentSuccess");
-      navigate("?", { replace: true, search: searchParams.toString() });
-    }
-  }, [navigate]);
+  usePaymentSuccess(clearCart);
 
   if (isLoading) {
     return <Loading />;
