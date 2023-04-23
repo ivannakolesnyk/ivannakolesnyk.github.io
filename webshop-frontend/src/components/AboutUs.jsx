@@ -62,7 +62,7 @@ const AboutUs = () => {
         </Grid>
         <Grid item xs={12} order={{ xs: 3, md: 4 }}>
           <Typography
-            variant="h4"
+            variant="h2"
             sx={{
               color: "secondary.main",
               textAlign: "left",
