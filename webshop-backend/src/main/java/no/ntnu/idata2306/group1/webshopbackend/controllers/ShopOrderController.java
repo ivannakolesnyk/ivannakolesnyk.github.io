@@ -144,5 +144,26 @@ public class ShopOrderController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @DeleteMapping("/api/orders/{id}")
+    public ResponseEntity<Void> deleteOrder(@PathVariable Integer id) {
+        User sessionUser = userService.getSessionUser();
+        if (sessionUser != null && sessionUser.isAdmin()) {
+            Optional<ShopOrder> optionalShopOrder = shopOrderRepository.findById(id);
+
+            if (!optionalShopOrder.isPresent()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+
+            shopOrderRepository.deleteById(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } else if (sessionUser == null) {
+            return new ResponseEntity("Orders accessible only to authenticated users",
+                    HttpStatus.UNAUTHORIZED);
+        } else {
+            return new ResponseEntity("Orders can be deleted only by admins",
+                    HttpStatus.FORBIDDEN);
+        }
+    }
 }
 
