@@ -50,12 +50,12 @@ const ProductsTable = ({ products, onEditProduct, onDeleteProduct }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {products.map((product) => (
-              <TableRow key={product.product_id}>
-                <TableCell>{product.product_id}</TableCell>
+            {products?.map((product) => (
+              <TableRow key={product.id}>
+                <TableCell>{product.id}</TableCell>
                 <TableCell>{product.name}</TableCell>
                 <TableCell>{product.price}</TableCell>
-                <TableCell>{product.quantity_in_stock}</TableCell>
+                <TableCell>{product.qty_in_stock}</TableCell>
                 <TableCell>
                   <IconButton onClick={() => handleEditClick(product)}>
                     <EditIcon />
