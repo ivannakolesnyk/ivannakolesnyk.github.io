@@ -59,7 +59,7 @@ const EditProductDialog = ({
   };
 
   const handleDelete = () => {
-    onDeleteProduct(product.product_id);
+    onDeleteProduct(product.id);
     onClose();
   };
 

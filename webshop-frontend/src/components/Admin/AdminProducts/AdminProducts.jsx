@@ -6,7 +6,7 @@ import NewProductDialog from "./NewProductDialog";
 import axios from "axios";
 import useFetch from "../../../hooks/useFetch";
 import Loading from "../../Standard_components/Loading";
-import {useAuthHeaders} from "../../../hooks/useAuthHeaders";
+import { useAuthHeaders } from "../../../hooks/useAuthHeaders";
 
 /**
  *
@@ -16,46 +16,55 @@ import {useAuthHeaders} from "../../../hooks/useAuthHeaders";
  */
 const AdminProducts = () => {
   const [newProductDialogOpen, setNewProductDialogOpen] = useState(false);
-  const {headers} = useAuthHeaders();
+  const { headers } = useAuthHeaders();
 
-    const {
-        data: products,
-        isLoading,
-        error: fetchError,
-        refetch,
-    } = useFetch("GET", "products", headers);
+  const {
+    data: products,
+    isLoading,
+    error: fetchError,
+    refetch,
+  } = useFetch("GET", "products", headers);
 
-    const {
-        isLoading: isCreating,
-        error: createError,
-        refetch: createProductRequest,
-    } = useFetch("POST", "products", headers, null, null, false);
+  const {
+    isLoading: isCreating,
+    error: createError,
+    refetch: createProductRequest,
+  } = useFetch("POST", "products", headers, null, null, false);
 
-    const createProduct = async (newProduct) => {
-        try {
-            const productData = {
-                ...newProduct,
-                category: { name: newProduct.category_name },
-            };
-            delete productData.category_name;
+  const {
+    isLoading: isDeleting,
+    error: deleteError,
+    refetch: deleteProductRequest,
+  } = useFetch("DELETE", "products", headers, null, null, false);
 
-            await createProductRequest(productData);
-            setNewProductDialogOpen(false);
-            await refetch();
-        } catch (error) {
-            console.error(error);
-        }
-    };
+  const createProduct = async (newProduct) => {
+    try {
+      const productData = {
+        ...newProduct,
+        category: { name: newProduct.category_name },
+      };
+      delete productData.category_name;
+
+      await createProductRequest(productData);
+      setNewProductDialogOpen(false);
+      await refetch();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const editProduct = (product) => {
     // Add the API call for updating a product here.
     console.log("Edited Product:", product);
   };
 
-  const deleteProduct = (productId) => {
-    // Add the API call for deleting a product here.
-    console.log("Deleted Product ID:", productId);
-    // setProducts(products.filter((product) => product.product_id !== productId));
+  const deleteProduct = async (productId) => {
+    try {
+      await deleteProductRequest({ id: productId });
+      await refetch();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   if (isLoading) return <Loading />;
@@ -77,13 +86,13 @@ const AdminProducts = () => {
         onEditProduct={editProduct}
         onDeleteProduct={deleteProduct}
       />
-        <NewProductDialog
-            open={newProductDialogOpen}
-            onClose={() => setNewProductDialogOpen(false)}
-            onCreate={createProduct}
-            isCreating={isCreating}
-            createError={createError}
-        />
+      <NewProductDialog
+        open={newProductDialogOpen}
+        onClose={() => setNewProductDialogOpen(false)}
+        onCreate={createProduct}
+        isCreating={isCreating}
+        createError={createError}
+      />
     </Box>
   );
 };
