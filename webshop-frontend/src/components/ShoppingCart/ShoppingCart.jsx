@@ -11,6 +11,7 @@ import styles from "./styles";
 import ContinueShoppingButton from "./ContinueShoppingButton";
 import OrderNowButton from "./OrderNowButton";
 import CustomSnackbar from "../Standard_components/CustomSnackbar";
+import {useAuthHeaders} from "../../hooks/useAuthHeaders";
 
 /**
  * Transforms the cart items into a format that can be sent to the server.
@@ -32,13 +33,13 @@ const transformCartItems = (cartItems) =>
 function ShoppingCart() {
   const { cart } = useCart();
   const navigate = useNavigate();
-  const { getJwtPayload } = useContext(AuthContext);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const { headers, userEmail } = useAuthHeaders();
 
   const { data, isLoading, error, refetch } = useFetch(
     "POST",
     "create-checkout-session",
-    null,
+    headers,
     null,
     null,
     false
@@ -54,8 +55,6 @@ function ShoppingCart() {
   }, [data, error]);
 
   const handleOrderNow = () => {
-    const userEmail = getJwtPayload().sub;
-
     refetch({
       cart: transformCartItems(cart),
       userId: userEmail,

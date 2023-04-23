@@ -24,20 +24,11 @@ import Loading from "../Standard_components/Loading";
 import InternalError from "../Standard_components/InternalError";
 import useFetch from "../../hooks/useFetch";
 import jwt_decode from "jwt-decode";
+import {useAuthHeaders} from "../../hooks/useAuthHeaders";
 
 const ProfilePage = () => {
   const theme = useTheme();
-  const jwt = cookie.parse(document.cookie).jwt;
-  const payload = jwt_decode(jwt);
-  const userEmail = payload ? payload.sub : ""; // Replace 'sub' with the claim name containing the user's email
-
-  const headers = useMemo(
-    () => ({
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${jwt}`,
-    }),
-    [jwt]
-  );
+  const { headers, userEmail } = useAuthHeaders();
 
   const {
     data: profileData,

@@ -7,6 +7,7 @@ import NewTestimonialDialog from "./NewTestimonialDialog";
 import axios from "axios";
 import useFetch from "../../../hooks/useFetch";
 import Loading from "../../Standard_components/Loading";
+import { useAuthHeaders } from "../../../hooks/useAuthHeaders";
 
 /**
  *
@@ -21,11 +22,12 @@ const AdminTestimonials = () => {
   const [selectedTestimonial, setSelectedTestimonial] = useState(null);
   const [newTestimonialDialogOpen, setNewTestimonialDialogOpen] =
     useState(false);
+  const { headers } = useAuthHeaders();
 
   const createTestimonialFetch = useFetch(
     "POST",
     "testimonials",
-    null,
+    headers,
     null,
     null,
     false
@@ -42,7 +44,7 @@ const AdminTestimonials = () => {
   const updateTestimonialFetch = useFetch(
     "PUT",
     `testimonials/${selectedTestimonial?.id}`,
-    null,
+    headers,
     null,
     null,
     false
@@ -58,7 +60,7 @@ const AdminTestimonials = () => {
   const deleteTestimonialFetch = useFetch(
     "DELETE",
     `testimonials/${selectedTestimonial?.id}`,
-    null,
+    headers,
     null,
     null,
     false
@@ -81,48 +83,48 @@ const AdminTestimonials = () => {
   if (isLoading) return <Loading />;
 
   return (
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        width: "100%",
+      }}
+    >
       <Box
-          sx={{
-              display: "flex",
-              justifyContent: "center",
-              width: "100%",
-          }}
+        sx={{
+          p: { xs: 2, md: 4 },
+          maxWidth: "100%",
+          "@media (min-width: 600px)": {
+            maxWidth: "60%",
+          },
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
       >
-          <Box
-              sx={{
-                  p: { xs: 2, md: 4 },
-                  maxWidth: "100%",
-                  "@media (min-width: 600px)": {
-                      maxWidth: "60%",
-                  },
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-              }}
-          >
-              <TitledBox title="Testimonials" titleAlignment="center" />
-              <Typography
-                  variant="body1"
-                  sx={{
-                      color: "secondary.main",
-                      textAlign: "center",
-                  }}
-              >
-                  Click on a testimonial to edit or delete.
-              </Typography>
-              <TestimonialCards
-                  onCardClick={(testimonial) => setSelectedTestimonial(testimonial)}
-                  testimonials={testimonials}
-              />
-              <Box sx={{ textAlign: "center", my: 2 }}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => setNewTestimonialDialogOpen(true)}
+        <TitledBox title="Testimonials" titleAlignment="center" />
+        <Typography
+          variant="body1"
+          sx={{
+            color: "secondary.main",
+            textAlign: "center",
+          }}
         >
-          Create New Testimonial
-        </Button>
-      </Box>
+          Click on a testimonial to edit or delete.
+        </Typography>
+        <TestimonialCards
+          onCardClick={(testimonial) => setSelectedTestimonial(testimonial)}
+          testimonials={testimonials}
+        />
+        <Box sx={{ textAlign: "center", my: 2 }}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setNewTestimonialDialogOpen(true)}
+          >
+            Create New Testimonial
+          </Button>
+        </Box>
 
         <EditTestimonialForm
           open={!!selectedTestimonial}
@@ -132,13 +134,13 @@ const AdminTestimonials = () => {
           onDelete={handleDelete}
         />
 
-      <NewTestimonialDialog
-        open={newTestimonialDialogOpen}
-        onClose={() => setNewTestimonialDialogOpen(false)}
-        onCreate={handleCreate}
-      />
-    </Box>
+        <NewTestimonialDialog
+          open={newTestimonialDialogOpen}
+          onClose={() => setNewTestimonialDialogOpen(false)}
+          onCreate={handleCreate}
+        />
       </Box>
+    </Box>
   );
 };
 

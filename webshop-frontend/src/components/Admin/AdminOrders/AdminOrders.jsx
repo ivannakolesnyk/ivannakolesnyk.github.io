@@ -17,6 +17,7 @@ import cookie from "cookie";
 import useFetch from "../../../hooks/useFetch";
 import Loading from "../../Standard_components/Loading";
 import InternalError from "../../Standard_components/InternalError";
+import {useAuthHeaders} from "../../../hooks/useAuthHeaders";
 
 /**
  * AdminOrders is a React functional component used for managing and displaying
@@ -32,14 +33,8 @@ import InternalError from "../../Standard_components/InternalError";
 const AdminOrders = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
 
-  const jwt = cookie.parse(document.cookie).jwt;
-  const headers = useMemo(
-    () => ({
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${jwt}`,
-    }),
-    [jwt]
-  );
+  const { headers } = useAuthHeaders();
+
 
   const { data: orders, isLoading, error } = useFetch("GET", `orders`, headers);
 

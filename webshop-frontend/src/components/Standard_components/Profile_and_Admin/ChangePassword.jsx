@@ -15,6 +15,7 @@ import useFetch from "../../../hooks/useFetch";
 import cookie from "cookie";
 import jwt_decode from "jwt-decode";
 import InternalError from "../InternalError";
+import {useAuthHeaders} from "../../../hooks/useAuthHeaders";
 
 /**
  *
@@ -35,17 +36,7 @@ const ChangePassword = ({ navigateTo }) => {
   const [confirmNewPasswordTouched, setConfirmNewPasswordTouched] =
     useState(false);
 
-  const jwt = cookie.parse(document.cookie).jwt;
-  const payload = jwt_decode(jwt);
-  const userEmail = payload ? payload.sub : ""; // Replace 'sub' with the claim name containing the user's email
-
-  const headers = useMemo(
-    () => ({
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${jwt}`,
-    }),
-    [jwt]
-  );
+  const { headers, userEmail } = useAuthHeaders();
 
   const { isLoading, error, refetch } = useFetch(
     "PUT",

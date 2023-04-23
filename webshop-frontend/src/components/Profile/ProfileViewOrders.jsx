@@ -20,6 +20,7 @@ import Loading from "../Standard_components/Loading";
 import InternalError from "../Standard_components/InternalError";
 import { useCart } from "../../context/CartContext";
 import {usePaymentSuccess} from "../../hooks/usePaymentSuccess";
+import {useAuthHeaders} from "../../hooks/useAuthHeaders";
 
 /**
  *
@@ -41,17 +42,7 @@ const ProfileViewOrders = () => {
     setSelectedOrder(null);
   };
 
-  const jwt = cookie.parse(document.cookie).jwt;
-  const payload = jwt_decode(jwt);
-  const userEmail = payload ? payload.sub : ""; // Replace 'sub' with the claim name containing the user's email
-
-  const headers = useMemo(
-    () => ({
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${jwt}`,
-    }),
-    [jwt]
-  );
+  const { headers, userEmail } = useAuthHeaders();
 
   const {
     data: orders,

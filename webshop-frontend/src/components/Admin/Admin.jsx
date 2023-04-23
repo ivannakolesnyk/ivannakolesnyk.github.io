@@ -1,13 +1,14 @@
-import React, {useEffect, useMemo} from "react";
+import React, { useEffect, useMemo } from "react";
 import cookie from "cookie";
 import Loading from "../Standard_components/Loading";
 import InternalError from "../Standard_components/InternalError";
 import jwt_decode from "jwt-decode";
 import useFetch from "../../hooks/useFetch";
 import { AdminTabs } from "./AdminTabs";
-import {useCart} from "../../context/CartContext";
-import {useNavigate} from "react-router-dom";
-import {usePaymentSuccess} from "../../hooks/usePaymentSuccess";
+import { useCart } from "../../context/CartContext";
+import { useNavigate } from "react-router-dom";
+import { usePaymentSuccess } from "../../hooks/usePaymentSuccess";
+import { useAuthHeaders } from "../../hooks/useAuthHeaders";
 
 /**
  *
@@ -19,19 +20,9 @@ import {usePaymentSuccess} from "../../hooks/usePaymentSuccess";
  * @returns {JSX.Element} The JSX code for the Admin component.
  */
 const Admin = () => {
-  const {clearCart} = useCart();
+  const { clearCart } = useCart();
   const navigate = useNavigate();
-  const jwt = cookie.parse(document.cookie).jwt;
-  const payload = jwt_decode(jwt);
-  const userEmail = payload ? payload.sub : ""; // Replace 'sub' with the claim name containing the user's email
-
-  const headers = useMemo(
-    () => ({
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${jwt}`,
-    }),
-    [jwt]
-  );
+  const { headers, userEmail } = useAuthHeaders();
 
   const {
     data: profileData,

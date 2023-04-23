@@ -1,11 +1,12 @@
-import React, {useMemo} from "react";
-import {Grid, Typography, useMediaQuery} from "@mui/material";
+import React, { useMemo } from "react";
+import { Grid, Typography, useMediaQuery } from "@mui/material";
 import OrderLine from "./OrderLine";
 import TableHeader from "./TableHeader";
 import useFetch from "../../../../hooks/useFetch";
 import cookie from "cookie";
 import Loading from "../../Loading";
 import InternalError from "../../InternalError";
+import { useAuthHeaders } from "../../../../hooks/useAuthHeaders";
 
 /**
  * OrderDetails is a React functional component used for displaying
@@ -18,16 +19,9 @@ import InternalError from "../../InternalError";
  * @param {Object} props.order - The order object containing order details
  */
 const OrderDetails = ({ order }) => {
-  const jwt = cookie.parse(document.cookie).jwt;
   const isWidthAbove460 = useMediaQuery("(min-width:460px)");
 
-  const headers = useMemo(
-    () => ({
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${jwt}`,
-    }),
-    [jwt]
-  );
+  const { headers } = useAuthHeaders();
 
   const shouldFetch = useMemo(() => !!order?.id, [order]);
 

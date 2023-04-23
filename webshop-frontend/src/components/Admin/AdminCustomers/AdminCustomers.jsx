@@ -6,6 +6,7 @@ import useFetch from "../../../hooks/useFetch";
 import cookie from "cookie";
 import Loading from "../../Standard_components/Loading";
 import InternalError from "../../Standard_components/InternalError";
+import {useAuthHeaders} from "../../../hooks/useAuthHeaders";
 
 /**
  *
@@ -15,14 +16,8 @@ import InternalError from "../../Standard_components/InternalError";
  * @returns {JSX.Element} The JSX code for the AdminTestimonials component.
  */
 const AdminCustomers = () => {
-  const jwt = cookie.parse(document.cookie).jwt;
-  const headers = useMemo(
-    () => ({
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${jwt}`,
-    }),
-    [jwt]
-  );
+  const { headers } = useAuthHeaders();
+
   const {
     data: customers,
     isLoading,
