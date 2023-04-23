@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Box, Button } from "@mui/material";
 import TitledBox from "../../Standard_components/TitledBox";
 import ProductsTable from "./ProductsTable";
 import NewProductDialog from "./NewProductDialog";
-import axios from "axios";
 import useFetch from "../../../hooks/useFetch";
 import Loading from "../../Standard_components/Loading";
 import { useAuthHeaders } from "../../../hooks/useAuthHeaders";
@@ -37,6 +36,13 @@ const AdminProducts = () => {
     refetch: deleteProductRequest,
   } = useFetch("DELETE", "products", headers, null, null, false);
 
+  // Add this new useFetch instance
+  const {
+    isLoading: isUpdating,
+    error: updateError,
+    refetch: updateProductRequest,
+  } = useFetch("PUT", "products", headers, null, null, false);
+
   const createProduct = async (newProduct) => {
     try {
       const productData = {
@@ -53,9 +59,14 @@ const AdminProducts = () => {
     }
   };
 
-  const editProduct = (product) => {
-    // Add the API call for updating a product here.
-    console.log("Edited Product:", product);
+  // Update the editProduct function
+  const editProduct = async (updatedProduct) => {
+    try {
+      await updateProductRequest(updatedProduct);
+      await refetch();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const deleteProduct = async (productId) => {
