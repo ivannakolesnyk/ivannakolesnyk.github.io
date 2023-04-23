@@ -5,6 +5,8 @@ import ProductsTable from "./ProductsTable";
 import allproducts from "./dummyproducts";
 import NewProductDialog from "./NewProductDialog";
 import axios from "axios";
+import useFetch from "../../../hooks/useFetch";
+import Loading from "../../Standard_components/Loading";
 
 /**
  *
@@ -13,13 +15,9 @@ import axios from "axios";
  * @returns {JSX.Element} The JSX code for the AdminProducts component.
  */
 const AdminProducts = () => {
-  const [products, setProducts] = useState([]);
   const [newProductDialogOpen, setNewProductDialogOpen] = useState(false);
 
-  useEffect(() => {
-    // Replace this with the actual API call to get all products.
-    setProducts(allproducts);
-  }, []);
+  const { data: products, showError, isLoading } = useFetch("GET", "products");
 
   const createProduct = (newProduct) => {
     axios
@@ -40,8 +38,10 @@ const AdminProducts = () => {
   const deleteProduct = (productId) => {
     // Add the API call for deleting a product here.
     console.log("Deleted Product ID:", productId);
-    setProducts(products.filter((product) => product.product_id !== productId));
+    // setProducts(products.filter((product) => product.product_id !== productId));
   };
+
+  if (isLoading) return <Loading />;
 
   return (
     <Box sx={{ p: { xs: 2, md: 4 } }}>
