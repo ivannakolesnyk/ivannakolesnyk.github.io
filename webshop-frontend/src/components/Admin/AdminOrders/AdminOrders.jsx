@@ -17,7 +17,7 @@ import cookie from "cookie";
 import useFetch from "../../../hooks/useFetch";
 import Loading from "../../Standard_components/Loading";
 import InternalError from "../../Standard_components/InternalError";
-import {useAuthHeaders} from "../../../hooks/useAuthHeaders";
+import { useAuthHeaders } from "../../../hooks/useAuthHeaders";
 
 /**
  * AdminOrders is a React functional component used for managing and displaying
@@ -35,10 +35,23 @@ const AdminOrders = () => {
 
   const { headers } = useAuthHeaders();
 
+  const {
+    data: orders,
+    isLoading,
+    error,
+    refetch: fetchData,
+  } = useFetch("GET", `orders`, headers);
 
-  const { data: orders, isLoading, error } = useFetch("GET", `orders`, headers);
+  const { refetch: updateStatus } = useFetch(
+    "PUT",
+    `orders/${selectedOrder?.id}`,
+    headers,
+    null,
+    null,
+    false
+  );
 
-  const handleStatusChange = (event) => {
+  const handleStatusChange = async (event) => {
     const newStatus = event.target.value;
     setSelectedOrder((prevOrder) => {
       return {
@@ -46,6 +59,9 @@ const AdminOrders = () => {
         status: newStatus,
       };
     });
+
+    await updateStatus({ status: newStatus });
+    await fetchData();
   };
 
   const handleOrderClick = (order) => {
@@ -60,7 +76,7 @@ const AdminOrders = () => {
   if (error) return <InternalError />;
 
   return (
-    <Box sx={{ p: { xs: 2, md: 4 } }}>
+    <Box sx={{ p: { xs: 2, md: 4 } }} component={"section"}>
       <TitledBox title="Orders" />
       <OrderTable orders={orders} handleOrderClick={handleOrderClick} />
       <Dialog open={Boolean(selectedOrder)} onClose={handleClose}>
