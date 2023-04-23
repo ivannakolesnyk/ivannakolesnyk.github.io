@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React from "react";
 import {
   Button,
   Paper,
@@ -9,8 +9,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import useFetch from "../../../hooks/useFetch";
-import cookie from "cookie";
+import { useAuthHeaders } from "../../../hooks/useAuthHeaders";
 
 /**
  *
@@ -21,6 +20,8 @@ import cookie from "cookie";
  * @returns {JSX.Element} The JSX code for the CustomerTable component.
  */
 const CustomerTable = ({ customers, handleDelete }) => {
+  const { userEmail } = useAuthHeaders();
+
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -57,6 +58,7 @@ const CustomerTable = ({ customers, handleDelete }) => {
                       handleDelete(customer.email);
                     }
                   }}
+                  disabled={customer.email === userEmail}
                 >
                   Delete
                 </Button>
