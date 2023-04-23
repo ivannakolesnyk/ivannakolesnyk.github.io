@@ -145,7 +145,6 @@ const NewProductDialog = ({
             value={newProduct.imageAlt}
             onChange={handleChange}
             margin="normal"
-            // helperText="Example: Photo of a coffee cup"
           />
         </Box>
         <TextField

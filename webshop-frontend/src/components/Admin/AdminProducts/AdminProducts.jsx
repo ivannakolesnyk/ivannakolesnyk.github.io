@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Box, Button } from "@mui/material";
 import TitledBox from "../../Standard_components/TitledBox";
 import ProductsTable from "./ProductsTable";
-import allproducts from "./dummyproducts";
 import NewProductDialog from "./NewProductDialog";
 import axios from "axios";
 import useFetch from "../../../hooks/useFetch";
 import Loading from "../../Standard_components/Loading";
+import {useAuthHeaders} from "../../../hooks/useAuthHeaders";
 
 /**
  *
@@ -16,19 +16,36 @@ import Loading from "../../Standard_components/Loading";
  */
 const AdminProducts = () => {
   const [newProductDialogOpen, setNewProductDialogOpen] = useState(false);
+  const {headers} = useAuthHeaders();
 
-  const { data: products, showError, isLoading } = useFetch("GET", "products");
+    const {
+        data: products,
+        isLoading,
+        error: fetchError,
+        refetch,
+    } = useFetch("GET", "products", headers);
 
-  const createProduct = (newProduct) => {
-    axios
-      .post("/api/products", newProduct)
-      .then((response) => {
-        setNewProductDialogOpen(false);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+    const {
+        isLoading: isCreating,
+        error: createError,
+        refetch: createProductRequest,
+    } = useFetch("POST", "products", headers, null, null, false);
+
+    const createProduct = async (newProduct) => {
+        try {
+            const productData = {
+                ...newProduct,
+                category: { name: newProduct.category_name },
+            };
+            delete productData.category_name;
+
+            await createProductRequest(productData);
+            setNewProductDialogOpen(false);
+            await refetch();
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
   const editProduct = (product) => {
     // Add the API call for updating a product here.
@@ -60,11 +77,13 @@ const AdminProducts = () => {
         onEditProduct={editProduct}
         onDeleteProduct={deleteProduct}
       />
-      <NewProductDialog
-        open={newProductDialogOpen}
-        onClose={() => setNewProductDialogOpen(false)}
-        onCreate={createProduct}
-      />
+        <NewProductDialog
+            open={newProductDialogOpen}
+            onClose={() => setNewProductDialogOpen(false)}
+            onCreate={createProduct}
+            isCreating={isCreating}
+            createError={createError}
+        />
     </Box>
   );
 };
