@@ -11,15 +11,13 @@ import "./css/index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <CartProvider>
-        <AuthProvider>
-          <ProductsProvider>
-            <App />
-          </ProductsProvider>
-        </AuthProvider>
-      </CartProvider>
-    </ThemeProvider>
-  </React.StrictMode>
+  <ThemeProvider theme={theme}>
+    <CartProvider>
+      <AuthProvider>
+        <ProductsProvider>
+          <App />
+        </ProductsProvider>
+      </AuthProvider>
+    </CartProvider>
+  </ThemeProvider>
 );
