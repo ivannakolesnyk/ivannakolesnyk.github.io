@@ -34,10 +34,24 @@ const EditProductDialog = ({
 }) => {
   const [editedProduct, setEditedProduct] = useState(product);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setEditedProduct({ ...editedProduct, [name]: value });
+  const handleChange = (evt, nestedProperty) => {
+    const { name, value } = evt.target;
+
+    if (nestedProperty) {
+      setEditedProduct(prevEditedProduct => {
+        return {
+          ...prevEditedProduct,
+          [nestedProperty]: {
+            ...prevEditedProduct[nestedProperty],
+            [name]: value
+          }
+        };
+      });
+    } else {
+      setEditedProduct({ ...editedProduct, [name]: value });
+    }
   };
+
 
   const handleSaveChanges = () => {
     onEditProduct(editedProduct);
@@ -86,8 +100,8 @@ const EditProductDialog = ({
             <TextField
               fullWidth
               label="Image Path"
-              name="product_image_path"
-              value={editedProduct.product_image_path}
+              name="product_image"
+              value={editedProduct.product_image}
               onChange={handleChange}
             />
           </Grid>
@@ -95,8 +109,8 @@ const EditProductDialog = ({
             <TextField
               fullWidth
               label="Quantity in Stock"
-              name="quantity_in_stock"
-              value={editedProduct.quantity_in_stock}
+              name="qty_in_stock"
+              value={editedProduct.qty_in_stock}
               onChange={handleChange}
             />
           </Grid>
@@ -105,9 +119,9 @@ const EditProductDialog = ({
               <InputLabel htmlFor="category_name">Category</InputLabel>
               <Select
                 label="Category name"
-                name="category_name"
-                value={editedProduct.category_name}
-                onChange={handleChange}
+                name="name"
+                value={editedProduct.category.name}
+                onChange={(evt) => {handleChange(evt, "category")}}
                 inputProps={{
                   id: "category_name",
                 }}
