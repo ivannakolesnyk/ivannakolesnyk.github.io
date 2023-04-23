@@ -39,7 +39,7 @@ const OrderDetails = ({ order }) => {
   );
 
   const orderTotal = orderlines?.reduce((total, orderLine) => {
-    return total + orderLine.quantity * orderLine.product.price;
+    return total + orderLine.quantity * orderLine.price;
   }, 0);
 
   if (isLoading) {
@@ -63,7 +63,8 @@ const OrderDetails = ({ order }) => {
       {orderlines.map((orderLine) => (
         <OrderLine
           key={orderLine.id}
-          product={orderLine.product}
+          productName={orderLine.productName}
+          price={orderLine.price}
           quantity={orderLine.quantity}
         />
       ))}

@@ -17,11 +17,11 @@ import { Grid, Typography } from "@mui/material";
  *   <OrderLine product={product} quantity={quantity} />
  * );
  */
-const OrderLine = ({ product, quantity }) => {
+const OrderLine = ({ productName, price, quantity }) => {
   return (
     <>
       <Grid item xs={4}>
-        <Typography variant="body1">{product.name}</Typography>
+        <Typography variant="body1">{productName}</Typography>
       </Grid>
       <Grid item xs={2}>
         <Typography variant="body1" align="right">
@@ -30,12 +30,12 @@ const OrderLine = ({ product, quantity }) => {
       </Grid>
       <Grid item xs={3}>
         <Typography variant="body1" align="right">
-          {product.price.toFixed(2)}
+          {price.toFixed(2)}
         </Typography>
       </Grid>
       <Grid item xs={3}>
         <Typography variant="body1" align="right">
-          {(product.price * quantity).toFixed(2)}
+          {(price * quantity).toFixed(2)}
         </Typography>
       </Grid>
     </>

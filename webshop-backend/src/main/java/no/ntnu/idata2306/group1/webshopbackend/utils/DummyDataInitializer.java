@@ -150,14 +150,14 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
             ShopOrder order1 = new ShopOrder(new Date(), users.get(0), "Processing");
             shopOrderRepository.save(order1);
 
-            OrderLine orderLine1 = new OrderLine(order1, products.get(0), 2, products.get(0).getPrice());
-            OrderLine orderLine2 = new OrderLine(order1, products.get(1), 1, products.get(1).getPrice());
+            OrderLine orderLine1 = new OrderLine(order1, 2, products.get(0).getPrice(), products.get(0).getName());
+            OrderLine orderLine2 = new OrderLine(order1, 1, products.get(1).getPrice(), products.get(1).getName());
             orderLineRepository.saveAll(List.of(orderLine1, orderLine2));
 
             ShopOrder order2 = new ShopOrder(new Date(), users.get(1), "Shipped");
             shopOrderRepository.save(order2);
 
-            OrderLine orderLine3 = new OrderLine(order2, products.get(2), 3, products.get(2).getPrice());
+            OrderLine orderLine3 = new OrderLine(order2, 3, products.get(2).getPrice(), products.get(2).getName());
             orderLineRepository.save(orderLine3);
         }
     }

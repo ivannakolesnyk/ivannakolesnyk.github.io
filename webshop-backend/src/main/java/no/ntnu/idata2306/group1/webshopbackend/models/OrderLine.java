@@ -4,12 +4,7 @@
  */
 package no.ntnu.idata2306.group1.webshopbackend.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 /**
  * A single line representing a product in an order.
@@ -24,46 +19,58 @@ public class OrderLine {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private ShopOrder order;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "product_id")
-    private Product product;
+
     private int quantity;
     private double price;
+    private String productName;
 
-    public OrderLine() {}
+    public OrderLine() {
+    }
 
-    public OrderLine(ShopOrder order, Product product, int quantity, double price) {
+    public OrderLine(ShopOrder order, int quantity, double price, String productName) {
         this.order = order;
-        this.product = product;
         this.quantity = quantity;
         this.price = price;
+        this.productName = productName;
     }
 
     public int getId() {
         return this.id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public ShopOrder getOrder() {
         return this.order;
-    }
-
-    public Product getProduct() {
-        return this.product;
-    }
-
-    public int getQuantity() {
-        return this.quantity;
-    }
-
-    public double getPrice() {
-        return this.price;
     }
 
     public void setOrder(ShopOrder order) {
         this.order = order;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public int getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return this.price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 }

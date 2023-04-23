@@ -11,6 +11,7 @@ import no.ntnu.idata2306.group1.webshopbackend.repositories.ProductRepository;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.ShopOrderRepository;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.UserRepository;
 import no.ntnu.idata2306.group1.webshopbackend.services.AccessUserService;
+import no.ntnu.idata2306.group1.webshopbackend.utils.OrderLineMapper;
 import no.ntnu.idata2306.group1.webshopbackend.utils.ShopOrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,7 +57,7 @@ public class ShopOrderController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
             }
 
-            OrderLine orderLine = new OrderLine(savedOrder, product, orderLineDTO.getQuantity(), orderLineDTO.getPrice());
+            OrderLine orderLine = new OrderLine(savedOrder, orderLineDTO.getQuantity(), orderLineDTO.getPrice(), orderLineDTO.getProductName());
             orderLineRepository.save(orderLine);
         }
 
@@ -125,11 +126,17 @@ public class ShopOrderController {
                 String email = order.getUser().getEmail();
                 User sessionUser = userService.getSessionUser();
                 if (sessionUser != null && sessionUser.getEmail().equals(email)) {
-                    return new ResponseEntity(this.orderLineRepository.findByOrder(order),
-                            HttpStatus.OK);
+                    List<OrderLine> orderLines = this.orderLineRepository.findByOrder(order);
+                    List<OrderLineDTO> orderLineDTOs = orderLines.stream()
+                            .map(OrderLineMapper::toOrderLineDTO)
+                            .collect(Collectors.toList());
+                    return new ResponseEntity(orderLineDTOs, HttpStatus.OK);
                 } else if (sessionUser.isAdmin()) {
-                    return new ResponseEntity(this.orderLineRepository.findByOrder(order),
-                            HttpStatus.OK);
+                    List<OrderLine> orderLines = this.orderLineRepository.findByOrder(order);
+                    List<OrderLineDTO> orderLineDTOs = orderLines.stream()
+                            .map(OrderLineMapper::toOrderLineDTO)
+                            .collect(Collectors.toList());
+                    return new ResponseEntity(orderLineDTOs, HttpStatus.OK);
                 } else if (sessionUser == null) {
                     return new ResponseEntity("Order lines accessible only to authenticated users",
                             HttpStatus.UNAUTHORIZED);

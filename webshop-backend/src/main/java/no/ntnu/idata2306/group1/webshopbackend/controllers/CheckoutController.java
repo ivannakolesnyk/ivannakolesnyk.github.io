@@ -161,7 +161,7 @@ public class CheckoutController {
                     Product product = productRepository.findById(productId).orElse(null);
 
                     if (product != null) {
-                        OrderLine orderLine = new OrderLine(null, product, quantity, product.getPrice());
+                        OrderLine orderLine = new OrderLine(null, quantity, product.getPrice(), product.getName());
                         orderLines.add(orderLine);
                     }
                 }
