@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -88,6 +89,31 @@ public class ShopOrderController {
                     HttpStatus.FORBIDDEN);
         }
     }
+
+    @PutMapping("/api/orders/{id}")
+    public ResponseEntity<ShopOrder> updateOrderStatus(@PathVariable Integer id, @RequestBody Map<String, String> statusMap) {
+        User sessionUser = userService.getSessionUser();
+        if (sessionUser != null && sessionUser.isAdmin()) {
+            Optional<ShopOrder> optionalShopOrder = shopOrderRepository.findById(id);
+
+            if (!optionalShopOrder.isPresent()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+
+            ShopOrder shopOrder = optionalShopOrder.get();
+            shopOrder.setStatus(statusMap.get("status"));
+            ShopOrder updatedOrder = shopOrderRepository.save(shopOrder);
+            return ResponseEntity.status(HttpStatus.OK).body(updatedOrder);
+
+        } else if (sessionUser == null) {
+            return new ResponseEntity("Orders accessible only to authenticated users",
+                    HttpStatus.UNAUTHORIZED);
+        } else {
+            return new ResponseEntity("Orders can be modified only by admins",
+                    HttpStatus.FORBIDDEN);
+        }
+    }
+
 
     @GetMapping("/api/orders/orderlines/{orderid}")
     public ResponseEntity getOrderLines(@PathVariable String orderid) {
