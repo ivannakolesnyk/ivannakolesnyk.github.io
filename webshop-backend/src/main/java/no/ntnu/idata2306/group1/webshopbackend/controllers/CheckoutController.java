@@ -14,6 +14,7 @@ import no.ntnu.idata2306.group1.webshopbackend.repositories.OrderLineRepository;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.ProductRepository;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.ShopOrderRepository;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.UserRepository;
+import no.ntnu.idata2306.group1.webshopbackend.utils.UrlUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -81,7 +82,7 @@ public class CheckoutController {
                 .addAllLineItem(lineItems)
                 .addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
                 .setMode(SessionCreateParams.Mode.PAYMENT)
-                .setSuccessUrl(baseUrl + "/profile/vieworders?paymentSuccess=true")
+                .setSuccessUrl(baseUrl + UrlUtil.successUrl(this.userRepository, userId))
                 .setCancelUrl(baseUrl + "/shoppingcart")
                 .putMetadata("user_id", String.valueOf(userId));
 
