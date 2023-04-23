@@ -51,6 +51,15 @@ const AdminOrders = () => {
     false
   );
 
+  const { refetch: deleteOrder } = useFetch(
+      "DELETE",
+      `orders/${selectedOrder?.id}`,
+      headers,
+      null,
+      null,
+      false
+  );
+
   const handleStatusChange = async (event) => {
     const newStatus = event.target.value;
     setSelectedOrder((prevOrder) => {
@@ -62,6 +71,18 @@ const AdminOrders = () => {
 
     await updateStatus({ status: newStatus });
     await fetchData();
+    handleClose();
+  };
+
+  const handleDelete = async () => {
+    if (window.confirm("Delete order?")) {
+      // Delete the order
+      await deleteOrder();
+      // Refetch the orders
+      await fetchData();
+      // Close the dialog
+      handleClose();
+    }
   };
 
   const handleOrderClick = (order) => {
@@ -108,12 +129,7 @@ const AdminOrders = () => {
           <Button
             variant="contained"
             color="error"
-            onClick={() => {
-              if (window.confirm("Delete order?")) {
-                console.log("Order deleted!");
-                // TODO: Delete the order from the data source
-              }
-            }}
+            onClick={handleDelete}
           >
             Delete
           </Button>
