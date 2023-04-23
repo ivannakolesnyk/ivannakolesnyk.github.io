@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -13,7 +13,6 @@ import MenuItem from "@mui/material/MenuItem";
 import OrderTable from "../../Standard_components/Profile_and_Admin/Orders/OrderTable";
 import TitledBox from "../../Standard_components/TitledBox";
 import OrderDetails from "../../Standard_components/Profile_and_Admin/Orders/OrderDetails";
-import cookie from "cookie";
 import useFetch from "../../../hooks/useFetch";
 import Loading from "../../Standard_components/Loading";
 import InternalError from "../../Standard_components/InternalError";
@@ -52,12 +51,12 @@ const AdminOrders = () => {
   );
 
   const { refetch: deleteOrder } = useFetch(
-      "DELETE",
-      `orders/${selectedOrder?.id}`,
-      headers,
-      null,
-      null,
-      false
+    "DELETE",
+    `orders/${selectedOrder?.id}`,
+    headers,
+    null,
+    null,
+    false
   );
 
   const handleStatusChange = async (event) => {
@@ -126,11 +125,7 @@ const AdminOrders = () => {
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button
-            variant="contained"
-            color="error"
-            onClick={handleDelete}
-          >
+          <Button variant="contained" color="error" onClick={handleDelete}>
             Delete
           </Button>
           <Button variant="contained" onClick={handleClose}>
