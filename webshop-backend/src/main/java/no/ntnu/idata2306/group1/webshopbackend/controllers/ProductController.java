@@ -113,4 +113,36 @@ public class ProductController {
         productRepository.delete(optionalProduct.get());
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
+
+    @PutMapping("/api/products")
+    @Operation(
+            summary = "Update a product",
+            description = "Update a product with the given data. Return a 200 OK status code if the product is updated, or 404 code if the product or related category is not found."
+    )
+    public ResponseEntity updateProduct(@RequestBody Product updatedProduct) {
+        Optional<Product> optionalProduct = productRepository.findById(updatedProduct.getId());
+
+        if (!optionalProduct.isPresent()) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+
+        Category category = categoryRepository.findByName(updatedProduct.getCategory().getName());
+        if (category == null) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+
+        Product product = optionalProduct.get();
+        product.setCategory(category);
+        product.setDescription(updatedProduct.getDescription());
+        product.setImageAlt(updatedProduct.getImageAlt());
+        product.setIngredients(updatedProduct.getIngredients());
+        product.setName(updatedProduct.getName());
+        product.setPrice(updatedProduct.getPrice());
+        product.setProductImage(updatedProduct.getProductImage());
+        product.setQtyInStock(updatedProduct.getQtyInStock());
+        product.setSale(updatedProduct.getSale());
+
+        productRepository.save(product);
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }

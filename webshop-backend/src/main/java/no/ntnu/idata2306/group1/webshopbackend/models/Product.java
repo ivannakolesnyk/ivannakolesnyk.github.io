@@ -76,20 +76,40 @@ public class Product {
         return this.id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public double getPrice() {
         return this.price;
     }
 
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     public boolean getSale() {
         return this.sale;
     }
 
+    public void setSale(boolean sale) {
+        this.sale = sale;
+    }
+
     public String getDescription() {
         return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getIngredients() {
