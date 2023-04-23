@@ -39,9 +39,6 @@ public class ShopOrderController {
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    private ShopOrderMapper shopOrderMapper;
-
     @PostMapping("/api/orders")
     public ResponseEntity<ShopOrder> createOrder(@RequestBody ShopOrderDTO shopOrderDTO) {
         User user = userRepository.findById(shopOrderDTO.getUser_id()).orElse(null);
@@ -69,7 +66,7 @@ public class ShopOrderController {
     public ResponseEntity getOrders() {
         List<ShopOrder> shopOrders = this.shopOrderRepository.findAll();
         List<ShopOrderDTO> shopOrderDTOs = shopOrders.stream()
-                .map(shopOrderMapper::toShopOrderDTOWithUser)
+                .map(ShopOrderMapper::toShopOrderDTOWithUser)
                 .collect(Collectors.toList());
         return new ResponseEntity(shopOrderDTOs, HttpStatus.OK);
     }
@@ -80,7 +77,7 @@ public class ShopOrderController {
         if (sessionUser != null && sessionUser.getEmail().equals(username)) {
             List<ShopOrder> shopOrders = this.shopOrderRepository.findByUser(sessionUser);
             List<ShopOrderDTO> shopOrderDTOs = shopOrders.stream()
-                    .map(shopOrder -> shopOrderMapper.toShopOrderDTOWithTotal(shopOrder, this.orderLineRepository))
+                    .map(shopOrder -> ShopOrderMapper.toShopOrderDTOWithTotal(shopOrder, this.orderLineRepository))
                     .collect(Collectors.toList());
             return new ResponseEntity(shopOrderDTOs, HttpStatus.OK);
         } else if (sessionUser == null) {
