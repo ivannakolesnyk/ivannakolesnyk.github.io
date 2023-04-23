@@ -8,11 +8,15 @@ import io.swagger.v3.oas.annotations.Operation;
 import no.ntnu.idata2306.group1.webshopbackend.models.Category;
 import no.ntnu.idata2306.group1.webshopbackend.models.Product;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.CategoryRepository;
+import no.ntnu.idata2306.group1.webshopbackend.repositories.OrderLineRepository;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * REST API controller for all endpoints related to products.
@@ -24,6 +28,9 @@ public class ProductController {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private OrderLineRepository orderLineRepository;
 
     /**
      * HTTP GET endpoint for getting a list of products.
@@ -89,5 +96,21 @@ public class ProductController {
         product.setCategory(category);
         productRepository.save(product);
         return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/api/products")
+    @Operation(
+            summary = "Delete a product",
+            description = "Delete a product with the given ID. Return a 204 No Content status code if the product is deleted, or 404 code if the product is not found."
+    )
+    public ResponseEntity deleteProduct(@RequestBody Map<String, Integer> body) {
+        int id = body.get("id");
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (!optionalProduct.isPresent()) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+
+        productRepository.delete(optionalProduct.get());
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }

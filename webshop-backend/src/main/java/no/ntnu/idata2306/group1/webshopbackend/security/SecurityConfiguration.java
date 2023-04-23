@@ -60,8 +60,8 @@ public class SecurityConfiguration {
                 .requestMatchers("/api/products").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/products").hasRole("ADMIN")
                 .requestMatchers("/api/products/*").permitAll()
-                .requestMatchers(HttpMethod.DELETE, "/api/products/*").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/api/products/*").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/api/products").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/products").hasRole("ADMIN")
                 // Checkout endpoints
                 .requestMatchers("/api/create-checkout-session").authenticated()
                 .requestMatchers("/api/webhook").permitAll()
