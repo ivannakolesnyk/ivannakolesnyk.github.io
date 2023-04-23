@@ -155,6 +155,15 @@ public class ShopOrderController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
 
+            ShopOrder shopOrder = optionalShopOrder.get();
+
+            // Delete all order lines associated with the order
+            List<OrderLine> orderLines = orderLineRepository.findByOrder(shopOrder);
+            for (OrderLine orderLine : orderLines) {
+                orderLineRepository.deleteById(orderLine.getId());
+            }
+
+            // Delete the order
             shopOrderRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         } else if (sessionUser == null) {
