@@ -23,7 +23,7 @@ const BannerSection = () => {
           <Typography color={"secondary"}>
             Mix and match or find exactly what you want
           </Typography>
-          <Link to="/product">
+          <Link to="/products">
             <Button
               variant={"contained"}
               color={"secondary"}

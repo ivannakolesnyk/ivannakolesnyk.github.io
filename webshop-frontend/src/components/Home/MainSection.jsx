@@ -41,7 +41,7 @@ const MainSection = () => {
             of coffee-making products lets you unleash your inner barista and
             enjoy coffee just the way you like it.
           </Typography>
-          <Link to="/product">
+          <Link to="/products">
             <Button
               variant={"contained"}
               color={"secondary"}
