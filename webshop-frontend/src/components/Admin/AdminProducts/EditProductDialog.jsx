@@ -38,20 +38,19 @@ const EditProductDialog = ({
     const { name, value } = evt.target;
 
     if (nestedProperty) {
-      setEditedProduct(prevEditedProduct => {
+      setEditedProduct((prevEditedProduct) => {
         return {
           ...prevEditedProduct,
           [nestedProperty]: {
             ...prevEditedProduct[nestedProperty],
-            [name]: value
-          }
+            [name]: value,
+          },
         };
       });
     } else {
       setEditedProduct({ ...editedProduct, [name]: value });
     }
   };
-
 
   const handleSaveChanges = () => {
     onEditProduct(editedProduct);
@@ -68,6 +67,26 @@ const EditProductDialog = ({
       <DialogTitle>Edit Product</DialogTitle>
       <DialogContent>
         <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <FormControl fullWidth margin="normal">
+              <InputLabel htmlFor="category_name" >Category</InputLabel>
+              <Select
+                label="Category name"
+                name="name"
+                value={editedProduct.category.name}
+                onChange={(evt) => {
+                  handleChange(evt, "category");
+                }}
+                inputProps={{
+                  id: "category_name",
+                }}
+              >
+                <MenuItem value="Coffee">Coffee</MenuItem>
+                <MenuItem value="Tea">Tea</MenuItem>
+                <MenuItem value="Equipment">Equipment</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
@@ -96,13 +115,37 @@ const EditProductDialog = ({
               onChange={handleChange}
             />
           </Grid>
+          {editedProduct.category.name !== "Equipment" && (
+              <Grid item xs={12}>
+                <TextField
+                    fullWidth
+                    label="Ingredients"
+                    name="ingredients"
+                    value={editedProduct.ingredients}
+                    onChange={handleChange}
+                    rows={4}
+                />
+              </Grid>
+          )}
           <Grid item xs={12}>
             <TextField
               fullWidth
-              label="Image Path"
+              label="Image URL"
               name="product_image"
               value={editedProduct.product_image}
               onChange={handleChange}
+              margin="normal"
+              helperText="Example: /assets/img/products/coffee/dark-roast.png"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+                fullWidth
+                label="Image alt"
+                name="imageAlt"
+                value={editedProduct.imageAlt}
+                onChange={handleChange}
+                margin="normal"
             />
           </Grid>
           <Grid item xs={12}>
@@ -113,24 +156,6 @@ const EditProductDialog = ({
               value={editedProduct.qty_in_stock}
               onChange={handleChange}
             />
-          </Grid>
-          <Grid item xs={12}>
-            <FormControl fullWidth>
-              <InputLabel htmlFor="category_name">Category</InputLabel>
-              <Select
-                label="Category name"
-                name="name"
-                value={editedProduct.category.name}
-                onChange={(evt) => {handleChange(evt, "category")}}
-                inputProps={{
-                  id: "category_name",
-                }}
-              >
-                <MenuItem value="Coffee">Coffee</MenuItem>
-                <MenuItem value="Tea">Tea</MenuItem>
-                <MenuItem value="Equipment">Equipment</MenuItem>
-              </Select>
-            </FormControl>
           </Grid>
         </Grid>
       </DialogContent>
