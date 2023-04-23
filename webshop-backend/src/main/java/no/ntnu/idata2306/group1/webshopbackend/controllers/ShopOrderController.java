@@ -3,7 +3,6 @@ package no.ntnu.idata2306.group1.webshopbackend.controllers;
 import no.ntnu.idata2306.group1.webshopbackend.dto.OrderLineDTO;
 import no.ntnu.idata2306.group1.webshopbackend.dto.ShopOrderDTO;
 import no.ntnu.idata2306.group1.webshopbackend.models.OrderLine;
-import no.ntnu.idata2306.group1.webshopbackend.models.Product;
 import no.ntnu.idata2306.group1.webshopbackend.models.ShopOrder;
 import no.ntnu.idata2306.group1.webshopbackend.models.User;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.OrderLineRepository;
@@ -40,29 +39,6 @@ public class ShopOrderController {
 
     @Autowired
     private ProductRepository productRepository;
-
-    @PostMapping("/api/orders")
-    public ResponseEntity<ShopOrder> createOrder(@RequestBody ShopOrderDTO shopOrderDTO) {
-        User user = userRepository.findById(shopOrderDTO.getUser_id()).orElse(null);
-        if (user == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
-
-        ShopOrder shopOrder = new ShopOrder(shopOrderDTO.getOrder_date(), user, shopOrderDTO.getStatus());
-        ShopOrder savedOrder = shopOrderRepository.save(shopOrder);
-
-        for (OrderLineDTO orderLineDTO : shopOrderDTO.getOrder_lines()) {
-            Product product = productRepository.findById(orderLineDTO.getProduct_id()).orElse(null);
-            if (product == null) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-            }
-
-            OrderLine orderLine = new OrderLine(savedOrder, orderLineDTO.getQuantity(), orderLineDTO.getPrice(), orderLineDTO.getProductName());
-            orderLineRepository.save(orderLine);
-        }
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedOrder);
-    }
 
     @GetMapping("/api/orders")
     public ResponseEntity getOrders() {

@@ -5,7 +5,6 @@ public class OrderLineDTO {
     private String productName;
     private int quantity;
     private double price;
-    private int product_id;
 
     public OrderLineDTO() {
     }
@@ -40,14 +39,6 @@ public class OrderLineDTO {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public int getProduct_id() {
-        return product_id;
-    }
-
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
     }
 }
 
