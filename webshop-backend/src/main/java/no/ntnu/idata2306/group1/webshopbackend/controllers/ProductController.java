@@ -14,8 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 /**
  * REST API controller for all endpoints related to products.
  */
@@ -77,18 +75,18 @@ public class ProductController {
      * @param product The product object to be created
      * @return 201 Created status code if the product is created, or 404 code if the related category is not found.
      */
-    @PostMapping("/products")
+    @PostMapping("/api/products")
     @Operation(
             summary = "Create a new product",
             description = "Create a new product with the given data. Return a 201 Created status code if the product is created, or 404 code if the related category is not found."
     )
     public ResponseEntity createProduct(@RequestBody Product product) {
-        Optional<Category> optionalCategory =
-                categoryRepository.findById(product.getCategory().getId());
-        if (!optionalCategory.isPresent()) {
+        Category category =
+                categoryRepository.findByName(product.getCategory().getName());
+        if (category == null) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        product.setCategory(optionalCategory.get());
+        product.setCategory(category);
         productRepository.save(product);
         return new ResponseEntity(HttpStatus.CREATED);
     }
