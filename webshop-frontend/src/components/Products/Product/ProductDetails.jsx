@@ -35,10 +35,10 @@ function ProductDetails() {
   );
 
   useEffect(() => {
-    if (!product) {
+    if (!product && !error) {
       refetch();
     }
-  }, [product, refetch]);
+  }, [product, refetch, error]);
 
   useEffect(() => {
     if (fetched && data) {
@@ -134,7 +134,7 @@ function ProductDetails() {
                     </Grid>
                     <Grid item>
                       <Typography variant="body2" sx={{ marginLeft: 1 }}>
-                        {product.ingredients.join(", ")}
+                        {product.ingredients}
                       </Typography>
                     </Grid>
                   </Grid>

@@ -9,8 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
-import java.util.List;
-
 /**
  * A product in our webshop.
  *
@@ -38,7 +36,7 @@ public class Product {
     private String description;
 
     @Schema(description = "List of ingredients for the product")
-    private List<String> ingredients;
+    private String ingredients;
 
     @Schema(description = "Alternative text for the product image")
     private String imageAlt;
@@ -61,7 +59,7 @@ public class Product {
     }
 
     public Product(String name, double price, boolean sale, String description,
-                   List<String> ingredients, String imageAlt, String product_image, int qty_in_stock,
+                   String ingredients, String imageAlt, String product_image, int qty_in_stock,
                    Category category) {
         this.name = name;
         this.price = price;
@@ -94,11 +92,11 @@ public class Product {
         return this.description;
     }
 
-    public List<String> getIngredients() {
+    public String getIngredients() {
         return this.ingredients;
     }
 
-    public void setIngredients(List<String> ingredients) {
+    public void setIngredients(String ingredients) {
         this.ingredients = ingredients;
     }
 

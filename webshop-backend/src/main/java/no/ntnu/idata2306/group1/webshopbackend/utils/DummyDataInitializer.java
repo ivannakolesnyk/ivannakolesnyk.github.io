@@ -82,55 +82,55 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
             Category equipment = categoryRepository.findByName("Equipment");
 
             // Create and save products
-            productRepository.save(new Product("Signature ", 299, false, "Our Signature Blend - Aromatic, Rich, and Smooth. Our coffee beans are carefully selected from the best coffee farms around the world, ensuring a premium quality cup of coffee every time. This blend features a perfect balance of Arabica and Robusta beans, resulting in a bold flavor with notes of dark chocolate and caramel. Made with love for coffee enthusiasts who appreciate a truly exceptional coffee experience", List.of("100% Arabica", "Robusta coffee beans"), "Coffee image", "products/coffee/coffee1.png",
+            productRepository.save(new Product("Signature ", 299, false, "Our Signature Blend - Aromatic, Rich, and Smooth. Our coffee beans are carefully selected from the best coffee farms around the world, ensuring a premium quality cup of coffee every time. This blend features a perfect balance of Arabica and Robusta beans, resulting in a bold flavor with notes of dark chocolate and caramel. Made with love for coffee enthusiasts who appreciate a truly exceptional coffee experience", "100% Arabica and Robusta coffee beans", "Coffee image", "products/coffee/coffee1.png",
                     100, coffee));
             productRepository.save(new Product("Single-Origin ", 399, false, "Ethically Sourced Single-Origin Beans - Uniquely Distinctive, Vibrant, and Exotic. Our single-origin coffee beans are sourced directly from small coffee farms in regions known for their exceptional coffee beans. Each origin has its own unique flavor profile, from fruity and floral to earthy and bold, offering a diverse selection for coffee connoisseurs seeking an adventure in every sip.",
-                    List.of("100% Arabica coffee beans from single origins."), "Coffee image", "products/coffee/coffee2.png",
+                    "100% Arabica coffee beans from single origins.", "Coffee image", "products/coffee/coffee2.png",
                     100, coffee));
             productRepository.save(new Product("Decaf Delight ", 299, false, "Decaf Delight - Smooth, Balanced, and Flavorful. Our decaf coffee beans are perfect for those who want to enjoy the taste of coffee without the caffeine kick. We use a careful decaffeination process that preserves the natural flavors of the coffee beans, resulting in",
-                    List.of("100% Arabica decaffeinated coffee beans."), "Coffee image", "products/coffee/coffee3.png",
+                    "100% Arabica decaffeinated coffee beans.", "Coffee image", "products/coffee/coffee3.png",
                     100, coffee));
             productRepository.save(new Product("Organic ", 249, true, "Organic and Sustainable Blend - Clean, Pure, and Eco-Friendly. Our organic coffee beans are grown using sustainable farming practices that prioritize the well-being of the environment and the farmers. These beans are certified organic, meaning they are free from pesticides, herbicides, and other harmful chemicals. Enjoy a guilt-free cup of coffee with a smooth, clean taste and a lingering finish.",
-                    List.of("100% Organic Arabica coffee beans."), "Coffee image", "products/coffee/coffee4.png",
+                    "100% Organic Arabica coffee beans.", "Coffee image", "products/coffee/coffee4.png",
                     100, coffee));
             productRepository.save(new Product("Seasonal Blend", 499, false, "Limited Edition Seasonal Blend - Unique, Festive, and Flavorful. Our seasonal blend is carefully crafted using the finest coffee beans harvested during a specific time of the year, resulting in a coffee with a distinct flavor profile that captures the essence of the season. Whether it's a warm spiced blend for winter or a fruity and refreshing blend for summer, our limited edition seasonal coffee is a special treat for coffee lovers who appreciate variety and creativity in their cup.",
-                    List.of("Seasonal coffee beans sourced from various origins."), "Coffee image", "products/coffee/coffee5.png",
+                    "Seasonal coffee beans sourced from various origins.", "Coffee image", "products/coffee/coffee5.png",
                     100, coffee));
 
             productRepository.save(new Product("English Breakfast", 199, true, "Classic English Breakfast - Robust, Bold, and Energizing. Our English Breakfast tea is a classic blend of high-quality black teas, carefully selected for their bold and robust flavors. It's the perfect way to start your day, with a brisk and invigorating cup of tea that pairs well with milk and sugar or as a standalone beverage.",
-                    List.of("Black tea blend (Assam, Ceylon, Kenyan, and/or Chinese black teas)."), "Tea image", "products/tea/tea1.png",
+                    "Black tea blend (Assam, Ceylon, Kenyan, and/or Chinese black teas).", "Tea image", "products/tea/tea1.png",
                     100, tea));
             productRepository.save(new Product("Chamomile ", 249, false, "Charming Chamomile - Calming, Soothing, and Floral. Our Chamomile tea is a calming infusion of dried chamomile flowers, known for their gentle, floral flavor and soothing properties. This caffeine-free herbal tea is perfect for relaxing after a long day, helping you unwind and find your zen. ",
-                    List.of("Chamomile flowers."), "Tea image", "products/tea/tea2.png",
+                    "Chamomile flowers.", "Tea image", "products/tea/tea2.png",
                     100, tea));
             productRepository.save(new Product("Earl Grey", 299, false, "Exotic Earl Grey - Citrusy, Fragrant, and Sophisticated. Our Earl Grey tea is a luxurious blend of black tea and bergamot oil, known for its distinctive citrusy aroma and bold flavor. This timeless classic is a favorite among tea enthusiasts, with its elegant and sophisticated taste that can be enjoyed with or without milk.",
-                    List.of("Black tea, bergamot oil."), "Tea image", "products/tea/tea3.png",
+                    "Black tea, bergamot oil.", "Tea image", "products/tea/tea3.png",
                     100, tea));
             productRepository.save(new Product("Peppermint ", 399, false, "Refreshing Peppermint - Cool, Minty, and Invigorating. Our Peppermint tea is a refreshing and invigorating infusion of dried peppermint leaves, known for their cooling and soothing properties. This caffeine-free herbal tea is perfect for sipping after a meal or when you need a burst of freshness to awaken your senses.",
-                    List.of("Peppermint leaves."), "Tea image", "products/tea/tea4.png",
+                    "Peppermint leaves.", "Tea image", "products/tea/tea4.png",
                     100, tea));
             productRepository.save(new Product("Green Jasmine", 199, true, "Delightful Green Jasmine - Floral, Fragrant, and Delicate. Our Green Jasmine tea is a delicate blend of green tea leaves and jasmine flowers, known for their floral aroma and refreshing taste. This exquisite tea is hand-picked and carefully crafted to create a soothing and aromatic experience with every sip.",
-                    List.of("Green tea leaves, jasmine flowers."), "Tea image", "products/tea/tea5.png",
+                    "Green tea leaves, jasmine flowers.", "Tea image", "products/tea/tea5.png",
                     100, tea));
 
             productRepository.save(new Product("Bamboo Plate ", 199, true, "Eco-Friendly Bamboo Plate - Sustainable, Stylish, and Earth-Friendly. Our bamboo plate is not only an elegant addition to your dining table, but it's also made from sustainable bamboo, making it an eco-friendly choice for conscious consumers. This durable and versatile plate is perfect for serving appetizers, salads, or main dishes, and adds a touch of natural beauty to your dining experience.",
-                    List.of(""), "Equipment image", "products/equipment/bamboo-plate.png",
+                    "", "Equipment image", "products/equipment/bamboo-plate.png",
                     100, equipment));
             productRepository.save(new Product("Carafe", 149, true, "Elegant Carafe - Sleek, Functional, and Versatile. Our carafe is designed to impress with its sleek and elegant design. Made from high-quality glass, this versatile piece is perfect for serving water, juice, wine, or other beverages. Its ergonomic handle and easy-pour spout make it a practical and stylish choice for any occasion, whether it's a formal dinner or a casual gathering..",
-                    List.of(""), "Equipment image", "products/equipment/carafe.png",
+                    "", "Equipment image", "products/equipment/carafe.png",
                     100, equipment));
             productRepository.save(new Product("Cinnamon Infuser", 299, false, "Cinnamon Infuser - Aromatic, Flavorful, and Convenient. Our cinnamon infuser is a must-have accessory for any coffee or tea lover. Made from high-quality stainless steel, this handy tool is designed to hold cinnamon sticks, releasing their aromatic flavors into your hot beverages. It's a simple and convenient way to add a touch of warmth and spice to your favorite drinks.",
-                    List.of(""), "Equipment image", "products/equipment/cinnamon-infuser.png",
+                    "", "Equipment image", "products/equipment/cinnamon-infuser.png",
                     100, equipment));
-            productRepository.save(new Product("Coffee Cup", 199, false, "Classic Coffee Cup - Timeless, Durable, and Comfortable. Our classic coffee cup is a timeless piece that never goes out of style. Made from high-quality ceramic, this durable cup is designed to retain heat, keeping your coffee or tea at the perfect temperature. Its comfortable handle and classic design make it a favorite\n" +
-                    " among coffee enthusiasts who appreciate a simple and elegant cup for their daily brew.\n",
-                    List.of(""), "Equipment image", "products/equipment/white-cup.png",
+            productRepository.save(new Product("Coffee Cup", 199, false, "Classic Coffee Cup - Timeless, Durable, and Comfortable. Our classic coffee cup is a timeless piece that never goes out of style. Made from high-quality ceramic, this durable cup is designed to retain heat, keeping your coffee or tea at the perfect temperature. Its comfortable handle and classic design make it a favorite" +
+                    " among coffee enthusiasts who appreciate a simple and elegant cup for their daily brew.",
+                    "", "Equipment image", "products/equipment/white-cup.png",
                     100, equipment));
             productRepository.save(new Product("Coffee Machine", 1249, false, "Professional Coffee Machine - Powerful, Efficient, and Reliable. Our coffee machine is a top-of-the-line piece of equipment for serious coffee enthusiasts. With its powerful brewing capabilities, precise temperature control, and customizable settings, this machine delivers a superior coffee experience every time. Its sleek design and stainless steel construction make it a stylish and durable addition to any coffee lover's kitchen.",
-                    List.of(""), "Equipment image", "products/equipment/coffee-machine.png",
+                    "", "Equipment image", "products/equipment/coffee-machine.png",
                     100, equipment));
             productRepository.save(new Product("Coffee Pot", 249, false, "Stylish Coffee Pot - Sleek, Functional, and Elegant. Our coffee pot is designed to impress with its sleek and stylish design. Made from high-quality glass or stainless steel, this coffee pot is perfect for brewing and serving coffee in style. Its ergonomic handle and easy-pour spout make it a practical and elegant choice for serving coffee to guests or enjoying a quiet moment alone.",
-                    List.of(""), "Equipment image", "products/equipment/coffeepot.png",
+                    "", "Equipment image", "products/equipment/coffeepot.png",
                     100, equipment));
         }
     }
