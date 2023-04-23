@@ -1,10 +1,13 @@
-import React, { useMemo } from "react";
+import React, {useEffect, useMemo} from "react";
 import cookie from "cookie";
 import Loading from "../Standard_components/Loading";
 import InternalError from "../Standard_components/InternalError";
 import jwt_decode from "jwt-decode";
 import useFetch from "../../hooks/useFetch";
 import { AdminTabs } from "./AdminTabs";
+import {useCart} from "../../context/CartContext";
+import {useNavigate} from "react-router-dom";
+import {usePaymentSuccess} from "../../hooks/usePaymentSuccess";
 
 /**
  *
@@ -16,6 +19,8 @@ import { AdminTabs } from "./AdminTabs";
  * @returns {JSX.Element} The JSX code for the Admin component.
  */
 const Admin = () => {
+  const {clearCart} = useCart();
+  const navigate = useNavigate();
   const jwt = cookie.parse(document.cookie).jwt;
   const payload = jwt_decode(jwt);
   const userEmail = payload ? payload.sub : ""; // Replace 'sub' with the claim name containing the user's email
@@ -33,6 +38,8 @@ const Admin = () => {
     isLoading,
     error,
   } = useFetch("GET", `users/${userEmail}`, headers);
+
+  usePaymentSuccess(clearCart);
 
   if (isLoading) {
     return <Loading />;
