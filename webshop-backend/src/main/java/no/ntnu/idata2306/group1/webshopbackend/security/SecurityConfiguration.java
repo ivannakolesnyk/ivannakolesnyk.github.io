@@ -56,14 +56,21 @@ public class SecurityConfiguration {
                 .requestMatchers("/swagger-ui/**").permitAll()
                 .requestMatchers("/api/authenticate").permitAll()
                 .requestMatchers("/api/signup").permitAll()
+                // Products endpoints
                 .requestMatchers("/api/products").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/products").hasRole("ADMIN")
                 .requestMatchers("/api/products/*").permitAll()
-                .requestMatchers("/api/create-checkout-session").permitAll()
+                .requestMatchers(HttpMethod.DELETE, "/api/products/*").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/products/*").hasRole("ADMIN")
+                // Checkout endpoints
+                .requestMatchers("/api/create-checkout-session").authenticated()
                 .requestMatchers("/api/webhook").permitAll()
-                .requestMatchers("/api/testimonials").permitAll()
-                .requestMatchers("/api/testimonials/*").permitAll()
-//                .requestMatchers(HttpMethod.GET, "/api/testimonials").permitAll()
-//                .requestMatchers(HttpMethod.DELETE, "/api/testimonials/*").hasRole("ADMIN")
+                // Testimonials endpoints
+                .requestMatchers(HttpMethod.GET, "/api/testimonials").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/testimonials").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/api/testimonials/*").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/testimonials/*").hasRole("ADMIN")
+                // Orders endpoints
                 .requestMatchers(HttpMethod.GET, "/api/orders").hasRole("ADMIN")
                 .requestMatchers("/api/orders/orderlines/*").permitAll()
                 .anyRequest().authenticated().and()
