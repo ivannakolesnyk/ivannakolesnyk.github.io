@@ -1,66 +1,62 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
-import { theme } from "../theme";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import DirectionsIcon from "@mui/icons-material/Directions";
-
-// needs to be defined outside "FindUs" to avoid libraries prop being passed as a new array on each render
-const libraries = ["places"];
 
 //For placing Direction Butoon component right on top of the Google Map, used wraping both the GoogleMap and DirectionButton components inside a container element and use CSS to position the last one over the map.
 const DirectionButton = ({ address, onGetDirections }) => {
   return (
-    <ThemeProvider theme={theme}>
-      <Box
+    <Box
+      sx={{
+        backgroundColor: "primary.main",
+        borderRadius: 5,
+        padding: "35px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "center",
+        textAlign: "left",
+        position: "absolute",
+        top: "20%",
+        left: "35%",
+        transform: "translate(-30%, -50%)",
+        zIndex: 1,
+        "& > *": {
+          margin: "10px 0",
+        },
+      }}
+    >
+      <Typography variant="h3" color="primary.contrastText">
+        Find Us
+      </Typography>
+      <Typography
+        variant="body1"
+        color="primary.contrastText"
+        sx={{ textAlign: "left", width: "100%", mt: 2 }}
+      >
+        {address}
+      </Typography>
+      <Button
+        variant="contained"
+        endIcon={<DirectionsIcon />}
+        onClick={onGetDirections}
         sx={{
-          backgroundColor: "primary.main",
-          borderRadius: 5,
-          padding: "35px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          justifyContent: "center",
-          textAlign: "left",
-          position: "absolute",
-          top: "20%",
-          left: "35%",
-          transform: "translate(-30%, -50%)",
-          zIndex: 1,
-          "& > *": {
-            margin: "10px 0",
-          },
+          mt: 2,
+          backgroundColor: "secondary.main",
+          color: "secondary.contrastText",
         }}
       >
-        <Typography variant="h3" color="primary.contrastText">
-          Find Us
-        </Typography>
-        <Typography
-          variant="body1"
-          color="primary.contrastText"
-          sx={{ textAlign: "left", width: "100%", mt: 2 }}
-        >
-          {address}
-        </Typography>
-        <Button
-          variant="contained"
-          endIcon={<DirectionsIcon />}
-          onClick={onGetDirections}
-          sx={{
-            mt: 2,
-            backgroundColor: "secondary.main",
-            color: "secondary.contrastText",
-          }}
-        >
-          Get direction
-        </Button>
-      </Box>
-    </ThemeProvider>
+        Get direction
+      </Button>
+    </Box>
   );
 };
 
 //Function for implementation the Google maps to the page
 const FindUs = () => {
+  // workaround found on github.com to avoid libraries prop being passed as a new array on each render
+  const [libraries] = useState(["places"]);
+
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyDPk_iIoIf7gKWMTEdQ6G5OzlwrmxJ-TpY",
     libraries,
