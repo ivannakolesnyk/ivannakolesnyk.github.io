@@ -1,5 +1,10 @@
 package no.ntnu.idata2306.group1.webshopbackend.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import no.ntnu.idata2306.group1.webshopbackend.dto.OrderLineDTO;
 import no.ntnu.idata2306.group1.webshopbackend.dto.ShopOrderDTO;
 import no.ntnu.idata2306.group1.webshopbackend.models.OrderLine;
@@ -40,6 +45,9 @@ public class ShopOrderController {
     @Autowired
     private ProductRepository productRepository;
 
+    @Operation(summary = "Get all orders")
+    @ApiResponse(responseCode = "200", description = "Orders fetched",
+            content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ShopOrderDTO.class)) })
     @GetMapping("/api/orders")
     public ResponseEntity getOrders() {
         List<ShopOrder> shopOrders = this.shopOrderRepository.findAll();
@@ -49,8 +57,13 @@ public class ShopOrderController {
         return new ResponseEntity(shopOrderDTOs, HttpStatus.OK);
     }
 
+    @Operation(summary = "Get user's orders")
+    @ApiResponse(responseCode = "200", description = "User's orders fetched",
+            content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ShopOrderDTO.class)) })
     @GetMapping("/api/orders/{username}")
-    public ResponseEntity getUsersOrders(@PathVariable String username) {
+    public ResponseEntity getUsersOrders(
+            @Parameter(description = "Username of the user")
+            @PathVariable String username) {
         User sessionUser = userService.getSessionUser();
         if (sessionUser != null && sessionUser.getEmail().equals(username)) {
             List<ShopOrder> shopOrders = this.shopOrderRepository.findByUser(sessionUser);
@@ -67,8 +80,13 @@ public class ShopOrderController {
         }
     }
 
+    @Operation(summary = "Update order status")
+    @ApiResponse(responseCode = "200", description = "Order status updated",
+            content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ShopOrder.class)) })
     @PutMapping("/api/orders/{id}")
-    public ResponseEntity<ShopOrder> updateOrderStatus(@PathVariable Integer id, @RequestBody Map<String, String> statusMap) {
+    public ResponseEntity<ShopOrder> updateOrderStatus(
+            @Parameter(description = "ID of the order to be updated")
+            @PathVariable Integer id, @RequestBody Map<String, String> statusMap) {
         User sessionUser = userService.getSessionUser();
         if (sessionUser != null && sessionUser.isAdmin()) {
             Optional<ShopOrder> optionalShopOrder = shopOrderRepository.findById(id);
@@ -91,9 +109,13 @@ public class ShopOrderController {
         }
     }
 
-
+    @Operation(summary = "Get order lines by order ID")
+    @ApiResponse(responseCode = "200", description = "Order lines fetched",
+            content = { @Content(mediaType = "application/json", schema = @Schema(implementation = OrderLineDTO.class)) })
     @GetMapping("/api/orders/orderlines/{orderid}")
-    public ResponseEntity getOrderLines(@PathVariable String orderid) {
+    public ResponseEntity getOrderLines(
+            @Parameter(description = "ID of the order")
+            @PathVariable String orderid) {
         try {
             Integer parsedId = Integer.parseInt(orderid);
             Optional<ShopOrder> found = this.shopOrderRepository.findById(parsedId);
@@ -128,12 +150,15 @@ public class ShopOrderController {
         }
     }
 
+    @Operation(summary = "Delete an order")
+    @ApiResponse(responseCode = "204", description = "Order deleted")
     @DeleteMapping("/api/orders/{id}")
-    public ResponseEntity<Void> deleteOrder(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteOrder(
+            @Parameter(description = "ID of the order to be deleted")
+            @PathVariable Integer id) {
         User sessionUser = userService.getSessionUser();
         if (sessionUser != null && sessionUser.isAdmin()) {
             Optional<ShopOrder> optionalShopOrder = shopOrderRepository.findById(id);
-
             if (!optionalShopOrder.isPresent()) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
@@ -158,4 +183,3 @@ public class ShopOrderController {
         }
     }
 }
-
