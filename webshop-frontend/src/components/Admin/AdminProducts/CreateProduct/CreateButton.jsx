@@ -1,7 +1,7 @@
 import { Button, CircularProgress } from "@mui/material";
 import React from "react";
 
-const CreateButton = ({name, onClick, product, isCreating}) => {
+const CreateButton = ({onClick, product, isCreating}) => {
   return (
     <Button
       variant="contained"

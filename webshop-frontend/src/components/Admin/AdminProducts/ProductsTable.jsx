@@ -10,7 +10,7 @@ import {
   IconButton,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
-import EditProductDialog from "./EditProductDialog";
+import EditProductDialog from "./EditProduct/EditProductDialog";
 
 /**
  *

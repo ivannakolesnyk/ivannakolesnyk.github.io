@@ -7,7 +7,7 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
-import ProductForm from "./ProductForm";
+import ProductForm from "../ProductForm";
 import CreateButton from "./CreateButton";
 
 // The initial state of a new product

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Button } from "@mui/material";
 import TitledBox from "../../Standard_components/TitledBox";
 import ProductsTable from "./ProductsTable";
-import NewProductDialog from "./NewProductDialog";
+import NewProductDialog from "./CreateProduct/NewProductDialog";
 import useFetch from "../../../hooks/useFetch";
 import Loading from "../../Standard_components/Loading";
 import { useAuthHeaders } from "../../../hooks/useAuthHeaders";

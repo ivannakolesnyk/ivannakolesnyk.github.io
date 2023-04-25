@@ -6,7 +6,7 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
-import ProductForm from "./ProductForm";
+import ProductForm from "../ProductForm";
 
 /**
  *
