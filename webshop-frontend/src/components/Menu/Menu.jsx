@@ -24,7 +24,7 @@ const Menu = () => {
           <Box textAlign={"center"}>
             <ProductCard
               productName={productName}
-              imagePath={imagePath}
+              imagePath={`${process.env.PUBLIC_URL}/assets/img/${imagePath}`}
               isClickable={false}
             />
           </Box>

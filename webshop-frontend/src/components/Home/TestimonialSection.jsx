@@ -20,7 +20,7 @@ export default function TestimonialSection() {
       <Testimonial
         key={testimonial.id}
         name={testimonial.name}
-        image_url={`${process.env.PUBLIC_URL}/assets/img/${testimonial.testimonial_image}`}
+        image_url={testimonial.testimonial_image}
         comment={testimonial.description}
         rating={testimonial.rating}
       />
