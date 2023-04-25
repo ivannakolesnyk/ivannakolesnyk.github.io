@@ -23,6 +23,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -55,8 +62,14 @@ public class CheckoutController {
      * @param cartRequest the request object containing cart items and user ID
      * @return the checkout session URL
      */
+    @Operation(summary = "Create a checkout session")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Checkout session created", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Map.class))}),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     @PostMapping("/api/create-checkout-session")
-    public ResponseEntity<Map<String, String>> createCheckoutSession(@RequestBody CartRequest cartRequest) {
+    public ResponseEntity<Map<String, String>> createCheckoutSession(@RequestBody @Parameter(description = "Cart request object containing cart items and user ID", required = true, schema = @Schema(implementation = CartRequest.class)) CartRequest cartRequest) {
         List<CartItem> cart = cartRequest.getCart();
         String userId = cartRequest.getUserId();
         List<SessionCreateParams.LineItem> lineItems = cart.stream()
@@ -77,7 +90,6 @@ public class CheckoutController {
                                     .build())
                             .build();
                 }).filter(item -> item != null).collect(Collectors.toList());
-
         SessionCreateParams.Builder paramsBuilder = SessionCreateParams.builder()
                 .addAllLineItem(lineItems)
                 .addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
@@ -116,8 +128,14 @@ public class CheckoutController {
      * @param request the HTTP request object
      * @return an HTTP response indicating the result of handling the webhook
      */
+    @Operation(summary = "Handle Stripe webhook events")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Webhook event handled"),
+            @ApiResponse(responseCode = "400", description = "Invalid payload or signature"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     @PostMapping("/api/webhook")
-    public ResponseEntity<String> handleStripeWebhook(@RequestBody String payload, HttpServletRequest request) {
+    public ResponseEntity<String> handleStripeWebhook(@RequestBody @Parameter(description = "Webhook payload", required = true) String payload, HttpServletRequest request) {
         String sigHeader = request.getHeader("Stripe-Signature");
         Event event = null;
 
@@ -157,7 +175,6 @@ public class CheckoutController {
                     String[] productIdAndQuantity = value.split(",");
                     int productId = Integer.parseInt(productIdAndQuantity[0]);
                     int quantity = Integer.parseInt(productIdAndQuantity[1]);
-
                     Product product = productRepository.findById(productId).orElse(null);
 
                     if (product != null) {

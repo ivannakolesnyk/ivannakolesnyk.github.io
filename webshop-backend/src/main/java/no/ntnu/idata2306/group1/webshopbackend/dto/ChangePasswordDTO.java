@@ -1,7 +1,14 @@
 package no.ntnu.idata2306.group1.webshopbackend.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "Data transfer object for submitting password change requests")
 public class ChangePasswordDTO {
+
+    @Schema(description = "The user's current password")
     private String currentPassword;
+
+    @Schema(description = "The user's new password")
     private String newPassword;
 
     // Getters and setters

@@ -5,6 +5,7 @@
 package no.ntnu.idata2306.group1.webshopbackend.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -15,14 +16,24 @@ import jakarta.persistence.Id;
  * @author julian
  */
 @Entity
+@Schema(description = "A testimonial (review) from a customer")
 public class Testimonial {
     @Id
     @GeneratedValue
+    @Schema(description = "The unique identifier of the testimonial")
     private int id;
+
+    @Schema(description = "The name of the customer providing the testimonial")
     private String name;
+
+    @Schema(description = "The rating given by the customer")
     private int rating;
+
+    @Schema(description = "The testimonial text provided by the customer")
     private String description;
+
     @JsonProperty("testimonial_image")
+    @Schema(description = "The image associated with the testimonial")
     private String testimonial_image;
 
     public Testimonial() {
