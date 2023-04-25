@@ -18,7 +18,7 @@ const TestimonialCards = ({ onCardClick, testimonials }) => {
           key={testimonial.id}
           testimonial={testimonial}
           name={testimonial.name}
-          image_url={`${process.env.PUBLIC_URL}/assets/img/${testimonial.testimonial_image}`}
+          image_url={`${testimonial.testimonial_image}`}
           comment={testimonial.description}
           rating={testimonial.rating}
           onCardClick={() => onCardClick(testimonial)}

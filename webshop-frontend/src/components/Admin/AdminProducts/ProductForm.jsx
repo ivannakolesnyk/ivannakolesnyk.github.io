@@ -6,14 +6,9 @@ import {
   MenuItem,
   Select,
   TextField,
-  IconButton,
-  InputAdornment,
 } from "@mui/material";
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import { getStorage } from "firebase/storage";
-import { initializeApp } from "firebase/app";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import useFirebaseStorage from "../../../hooks/useFirebaseStorage";
+import ImageFileInput from "../../Standard_components/ImageFileInput";
 
 const ProductForm = ({
   product,
@@ -29,8 +24,7 @@ const ProductForm = ({
     onChange(name, value, nestedProperty);
   };
 
-  const handleImageUpload = async (evt) => {
-    const file = evt.target.files[0];
+  const handleImageUpload = async (file) => {
     const imgRef = `images/products/${
       isEdit ? product.category.name : product.category_name
     }/${file.name}`;
@@ -109,36 +103,9 @@ const ProductForm = ({
         </Grid>
       )}
       <Grid item xs={12}>
-        <input
-          accept="image/*"
-          id="product-image"
-          type="file"
-          hidden
-          onChange={(evt) => handleImageUpload(evt)}
-        />
-        <TextField
-          fullWidth
-          label="Image URL"
-          name="product_image"
+        <ImageFileInput
+          handleImageUpload={handleImageUpload}
           value={product.product_image}
-          // onChange={(evt) => handleChange(evt, null)}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  edge="end"
-                  color="primary"
-                  aria-label="upload image"
-                  component="span"
-                  onClick={() =>
-                    document.getElementById("product-image").click()
-                  }
-                >
-                  <PhotoCamera />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
         />
       </Grid>
 

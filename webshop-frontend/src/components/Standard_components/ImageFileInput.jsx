@@ -1,11 +1,7 @@
 import React from "react";
-import {
-  Box,
-  TextField,
-  InputAdornment,
-  IconButton,
-} from "@mui/material";
+import { Box, IconButton, InputAdornment, TextField } from "@mui/material";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
+
 const ImageFileInput = ({ handleImageUpload, value = "" }) => {
   return (
     <Box>

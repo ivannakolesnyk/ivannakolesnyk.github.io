@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -11,6 +11,8 @@ import {
   Rating,
   TextField,
 } from "@mui/material";
+import ImageFileInput from "../../Standard_components/ImageFileInput";
+import useFirebaseStorage from "../../../hooks/useFirebaseStorage";
 
 /**
  *
@@ -35,6 +37,23 @@ const EditTestimonialForm = ({
   const [testimonial_image, setTestimonialImage] = useState("");
   const [description, setComment] = useState("");
   const [rating, setRating] = useState(null);
+
+  const { uploadImageToCloudService } = useFirebaseStorage();
+
+  const handleImageUpload = async (file) => {
+    const imgRef = `images/testimonials/${file.name}`;
+
+    if (!file) return;
+
+    try {
+      const imageUrl = await uploadImageToCloudService(file, imgRef);
+
+      // Update the form data with the image URL.
+      setTestimonialImage(imageUrl);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
 
   useEffect(() => {
     setName(testimonial.name || "");
@@ -69,11 +88,9 @@ const EditTestimonialForm = ({
           </FormGroup>
 
           <FormGroup>
-            <FormLabel>Image URL</FormLabel>
-            <TextField
+            <ImageFileInput
+              handleImageUpload={handleImageUpload}
               value={testimonial_image}
-              onChange={(event) => setTestimonialImage(event.target.value)}
-              required
             />
           </FormGroup>
 
@@ -91,7 +108,7 @@ const EditTestimonialForm = ({
           <FormControl>
             <FormLabel>Rating</FormLabel>
             <Rating
-                name="rating"
+              name="rating"
               value={rating}
               onChange={(event, newValue) => setRating(newValue)}
               required

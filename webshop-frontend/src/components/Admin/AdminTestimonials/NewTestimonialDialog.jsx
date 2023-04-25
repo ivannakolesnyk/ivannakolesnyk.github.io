@@ -9,6 +9,8 @@ import {
   TextField,
 } from "@mui/material";
 import Rating from "@mui/material/Rating";
+import useFirebaseStorage from "../../../hooks/useFirebaseStorage";
+import ImageFileInput from "../../Standard_components/ImageFileInput";
 
 /**
  *
@@ -29,6 +31,23 @@ const NewTestimonialDialog = ({ open, onClose, onCreate }) => {
     rating: 0,
   });
 
+  const { uploadImageToCloudService } = useFirebaseStorage();
+
+  const handleImageUpload = async (file) => {
+    const imgRef = `images/testimonials/${file.name}`;
+
+    if (!file) return;
+
+    try {
+      const imageUrl = await uploadImageToCloudService(file, imgRef);
+
+      // Update the form data with the image URL.
+      setNewTestimonial({ ...newTestimonial, testimonial_image: imageUrl });
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setNewTestimonial({ ...newTestimonial, [name]: value });
@@ -40,7 +59,12 @@ const NewTestimonialDialog = ({ open, onClose, onCreate }) => {
 
   const handleSubmit = () => {
     onCreate(newTestimonial);
-    setNewTestimonial({ name: "", testimonial_image: "", description: "", rating: 0 });
+    setNewTestimonial({
+      name: "",
+      testimonial_image: "",
+      description: "",
+      rating: 0,
+    });
   };
 
   return (
@@ -56,13 +80,9 @@ const NewTestimonialDialog = ({ open, onClose, onCreate }) => {
           margin="normal"
           helperText="Example: Christine 33"
         />
-        <TextField
-          fullWidth
-          label="Image URL"
-          name="testimonial_image"
+        <ImageFileInput
+          handleImageUpload={handleImageUpload}
           value={newTestimonial.testimonial_image}
-          onChange={handleChange}
-          helperText="Example: /assets/img/testimonials/example.png"
         />
         <TextField
           fullWidth
