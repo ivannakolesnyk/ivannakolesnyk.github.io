@@ -4,6 +4,11 @@
  */
 package no.ntnu.idata2306.group1.webshopbackend.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import no.ntnu.idata2306.group1.webshopbackend.models.Testimonial;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.TestimonialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +26,9 @@ public class TestimonialController {
     @Autowired
     private TestimonialRepository testimonialRepository;
 
+    @Operation(summary = "Get all testimonials")
+    @ApiResponse(responseCode = "200", description = "Testimonials fetched",
+            content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Testimonial.class)) })
     @GetMapping("/api/testimonials")
     public ResponseEntity getTestimonials() {
         ResponseEntity response;
@@ -29,8 +37,12 @@ public class TestimonialController {
         return response;
     }
 
+    @Operation(summary = "Delete testimonial by ID")
+    @ApiResponse(responseCode = "204", description = "Testimonial deleted")
     @DeleteMapping("/api/testimonials/{id}")
-    public ResponseEntity deleteTestimonialById(@PathVariable String id) {
+    public ResponseEntity deleteTestimonialById(
+            @Parameter(description = "ID of the testimonial to be deleted")
+            @PathVariable String id) {
         try {
             Integer parsedId = Integer.parseInt(id);
             if (this.testimonialRepository.existsById(parsedId)) {
@@ -44,6 +56,9 @@ public class TestimonialController {
         }
     }
 
+    @Operation(summary = "Create a new testimonial")
+    @ApiResponse(responseCode = "201", description = "Testimonial created",
+            content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Testimonial.class)) })
     @PostMapping("/api/testimonials")
     public ResponseEntity createTestimonial(@RequestBody Testimonial testimonial) {
         try {
@@ -54,8 +69,13 @@ public class TestimonialController {
         }
     }
 
+    @Operation(summary = "Update a testimonial")
+    @ApiResponse(responseCode = "200", description = "Testimonial updated")
     @PutMapping("/api/testimonials/{id}")
-    public ResponseEntity updateTestimonial(@PathVariable String id, @RequestBody Testimonial testimonial) {
+    public ResponseEntity updateTestimonial(
+            @Parameter(description = "ID of the testimonial to be updated")
+            @PathVariable String id,
+            @RequestBody Testimonial testimonial) {
         try {
             Integer parsedId = Integer.parseInt(id);
 
