@@ -1,19 +1,13 @@
 import React, { useState } from "react";
 import {
-  Box,
   Button,
+  CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  TextField,
-  Select,
-  MenuItem,
-  InputLabel,
-  FormControl,
-  CircularProgress,
-  Alert,
 } from "@mui/material";
+import ProductForm from "./ProductForm";
 
 /**
  *
@@ -45,8 +39,7 @@ const NewProductDialog = ({
     sale: false,
   });
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const handleChange = (name, value) => {
     setNewProduct({ ...newProduct, [name]: value });
   };
 
@@ -69,93 +62,11 @@ const NewProductDialog = ({
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Create New Product</DialogTitle>
       <DialogContent>
-        {createError && (
-          <Alert severity="error" sx={{ mb: 2 }}>
-            {createError.message}
-          </Alert>
-        )}
-        <FormControl fullWidth margin="normal">
-          <InputLabel htmlFor="category">Category</InputLabel>
-          <Select
-            label="Category name"
-            name="category_name"
-            value={newProduct.category_name}
-            onChange={handleChange}
-            inputProps={{
-              id: "category_name",
-            }}
-          >
-            <MenuItem value="Coffee">Coffee</MenuItem>
-            <MenuItem value="Tea">Tea</MenuItem>
-            <MenuItem value="Equipment">Equipment</MenuItem>
-          </Select>
-        </FormControl>
-        <TextField
-          fullWidth
-          label="Name"
-          name="name"
-          value={newProduct.name}
-          onChange={handleChange}
-          margin="normal"
-        />
-        <TextField
-          fullWidth
-          label="Price"
-          name="price"
-          value={newProduct.price}
-          onChange={handleChange}
-          type="number"
-          inputProps={{ min: "0", step: "0.01" }}
-          margin="normal"
-        />
-        <Box mt={2}>
-          <TextField
-            fullWidth
-            label="Description"
-            name="description"
-            value={newProduct.description}
-            onChange={handleChange}
-            multiline
-            rows={4}
-            margin="normal"
-          />
-          {newProduct.category_name !== "Equipment" && (
-            <TextField
-              fullWidth
-              label="Ingredients"
-              name="ingredients"
-              value={newProduct.ingredients}
-              onChange={handleChange}
-              rows={4}
-            />
-          )}
-          <TextField
-            fullWidth
-            label="Image URL"
-            name="product_image"
-            value={newProduct.product_image}
-            onChange={handleChange}
-            margin="normal"
-            helperText="Example: /assets/img/products/coffee/dark-roast.png"
-          />
-          <TextField
-            fullWidth
-            label="Image alt"
-            name="imageAlt"
-            value={newProduct.imageAlt}
-            onChange={handleChange}
-            margin="normal"
-          />
-        </Box>
-        <TextField
-          fullWidth
-          label="Quantity in Stock"
-          name="qty_in_stock"
-          value={newProduct.qty_in_stock}
-          onChange={handleChange}
-          type="number"
-          inputProps={{ min: "0" }}
-          margin="normal"
+        <ProductForm
+          product={newProduct}
+          onChange={(name, value) => handleChange(name, value)}
+          showIngredients={newProduct.category_name !== "Equipment"}
+          isEdit={false}
         />
       </DialogContent>
       <DialogActions>

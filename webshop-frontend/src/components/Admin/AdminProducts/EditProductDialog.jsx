@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  TextField,
   Button,
-  Grid,
-  Select,
-  MenuItem,
-  InputLabel,
-  FormControl,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
 } from "@mui/material";
+import ProductForm from "./ProductForm";
 
 /**
  *
@@ -34,9 +29,7 @@ const EditProductDialog = ({
 }) => {
   const [editedProduct, setEditedProduct] = useState(product);
 
-  const handleChange = (evt, nestedProperty) => {
-    const { name, value } = evt.target;
-
+  const handleChange = (name, value, nestedProperty) => {
     if (nestedProperty) {
       setEditedProduct((prevEditedProduct) => {
         return {
@@ -66,98 +59,14 @@ const EditProductDialog = ({
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Edit Product</DialogTitle>
       <DialogContent>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <FormControl fullWidth margin="normal">
-              <InputLabel htmlFor="category_name" >Category</InputLabel>
-              <Select
-                label="Category name"
-                name="name"
-                value={editedProduct.category.name}
-                onChange={(evt) => {
-                  handleChange(evt, "category");
-                }}
-                inputProps={{
-                  id: "category_name",
-                }}
-              >
-                <MenuItem value="Coffee">Coffee</MenuItem>
-                <MenuItem value="Tea">Tea</MenuItem>
-                <MenuItem value="Equipment">Equipment</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Name"
-              name="name"
-              value={editedProduct.name}
-              onChange={handleChange}
-              margin="normal"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Price"
-              name="price"
-              value={editedProduct.price}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Description"
-              name="description"
-              value={editedProduct.description}
-              onChange={handleChange}
-            />
-          </Grid>
-          {editedProduct.category.name !== "Equipment" && (
-              <Grid item xs={12}>
-                <TextField
-                    fullWidth
-                    label="Ingredients"
-                    name="ingredients"
-                    value={editedProduct.ingredients}
-                    onChange={handleChange}
-                    rows={4}
-                />
-              </Grid>
-          )}
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Image URL"
-              name="product_image"
-              value={editedProduct.product_image}
-              onChange={handleChange}
-              margin="normal"
-              helperText="Example: /assets/img/products/coffee/dark-roast.png"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-                fullWidth
-                label="Image alt"
-                name="imageAlt"
-                value={editedProduct.imageAlt}
-                onChange={handleChange}
-                margin="normal"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Quantity in Stock"
-              name="qty_in_stock"
-              value={editedProduct.qty_in_stock}
-              onChange={handleChange}
-            />
-          </Grid>
-        </Grid>
+        <ProductForm
+          product={editedProduct}
+          onChange={(name, value, nestedProperty) =>
+            handleChange(name, value, nestedProperty)
+          }
+          showIngredients={editedProduct.category.name !== "Equipment"}
+          isEdit={true}
+        />
       </DialogContent>
       <DialogActions>
         <Button variant="contained" onClick={onClose}>
