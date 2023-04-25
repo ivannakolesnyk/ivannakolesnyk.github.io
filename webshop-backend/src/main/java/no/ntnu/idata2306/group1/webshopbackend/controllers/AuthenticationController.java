@@ -13,12 +13,16 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 /**
  * Controller responsible for authentication.
  */
 @CrossOrigin
 @RestController
+@Tag(name = "Authentication", description = "API for authentication and user registration")
 public class AuthenticationController {
   @Autowired
   private AuthenticationManager authenticationManager;
@@ -27,7 +31,6 @@ public class AuthenticationController {
   @Autowired
   private JwtUtil jwtUtil;
 
-
   /**
    * HTTP POST request to /authenticate
    *
@@ -35,15 +38,22 @@ public class AuthenticationController {
    * @return OK + JWT token; Or UNAUTHORIZED
    */
   @PostMapping("/api/authenticate")
-  public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
+  @Operation(
+          summary = "Authenticate a user",
+          description = "Authenticate a user with their email and password. Returns a JWT token if successful, or an UNAUTHORIZED status if authentication fails."
+  )
+  public ResponseEntity<?> authenticate(
+          @Parameter(description = "Authentication request containing email and password")
+          @RequestBody AuthenticationRequest authenticationRequest
+  ) {
     try {
       authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-          authenticationRequest.getEmail(), authenticationRequest.getPassword()));
+              authenticationRequest.getEmail(), authenticationRequest.getPassword()));
     } catch (BadCredentialsException e) {
       return new ResponseEntity<>("Invalid email or password", HttpStatus.UNAUTHORIZED);
     }
     final UserDetails userDetails =
-        userService.loadUserByUsername(authenticationRequest.getEmail());
+            userService.loadUserByUsername(authenticationRequest.getEmail());
     final String jwt = jwtUtil.generateToken(userDetails);
     return ResponseEntity.ok(new AuthenticationResponse(jwt));
   }
@@ -54,9 +64,16 @@ public class AuthenticationController {
    * @return Name of the template for the result page
    */
   @PostMapping("/api/signup")
-  public ResponseEntity<String> signupProcess(@RequestBody SignupDTO signupData) {
+  @Operation(
+          summary = "Register a new user",
+          description = "Processes the sign-up data and creates a new user. Returns an OK status if successful, or a BAD_REQUEST status if user creation fails."
+  )
+  public ResponseEntity<String> signupProcess(
+          @Parameter(description = "Sign-up data containing user information")
+          @RequestBody SignupDTO signupData
+  ) {
     String errorMessage =
-        userService.tryCreateNewUser(signupData.getEmail(), signupData.getPassword(), signupData.getName(), signupData.getPhone_number(), signupData.getPostal_code(), signupData.getAddress(), signupData.getCity());
+            userService.tryCreateNewUser(signupData.getEmail(), signupData.getPassword(), signupData.getName(), signupData.getPhone_number(), signupData.getPostal_code(), signupData.getAddress(), signupData.getCity());
     ResponseEntity<String> response;
     if (errorMessage == null) {
       response = new ResponseEntity<>(HttpStatus.OK);
