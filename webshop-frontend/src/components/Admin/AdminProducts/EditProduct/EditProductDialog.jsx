@@ -61,6 +61,7 @@ const EditProductDialog = ({
       <DialogContent>
         <ProductForm
           product={editedProduct}
+          setProduct={setEditedProduct}
           onChange={(name, value, nestedProperty) =>
             handleChange(name, value, nestedProperty)
           }

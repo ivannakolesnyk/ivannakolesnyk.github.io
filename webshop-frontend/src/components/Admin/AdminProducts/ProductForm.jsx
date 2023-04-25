@@ -6,12 +6,45 @@ import {
   MenuItem,
   Select,
   TextField,
+  IconButton,
+  InputAdornment,
 } from "@mui/material";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import { getStorage } from "firebase/storage";
+import { initializeApp } from "firebase/app";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import useFirebaseStorage from "../../../hooks/useFirebaseStorage";
 
-const ProductForm = ({ product, onChange, showIngredients, isEdit }) => {
+const ProductForm = ({
+  product,
+  setProduct,
+  onChange,
+  showIngredients,
+  isEdit,
+}) => {
+  const { uploadImageToCloudService } = useFirebaseStorage();
+
   const handleChange = (event, nestedProperty) => {
     const { name, value } = event.target;
     onChange(name, value, nestedProperty);
+  };
+
+  const handleImageUpload = async (evt) => {
+    const file = evt.target.files[0];
+    const imgRef = `images/products/${
+      isEdit ? product.category.name : product.category_name
+    }/${file.name}`;
+
+    if (!file) return;
+
+    try {
+      const imageUrl = await uploadImageToCloudService(file, imgRef);
+
+      // Update the form data with the image URL.
+      setProduct({ ...product, product_image: imageUrl });
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
   };
 
   return (
@@ -76,14 +109,39 @@ const ProductForm = ({ product, onChange, showIngredients, isEdit }) => {
         </Grid>
       )}
       <Grid item xs={12}>
+        <input
+          accept="image/*"
+          id="product-image"
+          type="file"
+          hidden
+          onChange={(evt) => handleImageUpload(evt)}
+        />
         <TextField
           fullWidth
           label="Image URL"
           name="product_image"
           value={product.product_image}
-          onChange={(evt) => handleChange(evt, null)}
+          // onChange={(evt) => handleChange(evt, null)}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  edge="end"
+                  color="primary"
+                  aria-label="upload image"
+                  component="span"
+                  onClick={() =>
+                    document.getElementById("product-image").click()
+                  }
+                >
+                  <PhotoCamera />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         />
       </Grid>
+
       <Grid item xs={12}>
         <TextField
           fullWidth

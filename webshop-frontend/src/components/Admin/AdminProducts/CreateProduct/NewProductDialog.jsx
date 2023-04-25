@@ -58,6 +58,7 @@ const NewProductDialog = ({
       <DialogContent>
         <ProductForm
           product={newProduct}
+          setProduct={setNewProduct}
           onChange={(name, value) => handleChange(name, value)}
           showIngredients={newProduct.category_name !== "Equipment"}
           isEdit={false}
