@@ -6,6 +6,7 @@ package no.ntnu.idata2306.group1.webshopbackend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -16,16 +17,24 @@ import java.util.Date;
  * @author julian
  */
 @Entity
+@Schema(description = "An order, consisting of order lines, representing a purchase made by a user")
 public class ShopOrder {
     @Id
     @GeneratedValue
+    @Schema(description = "The unique identifier of the order")
     private int id;
+
     @JsonProperty("order_date")
+    @Schema(description = "The date the order was placed")
     private Date order_date;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @JsonIgnore
+    @Schema(description = "The user who placed the order")
     private User user;
+
+    @Schema(description = "The status of the order")
     private String status;
 
     public ShopOrder() {
