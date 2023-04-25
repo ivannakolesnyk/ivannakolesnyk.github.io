@@ -8,6 +8,20 @@ import {
   DialogTitle,
 } from "@mui/material";
 import ProductForm from "./ProductForm";
+import CreateButton from "./CreateButton";
+
+// The initial state of a new product
+const initialState = {
+  category_name: "",
+  description: "",
+  imageAlt: "",
+  ingredients: "",
+  name: "",
+  price: 0,
+  product_image: "",
+  qty_in_stock: 0,
+  sale: false,
+};
 
 /**
  *
@@ -27,18 +41,6 @@ const NewProductDialog = ({
   isCreating,
   createError,
 }) => {
-  const initialState = {
-    category_name: "",
-    description: "",
-    imageAlt: "",
-    ingredients: "",
-    name: "",
-    price: 0,
-    product_image: "",
-    qty_in_stock: 0,
-    sale: false,
-  };
-
   const [newProduct, setNewProduct] = useState(initialState);
 
   const handleChange = (name, value) => {
@@ -71,23 +73,11 @@ const NewProductDialog = ({
         >
           Cancel
         </Button>
-        <Button
-          variant="contained"
-          color="primary"
+        <CreateButton
           onClick={handleSubmit}
-          disabled={
-            !newProduct.name ||
-            !newProduct.price ||
-            !newProduct.description ||
-            !newProduct.product_image ||
-            !newProduct.imageAlt ||
-            !newProduct.qty_in_stock ||
-            !newProduct.category_name ||
-            isCreating
-          }
-        >
-          {isCreating ? <CircularProgress size={24} /> : "Create Product"}
-        </Button>
+          product={newProduct}
+          isCreating={isCreating}
+        />
       </DialogActions>
     </Dialog>
   );
