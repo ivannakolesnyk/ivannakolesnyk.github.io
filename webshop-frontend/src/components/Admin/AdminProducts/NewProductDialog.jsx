@@ -62,7 +62,13 @@ const NewProductDialog = ({
         />
       </DialogContent>
       <DialogActions>
-        <Button variant="contained" onClick={onClose}>
+        <Button
+          variant="contained"
+          onClick={() => {
+            onClose();
+            setNewProduct(initialState);
+          }}
+        >
           Cancel
         </Button>
         <Button
