@@ -1,7 +1,13 @@
 package no.ntnu.idata2306.group1.webshopbackend.models;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "Represents an item in the shopping cart")
 public class CartItem {
+    @Schema(description = "The product ID of the cart item")
     private Integer productId;
+
+    @Schema(description = "The quantity of the product in the cart")
     private Integer quantity;
 
     public CartItem() {
