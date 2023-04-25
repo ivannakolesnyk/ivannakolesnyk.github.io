@@ -43,7 +43,6 @@ const ProductForm = ({ product, onChange, showIngredients, isEdit }) => {
           name="name"
           value={product.name}
           onChange={(evt) => handleChange(evt, null)}
-          margin="normal"
         />
       </Grid>
       <Grid item xs={12}>
@@ -83,8 +82,6 @@ const ProductForm = ({ product, onChange, showIngredients, isEdit }) => {
           name="product_image"
           value={product.product_image}
           onChange={(evt) => handleChange(evt, null)}
-          margin="normal"
-          helperText="Example: /assets/img/products/coffee/dark-roast.png"
         />
       </Grid>
       <Grid item xs={12}>
@@ -94,7 +91,6 @@ const ProductForm = ({ product, onChange, showIngredients, isEdit }) => {
           name="imageAlt"
           value={product.imageAlt}
           onChange={(evt) => handleChange(evt, null)}
-          margin="normal"
         />
       </Grid>
       <Grid item xs={12}>
