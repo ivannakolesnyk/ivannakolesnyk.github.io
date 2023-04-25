@@ -46,7 +46,6 @@ function ProductDetails() {
     }
   }, [data, fetched]);
 
-  const [imageSrc, setImageSrc] = useState("");
   const [quantity, setQuantity] = useState(1);
 
   const incrementQuantity = () => {
@@ -56,12 +55,6 @@ function ProductDetails() {
   const decrementQuantity = () => {
     setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
   };
-
-  useEffect(() => {
-    if (product && product.product_image) {
-      setImageSrc(`${process.env.PUBLIC_URL}/assets/img/${product.product_image}`);
-    }
-  }, [product]);
 
   const { addToCart } = useCart();
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -101,7 +94,7 @@ function ProductDetails() {
                 >
                   <Box
                     component="img"
-                    src={imageSrc}
+                    src={product.product_image}
                     alt={product.name}
                     sx={{ width: "70%", height: "auto" }}
                   />

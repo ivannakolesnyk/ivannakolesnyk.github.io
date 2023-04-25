@@ -24,15 +24,6 @@ function ProductCard({
   oldPrice,
   currentPrice,
 }) {
-  const [imageSrc, setImageSrc] = useState("");
-
-    useEffect(() => {
-        setImageSrc(`${process.env.PUBLIC_URL}/assets/img/${imagePath}`);
-    }, [imagePath]);
-
-
-    // This is can be bad because content will get reinitialized,
-  // every time this function updates, which is often, because of how React component rendering works (React component lifecycle)
   const content = (
     <Card>
       {specialOffer && (
@@ -54,7 +45,7 @@ function ProductCard({
         <CardMedia
           component="img"
           alt={imageAlt}
-          src={imageSrc}
+          src={imagePath}
           sx={{
             display: "flex",
             justifyContent: "center",
