@@ -1,15 +1,31 @@
 package no.ntnu.idata2306.group1.webshopbackend.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 /**
  * Data transfer object (DTO) for data from the sign-up form.
  */
+@Schema(description = "Data transfer object (DTO) for data from the sign-up form")
 public class SignupDTO {
+  @Schema(description = "The email address of the user")
   private final String email;
+
+  @Schema(description = "The password of the user")
   private final String password;
+
+  @Schema(description = "The name of the user")
   private final String name;
+
+  @Schema(description = "The phone number of the user")
   private final String phone_number;
+
+  @Schema(description = "The postal code of the user's address")
   private final int postal_code;
+
+  @Schema(description = "The address of the user")
   private final String address;
+
+  @Schema(description = "The city of the user's address")
   private final String city;
 
   public SignupDTO(String email, String password, String name, String phone_number,
