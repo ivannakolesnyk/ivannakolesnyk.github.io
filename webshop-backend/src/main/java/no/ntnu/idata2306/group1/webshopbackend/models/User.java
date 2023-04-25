@@ -1,6 +1,7 @@
 package no.ntnu.idata2306.group1.webshopbackend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 import java.util.Iterator;
@@ -11,23 +12,43 @@ import java.util.Set;
  * User stored in the database.
  */
 @Entity(name = "users")
+@Schema(description = "Represents a user in the application")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "Unique identifier of the user")
     private Long id;
+
+    @Schema(description = "User's email", example = "user@example.com")
     private String email;
+
     @JsonIgnore
+    @Schema(description = "User's password", example = "password123", hidden = true)
     private String password;
+
+    @Schema(description = "User's name", example = "John Doe")
     private String name;
+
+    @Schema(description = "User's phone number", example = "+1234567890")
     private String phone_number;
+
+    @Schema(description = "User's postal code", example = "1234")
     private int postal_code;
+
+    @Schema(description = "User's address", example = "123 Main St")
     private String address;
+
+    @Schema(description = "User's city", example = "New York")
     private String city;
+
+    @Schema(description = "User's account active status")
     private boolean active = true;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     @JsonIgnore
+    @Schema(description = "User's roles", hidden = true)
     private Set<Role> roles = new LinkedHashSet<>();
 
     /**
