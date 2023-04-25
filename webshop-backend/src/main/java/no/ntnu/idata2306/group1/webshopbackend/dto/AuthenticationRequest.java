@@ -1,13 +1,17 @@
 package no.ntnu.idata2306.group1.webshopbackend.dto;
 
-/**
- * Data that the user will send in the login request.
- */
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "Represents data for user authentication, containing email and password")
 public class AuthenticationRequest {
+  @Schema(description = "User's email", example = "user@example.com")
   private String email;
+
+  @Schema(description = "User's password", example = "password123")
   private String password;
 
-  public AuthenticationRequest() {}
+  public AuthenticationRequest() {
+  }
 
   public AuthenticationRequest(String email, String password) {
     this.email = email;
