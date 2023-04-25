@@ -6,6 +6,11 @@ import no.ntnu.idata2306.group1.webshopbackend.dto.UserProfileDTO;
 import no.ntnu.idata2306.group1.webshopbackend.models.User;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.UserRepository;
 import no.ntnu.idata2306.group1.webshopbackend.services.AccessUserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +32,10 @@ public class UserController {
    *
    * @return A list of all users
    */
+  @Operation(summary = "Return all users")
+  @ApiResponse(responseCode = "200", description = "List of all users",
+          content = { @Content(mediaType = "application/json",
+                  schema = @Schema(implementation = User.class)) })
   @GetMapping("/api/users")
   public ResponseEntity getAllUsers() {
     return new ResponseEntity(this.userRepository.findAll(), HttpStatus.OK);
@@ -38,8 +47,14 @@ public class UserController {
    * @param username Username for which the profile is requested
    * @return The profile information or error code when not authorized
    */
+  @Operation(summary = "Return user profile information")
+  @ApiResponse(responseCode = "200", description = "User profile information",
+          content = { @Content(mediaType = "application/json",
+                  schema = @Schema(implementation = UserProfileDTO.class)) })
   @GetMapping("/api/users/{username}")
-  public ResponseEntity<?> getProfile(@PathVariable String username) {
+  public ResponseEntity<?> getProfile(
+          @Parameter(description = "Username for which the profile is requested")
+          @PathVariable String username) {
     User sessionUser = userService.getSessionUser();
     if (sessionUser != null && sessionUser.getEmail().equals(username)) {
       UserProfileDTO profile = new UserProfileDTO();
@@ -65,9 +80,13 @@ public class UserController {
    * @param username Username for which the profile is updated
    * @return HTTP 200 OK or error code with error message
    */
+  @Operation(summary = "Update user profile information")
+  @ApiResponse(responseCode = "200", description = "User profile information updated")
   @PutMapping("/api/users/{username}")
-  public ResponseEntity<String> updateProfile(@PathVariable String username,
-                                              @RequestBody UserProfileDTO profileData) {
+  public ResponseEntity<String> updateProfile(
+          @Parameter(description = "Username for which the profile is updated")
+          @PathVariable String username,
+          @RequestBody UserProfileDTO profileData) {
     User sessionUser = userService.getSessionUser();
     ResponseEntity<String> response;
     if (sessionUser != null && sessionUser.getEmail().equals(username)) {
@@ -91,9 +110,13 @@ public class UserController {
     return response;
   }
 
+  @Operation(summary = "Change user password")
+  @ApiResponse(responseCode = "200", description = "User password changed")
   @PutMapping("/api/users/{username}/password")
-  public ResponseEntity<String> changePassword(@PathVariable String username,
-                                               @RequestBody ChangePasswordDTO passwordData) {
+  public ResponseEntity<String> changePassword(
+          @Parameter(description = "Username for which the password is changed")
+          @PathVariable String username,
+          @RequestBody ChangePasswordDTO passwordData) {
     User sessionUser = userService.getSessionUser();
     ResponseEntity<String> response;
     if (sessionUser != null && sessionUser.getEmail().equals(username)) {
@@ -120,8 +143,12 @@ public class UserController {
    * @param username Username for which profile to delete
    * @return The HTTP status code indicated whether or not it was deleted
    */
+  @Operation(summary = "Delete a user")
+  @ApiResponse(responseCode = "204", description = "User deleted")
   @DeleteMapping("/api/users/{username}")
-  public ResponseEntity deleteProfile(@PathVariable String username) {
+  public ResponseEntity deleteProfile(
+          @Parameter(description = "Username for which profile to delete")
+          @PathVariable String username) {
     User sessionUser = userService.getSessionUser();
     if (sessionUser != null && sessionUser.isAdmin()) {
       Optional<User> found = this.userRepository.findByEmail(username);
