@@ -27,7 +27,7 @@ const NewProductDialog = ({
   isCreating,
   createError,
 }) => {
-  const [newProduct, setNewProduct] = useState({
+  const initialState = {
     category_name: "",
     description: "",
     imageAlt: "",
@@ -37,7 +37,9 @@ const NewProductDialog = ({
     product_image: "",
     qty_in_stock: 0,
     sale: false,
-  });
+  };
+
+  const [newProduct, setNewProduct] = useState(initialState);
 
   const handleChange = (name, value) => {
     setNewProduct({ ...newProduct, [name]: value });
@@ -45,17 +47,7 @@ const NewProductDialog = ({
 
   const handleSubmit = () => {
     onCreate(newProduct);
-    setNewProduct({
-      category_name: "",
-      description: "",
-      imageAlt: "",
-      ingredients: "",
-      name: "",
-      price: 0,
-      product_image: "",
-      qty_in_stock: 0,
-      sale: false,
-    });
+    setNewProduct(initialState);
   };
 
   return (
