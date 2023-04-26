@@ -9,7 +9,17 @@ import {
 } from "@mui/material";
 import ImageFileInput from "../../Standard_components/ImageFileInput";
 
-
+/**
+ * TestimonialForm component for creating and editing testimonial data.
+ *
+ * @component
+ * @param {Object} props
+ * @param {Object} props.testimonial - Testimonial object containing name, testimonial_image, description, and rating
+ * @param {function} props.handleImageUpload - Callback function to handle image upload for the testimonial
+ * @param {function} props.onChange - Callback function to handle changes in text fields (name and description)
+ * @param {function} props.onRatingChange - Callback function to handle changes in the Rating component
+ * @returns {React.Element} TestimonialForm component with input fields for name, testimonial image, description, and rating
+ */
 const TestimonialForm = ({
   testimonial,
   handleImageUpload,
