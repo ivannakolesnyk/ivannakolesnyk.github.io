@@ -1,9 +1,10 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const CartEmpty = () => {
   return (
     <Box
+      component="section"
       textAlign={"center"}
       sx={{ padding: { xs: "14rem 2rem", sm: "14rem 6rem", md: "14rem" } }}
     >
@@ -15,6 +16,7 @@ const CartEmpty = () => {
         to="/products"
         variant="contained"
         color="primary"
+        aria-label="Browse Products"
       >
         Browse Products
       </Button>

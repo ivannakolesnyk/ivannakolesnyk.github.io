@@ -9,6 +9,7 @@ const QuantityAdjuster = ({ item }) => {
       <IconButton
         onClick={() => adjustQuantity && adjustQuantity(item.product.id, -1)}
         sx={{ color: "secondary.main" }}
+        aria-label={`Decrease quantity of ${item.product.name}`}
       >
         <RemoveIcon />
       </IconButton>
@@ -16,6 +17,7 @@ const QuantityAdjuster = ({ item }) => {
       <IconButton
         onClick={() => adjustQuantity && adjustQuantity(item.product.id, 1)}
         sx={{ color: "secondary.main" }}
+        aria-label={`Increase quantity of ${item.product.name}`}
       >
         <AddIcon />
       </IconButton>

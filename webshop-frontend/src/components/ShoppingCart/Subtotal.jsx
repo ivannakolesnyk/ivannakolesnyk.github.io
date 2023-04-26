@@ -16,9 +16,14 @@ const Subtotal = () => {
       display="flex"
       justifyContent="space-between"
       sx={{ padding: "0 4rem" }}
+      aria-label="Subtotal"
     >
-      <Typography variant="h6">Subtotal:</Typography>
-      <Typography variant="h6">{`${calculateTotalPrice()} NOK`}</Typography>
+      <Typography variant="h6" component="p">
+        Subtotal:
+      </Typography>
+      <Typography variant="h6" component="p">
+        {`${calculateTotalPrice()} NOK`}
+      </Typography>
     </Box>
   );
 };
