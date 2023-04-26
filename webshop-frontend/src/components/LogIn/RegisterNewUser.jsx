@@ -150,7 +150,7 @@ const RegisterNewUser = () => {
         />
         <Divider />
         <CardContent>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} aria-label="Registration form">
             {profileFields.map((field) => (
               <ProfileTextField
                 key={field.name}
@@ -163,10 +163,11 @@ const RegisterNewUser = () => {
                 error={field.error}
                 helperText={field.helperText}
                 onFocus={field.onFocus}
+                aria-label={`${field.label} input`}
               />
             ))}
             {errorMessage && (
-              <Alert severity="error" sx={{ mt: 2 }}>
+              <Alert severity="error" sx={{ mt: 2 }} role="alert">
                 {errorMessage}
               </Alert>
             )}
@@ -176,6 +177,7 @@ const RegisterNewUser = () => {
                 color="primary"
                 onClick={() => navigate("/login")}
                 style={{ width: "10rem", height: "4rem" }}
+                aria-label="Cancel registration"
               >
                 Cancel
               </Button>
@@ -186,6 +188,7 @@ const RegisterNewUser = () => {
                   color="primary"
                   disabled={isLoading}
                   style={{ width: "10rem", height: "4rem" }}
+                  aria-label="Register new user"
                 >
                   {isLoading ? (
                     <CircularProgress size={24} color={"inherit"} />
