@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Container, Grid, CardMedia } from "@mui/material";
+import { CardMedia, Container, Grid, Typography } from "@mui/material";
 
 /**
  *
@@ -11,7 +11,7 @@ import { Typography, Container, Grid, CardMedia } from "@mui/material";
  */
 const AboutUs = () => {
   return (
-    <Container maxWidth="xl" sx={{ py: "2rem" }}>
+    <Container maxWidth="xl" component="main" sx={{ py: "2rem" }}>
       <Grid
         container
         spacing={{
@@ -30,6 +30,9 @@ const AboutUs = () => {
               pb: "0.5rem",
               textAlign: "center",
             }}
+            role="heading"
+            aria-level="1"
+            aria-label="About us"
           >
             About us
           </Typography>
@@ -67,6 +70,9 @@ const AboutUs = () => {
               color: "secondary.main",
               textAlign: "left",
             }}
+            role="heading"
+            aria-level="2"
+            aria-label="Our values"
           >
             Our values
           </Typography>
