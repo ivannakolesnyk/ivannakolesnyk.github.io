@@ -14,6 +14,7 @@ const ImageFileInput = ({ handleImageUpload, value = "" }) => {
           const file = evt.target.files[0];
           handleImageUpload(file);
         }}
+        aria-label="Upload product image"
       />
       <TextField
         fullWidth
@@ -29,6 +30,7 @@ const ImageFileInput = ({ handleImageUpload, value = "" }) => {
                 aria-label="upload image"
                 component="span"
                 onClick={() => document.getElementById("product-image").click()}
+                aria-controls="product-image"
               >
                 <PhotoCamera />
               </IconButton>

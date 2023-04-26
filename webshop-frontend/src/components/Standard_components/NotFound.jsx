@@ -11,6 +11,7 @@ const NotFound = () => {
 
   return (
     <Box
+      component="main"
       sx={{
         display: "flex",
         flexDirection: "column",

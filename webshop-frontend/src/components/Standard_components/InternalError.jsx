@@ -10,6 +10,7 @@ const InternalError = () => {
 
   return (
     <Box
+      component="main"
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -22,6 +23,8 @@ const InternalError = () => {
       <Typography
         variant="h4"
         sx={(theme) => ({ marginBottom: theme.spacing(3) })}
+        role="heading"
+        aria-level="1"
       >
         Oops! Something went wrong.
       </Typography>
@@ -36,6 +39,7 @@ const InternalError = () => {
         color="primary"
         sx={(theme) => ({ marginTop: theme.spacing(2) })}
         onClick={handleBackClick}
+        aria-label="Go to Home page"
       >
         Go Home
       </Button>

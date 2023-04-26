@@ -4,6 +4,7 @@ import React from "react";
 const Loading = () => {
   return (
     <Box
+      component="main"
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -12,7 +13,10 @@ const Loading = () => {
         minHeight: "70vh",
       }}
     >
-      <CircularProgress sx={(theme) => ({ marginBottom: theme.spacing(2) })} />
+      <CircularProgress
+        aria-label="Loading content"
+        sx={(theme) => ({ marginBottom: theme.spacing(2) })}
+      />
       <Typography variant="h6">Loading...</Typography>
     </Box>
   );
