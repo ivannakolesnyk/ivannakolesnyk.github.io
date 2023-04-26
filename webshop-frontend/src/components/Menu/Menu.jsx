@@ -18,13 +18,14 @@ const Menu = () => {
   };
 
   const renderMenuItems = (filteredProducts) => (
-    <Grid container spacing={2.5}>
-      {filteredProducts.map(({ id, productName, imagePath }) => (
-        <Grid item key={id} xs={12} sm={6} md={4} lg={4}>
+    <Grid container spacing={2.5} role="list">
+      {filteredProducts.map(({ id, productName, imagePath, imageAlt }) => (
+        <Grid item key={id} xs={12} sm={6} md={4} lg={4} role="listitem">
           <Box textAlign={"center"}>
             <ProductCard
               productName={productName}
               imagePath={`${process.env.PUBLIC_URL}/assets/img/${imagePath}`}
+              imageAlt={imageAlt}
               isClickable={false}
             />
           </Box>
@@ -77,6 +78,7 @@ const Menu = () => {
       ) : (
         <>
           <Box
+            component="nav"
             sx={{
               padding: {
                 xs: "2rem 1rem",
@@ -86,6 +88,7 @@ const Menu = () => {
               borderTop: ".3rem solid #1F3A33",
               borderBottom: ".3rem solid #1F3A33",
             }}
+            aria-label="Menu categories"
           >
             <List
               sx={{
@@ -100,6 +103,7 @@ const Menu = () => {
                   key={index}
                   item={item}
                   onClick={() => scrollToSection(index)}
+                  aria-label={`Scroll to ${item} section`}
                 />
               ))}
             </List>

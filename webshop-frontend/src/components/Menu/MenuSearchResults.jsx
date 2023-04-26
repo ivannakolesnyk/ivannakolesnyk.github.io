@@ -8,6 +8,7 @@ const MenuSearchResults = ({
 }) => {
   return (
     <Box
+      component="section"
       sx={{
         padding: {
           xs: "5.2rem 2rem",
@@ -15,7 +16,13 @@ const MenuSearchResults = ({
         },
       }}
     >
-      <Typography variant="h2" mb={"2rem"} color="primary.contrastText">
+      <Typography
+        variant="h2"
+        mb={"2rem"}
+        color="primary.contrastText"
+        component="header"
+        aria-label="Search results"
+      >
         Search results
       </Typography>
       {renderMenuItems(filteredProducts)}

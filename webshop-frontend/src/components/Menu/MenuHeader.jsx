@@ -15,23 +15,25 @@ const MenuHeader = ({ onSearchChange }) => {
         bgcolor: theme.palette.primary.main,
       }}
     >
-      <Box
-        sx={{
-          color: theme.palette.primary.contrastText,
-          width: {
-            md: "70%",
-            lg: "50%",
-          },
-        }}
-      >
-        <Typography variant="h1" mb={"2rem"}>
-          Menu
-        </Typography>
-        <Typography variant="body1" mb={"2rem"}>
-          Indulge in the rich flavors of our handcrafted coffee creations - One
-          sip, and you'll be hooked!
-        </Typography>
-        <SearchBar onSearchChange={onSearchChange} />
+      <Box component="header" aria-labelledby="menu-heading">
+        <Box
+          sx={{
+            color: theme.palette.primary.contrastText,
+            width: {
+              md: "70%",
+              lg: "50%",
+            },
+          }}
+        >
+          <Typography id="menu-heading" variant="h1" mb={"2rem"}>
+            Menu
+          </Typography>
+          <Typography variant="body1" mb={"2rem"}>
+            Indulge in the rich flavors of our handcrafted coffee creations -
+            One sip, and you'll be hooked!
+          </Typography>
+          <SearchBar onSearchChange={onSearchChange} />
+        </Box>
       </Box>
     </Box>
   );
