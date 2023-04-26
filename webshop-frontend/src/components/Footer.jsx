@@ -16,6 +16,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 const Footer = () => {
   return (
     <Grid
+      component="footer"
       container
       spacing={3}
       sx={{
@@ -41,8 +42,11 @@ const Footer = () => {
               pb: 1,
             }}
           >
-            <Box sx={{ textAlign: "left", width: "fit-content" }}>
-              <Typography variant="body2" sx={{ p: 1 }}>
+            <Box
+              sx={{ textAlign: "left", width: "fit-content" }}
+              aria-labelledby="find-us"
+            >
+              <Typography variant="body2" sx={{ p: 1 }} id="find-us">
                 Find us: <br />
                 <Link component={Link} to="/findus">
                   Larsgårdsvegen 2<br />
@@ -64,8 +68,11 @@ const Footer = () => {
               pb: 1,
             }}
           >
-            <Box sx={{ textAlign: "left", width: "fit-content" }}>
-              <Typography variant="body2" sx={{ p: 1 }}>
+            <Box
+              sx={{ textAlign: "left", width: "fit-content" }}
+              aria-labelledby="contact-info"
+            >
+              <Typography variant="body2" sx={{ p: 1 }} id="contact-info">
                 Contact information:
                 <br />
                 <a
@@ -90,10 +97,14 @@ const Footer = () => {
               justifyContent: { xs: "center", md: "left", lg: "right" },
             }}
           >
-            <Box sx={{ textAlign: "left", width: "fit-content" }}>
+            <Box
+              sx={{ textAlign: "left", width: "fit-content" }}
+              aria-labelledby="follow-us"
+            >
               <Typography
                 variant="body2"
                 sx={{ pl: 1, pt: 1, pr: 1, pb: 0, mb: 0 }}
+                id="follow-us"
               >
                 Follow us:
               </Typography>
