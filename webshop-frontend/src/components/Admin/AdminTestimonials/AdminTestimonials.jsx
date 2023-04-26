@@ -129,6 +129,7 @@ const AdminTestimonials = () => {
         <EditTestimonialForm
           open={!!selectedTestimonial}
           testimonial={selectedTestimonial || {}}
+          setTestimonial={setSelectedTestimonial}
           onClose={() => setSelectedTestimonial(null)}
           onSave={(updatedData) => handleUpdate(updatedData)}
           onDelete={handleDelete}

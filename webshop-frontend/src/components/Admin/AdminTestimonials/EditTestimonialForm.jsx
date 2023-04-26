@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import ImageFileInput from "../../Standard_components/ImageFileInput";
 import useFirebaseStorage from "../../../hooks/useFirebaseStorage";
+import TestimonialForm from "./TestimonialForm";
 
 /**
  *
@@ -29,13 +30,14 @@ import useFirebaseStorage from "../../../hooks/useFirebaseStorage";
 const EditTestimonialForm = ({
   open,
   testimonial,
+  setTestimonial,
   onClose,
   onSave,
   onDelete,
 }) => {
   const [name, setName] = useState("");
   const [testimonial_image, setTestimonialImage] = useState("");
-  const [description, setComment] = useState("");
+  const [description, setDescription] = useState("");
   const [rating, setRating] = useState(null);
 
   const { uploadImageToCloudService } = useFirebaseStorage();
@@ -58,9 +60,28 @@ const EditTestimonialForm = ({
   useEffect(() => {
     setName(testimonial.name || "");
     setTestimonialImage(testimonial.testimonial_image || "");
-    setComment(testimonial.description || "");
+    setDescription(testimonial.description || "");
     setRating(testimonial.rating || null);
   }, [testimonial]);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    switch (name) {
+      case "name":
+        setName(value);
+        break;
+      case "description":
+        setDescription(value);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleRatingChange = (event, newValue) => {
+    setRating(newValue);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -78,42 +99,12 @@ const EditTestimonialForm = ({
       <DialogTitle>Edit Testimonial</DialogTitle>
       <Box component="form" onSubmit={handleSubmit} sx={{ p: 3 }}>
         <Box>
-          <FormGroup>
-            <FormLabel>Name</FormLabel>
-            <TextField
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              required
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <ImageFileInput
-              handleImageUpload={handleImageUpload}
-              value={testimonial_image}
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <FormLabel>Comment</FormLabel>
-            <TextField
-              value={description}
-              onChange={(event) => setComment(event.target.value)}
-              required
-              multiline
-              rows={4}
-            />
-          </FormGroup>
-
-          <FormControl>
-            <FormLabel>Rating</FormLabel>
-            <Rating
-              name="rating"
-              value={rating}
-              onChange={(event, newValue) => setRating(newValue)}
-              required
-            />
-          </FormControl>
+          <TestimonialForm
+            testimonial={{ name, testimonial_image, description, rating }}
+            handleImageUpload={handleImageUpload}
+            onChange={handleChange}
+            onRatingChange={handleRatingChange}
+          />
 
           <Grid container justifyContent="flex-end" sx={{ mt: 2 }}>
             <Button

@@ -6,11 +6,9 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  TextField,
 } from "@mui/material";
-import Rating from "@mui/material/Rating";
 import useFirebaseStorage from "../../../hooks/useFirebaseStorage";
-import ImageFileInput from "../../Standard_components/ImageFileInput";
+import TestimonialForm from "./TestimonialForm";
 
 /**
  *
@@ -71,34 +69,11 @@ const NewTestimonialDialog = ({ open, onClose, onCreate }) => {
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Create New Testimonial</DialogTitle>
       <DialogContent>
-        <TextField
-          fullWidth
-          label="Name"
-          name="name"
-          value={newTestimonial.name}
-          onChange={handleChange}
-          margin="normal"
-          helperText="Example: Christine 33"
-        />
-        <ImageFileInput
+        <TestimonialForm
+          testimonial={newTestimonial}
           handleImageUpload={handleImageUpload}
-          value={newTestimonial.testimonial_image}
-        />
-        <TextField
-          fullWidth
-          label="Comment"
-          name="description"
-          value={newTestimonial.description}
           onChange={handleChange}
-          multiline
-          rows={4}
-        />
-        <Rating
-          name="rating"
-          value={newTestimonial.rating}
-          onChange={handleRatingChange}
-          precision={1}
-          size="large"
+          onRatingChange={handleRatingChange}
         />
       </DialogContent>
       <DialogActions>
