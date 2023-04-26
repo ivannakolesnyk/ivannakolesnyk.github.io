@@ -24,19 +24,6 @@ const CartTable = () => {
         removeFromCart(productId);
     };
 
-    const [imagesSrc, setImagesSrc] = useState([]);
-
-
-    useEffect(() => {
-        if (cart && cart.length > 0) {
-            setImagesSrc(
-                cart.map(item => `${process.env.PUBLIC_URL}/assets/img/${item.product.product_image}`)
-            );
-        } else {
-            setImagesSrc([]);
-        }
-    }, [cart]);
-
     return(
         <TableContainer>
             <Table>
@@ -84,7 +71,7 @@ const CartTable = () => {
                                 <Box sx={{ display: "flex", alignItems: "center" }}>
                                     <Box
                                         component="img"
-                                        src={imagesSrc[index]}
+                                        src={item.product.product_image}
                                         alt={item.product.name}
                                         sx={{ width: "50px", height: "auto", mr: 1 }}
                                     />
