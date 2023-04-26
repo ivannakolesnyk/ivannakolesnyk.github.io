@@ -14,7 +14,7 @@ import NavbarButton from "./NavbarButton";
 import StyledToolbar from "./StyledToolbar";
 import { Badge } from "@mui/material";
 
-const coffeeLogo = `${process.env.PUBLIC_URL}/assets/img/logos/logo_bigscreen.png`
+const coffeeLogo = `${process.env.PUBLIC_URL}/assets/img/logos/logo_bigscreen.png`;
 
 /**
  *
@@ -43,13 +43,18 @@ const BigScreenToolbar = () => {
   };
 
   const leftNavItems = [
-    { text: "Menu", to: "/menu" },
-    { text: "Products", to: "/products" },
-    { text: "About us", to: "/about" },
+    { text: "Menu", to: "/menu", ariaLabel: "View our menu" },
+    { text: "Products", to: "/products", ariaLabel: "Browse our products" },
+    { text: "About us", to: "/about", ariaLabel: "Learn more about us" },
   ];
 
   const rightNavItems = [
-    { text: "Find us", to: "/findus", icon: <PlaceOutlinedIcon /> },
+    {
+      text: "Find us",
+      to: "/findus",
+      icon: <PlaceOutlinedIcon />,
+      ariaLabel: "Find our location",
+    },
     {
       to: "/shoppingcart",
       icon: (
@@ -61,6 +66,7 @@ const BigScreenToolbar = () => {
           <ShoppingCartIcon />
         </Badge>
       ),
+      ariaLabel: "View shopping cart",
     },
   ];
 
@@ -79,6 +85,7 @@ const BigScreenToolbar = () => {
             key={item.to}
             text={item.text}
             to={item.to}
+            ariaLabel={item.ariaLabel}
             onClick={item.text === "Products" ? handleProductsClick : undefined}
           />
         ))}
@@ -119,6 +126,7 @@ const BigScreenToolbar = () => {
             text={item.text}
             to={item.to}
             icon={item.icon}
+            ariaLabel={item.ariaLabel}
           />
         ))}
         {loggedIn ? (
@@ -128,6 +136,7 @@ const BigScreenToolbar = () => {
             text="Log in"
             to="/login"
             icon={<Person2OutlinedIcon />}
+            ariaLabel="Log in"
           />
         )}
         <AccountMenu

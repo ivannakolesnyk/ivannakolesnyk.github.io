@@ -56,7 +56,6 @@ export default function Carousel(props: Props) {
 } */
 
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import { IconButton, Stack } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -83,22 +82,28 @@ const Carousel = (props) => {
   return (
     <>
       <Stack
+        component="section"
         width={"100%"}
         direction={"row"}
         justifyContent={"center"}
         alignItems={"center"}
         height={props.height || undefined}
+        aria-label="carousel"
       >
         <IconButton
           onClick={handleLeft}
           disabled={props.infinite ? false : current === 0}
+          aria-label="previous slide"
         >
           <ArrowBackIosNewIcon />
         </IconButton>
-        <Stack alignItems={"center"}>{props.items[current]}</Stack>
+        <Stack component="article" alignItems={"center"}>
+          {props.items[current]}
+        </Stack>
         <IconButton
           onClick={handleRight}
           disabled={props.infinite ? false : current === props.items.length - 1}
+          aria-label="next slide"
         >
           <ArrowForwardIosIcon />
         </IconButton>

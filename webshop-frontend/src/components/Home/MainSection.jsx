@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const MainSection = () => {
   return (
     <Stack
+      component="section"
       minHeight={"70vh"}
       py={12}
       px={8}
@@ -15,10 +16,12 @@ const MainSection = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
+      aria-label="main section"
     >
       <Paper sx={{ p: 7, maxWidth: 500, backgroundColor: "primary.main" }}>
         <Stack spacing={3} alignItems="left">
           <Typography
+            component="h2"
             fontWeight={600}
             variant={"h1"}
             color={"primary.contrastText"}
@@ -29,6 +32,7 @@ const MainSection = () => {
             ENJOY YOUR OWN COFFEE AT HOME
           </Typography>
           <Typography
+            component="p"
             fontWeight={300}
             variant={"body2"}
             color={"primary.contrastText"}
@@ -50,6 +54,7 @@ const MainSection = () => {
                 fontSize: { xs: "1.8rem", sm: "2rem", md: "2.2rem" },
                 color: "white",
               }}
+              aria-label="order now"
             >
               ORDER NOW
             </Button>

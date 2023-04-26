@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Chip, Grid, Stack, Typography } from "@mui/material";
 
 const Section = (props) => {
@@ -7,6 +6,7 @@ const Section = (props) => {
     <>
       <Grid
         container
+        component="section"
         sx={{
           height: props.height || undefined,
           backgroundColor: props.bgColor || undefined,
@@ -20,6 +20,7 @@ const Section = (props) => {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}
+        aria-label={props.ariaLabel || undefined}
       >
         <Grid
           item
@@ -33,10 +34,20 @@ const Section = (props) => {
           }}
         >
           {props.label && (
-            <Stack mb={16} width={"100%"} alignItems={"center"}>
+            <Stack
+              component="header"
+              mb={16}
+              width={"100%"}
+              alignItems={"center"}
+            >
               <Chip
                 label={
-                  <Typography variant={"body2"} p={1} fontWeight={5400}>
+                  <Typography
+                    component="h2"
+                    variant={"body2"}
+                    p={1}
+                    fontWeight={5400}
+                  >
                     {props.label}
                   </Typography>
                 }

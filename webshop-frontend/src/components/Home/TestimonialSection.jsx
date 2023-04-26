@@ -1,4 +1,4 @@
-import { Stack, Typography, useTheme, Paper } from "@mui/material";
+import { Paper, Stack, Typography, useTheme } from "@mui/material";
 import Carousel from "../Home/Carousel";
 import Section from "../Home/Section";
 import Avatar from "@mui/material/Avatar";
@@ -12,26 +12,27 @@ export default function TestimonialSection() {
   const { data, isLoading, error, refetch, fetched } = useFetch(
     "GET",
     "testimonials"
-  ); // fetching testimonials data
-  const items = data?.map(
-    (
-      testimonial // map through the fetched data and create Testimonial components
-    ) => (
-      <Testimonial
-        key={testimonial.id}
-        name={testimonial.name}
-        image_url={testimonial.testimonial_image}
-        comment={testimonial.description}
-        rating={testimonial.rating}
-      />
-    )
   );
+  const items = data?.map((testimonial) => (
+    <Testimonial
+      key={testimonial.id}
+      name={testimonial.name}
+      image_url={testimonial.testimonial_image}
+      comment={testimonial.description}
+      rating={testimonial.rating}
+    />
+  ));
 
   return (
     <>
       <Stack bgcolor={theme.palette.primary.light}>
-        <img src={divider} alt={""} style={{ transform: "scaleX(-1)" }} />
-        <Section sx={{ my: -1 }}>
+        <img
+          src={divider}
+          alt={""}
+          style={{ transform: "scaleX(-1)" }}
+          aria-hidden="true"
+        />
+        <Section sx={{ my: -1 }} ariaLabel="Testimonials section">
           <Typography
             variant="h2"
             color={"primary.contrastText"}
@@ -51,6 +52,7 @@ export default function TestimonialSection() {
           src={divider}
           alt={""}
           style={{ transform: "scale(1, -1)", marginBottom: -1 }}
+          aria-hidden="true"
         />
       </Stack>
     </>
@@ -68,22 +70,30 @@ function Testimonial(props) {
       <Paper
         elevation={3}
         sx={{ py: 6, pl: 6, pr: 6, maxWidth: 500, margin: "0 auto" }}
+        role="article"
+        aria-labelledby={`testimonial-title-${props.name}`}
       >
         <Stack alignItems={"left"} spacing={2}>
           <Stack direction="row" sx={{ mb: 1 }}>
             <Avatar
               src={props.image_url}
-              alt={""}
+              alt={`Avatar of ${props.name}`}
               sx={{ width: 72, height: 72 }}
             />
             <Stack
               alignItems={"flex-start"}
               sx={{ ml: 2, flexGrow: 1, justifyContent: "space-between" }}
             >
-              <Typography variant="h6">{props.name}</Typography>
+              <Typography
+                component="h2"
+                variant="h6"
+                id={`testimonial-title-${props.name}`}
+              >
+                {props.name}
+              </Typography>
               <Stack direction="row">
                 {stars}
-                <Typography variant="subtitle1" color="secondary">
+                <Typography component="p" variant="subtitle1" color="secondary">
                   ({props.rating}/5)
                 </Typography>
               </Stack>
