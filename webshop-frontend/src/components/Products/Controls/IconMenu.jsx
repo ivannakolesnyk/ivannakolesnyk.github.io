@@ -20,6 +20,7 @@ const IconMenu = ({ menuItems, anchorEl, setAnchorEl, handleSort }) => {
       anchorEl={anchorEl}
       open={Boolean(anchorEl)}
       onClose={() => setAnchorEl(null)}
+      aria-label="sort options"
     >
       {menuItems.map(({ name, icon: Icon }, index) => (
         <MenuItem
@@ -28,6 +29,7 @@ const IconMenu = ({ menuItems, anchorEl, setAnchorEl, handleSort }) => {
             name === "Descending" ? handleSort("desc") : handleSort("asc");
             setAnchorEl(null);
           }}
+          aria-label={`Sort products by ${name.toLowerCase()}`}
         >
           <ListItemIcon>
             <Icon />

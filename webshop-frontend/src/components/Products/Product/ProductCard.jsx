@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import CardActionArea from "@mui/material/CardActionArea";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import LazyLoad from "react-lazy-load";
 import { Link } from "react-router-dom";
 
@@ -95,7 +95,9 @@ function ProductCard({
       }}
       style={{ textDecoration: "none" }}
     >
-      <CardActionArea>{content}</CardActionArea>
+      <CardActionArea aria-label={`View product details for ${productName}`}>
+        {content}
+      </CardActionArea>
     </Link>
   ) : (
     content

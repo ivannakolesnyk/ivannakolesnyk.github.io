@@ -95,7 +95,7 @@ function ProductDetails() {
                   <Box
                     component="img"
                     src={product.product_image}
-                    alt={product.name}
+                    alt={`Product image of ${product.name}`}
                     sx={{ width: "70%", height: "auto" }}
                   />
                 </Box>
@@ -142,13 +142,19 @@ function ProductDetails() {
                         borderRadius: "8px",
                       }}
                     >
-                      <IconButton onClick={decrementQuantity}>
+                      <IconButton
+                        onClick={decrementQuantity}
+                        aria-label="Decrease quantity"
+                      >
                         <RemoveIcon sx={{ color: "secondary.main" }} />
                       </IconButton>
                       <Typography variant="body2" sx={{ margin: "0 10px" }}>
                         {quantity}
                       </Typography>
-                      <IconButton onClick={incrementQuantity}>
+                      <IconButton
+                        onClick={incrementQuantity}
+                        aria-label="Increase quantity"
+                      >
                         <AddIcon sx={{ color: "secondary.main" }} />
                       </IconButton>
                     </Box>
@@ -181,4 +187,3 @@ function ProductDetails() {
 }
 
 export default ProductDetails;
-

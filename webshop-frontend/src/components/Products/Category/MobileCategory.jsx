@@ -26,6 +26,7 @@ const MobileCategory = () => {
       }}
       component="nav"
       aria-labelledby="nested-list-subheader"
+      aria-label="product categories"
     >
       <Grid container justifyContent={"space-around"}>
         {categories.map(({ name, icon: Icon }, index) => (
@@ -53,6 +54,7 @@ const MobileCategory = () => {
                 paddingBottom: 0,
               }}
               disableGutters
+              aria-label={`Select ${name} category`}
             >
               <ListItemIcon>
                 <Icon />

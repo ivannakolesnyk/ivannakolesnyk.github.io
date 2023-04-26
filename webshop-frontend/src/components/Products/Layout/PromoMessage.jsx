@@ -17,6 +17,8 @@ import { Box } from "@mui/system";
 export const PromoMessage = ({ theme }) => {
   return (
     <Box
+      component="aside"
+      aria-label="promotional message"
       sx={{
         backgroundColor: "primary.main",
         color: theme.palette.primary.contrastText,

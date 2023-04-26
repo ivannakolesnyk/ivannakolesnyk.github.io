@@ -28,9 +28,14 @@ const Category = () => {
         }}
         component="nav"
         aria-labelledby="nested-list-subheader"
+        aria-label="product categories"
       >
         {categories.map(({ name, icon: Icon }, index) => (
-          <ListItemButton key={index} onClick={() => handleCategoryClick(name)}>
+          <ListItemButton
+            key={index}
+            onClick={() => handleCategoryClick(name)}
+            aria-label={`Select ${name} category`}
+          >
             <ListItemIcon>
               <Icon
                 sx={{

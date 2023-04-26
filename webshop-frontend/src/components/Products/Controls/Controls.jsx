@@ -47,7 +47,7 @@ export const Controls = ({
           variant="outlined"
           color="secondary"
           aria-haspopup="true"
-          aria-controls="menu"
+          aria-label="sort products"
           sx={buttonStyles}
           onClick={(event) => {
             sortSetAnchorEl(event.currentTarget);
