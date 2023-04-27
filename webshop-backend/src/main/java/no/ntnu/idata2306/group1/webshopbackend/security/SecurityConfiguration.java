@@ -56,6 +56,10 @@ public class SecurityConfiguration {
                 .requestMatchers("/swagger-ui/**").permitAll()
                 .requestMatchers("/api/authenticate").permitAll()
                 .requestMatchers("/api/signup").permitAll()
+                // Categories endpoints
+                .requestMatchers(HttpMethod.GET, "/api/categories").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/categories").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/api/categories").hasRole("ADMIN")
                 // Products endpoints
                 .requestMatchers("/api/products").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/products").hasRole("ADMIN")

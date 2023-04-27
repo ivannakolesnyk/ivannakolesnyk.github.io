@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Size;
 
 /**
  * A category, for products in our webshop.
@@ -23,9 +24,11 @@ public class Category {
     private int id;
 
     @Schema(description = "The name of the category")
+    @Size(min = 3)
     private String name;
 
-    public Category() {}
+    public Category() {
+    }
 
     public Category(String name) {
         this.name = name;
