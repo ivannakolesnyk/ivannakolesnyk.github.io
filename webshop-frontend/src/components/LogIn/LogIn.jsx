@@ -77,7 +77,12 @@ const Login = () => {
   return (
     <Container maxWidth="lg" sx={{ display: "flex", justifyContent: "center" }}>
       <Box sx={{ mt: "4rem", mb: "2rem" }}>
-        <LoginBox elevation={3} component="form" onSubmit={handleSubmit}>
+        <LoginBox
+          elevation={3}
+          component="form"
+          onSubmit={handleSubmit}
+          aria-label="Login form"
+        >
           <Typography
             variant="h4"
             sx={{ color: "secondary.main", marginBottom: "2rem" }}
@@ -89,18 +94,21 @@ const Login = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value.toLowerCase())}
+            aria-label="Email input"
           />
           <StyledTextField
             label="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            aria-label="Password input"
           />
           <StyledButton
             type="submit"
             variant="contained"
             color="primary"
             disabled={isLoading}
+            aria-label="Login button"
           >
             {isLoading ? (
               <CircularProgress size={24} color="inherit" />
@@ -119,6 +127,7 @@ const Login = () => {
               to={"/register"}
               style={{ textDecoration: "underline" }}
               sx={{ color: "secondary.main" }}
+              aria-label="Sign up link"
             >
               Sign up here.
             </Link>

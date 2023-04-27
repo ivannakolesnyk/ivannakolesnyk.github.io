@@ -8,6 +8,7 @@ const OrderNowButton = ({ onClick, isLoading }) => {
       onClick={onClick}
       disabled={isLoading}
       sx={{ width: "14rem", height: "4rem" }}
+      aria-label="Order now"
     >
       {isLoading ? <CircularProgress size={24} /> : "Order Now"}
     </Button>

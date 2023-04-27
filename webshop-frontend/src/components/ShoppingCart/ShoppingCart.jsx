@@ -1,8 +1,7 @@
 import { Box, Divider, Paper } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
-import { AuthContext } from "../../context/AuthContext";
 import CartEmpty from "./CartEmpty";
 import CartTable from "./CartTable";
 import Subtotal from "./Subtotal";
@@ -11,7 +10,7 @@ import styles from "./styles";
 import ContinueShoppingButton from "./ContinueShoppingButton";
 import OrderNowButton from "./OrderNowButton";
 import CustomSnackbar from "../Standard_components/CustomSnackbar";
-import {useAuthHeaders} from "../../hooks/useAuthHeaders";
+import { useAuthHeaders } from "../../hooks/useAuthHeaders";
 
 /**
  * Transforms the cart items into a format that can be sent to the server.
@@ -73,7 +72,7 @@ function ShoppingCart() {
 
   return (
     <>
-      <Box sx={styles.ShoppingCartSection}>
+      <Box sx={styles.ShoppingCartSection} aria-label="Shopping cart">
         <Paper elevation={3} sx={styles.TableContainer}>
           <CartTable />
           <Divider sx={{ my: 2 }} />
