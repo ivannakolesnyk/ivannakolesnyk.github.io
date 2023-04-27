@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import CardActionArea from "@mui/material/CardActionArea";
-import React from "react";
+import React, { useMemo } from "react";
 import LazyLoad from "react-lazy-load";
 import { Link } from "react-router-dom";
 
@@ -24,68 +24,79 @@ function ProductCard({
   oldPrice,
   currentPrice,
 }) {
-  const content = (
-    <Card>
-      {specialOffer && (
-        <Box
+  const content = useMemo(() => {
+    return (
+      <Card>
+        {specialOffer && (
+          <Box
+            sx={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              backgroundColor: "error.main",
+              color: "white",
+              padding: "0.5rem",
+              zIndex: 1,
+            }}
+          >
+            {salePercentage} %
+          </Box>
+        )}
+        <LazyLoad offset={300}>
+          <CardMedia
+            component="img"
+            alt={imageAlt}
+            src={imagePath}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              objectFit: "contain",
+              height: 250,
+            }}
+          />
+        </LazyLoad>
+        <CardContent
           sx={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            backgroundColor: "error.main",
-            color: "white",
-            padding: "0.5rem",
-            zIndex: 1,
+            color: "primary.contrastText",
           }}
         >
-          {salePercentage} %
-        </Box>
-      )}
-      <LazyLoad offset={300}>
-        <CardMedia
-          component="img"
-          alt={imageAlt}
-          src={imagePath}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            objectFit: "contain",
-            height: 250,
-          }}
-        />
-      </LazyLoad>
-      <CardContent
-        sx={{
-          color: "primary.contrastText",
-        }}
-      >
-        <Typography fontSize={"2.5rem"} fontWeight={"500"}>
-          {productName}
-        </Typography>
-        {specialOffer ? (
-          <Stack direction="row" alignItems={"center"} marginBottom={"1rem"}>
-            <Typography
-              fontSize={"1.8rem"}
-              fontWeight={"600"}
-              sx={{ textDecoration: "line-through", marginRight: "1.6rem" }}
-            >
-              {oldPrice} NOK
-            </Typography>
-            <Typography fontSize={"1.8rem"} fontWeight={"600"}>
-              {currentPrice} NOK
-            </Typography>
-          </Stack>
-        ) : (
-          price && (
-            <Typography fontWeight={"600"} fontSize={"1.8rem"}>
-              {price} NOK
-            </Typography>
-          )
-        )}
-      </CardContent>
-    </Card>
-  );
+          <Typography fontSize={"2.5rem"} fontWeight={"500"}>
+            {productName}
+          </Typography>
+          {specialOffer ? (
+            <Stack direction="row" alignItems={"center"} marginBottom={"1rem"}>
+              <Typography
+                fontSize={"1.8rem"}
+                fontWeight={"600"}
+                sx={{ textDecoration: "line-through", marginRight: "1.6rem" }}
+              >
+                {oldPrice} NOK
+              </Typography>
+              <Typography fontSize={"1.8rem"} fontWeight={"600"}>
+                {currentPrice} NOK
+              </Typography>
+            </Stack>
+          ) : (
+            price && (
+              <Typography fontWeight={"600"} fontSize={"1.8rem"}>
+                {price} NOK
+              </Typography>
+            )
+          )}
+        </CardContent>
+      </Card>
+    );
+  }, [
+    specialOffer,
+    salePercentage,
+    imageAlt,
+    imagePath,
+    productName,
+    oldPrice,
+    currentPrice,
+    price,
+  ]);
 
   return isClickable ? (
     <Link
