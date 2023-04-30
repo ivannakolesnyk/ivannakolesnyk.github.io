@@ -13,6 +13,10 @@ import React, { useContext } from "react";
 import { ProductsContext } from "../../../context/ProductsContext";
 import { categories } from "./categoryData";
 
+/**
+ * Displays a grid of product categories designed for mobile devices.
+ * When a category is clicked, it triggers the handleCategoryClick function.
+ */
 const MobileCategory = () => {
   const theme = useTheme();
   const isBelow500px = useMediaQuery((theme) => theme.breakpoints.down("sm"));

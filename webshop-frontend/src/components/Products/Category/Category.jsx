@@ -11,6 +11,10 @@ import { ProductsContext } from "../../../context/ProductsContext";
 import { categories } from "./categoryData";
 import { useTheme } from "@emotion/react";
 
+/**
+ * Displays a list of product categories.
+ * When a category is clicked, it triggers the handleCategoryClick function.
+ */
 const Category = () => {
   const { handleCategoryClick } = useContext(ProductsContext);
   const theme = useTheme();

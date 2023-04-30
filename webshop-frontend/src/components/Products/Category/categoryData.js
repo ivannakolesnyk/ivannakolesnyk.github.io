@@ -10,6 +10,9 @@ const iconStyle = {
   fontSize: "3rem",
 };
 
+/**
+ * categories - An array of Category objects.
+ */
 export const categories = [
   {
     name: "Coffee",
