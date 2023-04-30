@@ -6,6 +6,7 @@ import NewProductDialog from "./CreateProduct/NewProductDialog";
 import useFetch from "../../../hooks/useFetch";
 import Loading from "../../Standard_components/Loading";
 import { useAuthHeaders } from "../../../hooks/useAuthHeaders";
+import InternalError from "../../Standard_components/InternalError";
 
 /**
  *
@@ -30,18 +31,24 @@ const AdminProducts = () => {
     refetch: createProductRequest,
   } = useFetch("POST", "products", headers, null, null, false);
 
-  const {
-    isLoading: isDeleting,
-    error: deleteError,
-    refetch: deleteProductRequest,
-  } = useFetch("DELETE", "products", headers, null, null, false);
+  const { refetch: deleteProductRequest } = useFetch(
+    "DELETE",
+    "products",
+    headers,
+    null,
+    null,
+    false
+  );
 
   // Add this new useFetch instance
-  const {
-    isLoading: isUpdating,
-    error: updateError,
-    refetch: updateProductRequest,
-  } = useFetch("PUT", "products", headers, null, null, false);
+  const { refetch: updateProductRequest } = useFetch(
+    "PUT",
+    "products",
+    headers,
+    null,
+    null,
+    false
+  );
 
   const createProduct = async (newProduct) => {
     try {
@@ -79,6 +86,7 @@ const AdminProducts = () => {
   };
 
   if (isLoading) return <Loading />;
+  if (fetchError) return <InternalError />;
 
   return (
     <Box sx={{ p: { xs: 2, md: 4 } }}>
