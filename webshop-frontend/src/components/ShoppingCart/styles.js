@@ -1,3 +1,7 @@
+/**
+ * styles object contains styles for the ShoppingCartSection and TableContainer components.
+ */
+
 const styles = {
     ShoppingCartSection: {
         display: "flex",

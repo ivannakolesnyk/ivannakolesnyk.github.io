@@ -14,6 +14,10 @@ import { Delete as DeleteIcon } from "@mui/icons-material";
 import QuantityAdjuster from "./QuantityAdjuster";
 import { useCart } from "../../context/CartContext";
 
+/**
+ * Renders a table to display the cart items, adjust quantities, and remove items from the cart.
+ * @returns {React.Element} - The CartTable component.
+ */
 const CartTable = () => {
   const { cart, removeFromCart } = useCart();
   const isSmallScreen = useMediaQuery("(max-width: 700px)");

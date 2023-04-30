@@ -1,5 +1,12 @@
 import { Button, CircularProgress } from "@mui/material";
 
+/**
+ * Renders a button for submitting an order with a loading spinner.
+ * @param {Object} props - The properties passed to the component.
+ * @param {Function} props.onClick - The callback function to handle the button click event.
+ * @param {boolean} props.isLoading - The loading state of the order submission process.
+ * @returns {React.Element} - The OrderNowButton component.
+ */
 const OrderNowButton = ({ onClick, isLoading }) => {
   return (
     <Button

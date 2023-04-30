@@ -1,6 +1,10 @@
 import { Box, Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
+/**
+ * Renders a message and a button to browse products when the cart is empty.
+ * @returns {React.Element} - The CartEmpty component.
+ */
 const CartEmpty = () => {
   return (
     <Box

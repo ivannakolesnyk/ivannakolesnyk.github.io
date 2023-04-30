@@ -1,9 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import { useCart } from "../../context/CartContext";
 
+/**
+ * Renders the calculated subtotal for the items in the cart.
+ * @returns {React.Element} - The Subtotal component.
+ */
 const Subtotal = () => {
   const { cart } = useCart();
-
   const calculateTotalPrice = () => {
     return cart.reduce(
       (total, item) => total + item.product.price * item.quantity,
