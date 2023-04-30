@@ -1,7 +1,16 @@
 import React, { createContext, useState } from "react";
 
+/**
+ * ProductsContext is the context for managing products filter state.
+ */
+
 export const ProductsContext = createContext();
 
+/**
+ * ProductsProvider component provides the state and methods for managing products filter.
+ * @param {object} children - The child components to be wrapped with the ProductsProvider.
+ * @returns {JSX.Element} - The JSX code for the ProductsProvider component.
+ */
 export const ProductsProvider = ({ children }) => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [showAllProducts, setShowAllProducts] = useState(false);
