@@ -5,7 +5,7 @@
  */
 
 import { Grid } from "@mui/material";
-import ProductCard from "./ProductCard";
+import ProductCard from "./ProductCard/ProductCard";
 import React from "react";
 
 /**

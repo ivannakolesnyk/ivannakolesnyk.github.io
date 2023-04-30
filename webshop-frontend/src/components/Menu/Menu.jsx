@@ -1,6 +1,6 @@
 import { Box, Grid, List } from "@mui/material";
 import React, { useState } from "react";
-import ProductCard from "../Products/Product/ProductCard";
+import ProductCard from "../Products/Product/ProductCard/ProductCard";
 import MenuHeader from "./MenuHeader";
 import MenuItem from "./MenuItem";
 import MenuSearchResults from "./MenuSearchResults";
