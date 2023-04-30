@@ -14,6 +14,7 @@ import { styled } from "@mui/material/styles";
 import { AuthContext } from "../../context/AuthContext";
 import cookie from "cookie";
 import useFetch from "../../hooks/useFetch";
+import jwt_decode from "jwt-decode";
 
 const LoginBox = styled(Paper)({
   display: "flex",
@@ -44,7 +45,7 @@ const StyledButton = styled(Button)({
  */
 const Login = () => {
   const navigate = useNavigate();
-  const { handleLogin, getJwtPayload } = useContext(AuthContext);
+  const { handleLogin } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -60,8 +61,9 @@ const Login = () => {
   useEffect(() => {
     if (fetched) {
       const token = data.jwt;
+      const payload = jwt_decode(token);
       document.cookie = cookie.serialize("jwt", token, {
-        maxAge: getJwtPayload.exp,
+        maxAge: payload.exp,
         path: "/",
       });
       handleLogin();
