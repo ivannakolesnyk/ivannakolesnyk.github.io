@@ -61,6 +61,7 @@ const Login = () => {
       const token = data.jwt;
       document.cookie = cookie.serialize("jwt", token, {
         maxAge: getJwtPayload.exp,
+        path: "/",
       });
       handleLogin();
       getJwtPayload().roles.some((role) => role.authority === "ROLE_ADMIN")
