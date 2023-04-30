@@ -1,6 +1,10 @@
 import { Box, CircularProgress, Typography } from "@mui/material";
 import React from "react";
 
+/**
+ * Renders a circular progress which indicates that the page is loading.
+ * @returns {React.Element} - The Loading component.
+ */
 const Loading = () => {
   return (
     <Box

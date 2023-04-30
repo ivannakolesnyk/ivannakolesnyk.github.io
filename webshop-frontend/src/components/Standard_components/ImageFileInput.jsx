@@ -2,6 +2,13 @@ import React from "react";
 import { Box, IconButton, InputAdornment, TextField } from "@mui/material";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 
+/**
+ * Renders a TextField for displaying image URL and an IconButton to upload an image.
+ * @param {Object} props - The properties passed to the component.
+ * @param {Function} props.handleImageUpload - The callback function to handle the image upload.
+ * @param {string} [props.value=""] - The value of the TextField (image URL).
+ * @returns {React.Element} - The ImageFileInput component.
+ */
 const ImageFileInput = ({ handleImageUpload, value = "" }) => {
   return (
     <Box>

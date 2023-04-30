@@ -2,6 +2,10 @@ import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router";
 
+/**
+ * Renders a user-friendly messsage in case of an error with a button to go home.
+ * @returns {React.Element} - The InternalError component.
+ */
 const InternalError = () => {
   const navigate = useNavigate();
   const handleBackClick = () => {

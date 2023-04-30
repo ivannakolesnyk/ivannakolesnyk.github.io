@@ -2,6 +2,10 @@ import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Renders a 404 error message and a button to navigate back to the home page.
+ * @returns {React.Element} - The NotFound component.
+ */
 const NotFound = () => {
   const navigate = useNavigate();
 
