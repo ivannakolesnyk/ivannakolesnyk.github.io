@@ -1,12 +1,12 @@
 import { Box } from "@mui/material";
 import React, { useContext } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import AboutUs from "./components/AboutUs";
+import AboutUs from "./components/AboutUs/AboutUs";
 import Admin from "./components/Admin/Admin";
 import AdminChangePassword from "./components/Admin/AdminChangePW";
 import AdminEditProfilePage from "./components/Admin/AdminEdit";
 import FindUs from "./components/FindUs/FindUs";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer";
 import Frontpage from "./components/Home/Frontpage";
 import LogIn from "./components/LogIn/LogIn";
 import RegisterNewUser from "./components/LogIn/RegisterNewUser";
