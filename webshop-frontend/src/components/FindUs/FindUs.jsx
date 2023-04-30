@@ -1,58 +1,16 @@
 import React, { useCallback, useRef, useState } from "react";
-import { Box, Button, Typography } from "@mui/material";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
-import DirectionsIcon from "@mui/icons-material/Directions";
+import { DirectionButton } from "./DirectionButton";
 
-//For placing Direction Butoon component right on top of the Google Map, used wraping both the GoogleMap and DirectionButton components inside a container element and use CSS to position the last one over the map.
-const DirectionButton = ({ address, onGetDirections }) => {
-  return (
-    <Box
-      sx={{
-        backgroundColor: "primary.main",
-        borderRadius: 5,
-        padding: "35px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        justifyContent: "center",
-        textAlign: "left",
-        position: "absolute",
-        top: "20%",
-        left: "35%",
-        transform: "translate(-30%, -50%)",
-        zIndex: 1,
-        "& > *": {
-          margin: "10px 0",
-        },
-      }}
-    >
-      <Typography variant="h3" color="primary.contrastText">
-        Find Us
-      </Typography>
-      <Typography
-        variant="body1"
-        color="primary.contrastText"
-        sx={{ textAlign: "left", width: "100%", mt: 2 }}
-      >
-        {address}
-      </Typography>
-      <Button
-        variant="contained"
-        endIcon={<DirectionsIcon />}
-        onClick={onGetDirections}
-        sx={{
-          mt: 2,
-          backgroundColor: "secondary.main",
-          color: "secondary.contrastText",
-        }}
-      >
-        Get direction
-      </Button>
-    </Box>
-  );
-};
-
-//Function for implementation the Google maps to the page
+/**
+ *
+ * The FindUs component is a React functional component used for displaying
+ * a Google Map with a marker at a specific location. It includes a button
+ * for getting directions to the location. This component is useful for
+ * providing a visual representation of a physical location and helping
+ * users navigate to it.
+ * @returns {JSX.Element} The JSX code for the FindUs component.
+ */
 const FindUs = () => {
   // workaround found on github.com to avoid libraries prop being passed as a new array on each render
   const [libraries] = useState(["places"]);

@@ -5,7 +5,7 @@ import AboutUs from "./components/AboutUs";
 import Admin from "./components/Admin/Admin";
 import AdminChangePassword from "./components/Admin/AdminChangePW";
 import AdminEditProfilePage from "./components/Admin/AdminEdit";
-import FindUs from "./components/FindUs";
+import FindUs from "./components/FindUs/FindUs";
 import Footer from "./components/Footer";
 import Frontpage from "./components/Home/Frontpage";
 import LogIn from "./components/LogIn/LogIn";
