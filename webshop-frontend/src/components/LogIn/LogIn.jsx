@@ -118,6 +118,11 @@ const Login = () => {
               "Login"
             )}
           </StyledButton>
+          {error && (
+            <Alert severity={"error"} sx={{ marginTop: "1rem" }}>
+              You've entered invalid email or password. Please try again.
+            </Alert>
+          )}
           <Typography
             sx={{
               marginTop: "1rem",
