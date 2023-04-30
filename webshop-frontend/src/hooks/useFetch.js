@@ -10,7 +10,7 @@ import { useCallback, useEffect, useState } from "react";
  * @param {object} [query] - An optional object containing key-value pairs to be used as query parameters in the request.
  * @param {object} requestBody - An object containing the request payload.
  * @param {boolean} [autoFetch=true] - An optional boolean flag to determine if the request should be sent automatically when the hook is called.
- * @param {string} [baseURL="http://localhost:8080/api/"] - An optional base URL for the API endpoint.
+ * @param {string} [baseURL=process.env.REACT_APP_BASE_URL] - An optional base URL for the API endpoint.
  * @returns {object} An object containing the fetched data, the loading state, any error encountered during the fetch, a `refetch` function to trigger a re-fetch manually, and a `fetched` boolean flag indicating whether the data has been fetched.
  *
  * @example
@@ -24,7 +24,7 @@ const useFetch = (
   query = null,
   requestBody = null,
   autoFetch = true,
-  baseURL = "http://localhost:8080/api/"
+  baseURL = process.env.REACT_APP_BASE_URL
 ) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);

@@ -11,17 +11,17 @@ import jwt_decode from "jwt-decode";
  * @property {string} userEmail - The user's email decoded from the JWT payload.
  */
 export const useAuthHeaders = () => {
-    const jwt = cookie.parse(document.cookie).jwt;
-    const payload = jwt? jwt_decode(jwt) : "";
-    const userEmail = payload ? payload.sub : ""; // Replace 'sub' with the claim name containing the user's email
+  const jwt = cookie.parse(document.cookie).jwt;
+  const payload = jwt ? jwt_decode(jwt) : "";
+  const userEmail = payload ? payload.sub : ""; // Replace 'sub' with the claim name containing the user's email
 
-    const headers = useMemo(
-        () => ({
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${jwt}`,
-        }),
-        [jwt]
-    );
+  const headers = useMemo(
+    () => ({
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwt}`,
+    }),
+    [jwt]
+  );
 
-    return { headers, userEmail };
+  return { headers, userEmail };
 };
