@@ -47,7 +47,7 @@ public class ShopOrderController {
 
     @Operation(summary = "Get all orders")
     @ApiResponse(responseCode = "200", description = "Orders fetched",
-            content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ShopOrderDTO.class)) })
+            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ShopOrderDTO.class))})
     @GetMapping("/api/orders")
     public ResponseEntity getOrders() {
         List<ShopOrder> shopOrders = this.shopOrderRepository.findAll();
@@ -59,7 +59,7 @@ public class ShopOrderController {
 
     @Operation(summary = "Get user's orders")
     @ApiResponse(responseCode = "200", description = "User's orders fetched",
-            content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ShopOrderDTO.class)) })
+            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ShopOrderDTO.class))})
     @GetMapping("/api/orders/{username}")
     public ResponseEntity getUsersOrders(
             @Parameter(description = "Username of the user")
@@ -82,7 +82,7 @@ public class ShopOrderController {
 
     @Operation(summary = "Update order status")
     @ApiResponse(responseCode = "200", description = "Order status updated",
-            content = { @Content(mediaType = "application/json", schema = @Schema(implementation = ShopOrder.class)) })
+            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ShopOrder.class))})
     @PutMapping("/api/orders/{id}")
     public ResponseEntity<ShopOrder> updateOrderStatus(
             @Parameter(description = "ID of the order to be updated")
@@ -111,7 +111,7 @@ public class ShopOrderController {
 
     @Operation(summary = "Get order lines by order ID")
     @ApiResponse(responseCode = "200", description = "Order lines fetched",
-            content = { @Content(mediaType = "application/json", schema = @Schema(implementation = OrderLineDTO.class)) })
+            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = OrderLineDTO.class))})
     @GetMapping("/api/orders/orderlines/{orderid}")
     public ResponseEntity getOrderLines(
             @Parameter(description = "ID of the order")
@@ -123,13 +123,7 @@ public class ShopOrderController {
                 ShopOrder order = found.get();
                 String email = order.getUser().getEmail();
                 User sessionUser = userService.getSessionUser();
-                if (sessionUser != null && sessionUser.getEmail().equals(email)) {
-                    List<OrderLine> orderLines = this.orderLineRepository.findByOrder(order);
-                    List<OrderLineDTO> orderLineDTOs = orderLines.stream()
-                            .map(OrderLineMapper::toOrderLineDTO)
-                            .collect(Collectors.toList());
-                    return new ResponseEntity(orderLineDTOs, HttpStatus.OK);
-                } else if (sessionUser.isAdmin()) {
+                if (sessionUser != null && sessionUser.getEmail().equals(email) || sessionUser.isAdmin()) {
                     List<OrderLine> orderLines = this.orderLineRepository.findByOrder(order);
                     List<OrderLineDTO> orderLineDTOs = orderLines.stream()
                             .map(OrderLineMapper::toOrderLineDTO)
