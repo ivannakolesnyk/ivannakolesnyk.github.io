@@ -16,14 +16,21 @@ import Loading from "../Standard_components/Loading";
 import { MainContent } from "./Layout/MainContent";
 import { Sidebar } from "./Layout/Sidebar";
 
+const sortButtonMenu = [
+  {
+    name: "Ascending",
+    icon: () => <TrendingUpIcon />,
+  },
+  {
+    name: "Descending",
+    icon: () => <TrendingDownIcon />,
+  },
+];
+
 /**
  * Products component that displays the list of products with filtering and sorting options.
  *
- * @param {Object} props - The properties passed to the component.
- * @param {string} props.selectedCategory - The currently selected product category.
- * @param {boolean} props.showAllProducts - Whether to show all products or only the filtered ones.
- * @param {function} props.onCategoryClick - Callback function for when a category is clicked.
- * @returns {React.Element} The Products component.
+ * @returns {JSX.Element} The Products component.
  */
 const Products = () => {
   const { selectedCategory, showAllProducts } = useContext(ProductsContext);
@@ -31,23 +38,12 @@ const Products = () => {
   // Fetching product data from API
   const {
     data: productsOriginal,
-    showError,
+    error,
     isLoading,
   } = useFetch("GET", "products");
 
   const theme = useTheme();
   const isBigScreen = useMediaQuery("(min-width: 900px)");
-
-  const sortButtonMenu = [
-    {
-      name: "Ascending",
-      icon: () => <TrendingUpIcon />,
-    },
-    {
-      name: "Descending",
-      icon: () => <TrendingDownIcon />,
-    },
-  ];
 
   // optimize the performance by memoizing the output of the filtering function
   const [searchTerm, setSearchTerm] = useState("");
@@ -99,32 +95,25 @@ const Products = () => {
     color: theme.palette.secondary.main,
   };
 
+  if (isLoading) return <Loading />;
+  if (error) return <InternalError />;
+
   return (
     <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <>
-          {showError ? (
-            <InternalError />
-          ) : (
-            <Grid container spacing={0}>
-              <Sidebar isBigScreen={isBigScreen} />
-              <MainContent
-                onSearchChange={setSearchTerm}
-                theme={theme}
-                buttonStyles={buttonStyles}
-                sortButtonMenu={sortButtonMenu}
-                sortAnchorEl={sortAnchorEl}
-                sortSetAnchorEl={sortSetAnchorEl}
-                handleSort={handleSort}
-                isBigScreen={isBigScreen}
-                sortedProducts={sortedProducts}
-              />
-            </Grid>
-          )}
-        </>
-      )}
+      <Grid container spacing={0}>
+        <Sidebar isBigScreen={isBigScreen} />
+        <MainContent
+          onSearchChange={setSearchTerm}
+          theme={theme}
+          buttonStyles={buttonStyles}
+          sortButtonMenu={sortButtonMenu}
+          sortAnchorEl={sortAnchorEl}
+          sortSetAnchorEl={sortSetAnchorEl}
+          handleSort={handleSort}
+          isBigScreen={isBigScreen}
+          sortedProducts={sortedProducts}
+        />
+      </Grid>
     </>
   );
 };
