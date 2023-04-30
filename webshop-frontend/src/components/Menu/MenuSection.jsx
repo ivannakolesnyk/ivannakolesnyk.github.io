@@ -2,6 +2,19 @@ import { useTheme } from "@emotion/react";
 import { Box, Button, Typography } from "@mui/material";
 import React, { forwardRef } from "react";
 
+/**
+ * Represents a section within the menu, displaying the heading,
+ * menu items, and a "View All" button for that category.
+ *
+ * @component
+ * @param {Object} props
+ * @param {string} props.name - The name of the category.
+ * @param {Array} props.products - The array of products within the category.
+ * @param {string|null} props.expandedCategory - The currently expanded category, if any.
+ * @param {function} props.handleViewAllClick - The function to handle the "View All" button click event.
+ * @param {function} props.renderMenuItems - The function responsible for rendering menu items.
+ */
+
 const MenuSection = forwardRef(
   (
     { name, products, expandedCategory, handleViewAllClick, renderMenuItems },

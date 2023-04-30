@@ -1,3 +1,6 @@
+/**
+ * styles object contains styles for the Menu component.
+ */
 const styles = {
     scroll: {
         behavior: "smooth",

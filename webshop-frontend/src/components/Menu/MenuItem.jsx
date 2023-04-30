@@ -1,5 +1,14 @@
 import { Button, ListItem, ListItemText } from "@mui/material";
 
+/**
+ * The MenuItem component is a single menu item that can be clicked to scroll to a specific section.
+ *
+ * @component
+ * @param {Object} props
+ * @param {string} props.item - The text content of the menu item.
+ * @param {function} props.onClick - The function to handle the click event on the menu item.
+ */
+
 const MenuItem = ({ item, onClick }) => {
   return (
     <ListItem

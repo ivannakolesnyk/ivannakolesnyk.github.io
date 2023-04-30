@@ -2,6 +2,14 @@ import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import SearchBar from "../Products/Controls/SearchBar";
 
+/**
+ * Displays the heading, description, and search bar in the menu section.
+ *
+ * @component
+ * @param {Object} props
+ * @param {function} props.onSearchChange - The function to handle search input changes.
+ */
+
 const MenuHeader = ({ onSearchChange }) => {
   const theme = useTheme();
 
