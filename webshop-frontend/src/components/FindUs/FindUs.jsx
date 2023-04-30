@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import { DirectionButton } from "./DirectionButton";
+import { Box } from "@mui/material";
 
 /**
  *
@@ -32,7 +33,8 @@ const FindUs = () => {
   if (!isLoaded) return "Loading maps";
 
   return (
-    <div
+    <Box
+      component="main"
       style={{
         position: "relative",
         width: "100%",
@@ -40,6 +42,7 @@ const FindUs = () => {
       }}
     >
       <GoogleMap
+        aria-label="Map showing the location of the desired location"
         mapContainerStyle={{ width: "100%", height: "100%" }}
         center={{ lat: 62.47194, lng: 6.23559 }}
         zoom={15}
@@ -60,7 +63,7 @@ const FindUs = () => {
           window.open(url, "_blank");
         }} // Open a new tab with your path in Google Maps after click on the button
       />
-    </div>
+    </Box>
   );
 };
 

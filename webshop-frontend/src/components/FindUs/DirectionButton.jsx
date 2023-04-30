@@ -47,6 +47,7 @@ export const DirectionButton = ({ address, onGetDirections }) => {
         {address}
       </Typography>
       <Button
+        aria-label={`Get directions to ${address}`}
         variant="contained"
         endIcon={<DirectionsIcon />}
         onClick={onGetDirections}
