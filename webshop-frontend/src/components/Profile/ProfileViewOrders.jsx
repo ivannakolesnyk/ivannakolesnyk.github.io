@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -13,14 +13,12 @@ import { ArrowBack } from "@mui/icons-material";
 import OrderTable from "../Standard_components/Profile_and_Admin/Orders/OrderTable";
 import TitledBox from "../Standard_components/TitledBox";
 import OrderDetails from "../Standard_components/Profile_and_Admin/Orders/OrderDetails";
-import cookie from "cookie";
-import jwt_decode from "jwt-decode";
 import useFetch from "../../hooks/useFetch";
 import Loading from "../Standard_components/Loading";
 import InternalError from "../Standard_components/InternalError";
 import { useCart } from "../../context/CartContext";
-import {usePaymentSuccess} from "../../hooks/usePaymentSuccess";
-import {useAuthHeaders} from "../../hooks/useAuthHeaders";
+import { usePaymentSuccess } from "../../hooks/usePaymentSuccess";
+import { useAuthHeaders } from "../../hooks/useAuthHeaders";
 
 /**
  *
@@ -48,7 +46,6 @@ const ProfileViewOrders = () => {
     data: orders,
     isLoading,
     error,
-    refetch,
   } = useFetch("GET", `orders/${userEmail}`, headers);
 
   usePaymentSuccess(clearCart);

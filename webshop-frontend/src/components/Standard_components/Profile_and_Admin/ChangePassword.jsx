@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -12,10 +12,8 @@ import StandardCenteredBox from "../StandardCenteredBox";
 import StandardCenteredCard from "../StandardCenteredCard";
 import { PasswordTextField } from "./PasswordTextField";
 import useFetch from "../../../hooks/useFetch";
-import cookie from "cookie";
-import jwt_decode from "jwt-decode";
 import InternalError from "../InternalError";
-import {useAuthHeaders} from "../../../hooks/useAuthHeaders";
+import { useAuthHeaders } from "../../../hooks/useAuthHeaders";
 
 /**
  *

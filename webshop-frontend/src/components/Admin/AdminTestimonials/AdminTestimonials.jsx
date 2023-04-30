@@ -4,10 +4,10 @@ import { Box, Button, Typography } from "@mui/material";
 import TestimonialCards from "./TestimonialCards";
 import EditTestimonialForm from "./EditTestimonialForm";
 import NewTestimonialDialog from "./NewTestimonialDialog";
-import axios from "axios";
 import useFetch from "../../../hooks/useFetch";
 import Loading from "../../Standard_components/Loading";
 import { useAuthHeaders } from "../../../hooks/useAuthHeaders";
+import InternalError from "../../Standard_components/InternalError";
 
 /**
  *
@@ -81,6 +81,7 @@ const AdminTestimonials = () => {
   } = useFetch("GET", "testimonials");
 
   if (isLoading) return <Loading />;
+  if (error) return <InternalError />;
 
   return (
     <Box

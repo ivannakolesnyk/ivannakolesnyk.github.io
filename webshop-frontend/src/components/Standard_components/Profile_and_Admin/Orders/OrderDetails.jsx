@@ -3,7 +3,6 @@ import { Grid, Typography, useMediaQuery } from "@mui/material";
 import OrderLine from "./OrderLine";
 import TableHeader from "./TableHeader";
 import useFetch from "../../../../hooks/useFetch";
-import cookie from "cookie";
 import Loading from "../../Loading";
 import InternalError from "../../InternalError";
 import { useAuthHeaders } from "../../../../hooks/useAuthHeaders";

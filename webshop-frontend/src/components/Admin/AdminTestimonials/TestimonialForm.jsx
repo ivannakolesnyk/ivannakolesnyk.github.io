@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  FormControl,
-  FormGroup,
-  FormLabel,
-  Grid,
-  Rating,
-  TextField,
-} from "@mui/material";
+import { FormControl, FormLabel, Grid, Rating, TextField } from "@mui/material";
 import ImageFileInput from "../../Standard_components/ImageFileInput";
 
 /**

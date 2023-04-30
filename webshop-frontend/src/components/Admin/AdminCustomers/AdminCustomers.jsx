@@ -1,12 +1,11 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import TitledBox from "../../Standard_components/TitledBox";
 import { Box } from "@mui/system";
 import CustomerTable from "./CustomerTable";
 import useFetch from "../../../hooks/useFetch";
-import cookie from "cookie";
 import Loading from "../../Standard_components/Loading";
 import InternalError from "../../Standard_components/InternalError";
-import {useAuthHeaders} from "../../../hooks/useAuthHeaders";
+import { useAuthHeaders } from "../../../hooks/useAuthHeaders";
 
 /**
  *

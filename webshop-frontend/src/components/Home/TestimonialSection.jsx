@@ -9,10 +9,7 @@ const divider = `${process.env.PUBLIC_URL}/assets/img/testimonials/divider.svg`;
 
 export default function TestimonialSection() {
   const theme = useTheme();
-  const { data, isLoading, error, refetch, fetched } = useFetch(
-    "GET",
-    "testimonials"
-  );
+  const { data, isLoading, error } = useFetch("GET", "testimonials");
   const items = data?.map((testimonial) => (
     <Testimonial
       key={testimonial.id}

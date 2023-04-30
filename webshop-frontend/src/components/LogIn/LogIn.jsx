@@ -45,7 +45,7 @@ const StyledButton = styled(Button)({
  */
 const Login = () => {
   const navigate = useNavigate();
-  const { handleLogin } = useContext(AuthContext);
+  const { handleLogin, getJwtPayload } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

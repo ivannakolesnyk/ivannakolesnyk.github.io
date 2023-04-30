@@ -6,16 +6,14 @@ import {
   CircularProgress,
   Divider,
 } from "@mui/material";
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import StandardCenteredBox from "../StandardCenteredBox";
 import StandardCenteredCard from "../StandardCenteredCard";
 import { ProfileTextField } from "./ProfileTextField";
 import useFetch from "../../../hooks/useFetch";
-import cookie from "cookie";
-import jwt_decode from "jwt-decode";
 import InternalError from "../InternalError";
-import {useAuthHeaders} from "../../../hooks/useAuthHeaders";
+import { useAuthHeaders } from "../../../hooks/useAuthHeaders";
 
 /**
  *

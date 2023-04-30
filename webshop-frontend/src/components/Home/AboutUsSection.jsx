@@ -39,7 +39,7 @@ const AboutUsSection = () => (
             <Grid key={index} item xs={4}>
               <img
                 src={`${process.env.PUBLIC_URL}/assets/img/aboutus${image}`}
-                alt={`Image ${index}`}
+                alt={index}
                 style={{ maxWidth: "100%" }}
               />
             </Grid>

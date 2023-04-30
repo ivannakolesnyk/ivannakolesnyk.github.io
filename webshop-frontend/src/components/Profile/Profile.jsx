@@ -14,8 +14,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import cookie from "cookie";
-import React, { useMemo } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { ProfileInformation } from "../Standard_components/Profile_and_Admin/ProfileInformation";
 import StandardCenteredBox from "../Standard_components/StandardCenteredBox";
@@ -23,8 +22,7 @@ import StandardCenteredCard from "../Standard_components/StandardCenteredCard";
 import Loading from "../Standard_components/Loading";
 import InternalError from "../Standard_components/InternalError";
 import useFetch from "../../hooks/useFetch";
-import jwt_decode from "jwt-decode";
-import {useAuthHeaders} from "../../hooks/useAuthHeaders";
+import { useAuthHeaders } from "../../hooks/useAuthHeaders";
 
 const ProfilePage = () => {
   const theme = useTheme();

@@ -1,17 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogTitle,
-  FormControl,
-  FormGroup,
-  FormLabel,
-  Grid,
-  Rating,
-  TextField,
-} from "@mui/material";
-import ImageFileInput from "../../Standard_components/ImageFileInput";
+import { Box, Button, Dialog, DialogTitle, Grid } from "@mui/material";
 import useFirebaseStorage from "../../../hooks/useFirebaseStorage";
 import TestimonialForm from "./TestimonialForm";
 
