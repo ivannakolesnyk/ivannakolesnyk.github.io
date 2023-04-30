@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
+  Alert,
   Box,
   Button,
   CircularProgress,
@@ -57,7 +58,7 @@ const Login = () => {
   );
 
   useEffect(() => {
-    if (fetched && !error) {
+    if (fetched) {
       const token = data.jwt;
       document.cookie = cookie.serialize("jwt", token, {
         maxAge: getJwtPayload.exp,
@@ -68,7 +69,7 @@ const Login = () => {
         ? navigate("/admin")
         : navigate("/profile");
     }
-  }, [fetched, data, error, getJwtPayload, handleLogin, navigate]);
+  }, [fetched, data, getJwtPayload, handleLogin, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
