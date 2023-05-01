@@ -22,10 +22,20 @@ export function AdminProfile(props) {
             <Divider />
             <ProfileInformation profileData={props.profileData} />
             <CardActions sx={{ justifyContent: "flex-end", paddingBottom: 2 }}>
-              <Button component={Link} to="/admin/edit" variant="contained">
+              <Button
+                component={Link}
+                to="/admin/edit"
+                variant="contained"
+                aria-label="Edit profile"
+              >
                 Edit Profile
               </Button>
-              <Button component={Link} to="/admin/changepw" variant="contained">
+              <Button
+                component={Link}
+                to="/admin/changepw"
+                variant="contained"
+                aria-label="Change password"
+              >
                 Change password
               </Button>
             </CardActions>
