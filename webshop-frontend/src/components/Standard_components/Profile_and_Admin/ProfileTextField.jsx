@@ -14,6 +14,7 @@ export const ProfileTextField = ({ label, value, setValue, ...props }) => (
     margin="normal"
     value={value}
     onChange={(e) => setValue(e.target.value)}
+    aria-label={label}
     {...props}
   />
 );

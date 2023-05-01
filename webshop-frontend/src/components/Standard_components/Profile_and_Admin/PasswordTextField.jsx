@@ -15,6 +15,7 @@ export const PasswordTextField = ({ label, value, setValue, ...props }) => (
     type="password"
     value={value}
     onChange={(e) => setValue(e.target.value)}
+    aria-label={label}
     {...props}
   />
 );

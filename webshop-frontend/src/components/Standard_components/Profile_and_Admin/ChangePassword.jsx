@@ -80,6 +80,7 @@ const ChangePassword = ({ navigateTo }) => {
               label="Current Password"
               value={currentPassword}
               setValue={setCurrentPassword}
+              aria-label="Current Password"
             />
             <PasswordTextField
               required
@@ -87,6 +88,7 @@ const ChangePassword = ({ navigateTo }) => {
               label="New Password"
               value={newPassword}
               setValue={setNewPassword}
+              aria-label="New Password"
             />
             <PasswordTextField
               required
@@ -101,6 +103,7 @@ const ChangePassword = ({ navigateTo }) => {
                 "Passwords do not match"
               }
               onFocus={() => setConfirmNewPasswordTouched(true)}
+              aria-label="Confirm New Password"
             />
 
             <Box display="flex" justifyContent="flex-end" marginTop={2}>

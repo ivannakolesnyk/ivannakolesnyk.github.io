@@ -18,22 +18,33 @@ export function ProfileInformation({ profileData }) {
   const { name, email, phone_number, postal_code, address, city } = profileData;
   const profileItems = [
     {
-      icon: <PersonIcon sx={{ color: "secondary.main" }} />,
+      icon: (
+        <PersonIcon sx={{ color: "secondary.main" }} aria-label="Person Icon" />
+      ),
       primary: "Name",
       secondary: name,
     },
     {
-      icon: <EmailIcon sx={{ color: "secondary.main" }} />,
+      icon: (
+        <EmailIcon sx={{ color: "secondary.main" }} aria-label="Email Icon" />
+      ),
       primary: "Email",
       secondary: email,
     },
     {
-      icon: <PhoneIcon sx={{ color: "secondary.main" }} />,
+      icon: (
+        <PhoneIcon sx={{ color: "secondary.main" }} aria-label="Phone Icon" />
+      ),
       primary: "Phone",
       secondary: phone_number,
     },
     {
-      icon: <LocationOnIcon sx={{ color: "secondary.main" }} />,
+      icon: (
+        <LocationOnIcon
+          sx={{ color: "secondary.main" }}
+          aria-label="Location Icon"
+        />
+      ),
       primary: "Address",
       secondary: `${address}, ${postal_code} ${city}`,
     },
