@@ -1,7 +1,9 @@
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
-import React from "react";
+import React, { useEffect } from "react";
+import { useAuthHeaders } from "../../../hooks/useAuthHeaders";
+import useFetch from "../../../hooks/useFetch";
 
 /**
  The AccountTooltip component is a custom MUI IconButton that displays a tooltip
@@ -19,6 +21,20 @@ import React from "react";
  @returns {JSX.Element} - The JSX code for the AccountTooltip component.
  */
 export function AccountTooltip(props) {
+  const { headers, userEmail } = useAuthHeaders();
+  const { data, refetch } = useFetch(
+    "GET",
+    `users/${userEmail}`,
+    headers,
+    null,
+    null,
+    false
+  );
+
+  useEffect(() => {
+    if (userEmail) refetch();
+  }, [userEmail]);
+
   return (
     <Tooltip title="Account settings">
       <IconButton
@@ -29,7 +45,9 @@ export function AccountTooltip(props) {
         aria-haspopup="true"
         aria-expanded={props.open ? "true" : undefined}
       >
-        <Avatar sx={{ width: 32, height: 32 }}>S</Avatar>
+        <Avatar sx={{ width: 32, height: 32 }}>
+          {data.length !== 0 && data.name[0]}
+        </Avatar>
       </IconButton>
     </Tooltip>
   );
