@@ -1,6 +1,15 @@
 import { Button, Paper, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
+/**
+ *
+ * The BannerSection component is a React functional component used for displaying
+ * a promotional banner on the home page. It features a special offer headline,
+ * a brief description, and a call-to-action button. The background image adds visual
+ * interest and complements the promotional message. This component is designed to
+ * draw attention to the special offer and encourage users to take advantage of it.
+ * @returns {JSX.Element} The JSX code for the BannerSection component.
+ */
 const BannerSection = () => {
   return (
     <Stack
