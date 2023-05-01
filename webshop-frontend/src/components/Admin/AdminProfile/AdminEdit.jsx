@@ -1,5 +1,5 @@
 import React from "react";
-import EditProfilePage from "../Standard_components/Profile_and_Admin/EditProfilePage";
+import EditProfilePage from "../../Standard_components/Profile_and_Admin/EditProfilePage";
 
 /**
  * The AdminEdit component is a React functional component that
