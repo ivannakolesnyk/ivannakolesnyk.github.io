@@ -10,6 +10,17 @@ import {
 import useFirebaseStorage from "../../../hooks/useFirebaseStorage";
 import ImageFileInput from "../../Standard_components/ImageFileInput";
 
+/**
+ * The ProductForm component is a React functional component used to display
+ * the product form fields for adding or editing a product.
+ *
+ * @param {Object} product - An object containing product information.
+ * @param {Function} setProduct - A callback function to set the product object.
+ * @param {Function} onChange - A callback function to handle form field changes.
+ * @param {boolean} showIngredients - A boolean value to display ingredients field.
+ * @param {boolean} isEdit - A boolean value indicating if the form is for editing a product.
+ * @returns {JSX.Element} The JSX code for the ProductForm component.
+ */
 const ProductForm = ({
   product,
   setProduct,
@@ -56,6 +67,7 @@ const ProductForm = ({
             inputProps={{
               id: "category_name",
             }}
+            aria-label="Category"
           >
             <MenuItem value="Coffee">Coffee</MenuItem>
             <MenuItem value="Tea">Tea</MenuItem>
@@ -70,6 +82,7 @@ const ProductForm = ({
           name="name"
           value={product.name}
           onChange={(evt) => handleChange(evt, null)}
+          aria-label="Product name"
         />
       </Grid>
       <Grid item xs={12}>
@@ -79,6 +92,7 @@ const ProductForm = ({
           name="price"
           value={product.price}
           onChange={(evt) => handleChange(evt, null)}
+          aria-label="Product price"
         />
       </Grid>
       <Grid item xs={12}>
@@ -88,6 +102,7 @@ const ProductForm = ({
           name="description"
           value={product.description}
           onChange={(evt) => handleChange(evt, null)}
+          aria-label="Product description"
         />
       </Grid>
       {showIngredients && (
@@ -99,6 +114,7 @@ const ProductForm = ({
             value={product.ingredients}
             onChange={(evt) => handleChange(evt, null)}
             rows={4}
+            aria-label="Product ingredients"
           />
         </Grid>
       )}
@@ -106,6 +122,7 @@ const ProductForm = ({
         <ImageFileInput
           handleImageUpload={handleImageUpload}
           value={product.product_image}
+          aria-label="Product image"
         />
       </Grid>
 
@@ -116,6 +133,7 @@ const ProductForm = ({
           name="imageAlt"
           value={product.imageAlt}
           onChange={(evt) => handleChange(evt, null)}
+          aria-label="Product image alt text"
         />
       </Grid>
       <Grid item xs={12}>
@@ -125,6 +143,7 @@ const ProductForm = ({
           name="qty_in_stock"
           value={product.qty_in_stock}
           onChange={(evt) => handleChange(evt, null)}
+          aria-label="Product quantity in stock"
         />
       </Grid>
     </Grid>

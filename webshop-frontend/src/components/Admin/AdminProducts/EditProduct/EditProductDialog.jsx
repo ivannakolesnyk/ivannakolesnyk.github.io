@@ -56,8 +56,12 @@ const EditProductDialog = ({
   };
 
   return (
-    <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Edit Product</DialogTitle>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      aria-labelledby="edit-product-dialog-title"
+    >
+      <DialogTitle id="edit-product-dialog-title">Edit Product</DialogTitle>
       <DialogContent>
         <ProductForm
           product={editedProduct}
@@ -70,7 +74,11 @@ const EditProductDialog = ({
         />
       </DialogContent>
       <DialogActions>
-        <Button variant="contained" onClick={onClose}>
+        <Button
+          variant="contained"
+          onClick={onClose}
+          aria-label="Cancel product edit"
+        >
           Cancel
         </Button>
         <Button
@@ -83,10 +91,16 @@ const EditProductDialog = ({
               handleDelete();
             }
           }}
+          aria-label="Delete product"
         >
           Delete
         </Button>
-        <Button onClick={handleSaveChanges} variant="contained" color="primary">
+        <Button
+          onClick={handleSaveChanges}
+          variant="contained"
+          color="primary"
+          aria-label="Save product changes"
+        >
           Save
         </Button>
       </DialogActions>

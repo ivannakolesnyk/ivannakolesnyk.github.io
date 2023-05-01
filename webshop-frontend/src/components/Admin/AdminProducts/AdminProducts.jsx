@@ -96,6 +96,7 @@ const AdminProducts = () => {
           variant="contained"
           color="primary"
           onClick={() => setNewProductDialogOpen(true)}
+          aria-label="Add product"
         >
           Add Product
         </Button>

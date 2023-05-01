@@ -38,7 +38,7 @@ const ProductsTable = ({ products, onEditProduct, onDeleteProduct }) => {
 
   return (
     <>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} aria-label="Products table">
         <Table>
           <TableHead>
             <TableRow>
@@ -57,7 +57,10 @@ const ProductsTable = ({ products, onEditProduct, onDeleteProduct }) => {
                 <TableCell>{product.price}</TableCell>
                 <TableCell>{product.qty_in_stock}</TableCell>
                 <TableCell>
-                  <IconButton onClick={() => handleEditClick(product)}>
+                  <IconButton
+                    onClick={() => handleEditClick(product)}
+                    aria-label={`Edit ${product.name}`}
+                  >
                     <EditIcon />
                   </IconButton>
                 </TableCell>

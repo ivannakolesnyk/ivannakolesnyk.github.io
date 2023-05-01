@@ -52,8 +52,14 @@ const NewProductDialog = ({
   };
 
   return (
-    <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Create New Product</DialogTitle>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      aria-labelledby="new-product-dialog-title"
+    >
+      <DialogTitle id="new-product-dialog-title">
+        Create New Product
+      </DialogTitle>
       <DialogContent>
         <ProductForm
           product={newProduct}
@@ -70,6 +76,7 @@ const NewProductDialog = ({
             onClose();
             setNewProduct(initialState);
           }}
+          aria-label="Cancel new product creation"
         >
           Cancel
         </Button>
