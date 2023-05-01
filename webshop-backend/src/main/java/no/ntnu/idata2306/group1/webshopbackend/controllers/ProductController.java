@@ -8,7 +8,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import no.ntnu.idata2306.group1.webshopbackend.models.Category;
 import no.ntnu.idata2306.group1.webshopbackend.models.Product;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.CategoryRepository;
-import no.ntnu.idata2306.group1.webshopbackend.repositories.OrderLineRepository;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,9 +27,6 @@ public class ProductController {
 
     @Autowired
     private CategoryRepository categoryRepository;
-
-    @Autowired
-    private OrderLineRepository orderLineRepository;
 
     /**
      * HTTP GET endpoint for getting a list of products.

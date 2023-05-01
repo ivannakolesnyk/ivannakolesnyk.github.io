@@ -1,4 +1,4 @@
-package no.ntnu.idata2306.group1.webshopbackend.models;
+package no.ntnu.idata2306.group1.webshopbackend.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -22,12 +22,12 @@ public class CartItem {
         return productId;
     }
 
-    public Integer getQuantity() {
-        return quantity;
-    }
-
     public void setProductId(Integer productId) {
         this.productId = productId;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
     }
 
     public void setQuantity(Integer quantity) {

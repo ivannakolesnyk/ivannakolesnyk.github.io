@@ -11,9 +11,7 @@ import no.ntnu.idata2306.group1.webshopbackend.models.OrderLine;
 import no.ntnu.idata2306.group1.webshopbackend.models.ShopOrder;
 import no.ntnu.idata2306.group1.webshopbackend.models.User;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.OrderLineRepository;
-import no.ntnu.idata2306.group1.webshopbackend.repositories.ProductRepository;
 import no.ntnu.idata2306.group1.webshopbackend.repositories.ShopOrderRepository;
-import no.ntnu.idata2306.group1.webshopbackend.repositories.UserRepository;
 import no.ntnu.idata2306.group1.webshopbackend.services.AccessUserService;
 import no.ntnu.idata2306.group1.webshopbackend.utils.OrderLineMapper;
 import no.ntnu.idata2306.group1.webshopbackend.utils.ShopOrderMapper;
@@ -37,13 +35,7 @@ public class ShopOrderController {
     private OrderLineRepository orderLineRepository;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private AccessUserService userService;
-
-    @Autowired
-    private ProductRepository productRepository;
 
     @Operation(summary = "Get all orders")
     @ApiResponse(responseCode = "200", description = "Orders fetched",

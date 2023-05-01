@@ -1,7 +1,6 @@
 package no.ntnu.idata2306.group1.webshopbackend.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import no.ntnu.idata2306.group1.webshopbackend.models.CartItem;
 
 import java.util.List;
 
@@ -25,12 +24,12 @@ public class CartRequest {
         return cart;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
     public void setCart(List<CartItem> cart) {
         this.cart = cart;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 
     public void setUserId(String userId) {

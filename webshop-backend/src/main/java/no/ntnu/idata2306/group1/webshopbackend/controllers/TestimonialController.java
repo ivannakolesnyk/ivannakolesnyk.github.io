@@ -28,7 +28,7 @@ public class TestimonialController {
 
     @Operation(summary = "Get all testimonials")
     @ApiResponse(responseCode = "200", description = "Testimonials fetched",
-            content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Testimonial.class)) })
+            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Testimonial.class))})
     @GetMapping("/api/testimonials")
     public ResponseEntity getTestimonials() {
         ResponseEntity response;
@@ -58,7 +58,7 @@ public class TestimonialController {
 
     @Operation(summary = "Create a new testimonial")
     @ApiResponse(responseCode = "201", description = "Testimonial created",
-            content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Testimonial.class)) })
+            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Testimonial.class))})
     @PostMapping("/api/testimonials")
     public ResponseEntity createTestimonial(@RequestBody Testimonial testimonial) {
         try {

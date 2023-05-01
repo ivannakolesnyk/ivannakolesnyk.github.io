@@ -1,7 +1,7 @@
 # PostgreSQL configuration
-db.host=2001:700:300:6018:f816:3eff:fefc:2e59
-db.port=5432
-db.name=mocha_nooka
+db.host=IPV6_ADDRESS_OF_DATABASE_SERVER
+db.port=PORT_OF_DATABASE_SERVER
+db.name=DATABASE_NAME
 db.user=YOUR_DB_USERNAME
 db.password=YOUR_DB_PASSWORD
 
@@ -9,7 +9,7 @@ db.password=YOUR_DB_PASSWORD
 jwt_secret_key=YOUR_JWT_SECRET_KEY
 
 # Url of frontend
-baseUrl=http://localhost:3000
+baseUrl=URL_OF_FRONTEND
 
 # Stripe
 stripe.secret.key=YOUR_STRIPE_SECRET_KEY
@@ -18,5 +18,5 @@ stripe.webhook.secret=YOUR_STRIPE_WEBHOOK_SECRET
 # update tables on application restart
 spring.jpa.hibernate.ddl-auto=update
 
-# Make the Swagger UI available at http://localhost:8080/api-docs
+# Make the Swagger UI available at /api-docs
 springdoc.swagger-ui.path=api-docs

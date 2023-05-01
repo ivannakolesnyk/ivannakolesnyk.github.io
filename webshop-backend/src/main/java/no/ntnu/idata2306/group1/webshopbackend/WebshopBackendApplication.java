@@ -8,9 +8,18 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
 
+/**
+ * The main class of the Webshop Backend application, which is responsible for
+ * starting the application and initializing the DataSource bean.
+ */
 @SpringBootApplication
 public class WebshopBackendApplication {
 
+    /**
+     * The main method that starts the Spring Boot application.
+     *
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
         SpringApplication.run(WebshopBackendApplication.class, args);
     }
