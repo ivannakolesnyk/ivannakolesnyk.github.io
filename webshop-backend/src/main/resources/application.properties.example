@@ -1,9 +1,3 @@
-# SSH Tunnel configuration
-ssh.host=10.212.27.62
-ssh.port=22
-ssh.user=YOUR_NTNU_USERNAME
-ssh.password=YOUR_NTNU_PASSWORD
-
 # PostgreSQL configuration
 db.host=2001:700:300:6018:f816:3eff:fefc:2e59
 db.port=5432
@@ -11,10 +5,13 @@ db.name=mocha_nooka
 db.user=YOUR_DB_USERNAME
 db.password=YOUR_DB_PASSWORD
 
+# JWT secret
 jwt_secret_key=YOUR_JWT_SECRET_KEY
 
+# Url of frontend
 baseUrl=http://localhost:3000
 
+# Stripe
 stripe.secret.key=YOUR_STRIPE_SECRET_KEY
 stripe.webhook.secret=YOUR_STRIPE_WEBHOOK_SECRET
 
