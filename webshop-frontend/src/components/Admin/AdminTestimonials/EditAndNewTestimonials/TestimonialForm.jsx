@@ -1,6 +1,6 @@
 import React from "react";
 import { FormControl, FormLabel, Grid, Rating, TextField } from "@mui/material";
-import ImageFileInput from "../../Standard_components/ImageFileInput";
+import ImageFileInput from "../../../Standard_components/ImageFileInput";
 
 /**
  * TestimonialForm component for creating and editing testimonial data.

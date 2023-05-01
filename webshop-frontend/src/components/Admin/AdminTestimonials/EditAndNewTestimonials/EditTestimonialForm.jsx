@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, Dialog, DialogTitle, Grid } from "@mui/material";
-import useFirebaseStorage from "../../../hooks/useFirebaseStorage";
+import useFirebaseStorage from "../../../../hooks/useFirebaseStorage";
 import TestimonialForm from "./TestimonialForm";
 
 /**

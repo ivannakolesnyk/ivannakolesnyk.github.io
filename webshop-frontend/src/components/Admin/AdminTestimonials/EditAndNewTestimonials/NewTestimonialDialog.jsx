@@ -7,7 +7,7 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
-import useFirebaseStorage from "../../../hooks/useFirebaseStorage";
+import useFirebaseStorage from "../../../../hooks/useFirebaseStorage";
 import TestimonialForm from "./TestimonialForm";
 
 /**
