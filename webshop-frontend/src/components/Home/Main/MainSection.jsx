@@ -1,6 +1,16 @@
 import { Button, Paper, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
+/**
+ *
+ * The MainSection component is a React functional component used for displaying
+ * the main content area of the home page. It features a prominent headline, a
+ * brief description, and a call-to-action button. The background image sets the
+ * tone for the website and encourages users to explore the products and services
+ * offered. This component is designed to capture the user's attention and
+ * provide a clear call-to-action.
+ * @returns {JSX.Element} The JSX code for the MainSection component.
+ */
 const MainSection = () => {
   return (
     <Stack

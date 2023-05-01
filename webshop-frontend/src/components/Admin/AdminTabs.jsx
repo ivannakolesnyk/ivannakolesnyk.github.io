@@ -7,7 +7,7 @@ import AdminProducts from "./AdminProducts/AdminProducts";
 import AdminOrders from "./AdminOrders/AdminOrders";
 import AdminTestimonials from "./AdminTestimonials/AdminTestimonials";
 import AdminCustomers from "./AdminCustomers/AdminCustomers";
-import { AdminFrontPage } from "./AdminFrontPage";
+import { AdminProfile } from "./AdminProfile/AdminProfile";
 import SwipeIcon from "@mui/icons-material/Swipe";
 
 /**
@@ -17,7 +17,7 @@ import SwipeIcon from "@mui/icons-material/Swipe";
  * Testimonials, and Customers. The component adjusts its behavior for mobile
  * and non-mobile devices.
  * @param {Object} props - The properties passed to the component
- * @param {Object} props.profileData - The data to be passed to the AdminFrontPage component
+ * @param {Object} props.profileData - The data to be passed to the AdminProfile component
  * @returns {JSX.Element} The JSX code for the AdminTabs component.
  */
 export function AdminTabs(props) {
@@ -59,7 +59,7 @@ export function AdminTabs(props) {
           ) : null}
         </Box>
         <TabPanel value="0">
-          <AdminFrontPage profileData={props.profileData} />
+          <AdminProfile profileData={props.profileData} />
         </TabPanel>
         <TabPanel value="1">{<AdminOrders />}</TabPanel>
         <TabPanel value="2">{<AdminProducts />}</TabPanel>

@@ -1,5 +1,5 @@
 import React from "react";
-import ChangePassword from "../Standard_components/Profile_and_Admin/ChangePassword";
+import ChangePassword from "../../Standard_components/Profile_and_Admin/ChangePassword";
 
 /**
  *

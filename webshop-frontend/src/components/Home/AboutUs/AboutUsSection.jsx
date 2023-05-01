@@ -2,6 +2,17 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 
+/**
+ *
+ * The AboutUsSection component is a React functional component used for displaying
+ * an "About Us" section on the home page. It provides a brief introduction to the
+ * online coffee shop and its dedication to offering high-quality products. The section
+ * includes a heading, a short description, a call-to-action button to read more, and a
+ * visual element showcasing some of the products. This component is designed to give
+ * users a quick overview of the shop's purpose and values, and to invite them to learn
+ * more about the brand.
+ * @returns {JSX.Element} The JSX code for the AboutUsSection component.
+ */
 const AboutUsSection = () => (
   <Box component="section" sx={{ py: 8, pl: 8, pr: 8 }}>
     <Typography
