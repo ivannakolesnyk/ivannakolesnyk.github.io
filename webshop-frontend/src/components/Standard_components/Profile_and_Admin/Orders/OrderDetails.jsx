@@ -50,7 +50,7 @@ const OrderDetails = ({ order }) => {
   }
 
   return (
-    <Grid container spacing={2} sx={{ mb: 2 }}>
+    <Grid container spacing={2} sx={{ mb: 2 }} aria-label="Order details">
       <TableHeader title="Product" width={4} />
       <TableHeader
         title={isWidthAbove460 ? "Number" : "Nr"}

@@ -18,7 +18,7 @@ import { Grid, Typography } from "@mui/material";
 const TableHeader = ({ title, width, align }) => {
   return (
     <Grid item xs={width}>
-      <Typography variant="subtitle1" align={align}>
+      <Typography variant="subtitle1" align={align} role="columnheader">
         {title}
       </Typography>
     </Grid>

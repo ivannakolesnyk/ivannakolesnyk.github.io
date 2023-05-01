@@ -10,30 +10,24 @@ import { Grid, Typography } from "@mui/material";
  * @param {Object} props - The properties passed to the component
  * @param {Object} props.product - The product object containing the product's data
  * @param {number} props.quantity - The quantity of the product in the order
- * @example
- * const product = { id: 1, name: 'Latte', price: 3.5 };
- * const quantity = 2;
- * return (
- *   <OrderLine product={product} quantity={quantity} />
- * );
  */
 const OrderLine = ({ productName, price, quantity }) => {
   return (
     <>
-      <Grid item xs={4}>
+      <Grid item xs={4} aria-label="Product name">
         <Typography variant="body1">{productName}</Typography>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={2} aria-label="Quantity">
         <Typography variant="body1" align="right">
           {quantity}
         </Typography>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={3} aria-label="Price">
         <Typography variant="body1" align="right">
           {price.toFixed(2)}
         </Typography>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={3} aria-label="Total price">
         <Typography variant="body1" align="right">
           {(price * quantity).toFixed(2)}
         </Typography>
