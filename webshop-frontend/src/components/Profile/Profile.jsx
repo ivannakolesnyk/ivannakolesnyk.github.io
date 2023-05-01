@@ -4,11 +4,11 @@ import Loading from "../Standard_components/Loading";
 import InternalError from "../Standard_components/InternalError";
 import useFetch from "../../hooks/useFetch";
 import { useAuthHeaders } from "../../hooks/useAuthHeaders";
-import { UserProfile } from "./ProfileBox/UserProfile";
+import { ProfileInterface } from "./ProfileInterface/ProfileInterface";
 
 /**
  * The ProfilePage component fetches a user's profile information and renders
- * the UserProfile component, which displays the profile data and provides
+ * the ProfileInterface component, which displays the profile data and provides
  * links to edit the profile, change the password, and view orders. If the
  * data is still being fetched, the Loading component is displayed, and if an
  * error occurs, the InternalError component is displayed.
@@ -32,7 +32,7 @@ const ProfilePage = () => {
     return <InternalError aria-label="Error loading profile data" />;
   }
 
-  return <UserProfile theme={theme} profileData={profileData} />;
+  return <ProfileInterface theme={theme} profileData={profileData} />;
 };
 
 export default ProfilePage;

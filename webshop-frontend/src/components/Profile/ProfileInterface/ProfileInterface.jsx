@@ -12,16 +12,16 @@ import { Link } from "react-router-dom";
 import React from "react";
 
 /**
- * The UserProfile component displays a user's profile information and provides
+ * The ProfileInterface component displays a user's profile information and provides
  * links to edit the profile, change the password, and view orders. The user's
  * profile information is displayed in a Card component, with each piece of
  * information shown as a ListItem.
  * @param {Object} props - The component properties
  * @param {Object} props.theme - The theme object from MUI
  * @param {Object} props.profileData - The profile data object fetched from the API
- * @returns {JSX.Element} The JSX code for the UserProfile component.
+ * @returns {JSX.Element} The JSX code for the ProfileInterface component.
  */
-export function UserProfile(props) {
+export function ProfileInterface(props) {
   return (
     <StandardCenteredBox component="main" aria-labelledby="profile-title">
       <StandardCenteredCard title="My Monoca" ariaLabel="User profile">
