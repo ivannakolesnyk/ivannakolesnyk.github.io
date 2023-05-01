@@ -27,6 +27,7 @@ import React from "react";
 export function AdminTestimonialsInterface(props) {
   return (
     <Box
+      aria-label="admin-testimonials-interface"
       sx={{
         display: "flex",
         justifyContent: "center",

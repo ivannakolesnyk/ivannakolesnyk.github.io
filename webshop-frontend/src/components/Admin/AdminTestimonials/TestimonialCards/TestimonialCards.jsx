@@ -12,7 +12,12 @@ import TestimonialCard from "./TestimonialCard";
  */
 const TestimonialCards = ({ onCardClick, testimonials }) => {
   return (
-    <Box display="flex" flexWrap="wrap" justifyContent="center">
+    <Box
+      display="flex"
+      flexWrap="wrap"
+      justifyContent="center"
+      aria-label="testimonial-cards"
+    >
       {testimonials?.map((testimonial) => (
         <TestimonialCard
           key={testimonial.id}

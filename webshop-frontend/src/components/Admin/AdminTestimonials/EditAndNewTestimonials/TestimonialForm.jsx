@@ -29,6 +29,7 @@ const TestimonialForm = ({
           fullWidth
           onChange={onChange}
           required
+          aria-label="testimonial-name"
         />
       </Grid>
 
@@ -36,6 +37,7 @@ const TestimonialForm = ({
         <ImageFileInput
           handleImageUpload={handleImageUpload}
           value={testimonial.testimonial_image}
+          aria-label="testimonial-image"
         />
       </Grid>
 
@@ -49,17 +51,19 @@ const TestimonialForm = ({
           fullWidth
           multiline
           rows={4}
+          aria-label="testimonial-comment"
         />
       </Grid>
 
       <Grid item xs={12}>
-        <FormControl>
-          <FormLabel>Rating</FormLabel>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Rating</FormLabel>
           <Rating
             name="rating"
             value={testimonial.rating}
             onChange={onRatingChange}
             required
+            aria-label="testimonial-rating"
           />
         </FormControl>
       </Grid>

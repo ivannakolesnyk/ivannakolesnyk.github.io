@@ -82,10 +82,16 @@ const EditTestimonialForm = ({
       onClose={onClose}
       maxWidth="sm"
       fullWidth
+      aria-labelledby="edit-testimonial-dialog"
       sx={{ mt: 1, mb: 4 }}
     >
-      <DialogTitle>Edit Testimonial</DialogTitle>
-      <Box component="form" onSubmit={handleSubmit} sx={{ p: 3 }}>
+      <DialogTitle id="edit-testimonial-dialog">Edit Testimonial</DialogTitle>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{ p: 3 }}
+        aria-label="edit-testimonial-form"
+      >
         <Box>
           <TestimonialForm
             testimonial={{ name, testimonial_image, description, rating }}
@@ -93,7 +99,6 @@ const EditTestimonialForm = ({
             onChange={handleChange}
             onRatingChange={handleRatingChange}
           />
-
           <Grid container justifyContent="flex-end" sx={{ mt: 2 }}>
             <Button
               variant="contained"
@@ -102,6 +107,7 @@ const EditTestimonialForm = ({
                 mr: 1,
                 mb: 1,
               }}
+              aria-label="cancel-edit"
             >
               Cancel
             </Button>
@@ -118,10 +124,16 @@ const EditTestimonialForm = ({
                 }
               }}
               sx={{ mr: 1, mb: 1 }}
+              aria-label="delete-testimonial"
             >
               Delete
             </Button>
-            <Button type="submit" variant="contained" sx={{ mr: 1, mb: 1 }}>
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{ mr: 1, mb: 1 }}
+              aria-label="save-testimonial"
+            >
               Save
             </Button>
           </Grid>

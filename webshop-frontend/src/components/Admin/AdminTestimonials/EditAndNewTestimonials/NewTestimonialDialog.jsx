@@ -66,8 +66,14 @@ const NewTestimonialDialog = ({ open, onClose, onCreate }) => {
   };
 
   return (
-    <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Create New Testimonial</DialogTitle>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      aria-labelledby="create-testimonial-dialog"
+    >
+      <DialogTitle id="create-testimonial-dialog">
+        Create New Testimonial
+      </DialogTitle>
       <DialogContent>
         <TestimonialForm
           testimonial={newTestimonial}
@@ -77,7 +83,11 @@ const NewTestimonialDialog = ({ open, onClose, onCreate }) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button variant="contained" onClick={onClose}>
+        <Button
+          variant="contained"
+          onClick={onClose}
+          aria-label="cancel-create"
+        >
           Cancel
         </Button>
         <Button
@@ -90,6 +100,7 @@ const NewTestimonialDialog = ({ open, onClose, onCreate }) => {
             !newTestimonial.description ||
             !newTestimonial.rating
           }
+          aria-label="create-testimonial"
         >
           Create
         </Button>

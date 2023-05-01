@@ -33,12 +33,15 @@ const TestimonialCard = ({
 }) => {
   return (
     <Box sx={{ maxWidth: 345, m: 2 }}>
-      <CardActionArea onClick={() => onCardClick(testimonial)}>
+      <CardActionArea
+        onClick={() => onCardClick(testimonial)}
+        aria-label={`Testimonial by ${name}`}
+      >
         <Card>
           <CardContent>
             <Box display="flex" justifyContent="center">
               <Avatar
-                alt={name}
+                alt={`${name}'s avatar`}
                 src={image_url}
                 sx={{
                   width: 140,
@@ -53,11 +56,16 @@ const TestimonialCard = ({
               variant="h5"
               component="div"
               textAlign="center"
+              aria-label="testimonial-author"
             >
               {name}
             </Typography>
-            <Rating value={rating} readOnly />
-            <Typography variant="body2" color="text.secondary">
+            <Rating value={rating} readOnly aria-label="testimonial-rating" />
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              aria-label="testimonial-comment"
+            >
               {comment}
             </Typography>
           </CardContent>
