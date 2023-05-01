@@ -4,7 +4,6 @@ import {
   Box,
   Button,
   CardContent,
-  CardHeader,
   CircularProgress,
   Divider,
 } from "@mui/material";
@@ -71,8 +70,7 @@ const ChangePassword = ({ navigateTo }) => {
 
   return (
     <StandardCenteredBox>
-      <StandardCenteredCard>
-        <CardHeader title="Change Password" sx={{ color: "secondary.main" }} />
+      <StandardCenteredCard title="Change password">
         <Divider />
         <CardContent>
           <form onSubmit={handleSubmit}>

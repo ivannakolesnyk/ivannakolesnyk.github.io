@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   CardContent,
-  CardHeader,
   CircularProgress,
   Divider,
 } from "@mui/material";
@@ -82,15 +81,11 @@ const EditProfilePage = ({ navigateTo }) => {
   );
 
   return (
-    <StandardCenteredBox>
-      <StandardCenteredCard>
-        <CardHeader
-          title="Edit Profile Information"
-          sx={{ color: "secondary.main" }}
-        />
+    <StandardCenteredBox component="main" aria-labelledby="edit-profile-title">
+      <StandardCenteredCard title="Edit profile">
         <Divider />
         <CardContent>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} aria-label="Edit profile form">
             {createProfileTextField("Name", "name", name, setName)}
             {createProfileTextField(
               "Phone",
@@ -112,6 +107,7 @@ const EditProfilePage = ({ navigateTo }) => {
                 color="primary"
                 onClick={() => navigate(navigateTo)}
                 sx={{ width: "10rem" }}
+                aria-label="Cancel"
               >
                 Cancel
               </Button>
@@ -122,6 +118,7 @@ const EditProfilePage = ({ navigateTo }) => {
                   color="primary"
                   sx={{ width: "10rem" }}
                   disabled={isLoading}
+                  aria-label="Save changes"
                 >
                   {isLoading ? (
                     <CircularProgress size={24} color="inherit" />
