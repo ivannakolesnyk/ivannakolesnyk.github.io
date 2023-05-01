@@ -44,8 +44,12 @@ export function AccountTooltip(props) {
         aria-controls={props.open ? "account-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={props.open ? "true" : undefined}
+        aria-label="account settings"
       >
-        <Avatar sx={{ width: 32, height: 32 }}>
+        <Avatar
+          sx={{ width: 32, height: 32 }}
+          aria-label={`User's initial: ${data.length !== 0 && data.name[0]}`}
+        >
           {data.length !== 0 && data.name[0]}
         </Avatar>
       </IconButton>
