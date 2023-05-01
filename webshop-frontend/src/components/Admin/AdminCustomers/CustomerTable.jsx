@@ -23,7 +23,7 @@ const CustomerTable = ({ customers, handleDelete }) => {
   const { userEmail } = useAuthHeaders();
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} aria-label="Customers table">
       <Table>
         <TableHead>
           <TableRow>
@@ -59,6 +59,7 @@ const CustomerTable = ({ customers, handleDelete }) => {
                     }
                   }}
                   disabled={customer.email === userEmail}
+                  aria-label={`Delete customer with email ${customer.email}`}
                 >
                   Delete
                 </Button>

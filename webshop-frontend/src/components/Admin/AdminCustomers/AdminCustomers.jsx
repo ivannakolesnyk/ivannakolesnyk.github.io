@@ -57,7 +57,7 @@ const AdminCustomers = () => {
 
   return (
     <Box sx={{ p: { xs: 2, md: 4 } }}>
-      <TitledBox title="Customers" />
+      <TitledBox title="Customers" aria-label="Customers section" />
       <CustomerTable customers={customers} handleDelete={handleDelete} />
     </Box>
   );
