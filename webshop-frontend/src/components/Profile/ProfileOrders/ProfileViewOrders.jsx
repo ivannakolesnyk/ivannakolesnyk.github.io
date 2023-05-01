@@ -10,15 +10,15 @@ import {
   Typography,
 } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
-import OrderTable from "../Standard_components/Profile_and_Admin/Orders/OrderTable";
-import TitledBox from "../Standard_components/TitledBox";
-import OrderDetails from "../Standard_components/Profile_and_Admin/Orders/OrderDetails";
-import useFetch from "../../hooks/useFetch";
-import Loading from "../Standard_components/Loading";
-import InternalError from "../Standard_components/InternalError";
-import { useCart } from "../../context/CartContext";
-import { usePaymentSuccess } from "../../hooks/usePaymentSuccess";
-import { useAuthHeaders } from "../../hooks/useAuthHeaders";
+import OrderTable from "../../Standard_components/Profile_and_Admin/Orders/OrderTable";
+import TitledBox from "../../Standard_components/TitledBox";
+import OrderDetails from "../../Standard_components/Profile_and_Admin/Orders/OrderDetails";
+import useFetch from "../../../hooks/useFetch";
+import Loading from "../../Standard_components/Loading";
+import InternalError from "../../Standard_components/InternalError";
+import { useCart } from "../../../context/CartContext";
+import { usePaymentSuccess } from "../../../hooks/usePaymentSuccess";
+import { useAuthHeaders } from "../../../hooks/useAuthHeaders";
 
 /**
  *
