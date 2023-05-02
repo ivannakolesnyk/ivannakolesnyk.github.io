@@ -61,7 +61,7 @@ public class SecurityConfiguration {
                 .requestMatchers(HttpMethod.POST, "/api/categories").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/api/categories").hasRole("ADMIN")
                 // Products endpoints
-                .requestMatchers("/api/products").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/products").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/products").hasRole("ADMIN")
                 .requestMatchers("/api/products/*").permitAll()
                 .requestMatchers(HttpMethod.DELETE, "/api/products").hasRole("ADMIN")
