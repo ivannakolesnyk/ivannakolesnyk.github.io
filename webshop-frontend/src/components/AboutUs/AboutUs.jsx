@@ -69,6 +69,9 @@ const AboutUs = () => {
             sx={{
               color: "secondary.main",
               textAlign: "left",
+              "@media (max-width: 899px)": {
+                textAlign: "center",
+              },
             }}
             role="heading"
             aria-level="2"
@@ -77,6 +80,7 @@ const AboutUs = () => {
             Our values
           </Typography>
         </Grid>
+
         <Grid item xs={12} md={6} order={{ xs: 4, md: 6 }}>
           <CardMedia
             component="img"
