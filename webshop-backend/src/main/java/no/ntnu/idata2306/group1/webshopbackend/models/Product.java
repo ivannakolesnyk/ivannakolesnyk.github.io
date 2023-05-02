@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 
 /**
  * A product in our webshop.
@@ -23,6 +24,7 @@ public class Product {
     private int id;
 
     @Schema(description = "Name of the product")
+    @Size(min = 3)
     private String name;
 
     @Schema(description = "Price of the product")
