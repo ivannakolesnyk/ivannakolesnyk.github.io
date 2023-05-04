@@ -49,48 +49,59 @@ const OrderTable = ({ orders, handleOrderClick }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {orders.map((order) => (
-            <TableRow
-              key={order.id}
-              onClick={() => handleOrderClick(order)}
-              sx={{ cursor: "pointer" }}
-            >
-              {order.id && (
-                <TableCell aria-label={`Order ID: ${order.id}`}>
-                  {order.id}
-                </TableCell>
-              )}
-              {order.status && (
-                <TableCell aria-label={`Status: ${order.status}`}>
-                  {order.status}
-                </TableCell>
-              )}
-              {order.order_date && (
-                <TableCell
-                  aria-label={`Order Date: ${new Date(order.order_date)
-                    .toISOString()
-                    .slice(0, 10)}`}
-                >
-                  {new Date(order.order_date).toISOString().slice(0, 10)}
-                </TableCell>
-              )}
+          {orders.length > 0 ? (
+            orders.map((order) => (
+              <TableRow
+                key={order.id}
+                onClick={() => handleOrderClick(order)}
+                sx={{ cursor: "pointer" }}
+              >
+                {order.id && (
+                  <TableCell aria-label={`Order ID: ${order.id}`}>
+                    {order.id}
+                  </TableCell>
+                )}
+                {order.status && (
+                  <TableCell aria-label={`Status: ${order.status}`}>
+                    {order.status}
+                  </TableCell>
+                )}
+                {order.order_date && (
+                  <TableCell
+                    aria-label={`Order Date: ${new Date(order.order_date)
+                      .toISOString()
+                      .slice(0, 10)}`}
+                  >
+                    {new Date(order.order_date).toISOString().slice(0, 10)}
+                  </TableCell>
+                )}
 
-              {isLoggedInAndAdmin(loggedIn, getJwtPayload) ? (
-                <>
-                  <TableCell aria-label={`User ID: ${order?.user?.id}`}>
-                    {order?.user?.id}
+                {isLoggedInAndAdmin(loggedIn, getJwtPayload) ? (
+                  <>
+                    <TableCell aria-label={`User ID: ${order?.user?.id}`}>
+                      {order?.user?.id}
+                    </TableCell>
+                    <TableCell aria-label={`Name: ${order?.user?.name}`}>
+                      {order?.user?.name}
+                    </TableCell>
+                  </>
+                ) : (
+                  <TableCell aria-label={`Total: ${order?.total} NOK`}>
+                    {order?.total} NOK
                   </TableCell>
-                  <TableCell aria-label={`Name: ${order?.user?.name}`}>
-                    {order?.user?.name}
-                  </TableCell>
-                </>
-              ) : (
-                <TableCell aria-label={`Total: ${order?.total} NOK`}>
-                  {order?.total} NOK
-                </TableCell>
-              )}
+                )}
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell
+                colSpan={isLoggedInAndAdmin(loggedIn, getJwtPayload) ? 5 : 4}
+                align="center"
+              >
+                No orders
+              </TableCell>
             </TableRow>
-          ))}
+          )}
         </TableBody>
       </Table>
     </TableContainer>

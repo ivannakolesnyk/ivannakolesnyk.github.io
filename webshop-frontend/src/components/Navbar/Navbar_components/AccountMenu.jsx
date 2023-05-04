@@ -7,7 +7,6 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import React, { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
-import Box from "@mui/material/Box";
 
 /**
  Renders a menu with account settings.
