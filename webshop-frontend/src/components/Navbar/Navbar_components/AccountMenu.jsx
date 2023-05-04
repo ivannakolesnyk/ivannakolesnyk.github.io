@@ -3,9 +3,11 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import ListItemIcon from "@mui/material/ListItemIcon";
+import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import React, { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
+import Box from "@mui/material/Box";
 
 /**
  Renders a menu with account settings.
@@ -63,7 +65,18 @@ export function AccountMenu(props) {
         }
         onClick={props.onClose}
       >
-        <Avatar /> My account
+        <ListItemIcon>
+          {getJwtPayload()?.roles.some(
+            (role) => role.authority === "ROLE_ADMIN"
+          ) ? (
+            <Settings fontSize="small" />
+          ) : (
+            <Avatar sx={{ width: 20, height: 20 }} />
+          )}
+        </ListItemIcon>
+        {getJwtPayload()?.roles.some((role) => role.authority === "ROLE_ADMIN")
+          ? "Control panel"
+          : "My account"}
       </MenuItem>
       <MenuItem component={Link} to="/" onClick={props.onClick}>
         <ListItemIcon>
