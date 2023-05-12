@@ -8,4 +8,4 @@ Mocha Nooka Cafe is the go-to spot for the perfect cup of coffee or a tasty bite
 
 ## How to run the app
 
-The front-end and back-end contains their own README.md files. Open those files to see how to run the front-end and back-end.
+The front-end and back-end directories contains their own README.md files. Open those files to see how to run the front-end and back-end.
