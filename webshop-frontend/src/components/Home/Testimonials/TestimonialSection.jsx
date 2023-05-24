@@ -38,11 +38,12 @@ export default function TestimonialSection() {
           style={{ transform: "scaleX(-1)" }}
           aria-hidden="true"
         />
-        <Section sx={{ my: -1 }} ariaLabel="Testimonials section">
+        <Section ariaLabel="Testimonials section">
           <Typography
             variant="h2"
             color={"primary.contrastText"}
             sx={{ margin: "0 auto", p: 6 }}
+            fontSize={{ xs: "4rem", sm: "5.5rem", md: "7rem" }}
           >
             What People Are Saying About Us
           </Typography>
