@@ -33,12 +33,17 @@ const BannerSection = () => {
           <Typography
             component="header"
             fontWeight={600}
-            variant={"h0"}
+            variant={"h2"}
+            fontSize={{ xs: "4rem", sm: "5.5rem", md: "7rem" }}
             color={"secondary"}
           >
             3 for 2
           </Typography>
-          <Typography component="p" color={"secondary"}>
+          <Typography
+            fontSize={{ xs: "1.8rem", sm: "2.2rem", md: "2.5rem" }}
+            component="p"
+            color={"secondary"}
+          >
             Mix and match or find exactly what you want
           </Typography>
           <Link to="/products">
