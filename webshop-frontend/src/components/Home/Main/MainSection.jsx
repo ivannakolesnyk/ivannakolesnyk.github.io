@@ -16,8 +16,8 @@ const MainSection = () => {
     <Stack
       component="section"
       minHeight={"70vh"}
-      py={12}
-      px={8}
+      py={{ xs: 6, sm: 12 }}
+      px={{ xs: 4, sm: 8 }}
       justifyContent={"center"}
       alignItems={"flex-start"}
       spacing={4}
@@ -28,7 +28,13 @@ const MainSection = () => {
       }}
       aria-label="main section"
     >
-      <Paper sx={{ p: 7, maxWidth: 500, backgroundColor: "primary.main" }}>
+      <Paper
+        sx={{
+          p: { xs: 6, md: 8 },
+          maxWidth: { xs: "100%", sm: 500 },
+          backgroundColor: "primary.main",
+        }}
+      >
         <Stack spacing={3} alignItems="left">
           <Typography
             component="h2"
@@ -36,7 +42,7 @@ const MainSection = () => {
             variant={"h1"}
             color={"primary.contrastText"}
             sx={{
-              fontSize: { xs: "5rem", md: "7rem" },
+              fontSize: { xs: "4rem", sm: "5.5rem", md: "7rem" },
             }}
           >
             ENJOY YOUR OWN COFFEE AT HOME
@@ -47,7 +53,7 @@ const MainSection = () => {
             variant={"body2"}
             color={"primary.contrastText"}
             sx={{
-              fontSize: { xs: "1rem", sm: "1.2rem", md: "1.6rem" },
+              fontSize: { xs: "1.8rem", sm: "2.2rem", md: "2.5rem" },
             }}
           >
             A variety of products to make your unique drink yourself. From
@@ -60,8 +66,7 @@ const MainSection = () => {
               variant={"contained"}
               color={"secondary"}
               sx={{
-                maxWidth: "200px",
-                fontSize: { xs: "1.8rem", sm: "2rem", md: "2.2rem" },
+                fontSize: { xs: "1.8rem", sm: "2.2rem", md: "3em" },
                 color: "white",
               }}
               aria-label="order now"
