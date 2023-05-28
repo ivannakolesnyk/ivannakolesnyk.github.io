@@ -23,12 +23,14 @@ import NotFound from "./components/Standard_components/NotFound";
 import { AuthContext } from "./context/AuthContext";
 import InternalError from "./components/Standard_components/InternalError";
 import { isLoggedInAndAdmin, isLoggedInAndNotAdmin } from "./utils/auth/auth";
+import ScrollToTop from "./utils/ScrollToTop";
 
 function App() {
   const { loggedIn, getJwtPayload } = useContext(AuthContext);
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Box display="flex" flexDirection="column" minHeight="100vh">
         <Navbar />
         <Box flex="1">
