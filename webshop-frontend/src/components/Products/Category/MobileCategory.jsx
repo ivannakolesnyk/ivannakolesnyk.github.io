@@ -20,7 +20,7 @@ import { categories } from "./categoryData";
 const MobileCategory = () => {
   const theme = useTheme();
   const isBelow500px = useMediaQuery((theme) => theme.breakpoints.down("sm"));
-  const { handleCategoryClick } = useContext(ProductsContext);
+  const { handleCategoryClick, selectedCategory } = useContext(ProductsContext);
 
   return (
     <List
@@ -54,11 +54,15 @@ const MobileCategory = () => {
                   mr: -2, // adjust the spacing between the icon and text as needed
                 },
                 gap: 0,
-                paddingTop: 0,
-                paddingBottom: 0,
+                padding: 1,
+                borderRadius: 2,
               }}
               disableGutters
               aria-label={`Select ${name} category`}
+              style={{
+                backgroundColor:
+                    name === selectedCategory ? "#D9E7D5" : "white",
+              }}
             >
               <ListItemIcon>
                 <Icon />
