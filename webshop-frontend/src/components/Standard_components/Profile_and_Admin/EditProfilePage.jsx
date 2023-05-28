@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   CardContent,
@@ -30,6 +31,7 @@ const EditProfilePage = ({ navigateTo }) => {
   const [postal_code, setPostal_code] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const { data, isLoading, error } = useFetch(
     "GET",
@@ -55,6 +57,18 @@ const EditProfilePage = ({ navigateTo }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const digitPattern = /^\d+$/;
+
+    if (!digitPattern.test(phone_number)) {
+      setErrorMessage("Phone number must contain only digits.");
+      return;
+    }
+
+    if (!digitPattern.test(postal_code)) {
+      setErrorMessage("Postal code must contain only digits.");
+      return;
+    }
+
     const profileData = {
       name,
       email: userEmail,
@@ -68,10 +82,6 @@ const EditProfilePage = ({ navigateTo }) => {
 
     if (!error) {
       navigate(navigateTo);
-    }
-
-    if (error) {
-      return <InternalError />;
     }
   };
 
@@ -117,6 +127,11 @@ const EditProfilePage = ({ navigateTo }) => {
               setPostal_code
             )}
             {createProfileTextField("City", "city", city, setCity)}
+            {errorMessage && (
+              <Alert severity="error" sx={{ mt: 2 }} role="alert">
+                {errorMessage}
+              </Alert>
+            )}
             <Box display="flex" justifyContent="flex-end" marginTop={2}>
               <Button
                 variant="contained"
