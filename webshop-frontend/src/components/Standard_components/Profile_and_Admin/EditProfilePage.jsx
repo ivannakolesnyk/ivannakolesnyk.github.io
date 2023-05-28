@@ -5,7 +5,7 @@ import {
   CircularProgress,
   Divider,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import StandardCenteredBox from "../StandardCenteredBox";
 import StandardCenteredCard from "../StandardCenteredCard";
@@ -13,6 +13,7 @@ import { ProfileTextField } from "./ProfileTextField";
 import useFetch from "../../../hooks/useFetch";
 import InternalError from "../InternalError";
 import { useAuthHeaders } from "../../../hooks/useAuthHeaders";
+import Loading from "../Loading";
 
 /**
  *
@@ -23,22 +24,34 @@ import { useAuthHeaders } from "../../../hooks/useAuthHeaders";
  */
 const EditProfilePage = ({ navigateTo }) => {
   const navigate = useNavigate();
+  const { headers, userEmail } = useAuthHeaders();
   const [name, setName] = useState("");
   const [phone_number, setPhone_number] = useState("");
   const [postal_code, setPostal_code] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
-  const { headers, userEmail } = useAuthHeaders();
 
-  const { isLoading, error, refetch } = useFetch(
-    "PUT",
+  const { data, isLoading, error } = useFetch(
+    "GET",
     `users/${userEmail}`,
-    headers,
-    null,
-    null,
-    false
+    headers
   );
 
+  const {
+    isLoading: isLoadingButton,
+    error: errorButton,
+    refetch,
+  } = useFetch("PUT", `users/${userEmail}`, headers, null, null, false);
+
+  useEffect(() => {
+    if (data) {
+      setName(data.name || "");
+      setPhone_number(data.phone_number || "");
+      setPostal_code(data.postal_code || "");
+      setAddress(data.address || "");
+      setCity(data.city || "");
+    }
+  }, [data]);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -80,6 +93,9 @@ const EditProfilePage = ({ navigateTo }) => {
     />
   );
 
+  if (isLoading) return <Loading />;
+  if (error) return <InternalError />;
+
   return (
     <StandardCenteredBox component="main" aria-labelledby="edit-profile-title">
       <StandardCenteredCard title="Edit profile">
@@ -120,7 +136,7 @@ const EditProfilePage = ({ navigateTo }) => {
                   disabled={isLoading}
                   aria-label="Save changes"
                 >
-                  {isLoading ? (
+                  {isLoadingButton ? (
                     <CircularProgress size={24} color="inherit" />
                   ) : (
                     "Save"
