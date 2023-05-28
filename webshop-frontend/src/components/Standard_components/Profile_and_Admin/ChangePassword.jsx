@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
+  Alert,
   Box,
   Button,
   CardContent,
@@ -11,7 +12,6 @@ import StandardCenteredBox from "../StandardCenteredBox";
 import StandardCenteredCard from "../StandardCenteredCard";
 import { PasswordTextField } from "./PasswordTextField";
 import useFetch from "../../../hooks/useFetch";
-import InternalError from "../InternalError";
 import { useAuthHeaders } from "../../../hooks/useAuthHeaders";
 
 /**
@@ -35,7 +35,7 @@ const ChangePassword = ({ navigateTo }) => {
 
   const { headers, userEmail } = useAuthHeaders();
 
-  const { isLoading, error, refetch } = useFetch(
+  const { isLoading, error, refetch, fetched } = useFetch(
     "PUT",
     `users/${userEmail}/password`,
     headers,
@@ -43,6 +43,10 @@ const ChangePassword = ({ navigateTo }) => {
     null,
     false
   );
+
+  useEffect(() => {
+    if (fetched) navigate(navigateTo);
+  }, [fetched]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,14 +62,6 @@ const ChangePassword = ({ navigateTo }) => {
     };
 
     await refetch(passwordData);
-
-    if (!error) {
-      navigate(navigateTo);
-    }
-
-    if (error) {
-      return <InternalError />;
-    }
   };
 
   return (
@@ -106,6 +102,11 @@ const ChangePassword = ({ navigateTo }) => {
               aria-label="Confirm New Password"
             />
 
+            {error && (
+              <Alert severity={"error"} sx={{ marginTop: "1rem" }}>
+                You've entered invalid current password! Please try again.
+              </Alert>
+            )}
             <Box display="flex" justifyContent="flex-end" marginTop={2}>
               <Button
                 variant="contained"
