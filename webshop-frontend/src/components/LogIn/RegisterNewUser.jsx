@@ -62,6 +62,18 @@ const RegisterNewUser = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const digitPattern = /^\d+$/;
+
+    if (!digitPattern.test(phone)) {
+      setErrorMessage("Phone number must contain only digits.");
+      return;
+    }
+
+    if (!digitPattern.test(postalCode)) {
+      setErrorMessage("Postal code must contain only digits.");
+      return;
+    }
     if (!passwordsMatch()) {
       setErrorMessage("Passwords do not match.");
       return;
