@@ -41,7 +41,7 @@ const RegisterNewUser = () => {
     {},
     {
       name,
-      email,
+      email: email.toLowerCase(),
       password,
       phone_number: phone,
       postal_code: postalCode,
@@ -52,11 +52,8 @@ const RegisterNewUser = () => {
   );
 
   useEffect(() => {
-    if (!error && fetched) {
-      navigate("/login");
-    } else if (error) {
-      setErrorMessage("Registration error, please try again.");
-    }
+    if (fetched) navigate("/login");
+    if (error) setErrorMessage("The email already exist!");
   }, [fetched, error, navigate]);
 
   const passwordsMatch = () => password === confirmPassword;
