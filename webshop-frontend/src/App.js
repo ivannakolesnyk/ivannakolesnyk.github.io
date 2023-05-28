@@ -21,9 +21,9 @@ import ProfileViewOrders from "./components/Profile/ProfileOrders/ProfileViewOrd
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import NotFound from "./components/Standard_components/NotFound";
 import { AuthContext } from "./context/AuthContext";
-import InternalError from "./components/Standard_components/InternalError";
 import { isLoggedInAndAdmin, isLoggedInAndNotAdmin } from "./utils/auth/auth";
 import ScrollToTop from "./utils/ScrollToTop";
+import Unauthorized from "./components/Standard_components/Unauthorized";
 
 function App() {
   const { loggedIn, getJwtPayload } = useContext(AuthContext);
@@ -77,8 +77,7 @@ function App() {
                 <Route path="/register" element={<Navigate to="/admin" />} />
               </>
             ) : (
-              //   TODO: Change this to Unauthorized
-              <Route path="/admin/*" element={<InternalError />} />
+              <Route path="/admin/*" element={<Unauthorized />} />
             )}
 
             {/*Must always be at the bottom of <Routes>*/}

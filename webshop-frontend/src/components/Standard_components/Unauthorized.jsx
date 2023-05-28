@@ -3,10 +3,10 @@ import React from "react";
 import { useNavigate } from "react-router";
 
 /**
- * Renders a user-friendly messsage in case of an error with a button to go home.
- * @returns {React.Element} - The InternalError component.
+ * Renders a user-friendly messsage when non admin users tries to access restriced routes
+ * @returns {React.Element} - The Unauhtorized component.
  */
-const InternalError = () => {
+const Unauhtorized = () => {
   const navigate = useNavigate();
   const handleBackClick = () => {
     navigate("/");
@@ -19,10 +19,10 @@ const InternalError = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        textAlign: "center",
         justifyContent: "center",
         minHeight: "70vh",
         color: "secondary.main",
-        textAlign: "center",
       }}
     >
       <Typography
@@ -31,20 +31,15 @@ const InternalError = () => {
         role="heading"
         aria-level="1"
       >
-        Oops! Something went wrong.
+        Only admins can access this page!
       </Typography>
-      <Typography
-        variant="body1"
-        sx={(theme) => ({ marginBottom: theme.spacing(3) })}
-      >
-        We encountered an internal error. Please try again later.
-      </Typography>
+
       <Button
         variant="contained"
         color="primary"
         sx={(theme) => ({ marginTop: theme.spacing(2) })}
         onClick={handleBackClick}
-        aria-label="Go to Home page"
+        aria-label="Go to home page"
       >
         Go Home
       </Button>
@@ -52,4 +47,4 @@ const InternalError = () => {
   );
 };
 
-export default InternalError;
+export default Unauhtorized;
