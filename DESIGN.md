@@ -144,7 +144,7 @@ Gather the available images.
 
 1. How much shadow will be used in general, according to the theme?
 
-In general, we won't use shadows for most elements of the layout. However, items on product and menu images will have shadows to provide a subtle depth effect and enhance their visual presentation.
+- In general, we won't use shadows for most elements of the layout. However, items on product and menu images will have shadows to provide a subtle depth effect and enhance their visual presentation.
 
 ## Sketching
 
