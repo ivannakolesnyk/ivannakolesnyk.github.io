@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Responsible for the endpoints of categories
@@ -64,7 +63,7 @@ public class CategoryController {
     /**
      * Delete a category by name.
      *
-     * @param body The request body which include the name of the category to be deleted.
+     * @param name The name of the category to be deleted.
      * @return A ResponseEntity containing the name of the deleted category and a NO_CONTENT status.
      */
     @Operation(summary = "Delete a category by name")
@@ -72,9 +71,8 @@ public class CategoryController {
             @ApiResponse(responseCode = "204", description = "Category deleted successfully"),
             @ApiResponse(responseCode = "404", description = "Category not found")
     })
-    @DeleteMapping
-    public ResponseEntity<Void> deleteCategory(@RequestBody Map<String, String> body) {
-        String name = body.get("name");
+    @DeleteMapping("/{name}")
+    public ResponseEntity<Void> deleteCategory(@PathVariable("name") String name) {
         Category category = categoryRepository.findByName(name);
         if (category != null) {
             categoryRepository.delete(category);
@@ -83,4 +81,5 @@ public class CategoryController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
 }

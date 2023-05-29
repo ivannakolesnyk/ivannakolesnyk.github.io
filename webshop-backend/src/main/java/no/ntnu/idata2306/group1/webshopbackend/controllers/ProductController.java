@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -94,13 +93,12 @@ public class ProductController {
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/api/products")
+    @DeleteMapping("/api/products/{id}")
     @Operation(
             summary = "Delete a product",
             description = "Delete a product with the given ID. Return a 204 No Content status code if the product is deleted, or 404 code if the product is not found."
     )
-    public ResponseEntity deleteProduct(@RequestBody Map<String, Integer> body) {
-        int id = body.get("id");
+    public ResponseEntity deleteProduct(@PathVariable("id") int id) {
         Optional<Product> optionalProduct = productRepository.findById(id);
         if (!optionalProduct.isPresent()) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -109,6 +107,7 @@ public class ProductController {
         productRepository.delete(optionalProduct.get());
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
+
 
     @PutMapping("/api/products")
     @Operation(
