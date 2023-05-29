@@ -11,7 +11,7 @@
     <groupId>no.ntnu.idata2306.group1</groupId>
     <artifactId>webshop-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>webshop-backend</name>
+    <name>Mocha Nooka Backend</name>
     <description>The backend for our webshop</description>
     <properties>
         <java.version>17</java.version>
