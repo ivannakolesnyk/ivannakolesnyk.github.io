@@ -80,8 +80,10 @@ const EditProfilePage = ({ navigateTo }) => {
 
     await refetch(profileData);
 
-    if (!error) {
+    if (!errorButton) {
       navigate(navigateTo);
+    } else {
+      setErrorMessage("Couldn't apply the changes. Please try again later!")
     }
   };
 

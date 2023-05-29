@@ -69,10 +69,13 @@ const useFetch = (
     })();
   }, [fetchData, autoFetch]);
 
-  const refetch = async (body = null, endpoint = null) => {
-    setIsLoading(true);
-    await fetchData(body, endpoint);
-  };
+  const refetch = useCallback(
+    async (body = null, endpoint = null) => {
+      setIsLoading(true);
+      await fetchData(body, endpoint);
+    },
+    [fetchData]
+  ); // add any other dependencies here if there are
 
   return { data, isLoading, error, refetch, fetched };
 };

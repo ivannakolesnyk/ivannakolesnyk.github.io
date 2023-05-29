@@ -33,7 +33,7 @@ export function AccountTooltip(props) {
 
   useEffect(() => {
     if (userEmail) refetch();
-  }, [userEmail]);
+  }, [userEmail, refetch]);
 
   return (
     <Tooltip title="Account settings">

@@ -46,7 +46,7 @@ const ChangePassword = ({ navigateTo }) => {
 
   useEffect(() => {
     if (fetched) navigate(navigateTo);
-  }, [fetched]);
+  }, [fetched, navigate, navigateTo]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
