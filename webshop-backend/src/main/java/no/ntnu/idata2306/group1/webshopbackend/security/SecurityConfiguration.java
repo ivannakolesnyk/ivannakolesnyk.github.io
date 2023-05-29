@@ -52,6 +52,7 @@ public class SecurityConfiguration {
         // Allow JWT authentication
         http.cors().and().csrf().disable().authorizeHttpRequests()
                 .requestMatchers("/api-docs").permitAll()
+                .requestMatchers("/v3/api-docs").permitAll()
                 .requestMatchers("/v3/api-docs/**").permitAll()
                 .requestMatchers("/swagger-ui/**").permitAll()
                 .requestMatchers("/api/authenticate").permitAll()
@@ -59,12 +60,12 @@ public class SecurityConfiguration {
                 // Categories endpoints
                 .requestMatchers(HttpMethod.GET, "/api/categories").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/categories").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/categories").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/api/categories/*").hasRole("ADMIN")
                 // Products endpoints
                 .requestMatchers(HttpMethod.GET, "/api/products").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/products/*").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/products").hasRole("ADMIN")
-                .requestMatchers("/api/products/*").permitAll()
-                .requestMatchers(HttpMethod.DELETE, "/api/products").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/api/products/*").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/api/products").hasRole("ADMIN")
                 // Checkout endpoints
                 .requestMatchers("/api/create-checkout-session").authenticated()
