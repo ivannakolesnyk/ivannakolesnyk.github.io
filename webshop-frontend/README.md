@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# Mocha Nooka Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the frontend for our website. This is a React-based application that provides a solution to manage a coffee shop. The project uses Material UI v5 for a nice looking and responsive design and Firebase Storage for handling data storage needs. The application supports a variety of features, including dynamic product viewing, shopping cart functionality, order management, user authentication, and more.
 
-## Available Scripts
+## Getting started
 
-In the project directory, you can run:
+To get a local copy up and running, follow these simple steps.
 
-### `npm start`
+### Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Make sure that you have Node.js and npm installed on your machine. If you don't, you can download them [here](https://nodejs.org/).
+- You'll need a Firebase project to use for storage. You can create one [here](https://console.firebase.google.com/).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+### Running the application
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. First, clone the repository `git clone https://github.com/julianmontague/ntnu-website-project_group01.git`
+2. Move to the frontend folder: `cd webshop-frontend`
+3. Install the dependencies: `npm install`
+4. Create a `.env` file in the root directory of the project, and fill in your Firebase project settings and the backend API URL. Here is an example:
+   `
+   REACT_APP_API_KEY=<FIREBASE-API-KEY>
+   REACT_APP_AUTH_DOMAIN=<FIREBASE-AUTH-DOMAIN>
+   REACT_APP_PROJECT_ID=<FIREBASE-PROJECT-ID>
+   REACT_APP_STORAGE_BUCKET=<FIREBASE-STORAGE-BUCKET>
+   REACT_APP_MESSAGING_SENDER_ID=<FIREBASE-MESSAGING-SENDER-ID>
+   REACT_APP_APP_ID=<FIREBASE-APP-ID>
 
-### `npm run build`
+   REACT_APP_BASE_URL=<URL-OF-BACKEND-API>
+   `
+   
+5. Run the project `npm start`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Usage
+Once you've started the application, you can access it by opening your browser and navigating to http://localhost:3000.
