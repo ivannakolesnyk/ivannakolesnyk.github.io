@@ -4,13 +4,13 @@ This is the frontend for our website. This is a React-based application that pro
 
 ![Frontpage](https://firebasestorage.googleapis.com/v0/b/monocacoffeeshop.appspot.com/o/images%2Fscreenshots%2Ffrontpage.png?alt=media&token=a6d6b634-9d43-4830-ae83-1af1aa16a407)
 
-![Products]([https://firebasestorage.googleapis.com/v0/b/monocacoffeeshop.appspot.com/o/images%2Fscreenshots%2Ffrontpage.png?alt=media&token=a6d6b634-9d43-4830-ae83-1af1aa16a407](https://firebasestorage.googleapis.com/v0/b/monocacoffeeshop.appspot.com/o/images%2Fscreenshots%2Fproducts.png?alt=media&token=344d53e5-809b-4a7d-a2b8-720a030cf062))
+![Products](https://firebasestorage.googleapis.com/v0/b/monocacoffeeshop.appspot.com/o/images%2Fscreenshots%2Fproducts.png?alt=media&token=344d53e5-809b-4a7d-a2b8-720a030cf062)
 
-![Shopping Cart]([https://firebasestorage.googleapis.com/v0/b/monocacoffeeshop.appspot.com/o/images%2Fscreenshots%2Ffrontpage.png?alt=media&token=a6d6b634-9d43-4830-ae83-1af1aa16a407](https://firebasestorage.googleapis.com/v0/b/monocacoffeeshop.appspot.com/o/images%2Fscreenshots%2Fshoppingcart.png?alt=media&token=0b41e889-93aa-4520-bf8d-cff5100f739a))
+![Shopping Cart](https://firebasestorage.googleapis.com/v0/b/monocacoffeeshop.appspot.com/o/images%2Fscreenshots%2Fshoppingcart.png?alt=media&token=0b41e889-93aa-4520-bf8d-cff5100f739a)
 
-![User Profile]([https://firebasestorage.googleapis.com/v0/b/monocacoffeeshop.appspot.com/o/images%2Fscreenshots%2Ffrontpage.png?alt=media&token=a6d6b634-9d43-4830-ae83-1af1aa16a407](https://firebasestorage.googleapis.com/v0/b/monocacoffeeshop.appspot.com/o/images%2Fscreenshots%2Fuser-profile.png?alt=media&token=d7a05f95-6e32-4dd2-b519-50ace49be9c8))
+![User Profile](https://firebasestorage.googleapis.com/v0/b/monocacoffeeshop.appspot.com/o/images%2Fscreenshots%2Fuser-profile.png?alt=media&token=d7a05f95-6e32-4dd2-b519-50ace49be9c8)
 
-![Admin Panel]([https://firebasestorage.googleapis.com/v0/b/monocacoffeeshop.appspot.com/o/images%2Fscreenshots%2Ffrontpage.png?alt=media&token=a6d6b634-9d43-4830-ae83-1af1aa16a407](https://firebasestorage.googleapis.com/v0/b/monocacoffeeshop.appspot.com/o/images%2Fscreenshots%2Fadmin-controll-panel.png?alt=media&token=880280ff-1bbf-4156-9969-c918da8cd7cc))
+![Admin Panel](https://firebasestorage.googleapis.com/v0/b/monocacoffeeshop.appspot.com/o/images%2Fscreenshots%2Fadmin-controll-panel.png?alt=media&token=880280ff-1bbf-4156-9969-c918da8cd7cc)
 
 ## Getting started
 
