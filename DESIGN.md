@@ -2,162 +2,191 @@
 
 ## Concept Phase
 
-### How serious or playful should the design be?
+# Design Tone
 
-Pretty serious. Peaceful and modern.
+The design should strike a balance between modern simplicity and a calm aesthetic.
 
-### Color scheme
+# Color Scheme:
 
-The company does not have official colors, so we chose peaceful and harmonic colors that match their description.
+Since the company does not have official colors, we have selected peaceful and harmonious colors that align with their description. The chosen colors are:
+#D9E7D5
+#1F3A33
 
-Color palette:  
-#C39681 (main color)
-#F3EBE5  
-And black and white
+# Hierarchy and Layout:
 
-### Hierarchy and layout
+The following elements are listed in order of importance:
 
-**What is the most important message/product on the page?**
-Buy our coffee, in the shop or online.
+- Menu/navigation bar (header): This includes the shop location and login options. It should remain fixed when scrolling.
+- Hero section: Emphasize the "order now" message to encourage users to enjoy coffee at home.
+- Selected products: Showcase a curated selection of products.
+- Testimonials: Feature customer reviews.
+- Contact information and disclaimers (footer): Provide relevant contact details and legal information.
 
-**What is the order of importance for the different elements? What sections will there be on the page?**  
-Listed by importance:  
-Hero section (enjoy our coffee at home - order now)  
-Menu/navigation bar, including where to find the shop, and log in (header) - will move when we scroll  
-Some selected products  
-Testimonials  
-Contact information and disclaimers (footer)
+On the front page, the sections will be organized as follows:
 
-**What sections will there be on the page?**  
-Front page:  
-Hero section (order now)  
-Menu/navigation bar, including where to find the shop, and log in (header) - will move when we scroll  
-Some selected products  
-Short description about the shop  
-Testimonials  
-Disclaimer, copyright, contact information (footer)
+- Hero section (order now)
+- Menu/navigation bar (header, scrolls with the page)
+- Short description about the shop
+- Testimonials
+- Disclaimer, copyright, contact information (footer)
 
-Menu:  
-The menu for in house purchases, divided by category. If you click “show all”, all the products in that category will show.
+Other pages will follow specific layouts:
 
-Products:  
-Navigation bar on the left side  
-Products (with picture and price) divided by sections on the front of this page (coffee, tea, accessories..)  
-Possible to add products to the shopping cart
+- Menu:
+  Item of the cafe
+  Name of the item
+  Categories for filtering
+  "View all" button to show all items in a category
 
-Single product:  
-Product description  
-Image of product  
-Price  
-Add to cart
+- Products:
+  Navigation bar on the left side
+  Products with pictures and prices
+  Categories
+  Filters
+  Sorting options
 
-About us:  
-Short description of the shop  
-Images of the shop
+- Single product:
+  Product description
+  Product image
+  Price
+  "Add to cart" button
+  Quantity selection
 
-Login page:  
-Login section  
-Create new user
+- About us:
+  Brief description of the shop
+  Images of the shop
 
-Help page:  
-Some general explanation
+- Login page:
+  Login section
+  Create new user option
 
-Shopping cart:  
-Products in the the cart (with links to the product)  
-Delete product button  
-Change the number of items button  
-Empty cart button  
-Go pay button
+- Shopping cart:
+  Products in the cart (with links to the product details)
+  Price, total, and quantity information
+  "Delete product" button
+  "Change the number of items" button
+  "Go pay" button
+  "Continue shopping" button
 
-My page  
-Personal information (with ability to change the info and the password)  
-Orders (active and completed)  
-Log out
+- Profile:
+  Personal information (name, email, number)
+  Password change option
+  Delivery information
+  Orders (active and completed)
+  Log out option
+  Profile picture upload
 
-**What layout(s) will you use for the sections?**  
-We will have a nav bar on top, that stays in place even if you scroll  
-Hero section in the top of front page  
-No side bars, except for the products page, where we will have a nav bar on the left side  
-The same header (with navigation) and footer will be on all the pages.
+## Images
 
-### Images
+Gather the available images.
 
-Gather the available images  
-**Will there be text on images or aside images?**  
-Aside images
+1. Will there be text on images or alongside images?
 
-**Will we use clear images or a color-overlay?**  
-**Will there be blur for images?**  
-No
+- Text will be placed alongside the images.
 
-### Icons
+2. Will we use clear images or color overlays?
 
-**Will we use icons and for what?**  
-**Colored or black-and-white/greyscale icons?**  
-Greyscale
+- Clear images will be used.
 
-### Typography
+3. Will there be image blurring?
 
-Font for main text: Neuton
+- No image blurring will be applied.
 
-Font for description: Nunito
+## Icons
 
-**Should it by a Serif or Sans-Serif font?**  
-Sans-serif to communicate modernity  
-We use both for having different amount of attention for the specific text
+1. Will we use icons and if so, for what purpose?
 
-**Bold or thin font?**  
-Here we also use a mix, for dividing customers' attention properly
+- Yes, icons will be used to enhance the website's user-friendliness.
 
-**Rounded or sharp edges?**  
-Mostly sharp, but some images
+2. Colored or black-and-white/greyscale icons?
 
-### Border rounding
+- Icon colors will be based on the theme of the page.
 
-**How rounded should be the edges, according to the theme?**  
-Mostly not rounded. Only on some images.
+3. What did we use for implementing icons for our website?
 
-### Shadows
+- We used Material UI, - accessible library of React components.
 
-**How much shadow will we use in general, according to the theme?**  
-No
+## Typography
 
-## SKETCHING
+1. Font for main text: Inter
 
-Create a sketch of the page which shows the general layout of the page.
+2. Should the font be Serif or Sans-Serif?
 
-## SPECIFIC TECHNICAL DECISIONS
+- Sans-Serif fonts will be used to match the modern requirements of the company.
 
-(This comes at a later stage when you start implementing the site)
+3. Bold or thin font?
 
-### Colors
+- A combination of bold and thin fonts will be used to guide users' attention effectively.
 
-Generate color shades/tints (See video 2.2.3 Colors)
+4. Rounded or sharp edges?
 
-### Typography
+- Mostly rounded edges will be used.
 
-a. Choose a font for titles (You will probably want to change it when you see the site, but
-start with something)
-b. If body text needs another font, choose it. Preferably, use the same font for all texts.
-c. Define font scale using https://type-scale.com/
+5. Define the font scale using the following guidelines:
 
-### Hierarchy and layout:
+- Headlines: 7rem
+  Main text: 3rem
 
-a. Which elements will need an accent because we want to increase their priority in the
-hierarchy?
-b. What components will we need to implement the necessary layouts?
+## Border Rounding
 
-### Icons:
+1. How rounded should the edges be, according to the theme?
 
-a. Choose icon pack if you need one. See http://codingheroes.io/resources/#icons
+- The border rounding should be set at 10-20% to align with the theme.
 
-### Spacing:
+## Shadows
 
-a. Define spacing scale, f.ex, multiples of 16px (multiples of 4px for smaller padding)
+1. How much shadow will be used in general, according to the theme?
 
-### Border rounding:
+- In general, we won't use shadows for most elements of the layout. However, items on product and menu images will have shadows to provide a subtle depth effect and enhance their visual presentation.
 
-a. Synchronize the chosen font with roundedness (very rounded font → more border
-rounding for elements)
-b. Border rounding amount for general elements: cards, forms, images, etc
-c. Border rounding for buttons
+## Sketching
+
+We used software for designing Figma for our sketches based on next reasons:
+
+# Collaborative Design:
+
+Figma allows multiple team members to collaborate on the same project in real-time. This feature is particularly beneficial when working with a team, as it enables seamless collaboration, feedback sharing, and version control.
+
+# Cloud-Based Design:
+
+Figma operates entirely in the cloud, which means that sketches and design files are accessible from anywhere with an internet connection. This accessibility makes it convenient for team members to view, edit, and provide feedback on designs without the need for complex file sharing processes.
+
+# Efficient Design Iteration:
+
+Figma's design iteration capabilities are exceptional. Designers can quickly make changes to the sketches, experiment with different layouts, and apply design elements without disrupting the overall workflow. This flexibility enhances productivity and allows for rapid prototyping and iteration.
+
+# Component and Style Libraries:
+
+Figma provides an extensive library of reusable components and design styles. Designers can create and maintain a consistent design system by leveraging these libraries, resulting in a cohesive and visually appealing interface. It also ensures that design elements are easily scalable and maintainable as the project progresses.
+
+# Interactive Prototyping:
+
+Figma allows designers to create interactive prototypes by adding clickable elements, transitions, and animations. This feature enables stakeholders to experience the website's flow and interactions before development begins, facilitating clearer communication and reducing potential misunderstandings.
+
+Overall, Figma's collaborative features, cloud-based functionality, efficient design iteration capabilities, component libraries, interactive prototyping, developer handoff tools, and third-party integrations make it an ideal choice for creating website sketches and design guidelines. It empowers designers to work effectively, enhance collaboration, and deliver high-quality design outcomes.
+
+## Specific technical decisions
+
+# React Framework for Frontend:
+
+We chose the React framework for the frontend development of the website instead of pure JavaScript because React offers several advantages. It allows for efficient component-based development, making it easier to manage and reuse UI elements. React's virtual DOM and efficient rendering ensure optimal performance. Additionally, React has a vast ecosystem of libraries and community support, enabling faster development and easier maintenance of complex applications.
+
+# Stripe for Payment Implementation:
+
+We opted for Stripe as our payment implementation solution due to its robust and secure payment processing capabilities. Stripe provides a developer-friendly API, extensive documentation, and strong security measures, ensuring a seamless and safe payment experience for users. Its features, such as support for various payment methods and currencies, subscription management, and PCI compliance, make it an ideal choice for handling online payments.
+
+# Google Maps for Find Us Page:
+
+We integrated Google Maps into the "Find Us" page to provide users with an interactive and accurate map experience. Google Maps offers comprehensive mapping data, real-time location services, and powerful geocoding capabilities. By leveraging Google Maps, users can easily locate our shop, view directions, and explore the surrounding area. Its user-friendly interface and reliable data make it a trusted choice for delivering an intuitive and informative map experience.
+
+## Changes in Figma
+
+During the design process, we encountered a situation where the themes in our Figma sketches differed slightly from the final implementation on the website. After creating the entire layout in Figma, we realized that the colors we initially chose lacked sufficient contrast for optimal readability and visual appeal.
+
+To address this, we made the decision to adjust the colors and font choices to ensure better contrast and overall harmony on the website. Additionally, we modified the images to align with the new color scheme and create a more cohesive visual experience. However, despite these changes, we remained faithful to the original layout that was carefully crafted in Figma.
+
+By maintaining the layout consistency, we were able to preserve the intended hierarchy and structure of the website, providing users with a familiar and intuitive browsing experience.
+
+## Conclusion
+
+This design guideline provides a comprehensive framework for creating an official and user-friendly website. By following these guidelines, we ensured a modern and calm design tone, harmonious color scheme, clear images, and user-friendly icons. The layout prioritizes essential elements and maintains consistency across different pages. Typography is chosen to be easily readable, with rounded edges adding a touch of softness. By adhering to these guidelines, we made a cohesive and professional website that provides an excellent user experience.
