@@ -32,11 +32,11 @@ const useFetch = (
   const [fetched, setFetched] = useState(false);
 
   const fetchData = useCallback(
-    async (body = null) => {
+    async (body = null, endpointNew = null) => {
       setIsLoading(true);
       const options = {
         method: method,
-        url: `${baseURL}${endpoint}`,
+        url: `${baseURL}${endpoint || endpointNew}`,
         headers: { ...headers },
         params: { ...query },
         data: body || requestBody,
@@ -69,9 +69,9 @@ const useFetch = (
     })();
   }, [fetchData, autoFetch]);
 
-  const refetch = async (body = null) => {
+  const refetch = async (body = null, endpoint = null) => {
     setIsLoading(true);
-    await fetchData(body);
+    await fetchData(body, endpoint);
   };
 
   return { data, isLoading, error, refetch, fetched };
