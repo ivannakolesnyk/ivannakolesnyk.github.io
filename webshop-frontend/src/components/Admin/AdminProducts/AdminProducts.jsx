@@ -33,7 +33,7 @@ const AdminProducts = () => {
 
   const { refetch: deleteProductRequest } = useFetch(
     "DELETE",
-    "products",
+    null,
     headers,
     null,
     null,
@@ -78,7 +78,7 @@ const AdminProducts = () => {
 
   const deleteProduct = async (productId) => {
     try {
-      await deleteProductRequest({ id: productId });
+      await deleteProductRequest(null, `products/${productId}`);
       await refetch();
     } catch (error) {
       console.error(error);
