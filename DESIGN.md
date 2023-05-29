@@ -30,7 +30,7 @@ On the front page, the sections will be organized as follows:
 - Testimonials
 - Disclaimer, copyright, contact information (footer)
 
-Other pages will follow specific layouts:
+### Other pages will follow specific layouts:
 
 #### Menu:
 
@@ -89,29 +89,29 @@ Gather the available images.
 
 1. Will there be text on images or alongside images?
 
-Text will be placed alongside the images.
+- Text will be placed alongside the images.
 
 2. Will we use clear images or color overlays?
 
-Clear images will be used.
+- Clear images will be used.
 
 3. Will there be image blurring?
 
-No image blurring will be applied.
+- No image blurring will be applied.
 
 ## Icons
 
 1. Will we use icons and if so, for what purpose?
 
-Yes, icons will be used to enhance the website's user-friendliness.
+- Yes, icons will be used to enhance the website's user-friendliness.
 
 2. Colored or black-and-white/greyscale icons?
 
-Icon colors will be based on the theme of the page.
+- Icon colors will be based on the theme of the page.
 
 3. What did we use for implementing icons for our website?
 
-We used Material UI, - accessible library of React components.
+- We used Material UI, - accessible library of React components.
 
 ## Typography
 
@@ -119,26 +119,26 @@ We used Material UI, - accessible library of React components.
 
 2. Should the font be Serif or Sans-Serif?
 
-Sans-Serif fonts will be used to match the modern requirements of the company.
+- Sans-Serif fonts will be used to match the modern requirements of the company.
 
 3. Bold or thin font?
 
-A combination of bold and thin fonts will be used to guide users' attention effectively.
+- A combination of bold and thin fonts will be used to guide users' attention effectively.
 
 4. Rounded or sharp edges?
 
-Mostly rounded edges will be used.
+- Mostly rounded edges will be used.
 
 5. Define the font scale using the following guidelines:
 
-Headlines: 7rem
-Main text: 3rem
+- Headlines: 7rem
+- Main text: 3rem
 
 ## Border Rounding
 
 1. How rounded should the edges be, according to the theme?
 
-The border rounding should be set at 10-20% to align with the theme.
+- The border rounding should be set at 10-20% to align with the theme.
 
 ## Shadows
 
