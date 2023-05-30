@@ -56,10 +56,8 @@ const MainSection = () => {
               fontSize: { xs: "1.8rem", sm: "2.2rem", md: "2.5rem" },
             }}
           >
-            A variety of products to make your unique drink yourself. From
-            grinders to filters, milk frothers to pour-over kettles, our range
-            of coffee-making products lets you unleash your inner barista and
-            enjoy coffee just the way you like it.
+            A variety of products to make your unique drink yourself. Enjoy
+            coffee just the way you like it.
           </Typography>
           <Link to="/products">
             <Button
