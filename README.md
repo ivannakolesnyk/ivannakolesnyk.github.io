@@ -1,6 +1,6 @@
 # Mocha Nooka Cafe - Online Shop
 
-This project is a part of the IDATA2301 Web technologies course at NTNU. It's an online store for Mocha Nooka Cafe, a fictional coffee shop located in the heart of the city. The web shop emulates a real-life coffee shop where customers can view and purchase a variety of products, including different types of coffee, tea, sweets, and coffee accessories.
+This project is a part of the IDATA2301 Web technologies and IDATA2306 Application development courses at NTNU Aalesund. It's an online store for Mocha Nooka Cafe, a fictional coffee shop located in the heart of the city. The web shop emulates a real-life coffee shop where customers can view and purchase a variety of products, including different types of coffee, tea, sweets, and coffee accessories.
 
 ## About Mocha Nooka Cafe
 
