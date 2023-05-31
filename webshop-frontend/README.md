@@ -42,3 +42,5 @@ To get a local copy up and running, follow these simple steps.
 
 ### Usage
 Once you've started the application, you can access it by opening your browser and navigating to http://localhost:3000.
+
+Note that this is just the frontend of the application. To have all the functionalities, the backend project should also run. Read how to run the backend project [here](https://github.com/julianmontague/ntnu-website-project_group01/blob/main/webshop-backend/README.md)
